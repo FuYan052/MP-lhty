@@ -102,6 +102,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.optionsList, function(item, index) {
+    var g0 = _vm.selectedIds.indexOf(item.id)
+    return {
+      $orig: _vm.__get_orig(item),
+      g0: g0
+    }
+  })
+
+  if (!_vm._isMounted) {
+    _vm.e0 = function($event) {
+      _vm.isWeek = !_vm.isWeek
+    }
+
+    _vm.e1 = function($event) {
+      _vm.isCancel = !_vm.isCancel
+    }
+  }
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0
+      }
+    }
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -132,7 +158,40 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var MyTimePicker = function MyTimePicker() {return __webpack_require__.e(/*! import() | components/myTimePicker/MyTimePicker */ "components/myTimePicker/MyTimePicker").then(__webpack_require__.bind(null, /*! @/components/myTimePicker/MyTimePicker.vue */ 52));};var MyPicker = function MyPicker() {return __webpack_require__.e(/*! import() | components/myPicker/myPicker */ "components/myPicker/myPicker").then(__webpack_require__.bind(null, /*! @/components/myPicker/myPicker.vue */ 61));};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _methods;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var MyTimePicker = function MyTimePicker() {return __webpack_require__.e(/*! import() | components/myTimePicker/MyTimePicker */ "components/myTimePicker/MyTimePicker").then(__webpack_require__.bind(null, /*! @/components/myTimePicker/MyTimePicker.vue */ 52));};var MyPicker = function MyPicker() {return __webpack_require__.e(/*! import() | components/myPicker/myPicker */ "components/myPicker/myPicker").then(__webpack_require__.bind(null, /*! @/components/myPicker/myPicker.vue */ 57));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -214,11 +273,38 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       time: '', //选择的时间值
       isshow1: false, //显示时间选择器
       isshow2: false, //其他选择器
+      hour: null, //选择的时长
+      deadline: '', //报名截止
       timePickerType: 100, //100为选择活动时间，200为选择报名截止时间
-      hour: null //选择的时长
+      inputNumValue: '', //人数
+      inputPrice1: '', //钱包支付费用
+      inputPrice2: '', //费用男
+      inputPrice3: '', //费用女
+      inputPrice4: '', //临打费用
+      inputBallType: '', //活动用球
+      optionsList: [{ id: 1, value: '菜鸟' }, { id: 2, value: '初级' }, { id: 3, value: '中级' }, { id: 4, value: '高级' }],
+      selectedIds: [], //选中的等级
+      inputOrganizer: '', //组织者
+      titleValue: '', //标题
+      ruleValue: '', //活动规则
+      isWeek: false, //是否周活动
+      isCancel: false //是否可取消
     };
   },
-  methods: {
+  computed: {
+    isShowButton: function isShowButton() {
+      if (this.isshow1) {
+        return !this.isshow1;
+      }if (this.isshow2) {
+        return !this.isshow2;
+      } else {
+        // setTimeout(function() {
+        return true;
+        // }, 200);
+      }
+    } },
+
+  methods: (_methods = {
     // 选择活动时间
     choiceTime: function choiceTime() {
       this.isshow1 = !this.isshow1;
@@ -235,7 +321,91 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     receiveHour: function receiveHour(v1, v2) {
       this.hour = v1;
       this.isshow2 = v2;
-    } } };exports.default = _default;
+    },
+    // 选择报名截止时间
+    choiceDeadline: function choiceDeadline() {
+      this.isshow1 = true;
+      this.timePickerType = 200;
+    },
+    receiveDeadline: function receiveDeadline(v1, v2) {
+      this.deadline = v1;
+      this.isshow1 = v2;
+    },
+    // 选择等级
+    handleClick: function handleClick(item) {
+      var selectedIndex = this.selectedIds.indexOf(item.id);
+      if (selectedIndex >= 0) {
+        this.selectedIds.splice(selectedIndex, 1);
+      } else {
+        this.selectedIds.push(item.id);
+      }
+      // console.log(this.selectedIds)
+    },
+    // 输入人数
+    inputNum: function inputNum(v) {
+      this.inputNumValue = v.detail;
+    },
+    // 输入钱包支付
+    InputPrice1: function InputPrice1(v) {
+      this.inputPrice1 = v.detail;
+    },
+    // 输入费用男
+    InputPrice2: function InputPrice2(v) {
+      this.inputPrice2 = v.detail;
+    },
+    // 输入人数
+    InputPrice3: function InputPrice3(v) {
+      this.inputPrice3 = v.detail;
+    },
+    // 输入人数
+    InputPrice4: function InputPrice4(v) {
+      this.inputPrice4 = v.detail;
+    },
+    // 输入标题
+    inputTitleValue: function inputTitleValue(v) {
+      this.titleValue = v.detail;
+    },
+    // 输入规则
+    inputRuleValue: function inputRuleValue(v) {
+      this.ruleValue = v.detail;
+    },
+    // 输入用球
+    InputBall: function InputBall(v) {
+      this.inputBallType = v.detail;
+    },
+    // 输入组织者
+    InputOrganizer: function InputOrganizer(v) {
+      this.inputOrganizer = v.detail;
+    },
+    // 是否周活动
+    switchChange1: function switchChange1() {
+      this.isWeek = !this.isWeek;
+    } }, _defineProperty(_methods, "switchChange1", function switchChange1()
+  {
+    this.isCancel = !this.isCancel;
+  }), _defineProperty(_methods, "submit", function submit()
+
+  {
+    var params = {
+      type: '001',
+      time: this.time,
+      duration: this.hour,
+      deadline: this.deadline,
+      place: '',
+      people: this.inputNumValue,
+      money: this.inputPrice1,
+      moneyMan: this.inputPrice2,
+      moneyWomen: this.inputPrice3,
+      temporaryMoney: this.inputPrice4,
+      ballType: this.inputBallType,
+      level: this.selectedIds,
+      title: this.titleValue,
+      rule: this.ruleValue,
+      isWeek: this.isWeek,
+      isCancel: this.isCancel };
+
+    console.log(params);
+  }), _methods) };exports.default = _default;
 
 /***/ }),
 /* 22 */

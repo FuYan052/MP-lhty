@@ -30,11 +30,12 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   position: relative;
-  padding: 16rpx;
+  padding: 0 16rpx;
   padding-bottom: 250rpx;
 }
 .publishActivities .wrap1.data-v-c5aae6a8 {
     width: 100%;
+    height: auto;
 }
 .publishActivities .wrap1.data-v-c5aae6a8 .van-cell-group {
       border-radius: 10rpx;
@@ -43,6 +44,9 @@
 .publishActivities .wrap1.data-v-c5aae6a8 .van-cell-group .item {
         margin-bottom: 8rpx;
         border-radius: 10rpx;
+}
+.publishActivities .wrap1.data-v-c5aae6a8 .van-cell-group .van-field__input--disabled {
+        color: #1f1f1f;
 }
 .publishActivities .wrap1.data-v-c5aae6a8 .van-cell-group .van-cell--large {
         width: 100%;
@@ -63,12 +67,88 @@
           color: #1f1f1f;
           -webkit-text-fill-color: #1f1f1f;
 }
+.publishActivities .wrap1.data-v-c5aae6a8 .van-cell-group .van-cell--large .van-icon {
+          size: 30rpx;
+          color: #3d3a35;
+}
+.publishActivities .wrap1 .level.data-v-c5aae6a8 {
+      width: 100%;
+      height: 180rpx;
+      background: #fff;
+      border-radius: 10rpx;
+      margin-bottom: 8rpx;
+}
+.publishActivities .wrap1 .level .title.data-v-c5aae6a8 {
+        height: 92rpx;
+        margin-left: 32rpx;
+        letter-spacing: 1rpx;
+        font-size: 30rpx;
+        color: #1f1f1f;
+        line-height: 92rpx;
+}
+.publishActivities .wrap1 .level .optionsBox.data-v-c5aae6a8 {
+        width: 100%;
+        height: 86rpx;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: space-around;
+            -ms-flex-pack: distribute;
+                justify-content: space-around;
+}
+.publishActivities .wrap1 .level .optionsBox .optionItem.data-v-c5aae6a8 {
+          width: 136rpx;
+          height: 64rpx;
+          line-height: 64rpx;
+          text-align: center;
+          background: #e6e4e5;
+          color: #727272;
+          font-size: 24rpx;
+}
+.publishActivities .wrap1 .level .optionsBox .selected.data-v-c5aae6a8 {
+          background: #ffbc01;
+          color: #f1f1f1;
+}
+.publishActivities .wrap1 .textAreaBox.data-v-c5aae6a8 {
+      width: 100%;
+      min-height: 270rpx;
+}
+.publishActivities .wrap1 .textAreaBox .title.data-v-c5aae6a8 {
+        height: 70rpx;
+        line-height: 70rpx;
+        color: #fff;
+        padding-left: 34rpx;
+}
+.publishActivities .wrap1 .textAreaBox.data-v-c5aae6a8 .van-cell {
+        min-height: 192rpx;
+        border-radius: 10rpx;
+}
+.publishActivities .switchBox.data-v-c5aae6a8 {
+    width: 100%;
+    height: 96rpx;
+    background: #fff;
+    border-radius: 10rpx;
+    margin-top: 10rpx;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 0 32rpx;
+}
+.publishActivities .switchBox .text.data-v-c5aae6a8 {
+      line-height: 96rpx;
+      color: #1f1f1f;
+}
+.publishActivities .switchBox.data-v-c5aae6a8 .van-switch {
+      float: right;
+      margin-top: 25rpx;
+}
 .publishActivities .wrap2.data-v-c5aae6a8 {
     width: 100%;
-    height: 210rpx;
+    height: 225rpx;
     background: #1e1e1e;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
+    z-index: 999;
     position: fixed;
     padding: 0 16rpx;
     bottom: 0;
@@ -77,5 +157,6 @@
 .publishActivities .wrap2 .buttonBox.data-v-c5aae6a8 {
       width: 100%;
       height: 96rpx;
+      margin-top: 15rpx;
 }
 

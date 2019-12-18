@@ -1,14 +1,12 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/userCenter/publishActivities/publishActivities",
+			"path": "pages/login/login",
 			"style": {
-				"navigationBarTitleText": "发布活动",
+				"navigationBarTitleText": "登录",
 				"usingComponents": {
 					"van-field": "/wxcomponents/vant/dist/field/index",
 					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
-					// "van-popup": "/wxcomponents/vant/dist/popup/index",
-					// "van-icon": "/wxcomponents/vant/dist/d/index",
 				}
 			}
 		},
@@ -34,6 +32,17 @@
 			"path": "pages/tabBar/userCenter/userCenter",
 			"style": {
 				"navigationBarTitleText": "个人中心"
+			}
+		},
+		{
+			"path": "pages/userCenter/publishActivities/publishActivities",
+			"style": {
+				"navigationBarTitleText": "发布活动",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
+					"van-switch": "/wxcomponents/vant/dist/switch/index"
+				}
 			}
 		}
 	],

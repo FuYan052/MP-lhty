@@ -36,7 +36,7 @@ export default {
   methods: {
     // 确认
     onConfirm1(v) {
-			console.log(v)
+			// console.log(v)
       this.show = false
       this.$emit('submitHour', v.checkArr.value, this.show)
     },

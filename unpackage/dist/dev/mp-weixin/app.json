@@ -1,10 +1,11 @@
 {
   "pages": [
-    "pages/userCenter/publishActivities/publishActivities",
+    "pages/login/login",
     "pages/tabBar/badminton/badminton",
     "pages/tabBar/bookPlace/bookPlace",
     "pages/tabBar/buyBall/buyBall",
-    "pages/tabBar/userCenter/userCenter"
+    "pages/tabBar/userCenter/userCenter",
+    "pages/userCenter/publishActivities/publishActivities"
   ],
   "subPackages": [],
   "window": {

@@ -3,6 +3,7 @@
 			mode="dateTime" 
 			startYear="2019" 
 			endYear="2022" 
+			step='10'
 			:current="true" 
 			@confirm="onConfirm1" 
 			@cancel='onCancel1'
