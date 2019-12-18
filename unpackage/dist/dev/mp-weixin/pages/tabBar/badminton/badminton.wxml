@@ -1,0 +1,1 @@
+<view class="badminton data-v-32024bbe"><view class="title1 data-v-32024bbe">{{''+text+''}}</view><van-button vue-id="1" type="info" data-com-type="wx" class="data-v-32024bbe" bind:__l="__l" vue-slots="{{['default']}}">按钮</van-button></view>

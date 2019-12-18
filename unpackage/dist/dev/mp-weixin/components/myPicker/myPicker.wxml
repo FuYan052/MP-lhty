@@ -1,0 +1,1 @@
+<w-picker vue-id="1" mode="selector" defaultVal="{{['2小时']}}" selectList="{{columns}}" themeColor="#ffbc01" data-ref="picker1" data-event-opts="{{[['^confirm',[['onConfirm1']]],['^cancel',[['onCancel1']]]]}}" bind:confirm="__e" bind:cancel="__e" class="data-v-70c21c5d vue-ref" bind:__l="__l"></w-picker>

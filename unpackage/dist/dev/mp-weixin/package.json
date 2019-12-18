@@ -1,0 +1,15 @@
+{
+  "name": "mp-weixin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "miniprogram-sm-crypto": "^0.1.0",
+    "vant-weapp": "^0.5.27"
+  }
+}

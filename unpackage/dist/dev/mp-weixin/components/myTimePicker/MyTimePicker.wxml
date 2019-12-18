@@ -1,0 +1,1 @@
+<w-picker vue-id="1" mode="dateTime" startYear="2019" endYear="2022" current="{{true}}" themeColor="#ffbc01" data-ref="dateTime" data-event-opts="{{[['^confirm',[['onConfirm1']]],['^cancel',[['onCancel1']]]]}}" bind:confirm="__e" bind:cancel="__e" class="data-v-34becdc6 vue-ref" bind:__l="__l"></w-picker>

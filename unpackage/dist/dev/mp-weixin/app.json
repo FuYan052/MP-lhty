@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/userCenter/publishActivities/publishActivities",
+    "pages/tabBar/badminton/badminton",
+    "pages/tabBar/bookPlace/bookPlace",
+    "pages/tabBar/buyBall/buyBall",
+    "pages/tabBar/userCenter/userCenter"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "来虎体育",
+    "navigationBarBackgroundColor": "#1e1e1e",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#fff",
+    "selectedColor": "#ffb000",
+    "borderStyle": "black",
+    "backgroundColor": "#1e191d",
+    "height": "54px",
+    "spacing": "5px",
+    "iconWidth": "20px",
+    "list": [
+      {
+        "pagePath": "pages/tabBar/badminton/badminton",
+        "iconPath": "static/imgs/tabbar1_1.png",
+        "selectedIconPath": "static/imgs/tabbar1_2.png",
+        "text": "约球"
+      },
+      {
+        "pagePath": "pages/tabBar/bookPlace/bookPlace",
+        "iconPath": "static/imgs/tabbar2_1.png",
+        "selectedIconPath": "static/imgs/tabbar2_2.png",
+        "text": "订场"
+      },
+      {
+        "pagePath": "pages/tabBar/buyBall/buyBall",
+        "iconPath": "static/imgs/tabbar3_1.png",
+        "selectedIconPath": "static/imgs/tabbar3_2.png",
+        "text": "购球"
+      },
+      {
+        "pagePath": "pages/tabBar/userCenter/userCenter",
+        "iconPath": "static/imgs/tabbar4_1.png",
+        "selectedIconPath": "static/imgs/tabbar4_2.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "usingComponents": {
+    "van-icon": "/wxcomponents/vant/dist/icon/index"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "约球",
+  "usingComponents": {
+    "van-button": "/wxcomponents/vant/dist/button/index"
+  }
+}
