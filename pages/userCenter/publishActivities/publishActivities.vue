@@ -87,7 +87,7 @@
 			@submitDeadline='receiveDeadline'
 		></my-time-picker>
 		<!-- 其他自定义选择器 -->
-		<my-picker v-show="isshow2" :isShowPicker='isshow2' :currHourValue='hour' @submitHour='receiveHour'></my-picker>
+		<my-picker v-show="isshow2" :isShowPicker='isshow2' :currHourValue='hour' :pickList='pickList1' @handleSubmit='receiveHour'></my-picker>
 		<!-- 发布按钮 -->
 		<cover-view class="wrap2" v-show="isShowButton">
 			<cover-view class="buttonBox">
@@ -114,6 +114,7 @@
 				isshow1: false,  //显示时间选择器
 				isshow2: false,  //其他选择器
 				hour: null,  //选择的时长
+				pickList1: [],
 				deadline: '',  //报名截止
 				timePickerType: 100,  //100为选择活动时间，200为选择报名截止时间
 				inputNumValue: '',  //人数
@@ -157,9 +158,10 @@
 			// 选择活动时长
 			choiceDuration() {
 				this.isshow2 = !this.isshow2
+				this.pickList1 = [{label:"0.5小时",value:"0.5"},{label:"1小时",value:"1"},{label:"1.5小时",value:"1.5"},{label:"2小时",value:"2"},{label:"2.5小时",value:"2.5"},{label:"3小时",value:"3"},{label:"3.5小时",value:"3.5"},{label:"4小时",value:"4"}]
 			},
 			receiveHour(v1, v2) {
-				this.hour = v1
+				this.hour = v1.checkArr.value
 				this.isshow2 = v2
 			},
 			// 选择报名截止时间

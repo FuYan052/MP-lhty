@@ -17,13 +17,17 @@ export default {
   components: {
 		wPicker
   },
-  props: ['isShowPicker','currHourValue'],
+  props: ['isShowPicker','currHourValue','pickList'],
   data() {
     return {
 			show: false,
-			columns: [{label:"0.5小时",value:"0.5"},{label:"1小时",value:"1"},{label:"1.5小时",value:"1.5"},{label:"2小时",value:"2"},{label:"2.5小时",value:"2.5"},{label:"3小时",value:"3"},{label:"3.5小时",value:"3.5"},{label:"4小时",value:"4"}]
     }
   },
+	computed: {
+		columns() {
+			return this.pickList
+		}
+	},
 	watch: {
 		isShowPicker(v) {
 			if(v){
@@ -38,7 +42,7 @@ export default {
     onConfirm1(v) {
 			// console.log(v)
       this.show = false
-      this.$emit('submitHour', v.checkArr.value, this.show)
+      this.$emit('handleSubmit', v, this.show)
     },
     // 取消
     onCancel1() {

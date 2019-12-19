@@ -1,12 +1,21 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/login/login",
+			"path": "pages/userCenter/recharge/recharge",
 			"style": {
-				"navigationBarTitleText": "登录",
+				"navigationBarTitleText": "充值",
 				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index",
-					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+					"van-cell": "/wxcomponents/vant/dist/cell/index",
+					"van-field": "/wxcomponents/vant/dist/field/index"
+				}
+			}
+		},
+		{
+			"path": "pages/tabBar/userCenter/userCenter",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/dist/cell/index"
 				}
 			}
 		},
@@ -18,20 +27,17 @@
 					"van-button": "/wxcomponents/vant/dist/button/index"
 				}
 			}
-		},{
+		},
+		{
 			"path": "pages/tabBar/bookPlace/bookPlace",
 			"style": {
 				"navigationBarTitleText": "订场"
 			}
-		},{
+		},
+		{
 			"path": "pages/tabBar/buyBall/buyBall",
 			"style": {
 				"navigationBarTitleText": "购球"
-			}
-		},{
-			"path": "pages/tabBar/userCenter/userCenter",
-			"style": {
-				"navigationBarTitleText": "个人中心"
 			}
 		},
 		{
@@ -42,6 +48,61 @@
 					"van-field": "/wxcomponents/vant/dist/field/index",
 					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
 					"van-switch": "/wxcomponents/vant/dist/switch/index"
+				}
+			}
+		},
+		{
+			"path": "pages/userCenter/myWallet/myWallet",
+			"style": {
+				"navigationBarTitleText": "我的钱包",
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/dist/cell/index"
+				}
+			}
+		},
+		{
+			"path": "pages/userCenter/myActivities/myActivities",
+			"style": {
+				"navigationBarTitleText": "我的活动"
+			}
+		},
+		{
+			"path": "pages/userCenter/club/club",
+			"style": {
+				"navigationBarTitleText": "俱乐部"
+			}
+		},
+		{
+			"path": "pages/userCenter/myData/myData",
+			"style": {
+				"navigationBarTitleText": "我的数据"
+			}
+		},
+		{
+			"path": "pages/userCenter/managementCenter/managementCenter",
+			"style": {
+				"navigationBarTitleText": "管理中心"
+			}
+		},
+		{
+			"path": "pages/userCenter/joinClub/joinClub",
+			"style": {
+				"navigationBarTitleText": "新俱乐部入驻"
+			}
+		},
+		{
+			"path": "pages/userCenter/commonProblem/commonProblem",
+			"style": {
+				"navigationBarTitleText": "常见问题"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
 				}
 			}
 		}

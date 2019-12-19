@@ -1,11 +1,19 @@
 {
   "pages": [
-    "pages/login/login",
+    "pages/userCenter/recharge/recharge",
+    "pages/tabBar/userCenter/userCenter",
     "pages/tabBar/badminton/badminton",
     "pages/tabBar/bookPlace/bookPlace",
     "pages/tabBar/buyBall/buyBall",
-    "pages/tabBar/userCenter/userCenter",
-    "pages/userCenter/publishActivities/publishActivities"
+    "pages/userCenter/publishActivities/publishActivities",
+    "pages/userCenter/myWallet/myWallet",
+    "pages/userCenter/myActivities/myActivities",
+    "pages/userCenter/club/club",
+    "pages/userCenter/myData/myData",
+    "pages/userCenter/managementCenter/managementCenter",
+    "pages/userCenter/joinClub/joinClub",
+    "pages/userCenter/commonProblem/commonProblem",
+    "pages/login/login"
   ],
   "subPackages": [],
   "window": {
