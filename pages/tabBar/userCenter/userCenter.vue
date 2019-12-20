@@ -143,6 +143,9 @@
 					float: left;
 					color: #969696;
 					margin-top: 8rpx;
+					background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/walletIcon.png') no-repeat left center;
+					background-size: 26rpx auto;
+					background-position: 13rpx center;
 				}
 				.right{
 					height: 52rpx;

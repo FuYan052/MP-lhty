@@ -108,7 +108,7 @@
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/myPicker/myPicker":"components/myPicker/myPicker","components/myTimePicker/MyTimePicker":"components/myTimePicker/MyTimePicker","components/w-picker/w-picker":"components/w-picker/w-picker"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/w-picker/w-picker":"components/w-picker/w-picker","components/myTimePicker/MyTimePicker":"components/myTimePicker/MyTimePicker"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

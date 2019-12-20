@@ -1,25 +1,6 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/userCenter/recharge/recharge",
-			"style": {
-				"navigationBarTitleText": "充值",
-				"usingComponents": {
-					"van-cell": "/wxcomponents/vant/dist/cell/index",
-					"van-field": "/wxcomponents/vant/dist/field/index"
-				}
-			}
-		},
-		{
-			"path": "pages/tabBar/userCenter/userCenter",
-			"style": {
-				"navigationBarTitleText": "个人中心",
-				"usingComponents": {
-					"van-cell": "/wxcomponents/vant/dist/cell/index"
-				}
-			}
-		},
-		{
 			"path": "pages/tabBar/badminton/badminton",
 			"style": {
 				"navigationBarTitleText": "约球",
@@ -41,6 +22,35 @@
 			}
 		},
 		{
+			"path": "pages/tabBar/userCenter/userCenter",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/dist/cell/index"
+				}
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+				}
+			}
+		},
+		{
+			"path": "pages/bindPhone/bindPhone",
+			"style": {
+				"navigationBarTitleText": "绑定手机号",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+				}
+			}
+		},
+		{
 			"path": "pages/userCenter/publishActivities/publishActivities",
 			"style": {
 				"navigationBarTitleText": "发布活动",
@@ -57,6 +67,16 @@
 				"navigationBarTitleText": "我的钱包",
 				"usingComponents": {
 					"van-cell": "/wxcomponents/vant/dist/cell/index"
+				}
+			}
+		},
+		{
+			"path": "pages/userCenter/recharge/recharge",
+			"style": {
+				"navigationBarTitleText": "充值",
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/dist/cell/index",
+					"van-field": "/wxcomponents/vant/dist/field/index"
 				}
 			}
 		},
@@ -95,17 +115,8 @@
 			"style": {
 				"navigationBarTitleText": "常见问题"
 			}
-		},
-		{
-			"path": "pages/login/login",
-			"style": {
-				"navigationBarTitleText": "登录",
-				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index",
-					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
-				}
-			}
 		}
+		
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

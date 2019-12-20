@@ -1,47 +1,42 @@
 <template>
-	<view class="login">
+	<view class="bindPhone">
 		<view class="title1">
-			<text>全民运动</text>
-			<text class="text2">专注羽球</text>
-		</view>
-		<view class="title2">来虎体育</view>
-		<view class="inputWrap">
-			<view class="inputBox inputBox1">
-				<van-cell-group :border="false">
-				  <van-field
-						size='large'
-				    placeholder="请输入手机号"
-						placeholder-style="color: #b1b1b1;font-size: 28rpx;"
-						type='number'
-				    :border="false"
-				    @change="onChangePhone"
-				  />
-				</van-cell-group>
+				<text>绑定手机号</text>
 			</view>
-			<view class="inputBox inputBox2">
-				<van-cell-group :border="false">
-				  <van-field
-						size='large'
-				    placeholder="请输入验证码"
-						placeholder-style="color: #b1b1b1;font-size: 28rpx;"
-						type="number"
-				    :border="false"
-				    @change="onChange"
-				  >
-					</van-field>
-				</van-cell-group>
+			<view class="inputWrap">
+				<view class="inputBox inputBox1">
+					<van-cell-group :border="false">
+					  <van-field
+							size='large'
+					    placeholder="请输入手机号"
+							placeholder-style="color: #b1b1b1;font-size: 28rpx;"
+							type='number'
+					    :border="false"
+					    @change="onChangePhone"
+					  />
+					</van-cell-group>
+				</view>
+				<view class="inputBox inputBox2">
+					<van-cell-group :border="false">
+					  <van-field
+							size='large'
+					    placeholder="请输入验证码"
+							placeholder-style="color: #b1b1b1;font-size: 28rpx;"
+							type="number"
+					    :border="false"
+					    @change="onChange"
+					  >
+						</van-field>
+					</van-cell-group>
+				</view>
+					<button class='codeBtn' size="mini" :plain='true' :disabled='disabled' @click="getCode">{{content}}</button>
+			</view>	
+			<view class="btnBox">
+				<view class="myButton"  @click="handleBind">绑定</view>
 			</view>
-				<button class='codeBtn' size="mini" :plain='true' :disabled='disabled' @click="getCode">{{content}}</button>
-		</view>	
-		<view class="btnBox">
-			<view class="myButton"  @click="handleLogin">登录</view>
-		</view>
-		<!-- 微信登录 -->
-		<view class="loginTitle">一键登录</view>
-		<button class="weixinBtn" open-type="getUserInfo" @getuserinfo='getuserinfo'></button>
-		<view class="wenxinText">微信</view>
-		<view class="tip">
-			登录即代表同意并认可<text>《用户协议》</text>
+			<view class="tip">
+				依《网络安全法》要求，账号需绑定手机号
+			</view>
 		</view>
 	</view>
 </template>
@@ -94,7 +89,7 @@
 					});
 				}
 			},
-			handleLogin() {
+			handleBind() {
 				let ruleValue = this.$utils.checkPhone(this.userPhone)
 				if(!ruleValue){
 					uni.showToast({
@@ -110,7 +105,7 @@
 					});
 				}else{
 					uni.showModal({
-						content: '登录成功！',
+						content: '绑定成功！',
 						showCancel: false
 					});
 				}
@@ -124,12 +119,12 @@
 </script>
 
 <style lang="scss" scoped>
-	.login{
+	.bindPhone{
 		width: 100%;
 		height: 100vh;
-		background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/loginBg.png') no-repeat center;
-		background-size: 100% auto;
-		overflow: hidden;
+		// background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/loginBg.png') no-repeat center;
+		// background-size: 100% auto;
+		// overflow: hidden;
 		.title1{
 			width: 100%;
 			height: 195rpx;
@@ -156,7 +151,7 @@
 			width: 716rpx;
 			height: 240rpx;
 			margin-left: 17rpx;
-			margin-top: 105rpx;
+			margin-top: 145rpx;
 			background: rgba(255,255,255,0.2);
 			border-radius: 13rpx;
 			box-sizing: border-box;
@@ -255,7 +250,7 @@
 			text-align: center;
 			font-size: 22rpx;
 			color: #b8b8b8;
-			margin-top: 65rpx;
+			margin-top: 550rpx;
 			text{
 				color: #f6c92f;
 			}

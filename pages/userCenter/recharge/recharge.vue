@@ -1,7 +1,7 @@
 <template>
 	<view class="recharge">
 		<view class="whiteBg topBox">
-			<van-cell title="充值俱乐部" :border='false' value="来虎羽毛球俱乐部" title-width='190rpx' is-link size='large' @click='choiceClub'/>
+			<van-cell title="充值俱乐部" :border='false' :value="clubName" title-width='190rpx' is-link size='large' @click='choiceClub'/>
 			<view class="myCell account">
 				<view class="title">充值账户</view>
 				<view class="right">
@@ -29,38 +29,73 @@
 					label="充值金额"
 					placeholder="请输入您要充值的金额"
 					placeholder-style='font-size:26rpx;'
+					@change='inputMoney'
 				/>
 			/>
 		</view>
 		<view class="btnbox">
-			<view class="myButton" type="primary">确认充值</view>
+			<view class="myButton" type="primary" @click="submit">确认充值</view>
 		</view>
-		<!-- 自定义选择器 -->
-		<my-picker :isShowPicker='isshow' :currHourValue='curr' :pickList='pickList2' @handleSubmit='receiveHour'></my-picker>
+		<!-- 选择器 -->
+		<w-picker
+			mode="selector" 
+			:selectList="columns"
+			@confirm="onConfirm" 
+			ref="picker1" 
+			themeColor="#ffbc01" 
+		></w-picker>
 	</view>
 </template>
 
 <script>
-	import MyPicker from '@/components/myPicker/myPicker.vue'
+	import wPicker from "@/components/w-picker/w-picker.vue";
 	export default {
 		components: {
-			MyPicker
+			wPicker
 		},
 		data() {
 			return {
-				isshow: false,
-				pickList2: [],
-				curr: ''
+				columns: [],
+				clubName: '请选择俱乐部',
+				clubId: '',
+				money: ''
 			}
+		},
+		created() {
+			this.columns = [{label:"来虎",value:"1"},{label:"波利",value:"2"},{label:"晴天",value:"3"}]
 		},
 		methods: {
 			choiceClub() {
-				this.isshow = !this.isshow
-				this.pickList2 = [{label:"来虎",value:"1"},{label:"波利",value:"2"},{label:"晴天",value:"3"}]
+				this.$refs.picker1.show()
 			},
-			receiveHour(v) {
-				console.log(v)
-				this.isshow = v2
+			onConfirm(v) {
+				// console.log(v)
+				this.clubId = v.checkArr.value
+				this.clubName = v.checkArr.label
+			},
+			inputMoney(v) {
+				this.money = v.detail
+			},
+			submit() {
+				if(this.clubId == '') {
+					uni.showToast({
+						title: '请选择要充值的俱乐部',
+						duration: 2000,
+						icon: 'none'
+					});
+				}else if(Number(this.money) <= 0) {
+					uni.showToast({
+						title: '请输入您要充值的金额',
+						duration: 2000,
+						icon: 'none'
+					});
+				}else{
+					const params = {
+						clubId: this.clubId,
+						money: this.money
+					}
+					console.log(params)
+				}
 			}
 		}
 	}

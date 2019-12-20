@@ -5,6 +5,6 @@
     "van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
     "van-switch": "/wxcomponents/vant/dist/switch/index",
     "my-time-picker": "/components/myTimePicker/MyTimePicker",
-    "my-picker": "/components/myPicker/myPicker"
+    "w-picker": "/components/w-picker/w-picker"
   }
 }

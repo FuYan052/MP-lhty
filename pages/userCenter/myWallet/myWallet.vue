@@ -4,7 +4,7 @@
 			<view class="text1">总金额(元)</view>
 			<view class="money">696.00<text>元</text></view>
 			<view class="btnBox">
-				<view class="btn recharge">充值</view>
+				<view class="btn recharge" @click="handleRecharge">充值</view>
 				<view class="btn cash">提现</view>
 			</view>
 		</view>
@@ -32,6 +32,14 @@
 		data() {
 			return {
 				
+			}
+		},
+		methods: {
+			// 充值
+			handleRecharge() {
+				uni.navigateTo({
+				  url: '/pages/userCenter/recharge/recharge'
+				});
 			}
 		}
 	}

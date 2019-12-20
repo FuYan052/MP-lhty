@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import App from './App'
 import http from './request/http';
+import utils from './common/util.js';
 
 Vue.config.productionTip = false
 
 Vue.prototype.$http = http
+Vue.prototype.$utils = utils
 
 App.mpType = 'app'
 

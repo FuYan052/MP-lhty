@@ -26,14 +26,91 @@
 /* 文章场景相关 */
 .badminton.data-v-32024bbe {
   width: 100%;
-  max-height: 100vh;
+  min-height: 100vh;
+  background: #000000;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-top: 76rpx;
 }
-.badminton .title1.data-v-32024bbe {
-    border: 1rpx solid #3F536E;
-    font-size: 30rpx;
-    color: #3F536E;
+.badminton .dateWrap.data-v-32024bbe {
+    width: 100%;
+    height: 76rpx;
+    background: #1b1b1b;
+    position: fixed;
+    top: 0;
+    z-index: 9;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-left: 60rpx;
+    overflow: hidden;
 }
-.badminton.data-v-32024bbe .van-button--normal {
-    padding: 0 15rpx;
+.badminton .dateWrap .dateBox.data-v-32024bbe {
+      width: 430rpx;
+      height: 76rpx;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+}
+.badminton .dateWrap .dateBox .dateItem.data-v-32024bbe {
+        font-size: 24rpx;
+        color: #e1e1e1;
+        line-height: 60rpx;
+}
+.badminton .dateWrap .dateBox .currDate.data-v-32024bbe {
+        font-size: 34rpx;
+        color: #fff;
+        font-weight: bold;
+        position: relative;
+}
+.badminton .dateWrap .dateBox .currDate.data-v-32024bbe::after {
+        content: '';
+        display: inline-block;
+        width: 70rpx;
+        height: 30rpx;
+        background: #ffb001;
+        border-radius: 10rpx;
+        position: absolute;
+        bottom: -23rpx;
+        left: 0;
+}
+.badminton .dateWrap .dateBox .currDate.data-v-32024bbe:nth-of-type(4)::after {
+        content: '';
+        display: inline-block;
+        width: 102rpx;
+        height: 30rpx;
+        background: #ffb001;
+        border-radius: 10rpx;
+        position: absolute;
+        bottom: -23rpx;
+        left: 0;
+}
+.badminton .bannerBox.data-v-32024bbe {
+    width: 680rpx;
+    height: 278rpx;
+    margin: 0 auto;
+    border: 1rpx solid red;
+}
+.badminton .bannerBox .swiper.data-v-32024bbe {
+      width: 680rpx;
+      height: 278rpx;
+}
+.badminton .bannerBox .swiper .swiper-item.data-v-32024bbe {
+        width: 680rpx;
+        height: 278rpx;
+        background: #dedede;
+}
+.badminton .bannerBox .swiper .item1.data-v-32024bbe {
+        background: #007AFF;
+}
+.badminton .bannerBox .swiper .item2.data-v-32024bbe {
+        background: #2C405A;
+}
+.badminton .bannerBox .swiper .item3.data-v-32024bbe {
+        background: #F0AD4E;
 }
 

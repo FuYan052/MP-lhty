@@ -3,6 +3,6 @@
   "usingComponents": {
     "van-cell": "/wxcomponents/vant/dist/cell/index",
     "van-field": "/wxcomponents/vant/dist/field/index",
-    "my-picker": "/components/myPicker/myPicker"
+    "w-picker": "/components/w-picker/w-picker"
   }
 }

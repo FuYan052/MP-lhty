@@ -87,7 +87,14 @@
 			@submitDeadline='receiveDeadline'
 		></my-time-picker>
 		<!-- 其他自定义选择器 -->
-		<my-picker v-show="isshow2" :isShowPicker='isshow2' :currHourValue='hour' :pickList='pickList1' @handleSubmit='receiveHour'></my-picker>
+		<w-picker
+			mode="selector" 
+			:selectList="columns"
+			@confirm="onConfirm" 
+			@cancel='onCancel'
+			ref="picker1" 
+			themeColor="#ffbc01" 
+		></w-picker>
 		<!-- 发布按钮 -->
 		<cover-view class="wrap2" v-show="isShowButton">
 			<cover-view class="buttonBox">
@@ -101,11 +108,11 @@
 
 <script>
 	import MyTimePicker from '@/components/myTimePicker/MyTimePicker.vue'
-	import MyPicker from '@/components/myPicker/myPicker.vue'
+	import wPicker from "@/components/w-picker/w-picker.vue";
 	export default {
 		components: {
 			MyTimePicker,
-			MyPicker
+			wPicker
 		},
 		data() {
 			return {
@@ -123,7 +130,8 @@
 				inputPrice3: '',  //费用女
 				inputPrice4: '',  //临打费用
 				inputBallType: '',  //活动用球
-				optionsList: [{id: 1, value: '菜鸟'},{id: 2, value: '初级'},{id: 3, value: '中级'},{id: 4, value: '高级'}],
+				columns: [],
+				optionsList: [],
 				selectedIds: [],  //选中的等级
 				inputOrganizer: '',  //组织者
 				titleValue: '',  //标题
@@ -131,6 +139,10 @@
 				isWeek: false,  //是否周活动
 				isCancel: false,  //是否可取消
 			}
+		},
+		onLoad() {
+			this.columns = [{label:"0.5小时",value:"0.5"},{label:"1小时",value:"1"},{label:"1.5小时",value:"1.5"},{label:"2小时",value:"2"},{label:"2.5小时",value:"2.5"},{label:"3小时",value:"3"},{label:"3.5小时",value:"3.5"},{label:"4小时",value:"4"}];
+			this.optionsList = [{id: 1, value: '菜鸟'},{id: 2, value: '初级'},{id: 3, value: '中级'},{id: 4, value: '高级'}]
 		},
 		computed: {
 			isShowButton() {
@@ -157,12 +169,15 @@
 			},
 			// 选择活动时长
 			choiceDuration() {
-				this.isshow2 = !this.isshow2
-				this.pickList1 = [{label:"0.5小时",value:"0.5"},{label:"1小时",value:"1"},{label:"1.5小时",value:"1.5"},{label:"2小时",value:"2"},{label:"2.5小时",value:"2.5"},{label:"3小时",value:"3"},{label:"3.5小时",value:"3.5"},{label:"4小时",value:"4"}]
+				this.isshow2 = true
+				this.$refs.picker1.show()
 			},
-			receiveHour(v1, v2) {
-				this.hour = v1.checkArr.value
-				this.isshow2 = v2
+			onConfirm(v) {
+				this.hour = v.checkArr.value
+				this.isshow2 = false
+			},
+			onCancel() {
+				this.isshow2 = false
 			},
 			// 选择报名截止时间
 			choiceDeadline() {
