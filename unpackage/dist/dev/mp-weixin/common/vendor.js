@@ -1509,10 +1509,186 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 114:
-/*!**********************************!*\
-  !*** D:/小程序/lhty/common/util.js ***!
-  \**********************************/
+/***/ 14:
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ 15:
+/*!*****************************************!*\
+  !*** D:/小程序/12-23/lhty/request/http.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = '';
+// const host = 'http://192.168.0.116:9000/lhty'
+// 区分环境
+if (true) {
+  // host = 'http://192.168.0.116:8089/lhty' // 开发环境
+  baseUrl = 'https://laihu.baogongxia.com/lhty'; // 开发环境
+} else {}
+
+
+
+function request(url, method, data) {var header = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  uni.showLoading({
+    title: '加载中...' });
+
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: baseUrl + url,
+      method: method,
+      data: data,
+      header: {
+        'content-type': 'application/json' },
+
+      success: function success(resp) {
+        uni.hideLoading();
+        if (resp.data.status == 200) {
+          resolve(resp.data);
+        }
+        if (resp.data.status == 201) {
+          uni.showToast({
+            title: resp.data.message,
+            duration: 2500,
+            icon: 'none' });
+
+        }
+      },
+      fail: function fail(resp) {
+        uni.hideLoading();
+        reject(resp);
+      } });
+
+  });
+}
+
+// 封装get方法
+function get(obj) {
+  return request(obj.url, 'GET', obj.data);
+}
+// 封装post方法
+function post(obj) {
+  return request(obj.url, 'POST', obj.data);
+}var _default =
+
+{
+  request: request,
+  get: get,
+  post: post,
+  baseUrl: baseUrl };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 16:
+/*!****************************************!*\
+  !*** D:/小程序/12-23/lhty/common/util.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1555,10 +1731,10 @@ function findDate(aa) {
 
 /***/ }),
 
-/***/ 129:
-/*!*************************************************************!*\
-  !*** D:/小程序/lhty/components/w-picker/city-data/province.js ***!
-  \*************************************************************/
+/***/ 163:
+/*!*******************************************************************!*\
+  !*** D:/小程序/12-23/lhty/components/w-picker/city-data/province.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1705,10 +1881,10 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 130:
-/*!*********************************************************!*\
-  !*** D:/小程序/lhty/components/w-picker/city-data/city.js ***!
-  \*********************************************************/
+/***/ 164:
+/*!***************************************************************!*\
+  !*** D:/小程序/12-23/lhty/components/w-picker/city-data/city.js ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3219,10 +3395,10 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 131:
-/*!*********************************************************!*\
-  !*** D:/小程序/lhty/components/w-picker/city-data/area.js ***!
-  \*********************************************************/
+/***/ 165:
+/*!***************************************************************!*\
+  !*** D:/小程序/12-23/lhty/components/w-picker/city-data/area.js ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15772,10 +15948,10 @@ areaData;exports.default = _default;
 
 /***/ }),
 
-/***/ 132:
-/*!***************************************************!*\
-  !*** D:/小程序/lhty/components/w-picker/w-picker.js ***!
-  \***************************************************/
+/***/ 166:
+/*!*********************************************************!*\
+  !*** D:/小程序/12-23/lhty/components/w-picker/w-picker.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16367,182 +16543,6 @@ var initPicker = {
 
 
 initPicker;exports.default = _default;
-
-/***/ }),
-
-/***/ 14:
-/*!********************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode /* vue-cli only */
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-
-/***/ 15:
-/*!***********************************!*\
-  !*** D:/小程序/lhty/request/http.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = '';
-// const host = 'http://192.168.0.116:9000/lhty'
-// 区分环境
-if (true) {
-  // host = 'http://192.168.0.116:8089/lhty' // 开发环境
-  baseUrl = 'https://laihu.baogongxia.com/lhty'; // 开发环境
-} else {}
-
-
-
-function request(url, method, data) {var header = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  uni.showLoading({
-    title: '加载中...' });
-
-  return new Promise(function (resolve, reject) {
-    uni.request({
-      url: baseUrl + url,
-      method: method,
-      data: data,
-      header: {
-        'content-type': 'application/json' },
-
-      success: function success(resp) {
-        uni.hideLoading();
-        if (resp.data.status == 200) {
-          resolve(resp.data);
-        }
-        if (resp.data.status == 201) {
-          uni.showToast({
-            title: resp.data.message,
-            duration: 2500,
-            icon: 'none' });
-
-        }
-      },
-      fail: function fail(resp) {
-        uni.hideLoading();
-        reject(resp);
-      } });
-
-  });
-}
-
-// 封装get方法
-function get(obj) {
-  return request(obj.url, 'GET', obj.data);
-}
-// 封装post方法
-function post(obj) {
-  return request(obj.url, 'POST', obj.data);
-}var _default =
-
-{
-  request: request,
-  get: get,
-  post: post,
-  baseUrl: baseUrl };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -22541,9 +22541,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!******************************!*\
-  !*** D:/小程序/lhty/pages.json ***!
-  \******************************/
+/*!************************************!*\
+  !*** D:/小程序/12-23/lhty/pages.json ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23451,21 +23451,21 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ }),
 
 /***/ 7:
-/*!***********************************************!*\
-  !*** D:/小程序/lhty/pages.json?{"type":"style"} ***!
-  \***********************************************/
+/*!*****************************************************!*\
+  !*** D:/小程序/12-23/lhty/pages.json?{"type":"style"} ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/userCenter/recharge/recharge": { "navigationBarTitleText": "充值", "usingComponents": { "w-picker": "/components/w-picker/w-picker" } }, "pages/tabBar/userCenter/userCenter": { "navigationBarTitleText": "个人中心", "usingComponents": {} }, "pages/tabBar/badminton/badminton": { "navigationBarTitleText": "约球", "usingComponents": {} }, "pages/tabBar/bookPlace/bookPlace": { "navigationBarTitleText": "订场", "usingComponents": {} }, "pages/tabBar/buyBall/buyBall": { "navigationBarTitleText": "购球", "usingComponents": {} }, "pages/userCenter/publishActivities/publishActivities": { "navigationBarTitleText": "发布活动", "usingComponents": { "my-time-picker": "/components/myTimePicker/MyTimePicker", "w-picker": "/components/w-picker/w-picker" } }, "pages/userCenter/myWallet/myWallet": { "navigationBarTitleText": "我的钱包", "usingComponents": {} }, "pages/userCenter/myActivities/myActivities": { "navigationBarTitleText": "我的活动", "usingComponents": {} }, "pages/userCenter/club/club": { "navigationBarTitleText": "俱乐部", "usingComponents": {} }, "pages/userCenter/myData/myData": { "navigationBarTitleText": "我的数据", "usingComponents": {} }, "pages/userCenter/managementCenter/managementCenter": { "navigationBarTitleText": "管理中心", "usingComponents": {} }, "pages/userCenter/joinClub/joinClub": { "navigationBarTitleText": "新俱乐部入驻", "usingComponents": {} }, "pages/userCenter/commonProblem/commonProblem": { "navigationBarTitleText": "常见问题", "usingComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录", "usingComponents": {} }, "pages/bindPhone/bindPhone": { "navigationBarTitleText": "绑定手机号", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "来虎体育", "navigationBarBackgroundColor": "#1e1e1e", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabBar/badminton/badminton": { "navigationBarTitleText": "约球", "usingComponents": {} }, "pages/activity/activityDetails/activityDetails": { "navigationBarTitleText": "活动详情", "usingComponents": {} }, "pages/tabBar/bookPlace/bookPlace": { "navigationBarTitleText": "订场", "usingComponents": {} }, "pages/tabBar/buyBall/buyBall": { "navigationBarTitleText": "购球", "usingComponents": {} }, "pages/tabBar/userCenter/userCenter": { "navigationBarTitleText": "个人中心", "usingComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录", "usingComponents": {} }, "pages/bindPhone/bindPhone": { "navigationBarTitleText": "绑定手机号", "usingComponents": {} }, "pages/userCenter/publishActivities/publishActivities": { "navigationBarTitleText": "发布活动", "usingComponents": { "my-time-picker": "/components/myTimePicker/MyTimePicker", "w-picker": "/components/w-picker/w-picker" } }, "pages/userCenter/myWallet/myWallet": { "navigationBarTitleText": "我的钱包", "usingComponents": {} }, "pages/userCenter/recharge/recharge": { "navigationBarTitleText": "充值", "usingComponents": { "w-picker": "/components/w-picker/w-picker" } }, "pages/userCenter/myActivities/myActivities": { "navigationBarTitleText": "我的活动", "usingComponents": {} }, "pages/userCenter/club/club": { "navigationBarTitleText": "俱乐部", "usingComponents": {} }, "pages/userCenter/myData/myData": { "navigationBarTitleText": "我的数据", "usingComponents": {} }, "pages/userCenter/managementCenter/managementCenter": { "navigationBarTitleText": "管理中心", "usingComponents": {} }, "pages/userCenter/joinClub/joinClub": { "navigationBarTitleText": "新俱乐部入驻", "usingComponents": {} }, "pages/userCenter/commonProblem/commonProblem": { "navigationBarTitleText": "常见问题", "usingComponents": {} }, "pages/userCenter/settlement/settlement": { "navigationBarTitleText": "结算详情", "usingComponents": {} }, "pages/activity/pay/pay": { "navigationBarTitleText": "活动报名", "usingComponents": {} }, "pages/out/out": { "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "来虎体育", "navigationBarBackgroundColor": "#1e1e1e", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
 /***/ 8:
-/*!**********************************************!*\
-  !*** D:/小程序/lhty/pages.json?{"type":"stat"} ***!
-  \**********************************************/
+/*!****************************************************!*\
+  !*** D:/小程序/12-23/lhty/pages.json?{"type":"stat"} ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

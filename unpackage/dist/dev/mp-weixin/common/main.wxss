@@ -31,6 +31,9 @@
 	border-radius: 12rpx;
 	background: #fff;
 }
+.van-cell--large{
+	border-radius: 12rpx;
+}
 .van-ellipsis{overflow:hidden;white-space:nowrap;-o-text-overflow:ellipsis;text-overflow:ellipsis}
 .van-multi-ellipsis--l2{-webkit-line-clamp:2}
 .van-multi-ellipsis--l2,.van-multi-ellipsis--l3{display:-webkit-box;overflow:hidden;-o-text-overflow:ellipsis;text-overflow:ellipsis;-webkit-box-orient:vertical}

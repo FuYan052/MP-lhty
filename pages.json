@@ -115,8 +115,28 @@
 			"style": {
 				"navigationBarTitleText": "常见问题"
 			}
+		},
+		{
+			"path": "pages/userCenter/settlement/settlement",
+			"style": {
+				"navigationBarTitleText": "结算详情",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index"
+				}
+			}
+		},
+		{
+			"path": "pages/activity/pay/pay",
+			"style": {
+				"navigationBarTitleText": "活动报名",
+				"usingComponents": {
+					
+				}
+			}
+		},
+		{
+			"path": "pages/out/out"
 		}
-		
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

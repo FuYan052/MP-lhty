@@ -120,7 +120,7 @@
 						width: 66rpx;
 						height: 32rpx;
 						margin-top: 60rpx;
-						background: url(../../../static/imgs/editUserInfo.png) no-repeat center;
+						background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/editUserInfo.png') no-repeat center;
 						background-size: contain;
 					}
 				}

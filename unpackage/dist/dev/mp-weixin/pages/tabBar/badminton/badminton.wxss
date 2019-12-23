@@ -24,15 +24,16 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.badminton.data-v-32024bbe {
+.badminton.data-v-a9c5ae48 {
   width: 100%;
   min-height: 100vh;
   background: #000000;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding-top: 76rpx;
+  padding-bottom: 20rpx;
 }
-.badminton .dateWrap.data-v-32024bbe {
+.badminton .dateWrap.data-v-a9c5ae48 {
     width: 100%;
     height: 76rpx;
     background: #1b1b1b;
@@ -44,7 +45,7 @@
     padding-left: 60rpx;
     overflow: hidden;
 }
-.badminton .dateWrap .dateBox.data-v-32024bbe {
+.badminton .dateWrap .dateBox.data-v-a9c5ae48 {
       width: 430rpx;
       height: 76rpx;
       display: -webkit-box;
@@ -56,18 +57,18 @@
           -ms-flex-pack: justify;
               justify-content: space-between;
 }
-.badminton .dateWrap .dateBox .dateItem.data-v-32024bbe {
-        font-size: 24rpx;
+.badminton .dateWrap .dateBox .dateItem.data-v-a9c5ae48 {
+        font-size: 26rpx;
         color: #e1e1e1;
         line-height: 60rpx;
 }
-.badminton .dateWrap .dateBox .currDate.data-v-32024bbe {
+.badminton .dateWrap .dateBox .currDate.data-v-a9c5ae48 {
         font-size: 34rpx;
         color: #fff;
         font-weight: bold;
         position: relative;
 }
-.badminton .dateWrap .dateBox .currDate.data-v-32024bbe::after {
+.badminton .dateWrap .dateBox .currDate.data-v-a9c5ae48::after {
         content: '';
         display: inline-block;
         width: 70rpx;
@@ -78,7 +79,7 @@
         bottom: -23rpx;
         left: 0;
 }
-.badminton .dateWrap .dateBox .currDate.data-v-32024bbe:nth-of-type(4)::after {
+.badminton .dateWrap .dateBox .currDate.data-v-a9c5ae48:nth-of-type(4)::after {
         content: '';
         display: inline-block;
         width: 102rpx;
@@ -89,28 +90,165 @@
         bottom: -23rpx;
         left: 0;
 }
-.badminton .bannerBox.data-v-32024bbe {
-    width: 680rpx;
+.badminton .bannerBox.data-v-a9c5ae48 {
+    width: 690rpx;
     height: 278rpx;
     margin: 0 auto;
-    border: 1rpx solid red;
+    margin-top: 20rpx;
+    border-radius: 12rpx;
 }
-.badminton .bannerBox .swiper.data-v-32024bbe {
-      width: 680rpx;
+.badminton .bannerBox .swiper.data-v-a9c5ae48 {
+      width: 690rpx;
       height: 278rpx;
 }
-.badminton .bannerBox .swiper .swiper-item.data-v-32024bbe {
-        width: 680rpx;
+.badminton .bannerBox .swiper .swiper-item.data-v-a9c5ae48 {
+        width: 690rpx;
         height: 278rpx;
         background: #dedede;
 }
-.badminton .bannerBox .swiper .item1.data-v-32024bbe {
+.badminton .bannerBox .swiper .item1.data-v-a9c5ae48 {
         background: #007AFF;
 }
-.badminton .bannerBox .swiper .item2.data-v-32024bbe {
+.badminton .bannerBox .swiper .item2.data-v-a9c5ae48 {
         background: #2C405A;
 }
-.badminton .bannerBox .swiper .item3.data-v-32024bbe {
+.badminton .bannerBox .swiper .item3.data-v-a9c5ae48 {
         background: #F0AD4E;
+}
+.badminton .actBox.data-v-a9c5ae48 {
+    width: 690rpx;
+    height: auto;
+    margin: 0 auto;
+}
+.badminton .actBox .actItem.data-v-a9c5ae48 {
+      width: 100%;
+      height: 355rpx;
+      border-radius: 15rpx;
+      background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/actItemBg.png") no-repeat center;
+      background-size: 100% 100%;
+      margin-top: 20rpx;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      padding: 0 28rpx;
+}
+.badminton .actBox .actItem .title.data-v-a9c5ae48 {
+        width: 100%;
+        height: 71rpx;
+        margin-top: 11rpx;
+        border-bottom: 1rpx solid #585657;
+        font-size: 32rpx;
+        color: #fff;
+        line-height: 68rpx;
+}
+.badminton .actBox .actItem .title .arrowIcon.data-v-a9c5ae48 {
+          float: right;
+          margin-top: 23rpx;
+}
+.badminton .actBox .actItem .detail.data-v-a9c5ae48 {
+        width: 100%;
+        height: 170rpx;
+        border-bottom: 1rpx solid #585657;
+}
+.badminton .actBox .actItem .detail .dateTime.data-v-a9c5ae48 {
+          width: 100%;
+          height: 66rpx;
+          line-height: 66rpx;
+          font-size: 26rpx;
+          color: #f7f6f7;
+}
+.badminton .actBox .actItem .detail .dateTime .timeRange.data-v-a9c5ae48 {
+            padding-left: 30rpx;
+}
+.badminton .actBox .actItem .detail .dateTime .distance.data-v-a9c5ae48 {
+            font-size: 24rpx;
+            float: right;
+            color: #e0dfdf;
+}
+.badminton .actBox .actItem .detail .place.data-v-a9c5ae48 {
+          width: 100%;
+          line-height: 36rpx;
+          color: #f7f7f7;
+          font-size: 26rpx;
+}
+.badminton .actBox .actItem .detail .place .text.data-v-a9c5ae48 {
+            padding-left: 30rpx;
+            color: #ffaf01;
+            font-size: 24rpx;
+            display: inline-block;
+            float: right;
+}
+.badminton .actBox .actItem .detail .place .text .text2.data-v-a9c5ae48 {
+              font-weight: bold;
+              font-size: 32rpx;
+}
+.badminton .actBox .actItem .detail .ballType.data-v-a9c5ae48 {
+          width: 100%;
+          line-height: 60rpx;
+          font-size: 26rpx;
+          color: #f7f5f6;
+}
+.badminton .actBox .actItem .signUp.data-v-a9c5ae48 {
+        width: 100%;
+        height: 100rpx;
+        padding-left: 5rpx;
+}
+.badminton .actBox .actItem .signUp .imgBox.data-v-a9c5ae48 {
+          width: 352rpx;
+          height: 50rpx;
+          -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+          float: left;
+          margin-top: 26rpx;
+          padding-left: 18rpx;
+          padding-right: 35rpx;
+          overflow: hidden;
+}
+.badminton .actBox .actItem .signUp .imgBox .imgItem.data-v-a9c5ae48 {
+            width: 44rpx;
+            height: 44rpx;
+            -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+            border: 1rpx solid #fff;
+            border-radius: 50%;
+            float: left;
+            margin-left: -18rpx;
+            margin-top: 5rpx;
+}
+.badminton .actBox .actItem .signUp .peopleNUm.data-v-a9c5ae48 {
+          width: 102rpx;
+          height: 100rpx;
+          line-height: 100rpx;
+          color: #e0dede;
+          float: left;
+          font-size: 24rpx;
+}
+.badminton .actBox .actItem .signUp .signUpBtn.data-v-a9c5ae48 {
+          width: 164rpx;
+          height: 68rpx;
+          border-radius: 8rpx;
+          float: right;
+          text-align: center;
+          line-height: 66rpx;
+          color: #fff;
+          font-size: 30rpx;
+          margin-top: 19rpx;
+          background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg1.png") no-repeat center;
+          background-size: 100% 100%;
+}
+.badminton .actBox .actItem .signUp .currbtnBg0.data-v-a9c5ae48 {
+          background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg1.png") no-repeat center;
+          background-size: 100% 100%;
+}
+.badminton .actBox .actItem .signUp .currbtnBg1.data-v-a9c5ae48 {
+          background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg2.png") no-repeat center;
+          background-size: 100% 100%;
+}
+.badminton .actBox .actItem .signUp .currbtnBg2.data-v-a9c5ae48 {
+          background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg3.png") no-repeat center;
+          background-size: 100% 100%;
+}
+.badminton .actBox .actItem .signUp .currbtnBg4.data-v-a9c5ae48 {
+          background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg4.png") no-repeat center;
+          background-size: 100% 100%;
 }
 

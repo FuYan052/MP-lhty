@@ -14,7 +14,10 @@
     "pages/userCenter/myData/myData",
     "pages/userCenter/managementCenter/managementCenter",
     "pages/userCenter/joinClub/joinClub",
-    "pages/userCenter/commonProblem/commonProblem"
+    "pages/userCenter/commonProblem/commonProblem",
+    "pages/userCenter/settlement/settlement",
+    "pages/activity/pay/pay",
+    "pages/out/out"
   ],
   "subPackages": [],
   "window": {

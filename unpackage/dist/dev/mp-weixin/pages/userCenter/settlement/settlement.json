@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "结算详情",
+  "usingComponents": {
+    "van-field": "/wxcomponents/vant/dist/field/index"
+  }
+}
