@@ -1,1 +1,1 @@
-<view class="_div"></view>
+<view class="managementCenter data-v-fe60cc60"><block wx:for="{{menuList}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view data-event-opts="{{[['tap',[['handle',['$0'],[[['menuList','',index]]]]]]]}}" class="whiteBg menuBox data-v-fe60cc60" bindtap="__e"><view class="iconBox data-v-fe60cc60"><image style="width:100%;height:100%;" src="{{item.img}}" mode class="data-v-fe60cc60"></image></view><view class="title data-v-fe60cc60">{{item.title}}</view></view></block></view>

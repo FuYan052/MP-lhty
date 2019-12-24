@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "管理中心",
+  "navigationBarBackgroundColor": "#f4f4f4",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#f4f4f4",
   "usingComponents": {}
 }

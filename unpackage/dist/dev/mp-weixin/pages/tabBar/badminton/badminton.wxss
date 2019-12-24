@@ -140,6 +140,14 @@
         color: #fff;
         line-height: 68rpx;
 }
+.badminton .actBox .actItem .title .text.data-v-a9c5ae48 {
+          width: 94%;
+          float: left;
+          overflow: hidden;
+          white-space: nowrap;
+          -o-text-overflow: ellipsis;
+             text-overflow: ellipsis;
+}
 .badminton .actBox .actItem .title .arrowIcon.data-v-a9c5ae48 {
           float: right;
           margin-top: 23rpx;

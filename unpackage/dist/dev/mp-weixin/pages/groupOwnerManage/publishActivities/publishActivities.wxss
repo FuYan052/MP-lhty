@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.publishActivities.data-v-0b21aeca {
+.publishActivities.data-v-8f5b347a {
   width: 100%;
   min-height: 100vh;
   -webkit-box-sizing: border-box;
@@ -33,52 +33,52 @@
   padding: 0 16rpx;
   padding-bottom: 250rpx;
 }
-.publishActivities .wrap1.data-v-0b21aeca {
+.publishActivities .wrap1.data-v-8f5b347a {
     width: 100%;
     height: auto;
 }
-.publishActivities .wrap1.data-v-0b21aeca .van-cell-group {
+.publishActivities .wrap1.data-v-8f5b347a .van-cell-group {
       border-radius: 10rpx;
       background: #1e1e1e;
 }
-.publishActivities .wrap1.data-v-0b21aeca .van-cell-group .item {
+.publishActivities .wrap1.data-v-8f5b347a .van-cell-group .item {
         margin-bottom: 8rpx;
         border-radius: 10rpx;
 }
-.publishActivities .wrap1.data-v-0b21aeca .van-cell-group .van-field__input--disabled {
+.publishActivities .wrap1.data-v-8f5b347a .van-cell-group .van-field__input--disabled {
         color: #1f1f1f;
 }
-.publishActivities .wrap1.data-v-0b21aeca .van-cell-group .van-cell--large {
+.publishActivities .wrap1.data-v-8f5b347a .van-cell-group .van-cell--large {
         width: 100%;
         height: 96rpx;
         border-radius: 10rpx;
 }
-.publishActivities .wrap1.data-v-0b21aeca .van-cell-group .van-cell--large .van-field__label {
+.publishActivities .wrap1.data-v-8f5b347a .van-cell-group .van-cell--large .van-field__label {
           width: 208rpx;
           font-size: 30rpx;
           color: #676767;
 }
-.publishActivities .wrap1.data-v-0b21aeca .van-cell-group .van-cell--large .van-field__control {
+.publishActivities .wrap1.data-v-8f5b347a .van-cell-group .van-cell--large .van-field__control {
           font-size: 28rpx;
           color: #1f1f1f;
 }
-.publishActivities .wrap1.data-v-0b21aeca .van-cell-group .van-cell--large .van-field__control:disabled {
+.publishActivities .wrap1.data-v-8f5b347a .van-cell-group .van-cell--large .van-field__control:disabled {
           font-size: 28rpx;
           color: #1f1f1f;
           -webkit-text-fill-color: #1f1f1f;
 }
-.publishActivities .wrap1.data-v-0b21aeca .van-cell-group .van-cell--large .van-icon {
+.publishActivities .wrap1.data-v-8f5b347a .van-cell-group .van-cell--large .van-icon {
           size: 30rpx;
           color: #3d3a35;
 }
-.publishActivities .wrap1 .level.data-v-0b21aeca {
+.publishActivities .wrap1 .level.data-v-8f5b347a {
       width: 100%;
       height: 180rpx;
       background: #fff;
       border-radius: 10rpx;
       margin-bottom: 8rpx;
 }
-.publishActivities .wrap1 .level .title.data-v-0b21aeca {
+.publishActivities .wrap1 .level .title.data-v-8f5b347a {
         height: 92rpx;
         margin-left: 32rpx;
         letter-spacing: 1rpx;
@@ -86,7 +86,7 @@
         color: #1f1f1f;
         line-height: 92rpx;
 }
-.publishActivities .wrap1 .level .optionsBox.data-v-0b21aeca {
+.publishActivities .wrap1 .level .optionsBox.data-v-8f5b347a {
         width: 100%;
         height: 86rpx;
         display: -webkit-box;
@@ -97,7 +97,7 @@
             -ms-flex-pack: distribute;
                 justify-content: space-around;
 }
-.publishActivities .wrap1 .level .optionsBox .optionItem.data-v-0b21aeca {
+.publishActivities .wrap1 .level .optionsBox .optionItem.data-v-8f5b347a {
           width: 136rpx;
           height: 64rpx;
           line-height: 64rpx;
@@ -106,25 +106,25 @@
           color: #727272;
           font-size: 24rpx;
 }
-.publishActivities .wrap1 .level .optionsBox .selected.data-v-0b21aeca {
+.publishActivities .wrap1 .level .optionsBox .selected.data-v-8f5b347a {
           background: #ffbc01;
           color: #f1f1f1;
 }
-.publishActivities .wrap1 .textAreaBox.data-v-0b21aeca {
+.publishActivities .wrap1 .textAreaBox.data-v-8f5b347a {
       width: 100%;
       min-height: 270rpx;
 }
-.publishActivities .wrap1 .textAreaBox .title.data-v-0b21aeca {
+.publishActivities .wrap1 .textAreaBox .title.data-v-8f5b347a {
         height: 70rpx;
         line-height: 70rpx;
         color: #fff;
         padding-left: 34rpx;
 }
-.publishActivities .wrap1 .textAreaBox.data-v-0b21aeca .van-cell {
+.publishActivities .wrap1 .textAreaBox.data-v-8f5b347a .van-cell {
         min-height: 192rpx;
         border-radius: 10rpx;
 }
-.publishActivities .switchBox.data-v-0b21aeca {
+.publishActivities .switchBox.data-v-8f5b347a {
     width: 100%;
     height: 96rpx;
     background: #fff;
@@ -134,15 +134,15 @@
             box-sizing: border-box;
     padding: 0 32rpx;
 }
-.publishActivities .switchBox .text.data-v-0b21aeca {
+.publishActivities .switchBox .text.data-v-8f5b347a {
       line-height: 96rpx;
       color: #1f1f1f;
 }
-.publishActivities .switchBox.data-v-0b21aeca .van-switch {
+.publishActivities .switchBox.data-v-8f5b347a .van-switch {
       float: right;
       margin-top: 25rpx;
 }
-.publishActivities .wrap2.data-v-0b21aeca {
+.publishActivities .wrap2.data-v-8f5b347a {
     width: 100%;
     height: 225rpx;
     background: #1e1e1e;
@@ -154,7 +154,7 @@
     bottom: 0;
     left: 0;
 }
-.publishActivities .wrap2 .buttonBox.data-v-0b21aeca {
+.publishActivities .wrap2 .buttonBox.data-v-8f5b347a {
       width: 100%;
       height: 96rpx;
       margin-top: 15rpx;

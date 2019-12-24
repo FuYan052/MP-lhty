@@ -44,7 +44,6 @@
 			return {
 				menuList: [{title:'我的活动',path: 'pages/userCenter/myActivities/myActivities'},
 									{title:'俱乐部',path: 'pages/userCenter/club/club'},
-									// {title:'我的数据',path: 'pages/userCenter/myData/myData'},
 									{title:'管理中心',path: 'pages/userCenter/managementCenter/managementCenter'},
 									{title:'新俱乐部入驻',path: 'pages/userCenter/joinClub/joinClub'},
 									{title:'常见问题',path: 'pages/userCenter/commonProblem/commonProblem'},]

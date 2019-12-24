@@ -1731,7 +1731,7 @@ function findDate(aa) {
 
 /***/ }),
 
-/***/ 163:
+/***/ 185:
 /*!*******************************************************************!*\
   !*** D:/小程序/12-23/lhty/components/w-picker/city-data/province.js ***!
   \*******************************************************************/
@@ -1881,7 +1881,7 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 164:
+/***/ 186:
 /*!***************************************************************!*\
   !*** D:/小程序/12-23/lhty/components/w-picker/city-data/city.js ***!
   \***************************************************************/
@@ -3395,7 +3395,7 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 165:
+/***/ 187:
 /*!***************************************************************!*\
   !*** D:/小程序/12-23/lhty/components/w-picker/city-data/area.js ***!
   \***************************************************************/
@@ -15948,7 +15948,7 @@ areaData;exports.default = _default;
 
 /***/ }),
 
-/***/ 166:
+/***/ 188:
 /*!*********************************************************!*\
   !*** D:/小程序/12-23/lhty/components/w-picker/w-picker.js ***!
   \*********************************************************/
@@ -23458,7 +23458,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabBar/badminton/badminton": { "navigationBarTitleText": "约球", "usingComponents": {} }, "pages/activity/activityDetails/activityDetails": { "navigationBarTitleText": "活动详情", "usingComponents": {} }, "pages/tabBar/bookPlace/bookPlace": { "navigationBarTitleText": "订场", "usingComponents": {} }, "pages/tabBar/buyBall/buyBall": { "navigationBarTitleText": "购球", "usingComponents": {} }, "pages/tabBar/userCenter/userCenter": { "navigationBarTitleText": "个人中心", "usingComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录", "usingComponents": {} }, "pages/bindPhone/bindPhone": { "navigationBarTitleText": "绑定手机号", "usingComponents": {} }, "pages/userCenter/publishActivities/publishActivities": { "navigationBarTitleText": "发布活动", "usingComponents": { "my-time-picker": "/components/myTimePicker/MyTimePicker", "w-picker": "/components/w-picker/w-picker" } }, "pages/userCenter/myWallet/myWallet": { "navigationBarTitleText": "我的钱包", "usingComponents": {} }, "pages/userCenter/recharge/recharge": { "navigationBarTitleText": "充值", "usingComponents": { "w-picker": "/components/w-picker/w-picker" } }, "pages/userCenter/myActivities/myActivities": { "navigationBarTitleText": "我的活动", "usingComponents": {} }, "pages/userCenter/club/club": { "navigationBarTitleText": "俱乐部", "usingComponents": {} }, "pages/userCenter/myData/myData": { "navigationBarTitleText": "我的数据", "usingComponents": {} }, "pages/userCenter/managementCenter/managementCenter": { "navigationBarTitleText": "管理中心", "usingComponents": {} }, "pages/userCenter/joinClub/joinClub": { "navigationBarTitleText": "新俱乐部入驻", "usingComponents": {} }, "pages/userCenter/commonProblem/commonProblem": { "navigationBarTitleText": "常见问题", "usingComponents": {} }, "pages/userCenter/settlement/settlement": { "navigationBarTitleText": "结算详情", "usingComponents": {} }, "pages/activity/pay/pay": { "navigationBarTitleText": "活动报名", "usingComponents": {} }, "pages/out/out": { "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "来虎体育", "navigationBarBackgroundColor": "#1e1e1e", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/userCenter/myActivities/myActivities": { "navigationBarTitleText": "我的活动", "navigationBarBackgroundColor": "#f4f4f4", "navigationBarTextStyle": "black", "backgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/tabBar/badminton/badminton": { "navigationBarTitleText": "约球", "usingComponents": {} }, "pages/tabBar/bookPlace/bookPlace": { "navigationBarTitleText": "订场", "usingComponents": {} }, "pages/tabBar/buyBall/buyBall": { "navigationBarTitleText": "购球", "usingComponents": {} }, "pages/tabBar/userCenter/userCenter": { "navigationBarTitleText": "个人中心", "usingComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录", "usingComponents": {} }, "pages/bindPhone/bindPhone": { "navigationBarTitleText": "绑定手机号", "usingComponents": {} }, "pages/userCenter/managementCenter/managementCenter": { "navigationBarTitleText": "管理中心", "navigationBarBackgroundColor": "#f4f4f4", "navigationBarTextStyle": "black", "backgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/groupOwnerManage/publishActivities/publishActivities": { "navigationBarTitleText": "发布活动", "usingComponents": { "my-time-picker": "/components/myTimePicker/MyTimePicker", "w-picker": "/components/w-picker/w-picker" } }, "pages/groupOwnerManage/editActivitie/editActivitie": { "navigationBarTitleText": "编辑活动", "usingComponents": {} }, "pages/userCenter/myWallet/myWallet": { "navigationBarTitleText": "我的钱包", "usingComponents": {} }, "pages/userCenter/recharge/recharge": { "navigationBarTitleText": "充值", "usingComponents": { "w-picker": "/components/w-picker/w-picker" } }, "pages/userCenter/order/order": { "navigationBarTitleText": "订单", "usingComponents": {} }, "pages/userCenter/club/club": { "navigationBarTitleText": "俱乐部", "usingComponents": {} }, "pages/userCenter/clubEntry/clubEntry": { "navigationBarTitleText": "俱乐部入驻", "usingComponents": {} }, "pages/userCenter/joinClub/joinClub": { "navigationBarTitleText": "新俱乐部入驻", "usingComponents": {} }, "pages/userCenter/commonProblem/commonProblem": { "navigationBarTitleText": "常见问题", "usingComponents": {} }, "pages/userCenter/settlement/settlement": { "navigationBarTitleText": "结算详情", "usingComponents": {} }, "pages/activity/activityDetails/activityDetails": { "navigationBarTitleText": "活动详情", "usingComponents": {} }, "pages/activity/pay/pay": { "navigationBarTitleText": "活动报名", "usingComponents": {} }, "pages/out/out": { "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "来虎体育", "navigationBarBackgroundColor": "#1e1e1e", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

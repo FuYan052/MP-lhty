@@ -25,7 +25,7 @@
 		<view class="actBox">
 			<view class="actItem" v-for="(item,index) in 3" :key='index'>
 				<view class="title">
-					神羽联盟俱乐部
+					<view class="text">神羽联盟俱乐部</view>
 					<van-icon class="arrowIcon" name="arrow" size="30rpx" color='#bcbcbe'/>
 				</view>
 				<view class="detail"  @click="toSignUp">
@@ -240,6 +240,13 @@
 					font-size: 32rpx;
 					color: #fff;
 					line-height: 68rpx;
+					.text{
+						width: 94%;
+						float: left;
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+					}
 					.arrowIcon{
 						float: right;
 						margin-top: 23rpx;

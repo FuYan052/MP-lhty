@@ -1,6 +1,15 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/userCenter/myActivities/myActivities",
+			"style": {
+				"navigationBarTitleText": "我的活动",
+				"navigationBarBackgroundColor": "#f4f4f4",
+				"navigationBarTextStyle": "black",
+				"backgroundColor": "#f4f4f4"
+			}
+		},
+		{
 			"path": "pages/tabBar/badminton/badminton",
 			"style": {
 				"navigationBarTitleText": "约球",
@@ -51,7 +60,16 @@
 			}
 		},
 		{
-			"path": "pages/userCenter/publishActivities/publishActivities",
+			"path": "pages/userCenter/managementCenter/managementCenter",
+			"style": {
+				"navigationBarTitleText": "管理中心",
+				"navigationBarBackgroundColor": "#f4f4f4",
+				"navigationBarTextStyle": "black",
+				"backgroundColor": "#f4f4f4"
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/publishActivities/publishActivities",
 			"style": {
 				"navigationBarTitleText": "发布活动",
 				"usingComponents": {
@@ -59,6 +77,12 @@
 					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
 					"van-switch": "/wxcomponents/vant/dist/switch/index"
 				}
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/editActivitie/editActivitie",
+			"style": {
+				"navigationBarTitleText": "编辑活动"
 			}
 		},
 		{
@@ -81,9 +105,9 @@
 			}
 		},
 		{
-			"path": "pages/userCenter/myActivities/myActivities",
+			"path": "pages/userCenter/order/order",
 			"style": {
-				"navigationBarTitleText": "我的活动"
+				"navigationBarTitleText": "订单"
 			}
 		},
 		{
@@ -93,15 +117,9 @@
 			}
 		},
 		{
-			"path": "pages/userCenter/myData/myData",
+			"path": "pages/userCenter/clubEntry/clubEntry",
 			"style": {
-				"navigationBarTitleText": "我的数据"
-			}
-		},
-		{
-			"path": "pages/userCenter/managementCenter/managementCenter",
-			"style": {
-				"navigationBarTitleText": "管理中心"
+				"navigationBarTitleText": "俱乐部入驻"
 			}
 		},
 		{
@@ -126,12 +144,15 @@
 			}
 		},
 		{
+			"path": "pages/activity/activityDetails/activityDetails",
+			"style": {
+				"navigationBarTitleText": "活动详情"
+			}
+		},
+		{
 			"path": "pages/activity/pay/pay",
 			"style": {
-				"navigationBarTitleText": "活动报名",
-				"usingComponents": {
-					
-				}
+				"navigationBarTitleText": "活动报名"
 			}
 		},
 		{

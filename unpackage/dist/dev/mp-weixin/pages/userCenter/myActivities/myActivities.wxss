@@ -1,0 +1,194 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.myActivities.data-v-611c47f0 {
+  width: 100%;
+  min-height: 100vh;
+  background: #f4f4f4;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0 32rpx;
+  padding-top: 90rpx;
+  padding-bottom: 20rpx;
+}
+.myActivities .cateBox.data-v-611c47f0 {
+    width: 100%;
+    height: 90rpx;
+    background: #f4f4f4;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.myActivities .cateBox .cateItem.data-v-611c47f0 {
+      height: 46rpx;
+      font-size: 28rpx;
+      line-height: 46rpx;
+      color: #393939;
+}
+.myActivities .cateBox .currCate.data-v-611c47f0 {
+      color: #fdc101;
+      border-bottom: 5rpx solid #ffc102;
+}
+.myActivities .orderItem.data-v-611c47f0 {
+    width: 100%;
+    height: 386rpx;
+    border-radius: 15rpx;
+    background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/actItemBg.png") no-repeat center;
+    background-size: 100% 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 0 28rpx;
+    margin-bottom: 28rpx;
+}
+.myActivities .orderItem .content.data-v-611c47f0 {
+      width: 100%;
+      height: 254rpx;
+      border-bottom: 1rpx solid #686563;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+}
+.myActivities .orderItem .content .imgBox.data-v-611c47f0 {
+        width: 158rpx;
+        height: 158rpx;
+        margin-left: 10rpx;
+}
+.myActivities .orderItem .content .detail.data-v-611c47f0 {
+        width: 445rpx;
+        height: 180rpx;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-justify-content: space-around;
+            -ms-flex-pack: distribute;
+                justify-content: space-around;
+        padding-left: 20rpx;
+        font-size: 24rpx;
+        line-height: 26rpx;
+        color: #fff;
+}
+.myActivities .orderItem .content .detail .title.data-v-611c47f0 {
+          width: 100%;
+          font-size: 32rpx;
+          line-height: 34rpx;
+          overflow: hidden;
+          white-space: nowrap;
+          -o-text-overflow: ellipsis;
+             text-overflow: ellipsis;
+}
+.myActivities .orderItem .content .detail .clubName .time.data-v-611c47f0 {
+          padding-left: 30rpx;
+}
+.myActivities .orderItem .content .detail .place.data-v-611c47f0 {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+}
+.myActivities .orderItem .content .detail .place .money.data-v-611c47f0 {
+            color: #feaf01;
+            font-size: 22rpx;
+}
+.myActivities .orderItem .content .detail .place .money .cost.data-v-611c47f0 {
+              font-size: 31rpx;
+              font-weight: bold;
+}
+.myActivities .orderItem .content .detail .place .name.data-v-611c47f0 {
+            margin-left: 70rpx;
+            width: 275rpx;
+            overflow: hidden;
+            white-space: nowrap;
+            -o-text-overflow: ellipsis;
+               text-overflow: ellipsis;
+            line-height: 26rpx;
+}
+.myActivities .orderItem .btnBox.data-v-611c47f0 {
+      width: 100%;
+      height: 132rpx;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: end;
+      -webkit-justify-content: flex-end;
+          -ms-flex-pack: end;
+              justify-content: flex-end;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+}
+.myActivities .orderItem .btnBox .btn.data-v-611c47f0 {
+        width: 164rpx;
+        height: 68rpx;
+        text-align: center;
+        line-height: 68rpx;
+        font-size: 28rpx;
+        border-radius: 10rpx;
+        border: 1rpx solid #ee4e5a;
+        color: #f1757d;
+}
+.myActivities .orderItem .btnBox .btn1.data-v-611c47f0 {
+        color: #fff;
+        border: 1rpx solid #ffc102;
+        background: #ffc102;
+}
+.myActivities .orderItem .btnBox .btn2.data-v-611c47f0 {
+        color: #fff;
+        border: 1rpx solid #84d948;
+        background: #84d948;
+}
+.myActivities .orderItem .btnBox .btn3.data-v-611c47f0 {
+        color: #fff;
+        border: 1rpx solid #353535;
+        background: #353535;
+}
+.myActivities .orderItem .btnBox .btn4.data-v-611c47f0 {
+        color: #b1b1b1;
+        border: 1rpx solid #b1b1b1;
+}
+.myActivities .orderItem .btnBox .btn5.data-v-611c47f0 {
+        margin-left: 33rpx;
+}
+
