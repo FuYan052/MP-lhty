@@ -1,4 +1,8 @@
 {
   "navigationBarTitleText": "俱乐部入驻",
-  "usingComponents": {}
+  "usingComponents": {
+    "van-field": "/wxcomponents/vant/dist/field/index",
+    "van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
+    "w-picker": "/components/w-picker/w-picker"
+  }
 }

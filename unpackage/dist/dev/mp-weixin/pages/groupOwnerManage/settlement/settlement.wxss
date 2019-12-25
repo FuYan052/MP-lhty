@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.settlment.data-v-f17b8820 {
+.settlment.data-v-1608aaae {
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -32,7 +32,7 @@
           box-sizing: border-box;
   padding: 0 16rpx;
 }
-.settlment .title.data-v-f17b8820 {
+.settlment .title.data-v-1608aaae {
     width: 100%;
     height: 92rpx;
     line-height: 92rpx;
@@ -42,31 +42,31 @@
     font-size: 28rpx;
     padding-left: 22rpx;
 }
-.settlment .topBox1.data-v-f17b8820 {
+.settlment .topBox1.data-v-1608aaae {
     width: 100%;
     height: auto;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     padding-right: 30rpx;
 }
-.settlment .topBox1.data-v-f17b8820 .van-cell__title {
+.settlment .topBox1.data-v-1608aaae .van-cell__title {
       color: #303030;
       font-size: 26rpx;
 }
-.settlment .topBox2.data-v-f17b8820 {
+.settlment .topBox2.data-v-1608aaae {
     height: auto;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     padding-right: 30rpx;
 }
-.settlment .topBox2.data-v-f17b8820 .van-cell__title {
+.settlment .topBox2.data-v-1608aaae .van-cell__title {
       color: #303030;
       font-size: 26rpx;
 }
-.settlment .item1.data-v-f17b8820 {
+.settlment .item1.data-v-1608aaae {
     position: relative;
 }
-.settlment .item1 .text.data-v-f17b8820 {
+.settlment .item1 .text.data-v-1608aaae {
       height: 96rpx;
       line-height: 96rpx;
       position: absolute;
@@ -75,7 +75,7 @@
       font-size: 24rpx;
       color: #838383;
 }
-.settlment .countBox.data-v-f17b8820 {
+.settlment .countBox.data-v-1608aaae {
     width: 100%;
     height: 40rpx;
     -webkit-box-sizing: border-box;
@@ -86,12 +86,12 @@
     line-height: 40rpx;
     margin-top: 50rpx;
 }
-.settlment .countBox text.data-v-f17b8820 {
+.settlment .countBox text.data-v-1608aaae {
       font-size: 36rpx;
       color: #f0b102;
       padding-right: 5rpx;
 }
-.settlment .btnBox.data-v-f17b8820 {
+.settlment .btnBox.data-v-1608aaae {
     margin-top: 100rpx;
 }
 

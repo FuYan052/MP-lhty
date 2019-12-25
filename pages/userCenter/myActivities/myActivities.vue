@@ -134,7 +134,7 @@
 					display: flex;
 					flex-direction: column;
 					justify-content: space-around;
-					padding-left: 20rpx;
+					padding-left: 37rpx;
 					font-size: 24rpx;
 					line-height: 26rpx;
 					color: #fff;

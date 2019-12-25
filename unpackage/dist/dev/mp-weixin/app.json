@@ -1,12 +1,14 @@
 {
   "pages": [
-    "pages/userCenter/myActivities/myActivities",
+    "pages/groupOwnerManage/signInDetails/signInDetails",
     "pages/tabBar/badminton/badminton",
     "pages/tabBar/bookPlace/bookPlace",
     "pages/tabBar/buyBall/buyBall",
     "pages/tabBar/userCenter/userCenter",
     "pages/login/login",
     "pages/bindPhone/bindPhone",
+    "pages/userCenter/myActivities/myActivities",
+    "pages/userCenter/clubEntry/clubEntry",
     "pages/userCenter/managementCenter/managementCenter",
     "pages/groupOwnerManage/publishActivities/publishActivities",
     "pages/groupOwnerManage/editActivitie/editActivitie",
@@ -14,10 +16,8 @@
     "pages/userCenter/recharge/recharge",
     "pages/userCenter/order/order",
     "pages/userCenter/club/club",
-    "pages/userCenter/clubEntry/clubEntry",
-    "pages/userCenter/joinClub/joinClub",
     "pages/userCenter/commonProblem/commonProblem",
-    "pages/userCenter/settlement/settlement",
+    "pages/groupOwnerManage/settlement/settlement",
     "pages/activity/activityDetails/activityDetails",
     "pages/activity/pay/pay",
     "pages/out/out"
@@ -63,6 +63,11 @@
         "text": "个人中心"
       }
     ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   },
   "usingComponents": {
     "van-icon": "/wxcomponents/vant/dist/icon/index"

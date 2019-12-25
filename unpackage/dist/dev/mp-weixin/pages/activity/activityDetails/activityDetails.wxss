@@ -151,6 +151,15 @@
         background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/placeIcon.png") no-repeat center;
         background-size: 100% auto;
 }
+.activityDetails .dateBox .owner .span4.data-v-f7873272 {
+      display: block;
+      width: 38rpx;
+      height: 96rpx;
+      float: right;
+      margin-right: 12rpx;
+      background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/phoneIcon.png") no-repeat center;
+      background-size: 100% auto;
+}
 .activityDetails .dateBox .people.data-v-f7873272 {
       width: 100%;
       min-height: 66rpx;

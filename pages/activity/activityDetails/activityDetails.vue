@@ -44,12 +44,13 @@
 			<view class="common place" @click="toMap">
 				<text class="span1">地点</text>
 				<text class="span2">波利杰喜美羽毛球俱乐部</text>
-				<text class="span4"></text>
+				<text class="span4" @click="toMap"></text>
 			</view>
 			<view class="common owner">
 				<text class="span1">组织</text>
 				<text class="span2">鲨鱼</text>
-				<text class="span3">19983067289</text>
+				<text class="span3">{{organizerPhone}}</text>
+				<text class="span4" @click="hanleCall"></text>
 			</view>
 			<view class="common guarantee">
 				<text class="span1">保障</text>
@@ -100,7 +101,13 @@
 				list: [],
 				content: '',  //倒计时内容
 				isChecked: false,  //是否勾选免责条款
-				endTime: "2019-12-31 19:00"
+				endTime: "2019-12-31 19:00",
+				organizerPhone: '19983067289',
+				venueName: '波力羽毛球馆',
+				address: '四川省成都市武侯区新乐北街8号',
+				lat: '30.610880',
+				long: '104.040560',
+				
 			}
 		},
 		created() {
@@ -157,6 +164,29 @@
 						showCancel: false
 					});
 				}
+			},
+			// 地图导航
+			toMap() {
+				const that = this
+				uni.openLocation({
+						latitude: Number(that.lat),
+						longitude:Number( that.long),
+						name: that.venueName,
+						address: that.address,
+						scale: 13,
+						success: function () {
+								console.log('success');
+						},
+						fail: function () {
+								console.log('fail');
+						}
+				});
+			},
+			// 拨打电话
+			hanleCall() {
+				uni.makePhoneCall({
+				    phoneNumber: this.organizerPhone
+				});
 			},
 			checked() {
 				this.isChecked = !this.isChecked
@@ -335,6 +365,17 @@
 					float: right;
 					margin-right: 15rpx;
 					background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/placeIcon.png') no-repeat center;
+					background-size: 100% auto;
+				}
+			}
+			.owner{
+				.span4{
+					display: block;
+					width: 38rpx;
+					height: 96rpx;
+					float: right;
+					margin-right: 12rpx;
+					background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/phoneIcon.png') no-repeat center;
 					background-size: 100% auto;
 				}
 			}
