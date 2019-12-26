@@ -1,7 +1,7 @@
 <template>
 	<view class="signInDetails">
 		<view class="contentBox">
-			<view class="itemBox" v-for="(item,index) in 10" :key='index'>
+			<view class="itemBox" v-for="(item,index) in list" :key='index' @click="handleCheck(item)">
 				<view class="detail">
 					<view class="top">
 						<view class="imgBox">
@@ -21,13 +21,17 @@
 						<view>12:00</view>
 					</view>
 				</view>
-				<view class="chekcBox"></view>
+				<view class="chekcBox" :class="{checked : selectedList.indexOf(item.id) >= 0}">
+					<icon class="myIcon" v-show="selectedList.indexOf(item.id) >= 0" type="success_no_circle" size="27rpx" color="#f1b202"/>
+				</view>
 			</view>
 		</view>
 		<view class="btnBox">
 			<view class="allChoice">
 				<view class="text">全选</view>
-				<view class="checkBox"></view>
+				<view class="checkBox" @click="allCheck" :class="{checked : isAllChecked}">
+					<icon class="myIcon" v-show="isAllChecked" type="success_no_circle" size="27rpx" color="#f1b202"/>
+				</view>
 			</view>
 			<view class="btn">签到</view>
 		</view>
@@ -37,7 +41,45 @@
 
 <script>
 	export default {
-		
+		data() {
+			return {
+				list: [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6}],
+				selectedList: [],
+				isAllChecked: false
+				
+			}
+		},
+		computed: {
+			
+		},
+		methods: {
+			handleCheck(item) {
+				this.Item = item
+				let selectedIndex = this.selectedList.indexOf(item.id)
+				 if(selectedIndex >= 0) {
+					this.selectedList.splice(selectedIndex, 1)
+				}else{
+					this.selectedList.push(item.id)
+				}
+				if(this.selectedList.length == this.list.length) {
+					this.isAllChecked = true
+				}else{
+					this.isAllChecked = false
+				}
+			},
+			// 全选
+			allCheck() {
+				this.isAllChecked = !this.isAllChecked
+				if(!this.isAllChecked) {
+					this.selectedList = []
+				}else{
+					this.selectedList = []
+					this.list.forEach(function(item){
+						this.selectedList.push(item.id)
+					},this)
+				}
+			}
+		}
 	}
 </script>
 
@@ -53,6 +95,7 @@
 			overflow: auto;
 			box-sizing: border-box;
 			padding: 0 16rpx;
+			padding-bottom: 20rpx;
 			flex: 1;
 			.itemBox{
 				width: 100%;
@@ -117,6 +160,12 @@
 					border-radius: 50%;
 					border: 1rpx solid #8b8b8b;
 					margin-left: 24rpx;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+				.checked {
+					border: 1rpx solid #ffbd05;
 				}
 			}
 		}
@@ -137,10 +186,16 @@
 				.checkBox{
 					width: 36rpx;
 					height: 36rpx;
-					border: 1rpx solid #ffbd05;
+					border: 1rpx solid #8b8b8b;
 					border-radius: 50%;
 					margin-right: 52rpx;
 					margin-left: 26rpx;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+				.checked{
+					border: 1rpx solid #ffbd05;
 				}
 			}
 			.btn{

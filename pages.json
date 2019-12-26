@@ -1,11 +1,50 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		
 		{
-			"path": "pages/groupOwnerManage/signInDetails/signInDetails",
+			"path": "pages/groupOwnerManage/membershipFeeManage/membershipFeeManage",
 			"style": {
-				"navigationBarTitleText": "签到详情",
+				"navigationBarTitleText": "会费管理",
 				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#f4f4f4"
+				"navigationBarBackgroundColor": "#f4f4f4",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index"
+				}
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/costAdjust/costAdjust",
+			"style": {
+				"navigationBarTitleText": "会费调整",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f4f4f4",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index"
+				}
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/spotCharge/spotCharge",
+			"style": {
+				"navigationBarTitleText": "现场收费",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f4f4f4",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-dialog": "/wxcomponents/vant/dist/dialog/index"
+				}
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/addMember/addMember",
+			"style": {
+				"navigationBarTitleText": "添加成员",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f4f4f4",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell": "/wxcomponents/vant/dist/cell/index"
+				}
 			}
 		},
 		{
@@ -101,6 +140,25 @@
 			"path": "pages/groupOwnerManage/editActivitie/editActivitie",
 			"style": {
 				"navigationBarTitleText": "编辑活动"
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/signInDetails/signInDetails",
+			"style": {
+				"navigationBarTitleText": "签到详情",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f4f4f4"
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/searchMember/searchMember",
+			"style": {
+				"navigationBarTitleText": "搜索成员",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f4f4f4",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index"
+				}
 			}
 		},
 		{
