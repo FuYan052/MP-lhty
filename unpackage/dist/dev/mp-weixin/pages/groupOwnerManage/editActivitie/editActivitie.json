@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "编辑活动",
-  "usingComponents": {}
+  "usingComponents": {
+    "group-activity": "/components/groupActivity/groupActivity"
+  }
 }

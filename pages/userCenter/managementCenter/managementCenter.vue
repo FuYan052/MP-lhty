@@ -26,37 +26,37 @@
 				{
 					title: '编辑活动',
 					img: 'https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/manageIcon2.png',
-					path: '/pages/userCenter/publishActivities/publishActivities'
+					path: '/pages/groupOwnerManage/editActivitie/editActivitie'
 				},
 				{
 					title: '签到管理',
 					img: 'https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/manageIcon4.png',
-					path: '/pages/userCenter/publishActivities/publishActivities'
+					path: '/pages/groupOwnerManage/attendanceManage/attendanceManage'
 				},
 				{
 					title: '活动结算',
 					img: 'https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/manageIcon3.png',
-					path: '/pages/userCenter/publishActivities/publishActivities'
+					path: '/pages/groupOwnerManage/activitySettlement/activitySettlement'
 				},
 				{
 					title: '现场收费',
 					img: 'https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/manageIcon5.png',
-					path: '/pages/userCenter/publishActivities/publishActivities'
+					path: '/pages/groupOwnerManage/spotCharge/spotCharge'
 				},
 				{
 					title: '会费管理',
 					img: 'https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/manageIcon6.png',
-					path: '/pages/userCenter/publishActivities/publishActivities'
+					path: '/pages/groupOwnerManage/membershipFeeManage/membershipFeeManage'
 				},
 				{
 					title: '会员管理',
 					img: 'https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/manageIcon7.png',
-					path: '/pages/userCenter/publishActivities/publishActivities'
+					path: '/pages/groupOwnerManage/membershipManage/membershipManage'
 				},
 				{
 					title: '收支明细',
 					img: 'https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/manageIcon8.png',
-					path: '/pages/userCenter/publishActivities/publishActivities'
+					path: '/pages/groupOwnerManage/capitalDetails/capitalDetails'
 				},
 			]
 		},

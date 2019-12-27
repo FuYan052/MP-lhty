@@ -1,6 +1,98 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		
+		{
+			"path": "pages/tabBar/badminton/badminton",
+			"style": {
+				"navigationBarTitleText": "约球",
+				"usingComponents": {
+					"van-button": "/wxcomponents/vant/dist/button/index"
+				}
+			}
+		},
+		{
+			"path": "pages/tabBar/bookPlace/bookPlace",
+			"style": {
+				"navigationBarTitleText": "订场"
+			}
+		},
+		{
+			"path": "pages/tabBar/buyBall/buyBall",
+			"style": {
+				"navigationBarTitleText": "购球"
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/membershipManage/membershipManage",
+			"style": {
+				"navigationBarTitleText": "会员管理",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f4f4f4",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index"
+				}
+			}
+		}, 
+		{
+			"path": "pages/groupOwnerManage/spotCharge/spotCharge",
+			"style": {
+				"navigationBarTitleText": "现场收费"
+			}
+		}, 
+		{
+			"path": "pages/groupOwnerManage/activitySettlement/activitySettlement",
+			"style": {
+				"navigationBarTitleText": "活动结算"
+			}
+		}, 
+		{
+			"path": "pages/groupOwnerManage/attendanceManage/attendanceManage",
+			"style": {
+				"navigationBarTitleText": "签到管理"
+			}
+		}, 
+		{
+			"path": "pages/groupOwnerManage/editActivitie/editActivitie",
+			"style": {
+				"navigationBarTitleText": "编辑活动"
+			}
+		},
+		{
+			"path": "pages/tabBar/userCenter/userCenter",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/dist/cell/index"
+				}
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/editMemberInfo/editMemberInfo",
+			"style": {
+				"navigationBarTitleText": "修改会员",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f4f4f4",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell": "/wxcomponents/vant/dist/cell/index"
+				}
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/capitalDetails/capitalDetails",
+			"style": {
+				"navigationBarTitleText": "收支明细",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#fff"
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/membershipDetails/membershipDetails",
+			"style": {
+				"navigationBarTitleText": "会费明细",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#fff"
+			}
+		},
 		{
 			"path": "pages/groupOwnerManage/membershipFeeManage/membershipFeeManage",
 			"style": {
@@ -24,7 +116,7 @@
 			}
 		},
 		{
-			"path": "pages/groupOwnerManage/spotCharge/spotCharge",
+			"path": "pages/groupOwnerManage/spotChargeDetial/spotChargeDetial",
 			"style": {
 				"navigationBarTitleText": "现场收费",
 				"navigationBarTextStyle": "black",
@@ -43,36 +135,6 @@
 				"navigationBarBackgroundColor": "#f4f4f4",
 				"usingComponents": {
 					"van-field": "/wxcomponents/vant/dist/field/index",
-					"van-cell": "/wxcomponents/vant/dist/cell/index"
-				}
-			}
-		},
-		{
-			"path": "pages/tabBar/badminton/badminton",
-			"style": {
-				"navigationBarTitleText": "约球",
-				"usingComponents": {
-					"van-button": "/wxcomponents/vant/dist/button/index"
-				}
-			}
-		},
-		{
-			"path": "pages/tabBar/bookPlace/bookPlace",
-			"style": {
-				"navigationBarTitleText": "订场"
-			}
-		},
-		{
-			"path": "pages/tabBar/buyBall/buyBall",
-			"style": {
-				"navigationBarTitleText": "购球"
-			}
-		},
-		{
-			"path": "pages/tabBar/userCenter/userCenter",
-			"style": {
-				"navigationBarTitleText": "个人中心",
-				"usingComponents": {
 					"van-cell": "/wxcomponents/vant/dist/cell/index"
 				}
 			}
@@ -134,12 +196,6 @@
 					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
 					"van-switch": "/wxcomponents/vant/dist/switch/index"
 				}
-			}
-		},
-		{
-			"path": "pages/groupOwnerManage/editActivitie/editActivitie",
-			"style": {
-				"navigationBarTitleText": "编辑活动"
 			}
 		},
 		{

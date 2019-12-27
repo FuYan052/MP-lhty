@@ -20,6 +20,7 @@
 			<view class="walletWrap" @click="toMyWallet">
 				<view class="left">我的钱包</view>
 				<view class="right">2536<text>元</text></view>
+				<van-icon name="arrow" size='29rpx' color='#cccccd'/>
 			</view>
 		</view>
 		<!-- 菜单部分 -->
@@ -31,7 +32,7 @@
 					size='large'
 					is-link
 				  link-type="navigateTo"
-				  :url="'/' + item.path"
+				  :url="item.path"
 				/>
 			</view>
 		</view>
@@ -42,11 +43,11 @@
 	export default {
 		data() {
 			return {
-				menuList: [{title:'我的活动',path: 'pages/userCenter/myActivities/myActivities'},
-									{title:'俱乐部',path: 'pages/userCenter/club/club'},
-									{title:'管理中心',path: 'pages/userCenter/managementCenter/managementCenter'},
-									{title:'新俱乐部入驻',path: 'pages/userCenter/joinClub/joinClub'},
-									{title:'常见问题',path: 'pages/userCenter/commonProblem/commonProblem'},]
+				menuList: [{title:'我的活动',path: '/pages/userCenter/myActivities/myActivities'},
+									{title:'俱乐部',path: '/pages/userCenter/club/club'},
+									{title:'管理中心',path: '/pages/userCenter/managementCenter/managementCenter'},
+									{title:'新俱乐部入驻',path: '/pages/userCenter/clubEntry/clubEntry'},
+									{title:'常见问题',path: '/pages/userCenter/commonProblem/commonProblem'},]
 				}
 		},
 		methods: {
@@ -133,7 +134,6 @@
 					width: 210rpx;
 					height: 38rpx;
 					line-height: 38rpx;
-					float: left;
 					box-sizing: border-box;
 					padding-left: 54rpx;
 					padding-right: 30rpx;
@@ -159,6 +159,11 @@
 						line-height: 52rpx;
 						padding-left: 5rpx;
 					}
+				}
+				/deep/ .van-icon{
+					display: block;
+					float: left;
+					margin-left: 263rpx;
 				}
 			}
 		}

@@ -101,7 +101,6 @@
         width: 210rpx;
         height: 38rpx;
         line-height: 38rpx;
-        float: left;
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
         padding-left: 54rpx;
@@ -128,6 +127,11 @@
           color: #969696;
           line-height: 52rpx;
           padding-left: 5rpx;
+}
+.userCenter .topWrap .walletWrap.data-v-3116ca4e .van-icon {
+        display: block;
+        float: left;
+        margin-left: 263rpx;
 }
 .userCenter .menuWrap.data-v-3116ca4e {
     width: 100%;
