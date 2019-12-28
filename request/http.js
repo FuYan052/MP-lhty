@@ -1,15 +1,14 @@
 let baseUrl = '';
-// const host = 'http://192.168.0.116:9000/lhty'
 // 区分环境
 if (process.env.NODE_ENV == 'development') {
-    // host = 'http://192.168.0.116:8089/lhty' // 开发环境
-    baseUrl = 'https://laihu.baogongxia.com/lhty' // 开发环境
+    baseUrl = 'http://192.168.0.116:8089/lhty' // 开发环境
+    // baseUrl = 'https://laihu.baogongxia.com/lhty' // 开发环境
 } else {
     baseUrl = 'https://laihu.baogongxia.com/lhty' // 生产环境
 }
 
-
-
+const tyToken = uni.getStorageSync('userInfo').token;
+console.log(tyToken)
 function request(url,method,data,header={}){
   uni.showLoading({
     title: '加载中...'
@@ -20,9 +19,11 @@ function request(url,method,data,header={}){
       method: method,
       data: data,
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+				'token': tyToken
       },
       success: function(resp) {
+				console.log(resp)
         uni.hideLoading();
 				if (resp.data.status == 200) {
 					resolve(resp.data);
@@ -36,6 +37,7 @@ function request(url,method,data,header={}){
 				}
       },
       fail: function(resp) {
+				console.log(resp)
         uni.hideLoading();
         reject(resp);
       },

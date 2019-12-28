@@ -122,51 +122,61 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 320);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 {
   data: function data() {
     return {
+      showToLogin: false,
       menuList: [{ title: '我的活动', path: '/pages/userCenter/myActivities/myActivities' },
       { title: '俱乐部', path: '/pages/userCenter/club/club' },
       { title: '管理中心', path: '/pages/userCenter/managementCenter/managementCenter' },
@@ -174,11 +184,26 @@ var _default =
       { title: '常见问题', path: '/pages/userCenter/commonProblem/commonProblem' }] };
 
   },
+  computed: _objectSpread({},
+  (0, _vuex.mapState)(['hasLogin', 'userInfo'])),
+
+  onLoad: function onLoad() {
+    console.log(this.hasLogin);
+    console.log(this.userInfo);
+    if (!this.hasLogin) {
+      this.showToLogin = true;
+    }
+  },
   methods: {
     // 我的钱包
     toMyWallet: function toMyWallet() {
       uni.navigateTo({
         url: '/pages/userCenter/myWallet/myWallet' });
+
+    },
+    toLogin: function toLogin() {
+      uni.navigateTo({
+        url: '/pages/login/login' });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

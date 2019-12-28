@@ -10,6 +10,7 @@
 				<van-cell-group :border="false">
 				  <van-field
 						size='large'
+						:value='userPhone'
 				    placeholder="请输入手机号"
 						placeholder-style="color: #b1b1b1;font-size: 28rpx;"
 						type='number'
@@ -22,6 +23,7 @@
 				<van-cell-group :border="false">
 				  <van-field
 						size='large'
+						:value='checkCode'
 				    placeholder="请输入验证码"
 						placeholder-style="color: #b1b1b1;font-size: 28rpx;"
 						type="number"
@@ -47,17 +49,24 @@
 </template>
 
 <script>
+	import { mapState, mapMutations } from 'vuex'
 	export default {
 		data() {
 			return {
-				userPhone: '',
-				checkCode: '',
+				userPhone: '18884027431',
+				checkCode: '753006',
 				disabled: false,
 				content: '获取验证码',
 				totalTime: 0,
 			}
 		},
+		computed: {
+			...mapState(['hasLogin']),  //对全局变量hasLogin进行监控
+		},
+		onLoad() {
+		},
 		methods: {
+			...mapMutations(['login']),  //对全局方法login进行监控
 			onChangePhone(v) {
 				this.userPhone = v.detail
 			},
@@ -68,7 +77,7 @@
 				let ruleValue = this.$utils.checkPhone(this.userPhone)
 				if(ruleValue) {
 					this.$http.get({
-						url: '/v1/rest/public/bgxsendcode',
+						url: '/v1/rest/public/authCode',
 						data:{
 							phone: this.userPhone,
 						}
@@ -94,6 +103,7 @@
 					});
 				}
 			},
+			// 短信验证码登录
 			handleLogin() {
 				let ruleValue = this.$utils.checkPhone(this.userPhone)
 				if(!ruleValue){
@@ -109,15 +119,70 @@
 						icon: 'none'
 					});
 				}else{
-					uni.showModal({
-						content: '登录成功！',
-						showCancel: false
-					});
+					this.$http.post({
+						url: '/v1/rest/login/authCodeLogin',
+						data:{
+							phone: this.userPhone,
+							authCode: this.checkCode
+						}
+					}).then(resp => {
+						console.log(resp)
+						if(resp.status == 200) {
+							const userInfo = {
+								userPhone: resp.data.phone,
+								userName: resp.data.nickName,
+								userRole: resp.data.role,
+								userId: resp.data.userId,
+								token: resp.data.token
+							}
+							this.login(userInfo)
+							uni.showToast({
+								title: '登录成功！',
+								duration: 2000,
+								icon: 'none'
+							});
+							uni.navigateBack() 
+						}
+					})
 				}
 			},
 			// 微信登录
 			getuserinfo(e){
-				console.log(e)
+				const that = this
+				uni.login({
+				  provider: 'weixin',
+				  success: function (loginRes) {
+						console.log(loginRes)
+				    that.$http.get({
+				    	url: '/v1/rest/login/getOpenId',
+				    	data:{
+				    		code: loginRes.code,
+				    	}
+				    }).then(res => {
+				    	console.log(res)
+							uni.setStorage({  
+								key: 'openId',
+								data: res.data.openId
+							})
+							if(!res.data.phone) {
+								uni.getUserInfo({
+									provider: 'weixin',
+									lang: 'zh_CN',
+									success: function (resp) {
+										console.log(resp)
+										uni.setStorage({            //把用户信息保存到本地缓存
+											key: 'weixinUserInfo',
+											data: resp.userInfo
+										})
+										uni.redirectTo({
+											url: '/pages/bindPhone/bindPhone'
+										})
+									}
+								})
+							}
+				    })
+				  }
+				});
 			}
 		}
 	}

@@ -8,6 +8,7 @@
 					<van-cell-group :border="false">
 					  <van-field
 							size='large'
+							:value='userPhone'
 					    placeholder="请输入手机号"
 							placeholder-style="color: #b1b1b1;font-size: 28rpx;"
 							type='number'
@@ -20,6 +21,7 @@
 					<van-cell-group :border="false">
 					  <van-field
 							size='large'
+							:value='checkCode'
 					    placeholder="请输入验证码"
 							placeholder-style="color: #b1b1b1;font-size: 28rpx;"
 							type="number"
@@ -42,28 +44,34 @@
 </template>
 
 <script>
+	import { mapMutations } from 'vuex'
 	export default {
 		data() {
 			return {
-				userPhone: '',
-				checkCode: '',
+				userPhone: '18884027431',
+				checkCode: '753006',
 				disabled: false,
 				content: '获取验证码',
 				totalTime: 0,
 			}
 		},
+		onLoad() {
+		},
 		methods: {
+			...mapMutations(['login']),  //对全局方法login进行监控
+			
 			onChangePhone(v) {
 				this.userPhone = v.detail
 			},
 			onChange(v) {
 				this.checkCode = v.detail
 			},
+			// 获取验证码
 			getCode() {
 				let ruleValue = this.$utils.checkPhone(this.userPhone)
 				if(ruleValue) {
 					this.$http.get({
-						url: '/v1/rest/public/bgxsendcode',
+						url: '/v1/rest/public/authCode',
 						data:{
 							phone: this.userPhone,
 						}
@@ -89,7 +97,10 @@
 					});
 				}
 			},
+			// 绑定
 			handleBind() {
+				const weixinUserInfo = uni.getStorageSync('weixinUserInfo')
+				console.log(weixinUserInfo)
 				let ruleValue = this.$utils.checkPhone(this.userPhone)
 				if(!ruleValue){
 					uni.showToast({
@@ -104,10 +115,38 @@
 						icon: 'none'
 					});
 				}else{
-					uni.showModal({
-						content: '绑定成功！',
-						showCancel: false
-					});
+					this.$http.post({
+						url: '/v1/rest/login/wxRegist',
+						data:{
+							phone: this.userPhone,
+							authCode: this.checkCode,
+							headPortrait: weixinUserInfo.avatarUrl,
+							region: weixinUserInfo.province + weixinUserInfo.city,
+							sex: weixinUserInfo.gender,
+							nickName: weixinUserInfo.nickName,
+							openId: uni.getStorageSync('openId')
+						}
+					}).then(resp => {
+						console.log(resp)
+						uni.removeStorageSync('openId')
+						uni.removeStorageSync('weixinUserInfo')
+						if(resp.status == 200) {
+							const userInfo = {
+								userPhone: resp.data.phone,
+								userName: resp.data.nickName,
+								userRole: resp.data.role,
+								userId: resp.data.userId,
+								token: resp.data.token
+							}
+							this.login(userInfo)
+							uni.showToast({
+								title: '绑定成功！',
+								duration: 2000,
+								icon: 'none'
+							});
+							uni.navigateBack() 
+						}
+					})
 				}
 			},
 			// 微信登录

@@ -9,7 +9,7 @@
 						</image>
 					</view>
 					<view class="nickName">
-						<view class="name">幸运Lucky</view>
+						<view class="name">{{userInfo.userName}}</view>
 						<view class="role">群主</view>
 					</view>
 				</view>
@@ -36,13 +36,23 @@
 				/>
 			</view>
 		</view>
+		<van-dialog 
+			id="van-dialog" 
+			:show="showToLogin"
+			title='提示'
+			message='需要先登录后才可查看！'
+			confirm-button-text='去登录'
+			@confirm='toLogin'
+			/>
 	</view> 
 </template>
 
 <script>
+	import { mapState } from 'vuex'
 	export default {
 		data() {
 			return {
+				showToLogin: false,
 				menuList: [{title:'我的活动',path: '/pages/userCenter/myActivities/myActivities'},
 									{title:'俱乐部',path: '/pages/userCenter/club/club'},
 									{title:'管理中心',path: '/pages/userCenter/managementCenter/managementCenter'},
@@ -50,11 +60,26 @@
 									{title:'常见问题',path: '/pages/userCenter/commonProblem/commonProblem'},]
 				}
 		},
+		computed: {
+			...mapState(['hasLogin', 'userInfo']),  //对全局变量hasLogin进行监控
+		},
+		onLoad() {
+			console.log(this.hasLogin)
+			console.log(this.userInfo)
+			if(!this.hasLogin) {
+				this.showToLogin = true
+			}
+		},
 		methods: {
 			// 我的钱包
 			toMyWallet() {
 				uni.navigateTo({
 				  url: '/pages/userCenter/myWallet/myWallet'
+				});
+			},
+			toLogin() {
+				uni.navigateTo({
+				  url: '/pages/login/login'
 				});
 			}
 		}

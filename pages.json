@@ -22,6 +22,26 @@
 			}
 		},
 		{
+			"path": "pages/tabBar/userCenter/userCenter",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/dist/cell/index",
+					"van-dialog": "/wxcomponents/vant/dist/dialog/index"
+				}
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+				}
+			}
+		},
+		{
 			"path": "pages/groupOwnerManage/membershipManage/membershipManage",
 			"style": {
 				"navigationBarTitleText": "会员管理",
@@ -54,15 +74,6 @@
 			"path": "pages/groupOwnerManage/editActivitie/editActivitie",
 			"style": {
 				"navigationBarTitleText": "编辑活动"
-			}
-		},
-		{
-			"path": "pages/tabBar/userCenter/userCenter",
-			"style": {
-				"navigationBarTitleText": "个人中心",
-				"usingComponents": {
-					"van-cell": "/wxcomponents/vant/dist/cell/index"
-				}
 			}
 		},
 		{
@@ -136,16 +147,6 @@
 				"usingComponents": {
 					"van-field": "/wxcomponents/vant/dist/field/index",
 					"van-cell": "/wxcomponents/vant/dist/cell/index"
-				}
-			}
-		},
-		{
-			"path": "pages/login/login",
-			"style": {
-				"navigationBarTitleText": "登录",
-				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index",
-					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
 				}
 			}
 		},
