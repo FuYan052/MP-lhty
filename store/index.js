@@ -13,8 +13,6 @@ const store = new Vuex.Store({
 			state.hasLogin = true;
 			state.userInfo.userId = provider.userId;
 			state.userInfo.userPhone = provider.userPhone;  //将请求中的resp.data中的用户数据存入userInfo
-			state.userInfo.userName = provider.userName;
-			state.userInfo.userRole = provider.userRole;  //101来虎管理员, 102俱乐部会长,103俱乐部管理员,104俱乐部成员,105场馆方
 			state.userInfo.token = provider.token; 
 			uni.setStorage({            //把用户信息保存到本地缓存
 				key: 'userInfo',

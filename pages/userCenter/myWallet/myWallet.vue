@@ -11,7 +11,7 @@
 		<view class="menuBox">
 			<van-cell
 			  is-link
-			  title="账单明细"
+			  title="账户明细"
 			  link-type="navigateTo"
 			  url="/pages/dashboard/index"
 			/>

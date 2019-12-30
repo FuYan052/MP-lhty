@@ -24,6 +24,9 @@
 		methods: {
 			handle(v) {
 				console.log(v)
+				uni.navigateTo({
+					url: '/pages/groupOwnerManage/signInDetails/signInDetails?id=' + v
+				})
 			}
 		}
 	}

@@ -1,12 +1,16 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		
+		{
+			"path": "pages/userCenter/accountDetails/accountDetails",
+			"style": {
+				"navigationBarTitleText": "账户明细"
+			}
+		},
 		{
 			"path": "pages/tabBar/badminton/badminton",
 			"style": {
-				"navigationBarTitleText": "约球",
-				"usingComponents": {
-					"van-button": "/wxcomponents/vant/dist/button/index"
-				}
+				"navigationBarTitleText": "约球"
 			}
 		},
 		{
@@ -28,6 +32,17 @@
 				"usingComponents": {
 					"van-cell": "/wxcomponents/vant/dist/cell/index",
 					"van-dialog": "/wxcomponents/vant/dist/dialog/index"
+				}
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/publishActivities/publishActivities",
+			"style": {
+				"navigationBarTitleText": "发布活动",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
+					"van-switch": "/wxcomponents/vant/dist/switch/index"
 				}
 			}
 		},
@@ -186,17 +201,6 @@
 				"navigationBarBackgroundColor": "#f4f4f4",
 				"navigationBarTextStyle": "black",
 				"backgroundColor": "#f4f4f4"
-			}
-		},
-		{
-			"path": "pages/groupOwnerManage/publishActivities/publishActivities",
-			"style": {
-				"navigationBarTitleText": "发布活动",
-				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index",
-					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
-					"van-switch": "/wxcomponents/vant/dist/switch/index"
-				}
 			}
 		},
 		{

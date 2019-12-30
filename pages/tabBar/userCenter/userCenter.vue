@@ -9,8 +9,8 @@
 						</image>
 					</view>
 					<view class="nickName">
-						<view class="name">{{userInfo.userName}}</view>
-						<view class="role">群主</view>
+						<view class="name">用户名</view>
+						<!-- <view class="role">群主</view> -->
 					</view>
 				</view>
 				<view class="right">
@@ -64,8 +64,8 @@
 			...mapState(['hasLogin', 'userInfo']),  //对全局变量hasLogin进行监控
 		},
 		onLoad() {
-			console.log(this.hasLogin)
-			console.log(this.userInfo)
+			// console.log(this.hasLogin)
+			// console.log(this.userInfo)
 			if(!this.hasLogin) {
 				this.showToLogin = true
 			}
@@ -125,16 +125,16 @@
 						margin-left: 20rpx;
 						.name{
 							font-size: 34rpx;
-							line-height: 34rpx;
+							line-height: 150rpx;
 							color: #4b4416;
-							margin-top: 45rpx;
+							// margin-top: 45rpx;
 						}
-						.role{
-							font-size: 24rpx;
-							line-height: 24rpx;
-							color: #4b4416;
-							margin-top: 18rpx;
-						}
+						// .role{
+						// 	font-size: 24rpx;
+						// 	line-height: 24rpx;
+						// 	color: #4b4416;
+						// 	margin-top: 18rpx;
+						// }
 					}
 				}
 				.right{

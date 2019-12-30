@@ -8,7 +8,6 @@ if (process.env.NODE_ENV == 'development') {
 }
 
 const tyToken = uni.getStorageSync('userInfo').token;
-console.log(tyToken)
 function request(url,method,data,header={}){
   uni.showLoading({
     title: '加载中...'
@@ -23,7 +22,7 @@ function request(url,method,data,header={}){
 				'token': tyToken
       },
       success: function(resp) {
-				console.log(resp)
+				console.log(resp.data)
         uni.hideLoading();
 				if (resp.data.status == 200) {
 					resolve(resp.data);
@@ -37,7 +36,7 @@ function request(url,method,data,header={}){
 				}
       },
       fail: function(resp) {
-				console.log(resp)
+				console.log(resp.data)
         uni.hideLoading();
         reject(resp);
       },

@@ -26,16 +26,32 @@
 /* 文章场景相关 */
 .publishActivities.data-v-8f5b347a {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   position: relative;
   padding: 0 16rpx;
-  padding-bottom: 250rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 .publishActivities .wrap1.data-v-8f5b347a {
     width: 100%;
     height: auto;
+    overflow: auto;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-bottom: 50rpx;
 }
 .publishActivities .wrap1.data-v-8f5b347a .van-cell-group {
       border-radius: 10rpx;
@@ -144,19 +160,19 @@
 }
 .publishActivities .wrap2.data-v-8f5b347a {
     width: 100%;
-    height: 225rpx;
+    height: 160rpx;
     background: #1e1e1e;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    z-index: 999;
-    position: fixed;
-    padding: 0 16rpx;
-    bottom: 0;
-    left: 0;
 }
 .publishActivities .wrap2 .buttonBox.data-v-8f5b347a {
       width: 100%;
       height: 96rpx;
       margin-top: 15rpx;
+}
+
+
+.van-field__input--textarea{
+	overflow: auto;
 }
 

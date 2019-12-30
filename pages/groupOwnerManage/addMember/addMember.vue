@@ -38,7 +38,7 @@
 			},
 			sureAdd() {
 				uni.redirectTo({
-					url: '/pages/groupOwnerManage/spotCharge/spotCharge'
+					url: '/pages/groupOwnerManage/spotChargeDetial/spotChargeDetial'
 				})
 			}
 		}

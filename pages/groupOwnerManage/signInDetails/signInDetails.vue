@@ -52,6 +52,9 @@
 		computed: {
 			
 		},
+		onLoad(options) {
+			console.log(options)
+		},
 		methods: {
 			handleCheck(item) {
 				this.Item = item

@@ -69,15 +69,8 @@
 }
 .userCenter .topWrap .userInfo .left .nickName .name.data-v-3116ca4e {
             font-size: 34rpx;
-            line-height: 34rpx;
+            line-height: 150rpx;
             color: #4b4416;
-            margin-top: 45rpx;
-}
-.userCenter .topWrap .userInfo .left .nickName .role.data-v-3116ca4e {
-            font-size: 24rpx;
-            line-height: 24rpx;
-            color: #4b4416;
-            margin-top: 18rpx;
 }
 .userCenter .topWrap .userInfo .right.data-v-3116ca4e {
         width: 80rpx;

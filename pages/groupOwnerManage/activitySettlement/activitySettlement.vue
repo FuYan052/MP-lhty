@@ -24,11 +24,14 @@
 		methods: {
 			handle(v) {
 				console.log(v)
+				uni.navigateTo({
+					url: '/pages/groupOwnerManage/settlement/settlement?id=' + v
+				})
 			}
 		}
 	}
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 
 </style>

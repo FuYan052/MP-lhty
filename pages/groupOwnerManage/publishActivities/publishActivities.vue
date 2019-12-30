@@ -69,6 +69,10 @@
 				</van-cell-group>
 				<!-- switch -->
 				<view class="switchBox">
+					<text class="text">接受线下报名</text>
+					<van-switch custom-class='mySwitch' :checked="isUnderLine" active-color='#ffbc01' inactive-color='#dedede' @change='isUnderLine = !isUnderLine' size="20px" />
+				</view>
+				<view class="switchBox">
 					<text class="text">作为周活动发布</text>
 					<van-switch custom-class='mySwitch' :checked="isWeek" active-color='#ffbc01' inactive-color='#dedede' size="20px" @change='isWeek = !isWeek' />
 				</view>
@@ -96,13 +100,13 @@
 			themeColor="#ffbc01" 
 		></w-picker>
 		<!-- 发布按钮 -->
-		<cover-view class="wrap2" v-show="isShowButton">
-			<cover-view class="buttonBox">
+		<view class="wrap2">
+			<view class="buttonBox">
 				<button class="myButton" @click="submit">
 					发布
 				</button>
-			</cover-view>
-		</cover-view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -137,25 +141,13 @@
 				titleValue: '',  //标题
 				ruleValue: '',  //活动规则
 				isWeek: false,  //是否周活动
-				isCancel: false,  //是否可取消
+				isCancel: true,  //是否可取消
+				isUnderLine: true  //是否接受线下报名
 			}
 		},
 		onLoad() {
 			this.columns = [{label:"0.5小时",value:"0.5"},{label:"1小时",value:"1"},{label:"1.5小时",value:"1.5"},{label:"2小时",value:"2"},{label:"2.5小时",value:"2.5"},{label:"3小时",value:"3"},{label:"3.5小时",value:"3.5"},{label:"4小时",value:"4"}];
 			this.optionsList = [{id: 1, value: '菜鸟'},{id: 2, value: '初级'},{id: 3, value: '中级'},{id: 4, value: '高级'}]
-		},
-		computed: {
-			isShowButton() {
-				if(this.isshow1) {
-					return !this.isshow1
-				}if(this.isshow2) {
-					return !this.isshow2
-				}else{
-					// setTimeout(function() {
-						return true
-					// }, 200);
-				}
-			}
 		},
 		methods: {
 			// 选择活动时间
@@ -270,14 +262,20 @@
 <style lang="scss" scoped>
 	.publishActivities{
 		width: 100%;
-		min-height: 100vh;
+		height: 100vh;
 		box-sizing: border-box;
 		position: relative;
 		padding: 0 16rpx;
-		padding-bottom: 250rpx;
+		// padding-bottom: 250rpx;
+		display: flex;
+		flex-direction: column;
 		.wrap1{
 			width: 100%;
 			height: auto;
+			overflow: auto;
+			flex: 1;
+			box-sizing: border-box;
+			padding-bottom: 50rpx;
 			/deep/ .van-cell-group{
 				border-radius: 10rpx;
 				background: #1e1e1e;
@@ -380,19 +378,19 @@
 		}
 		.wrap2{
 			width: 100%;
-			height: 225rpx;
+			height: 160rpx;
 			background: #1e1e1e;
 			box-sizing: border-box;
-			z-index: 999;
-			position: fixed;
-			padding: 0 16rpx;
-			bottom: 0;
-			left: 0;
 			.buttonBox{
 				width: 100%;
 				height: 96rpx;
 				margin-top: 15rpx;
 			}
 		}
+	}
+</style>
+<style>
+	.van-field__input--textarea{
+		overflow: auto;
 	}
 </style>

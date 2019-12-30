@@ -54,7 +54,7 @@
 		data() {
 			return {
 				userPhone: '18884027431',
-				checkCode: '753006',
+				checkCode: '768257',
 				disabled: false,
 				content: '获取验证码',
 				totalTime: 0,
@@ -130,18 +130,20 @@
 						if(resp.status == 200) {
 							const userInfo = {
 								userPhone: resp.data.phone,
-								userName: resp.data.nickName,
-								userRole: resp.data.role,
 								userId: resp.data.userId,
 								token: resp.data.token
 							}
 							this.login(userInfo)
-							uni.showToast({
-								title: '登录成功！',
-								duration: 2000,
-								icon: 'none'
-							});
-							uni.navigateBack() 
+							// uni.showToast({
+							// 	title: '登录成功！',
+							// 	duration: 2000,
+							// 	icon: 'none'
+							// });
+							if(resp.data.initCreate) {
+								console.log('完善信息')
+							}else{
+								uni.navigateBack() 
+							}
 						}
 					})
 				}
@@ -159,26 +161,36 @@
 				    		code: loginRes.code,
 				    	}
 				    }).then(res => {
-				    	console.log(res)
-							uni.setStorage({  
-								key: 'openId',
-								data: res.data.openId
-							})
-							if(!res.data.phone) {
-								uni.getUserInfo({
-									provider: 'weixin',
-									lang: 'zh_CN',
-									success: function (resp) {
-										console.log(resp)
-										uni.setStorage({            //把用户信息保存到本地缓存
-											key: 'weixinUserInfo',
-											data: resp.userInfo
-										})
-										uni.redirectTo({
-											url: '/pages/bindPhone/bindPhone'
-										})
+				    	if(res.status == 200) {
+								console.log(res)
+								if(res.data.initOpenId) {  //第一次微信快捷登录需绑定手机号
+									uni.setStorage({
+										key: 'openId',
+										data: res.data.openId
+									})
+									uni.getUserInfo({
+										provider: 'weixin',
+										lang: 'zh_CN',
+										success: function (resp) {
+											console.log(resp)
+											uni.setStorage({            //把用户信息保存到本地缓存
+												key: 'weixinUserInfo',
+												data: resp.userInfo
+											})
+											uni.redirectTo({
+												url: '/pages/bindPhone/bindPhone'
+											})
+										}
+									})
+								}else{  //非第一次微信快捷登录，不需绑定
+									const userInfo = {
+										userPhone: res.data.phone,
+										userId: res.data.userId,
+										token: res.data.token
 									}
-								})
+									that.login(userInfo)
+									uni.navigateBack() 
+								}
 							}
 				    })
 				  }
