@@ -22,7 +22,7 @@ function request(url,method,data,header={}){
 				'token': tyToken
       },
       success: function(resp) {
-				console.log(resp.data)
+				// console.log(resp.data)
         uni.hideLoading();
 				if (resp.data.status == 200) {
 					resolve(resp.data);

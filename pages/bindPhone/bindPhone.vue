@@ -49,7 +49,7 @@
 		data() {
 			return {
 				userPhone: '18884027431',
-				checkCode: '753006',
+				checkCode: '723186',
 				disabled: false,
 				content: '获取验证码',
 				totalTime: 0,
@@ -139,12 +139,9 @@
 								token: resp.data.token
 							}
 							this.login(userInfo)
-							uni.showToast({
-								title: '绑定成功！',
-								duration: 2000,
-								icon: 'none'
-							});
-							uni.navigateBack() 
+							uni.redirectTo({
+								url: '/pages/userInfo/registerInfo/registerInfo'
+							})
 						}
 					})
 				}

@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/userCenter/accountDetails/accountDetails",
+    "pages/userInfo/registerInfo/registerInfo",
+    "pages/userInfo/selectionTags/selectionTags",
     "pages/tabBar/badminton/badminton",
     "pages/tabBar/bookPlace/bookPlace",
     "pages/tabBar/buyBall/buyBall",

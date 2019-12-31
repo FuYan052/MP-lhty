@@ -54,7 +54,7 @@
 		data() {
 			return {
 				userPhone: '18884027431',
-				checkCode: '768257',
+				checkCode: '723186',
 				disabled: false,
 				content: '获取验证码',
 				totalTime: 0,
@@ -134,13 +134,10 @@
 								token: resp.data.token
 							}
 							this.login(userInfo)
-							// uni.showToast({
-							// 	title: '登录成功！',
-							// 	duration: 2000,
-							// 	icon: 'none'
-							// });
 							if(resp.data.initCreate) {
-								console.log('完善信息')
+								uni.redirectTo({
+									url: '/pages/userInfo/registerInfo/registerInfo'
+								})
 							}else{
 								uni.navigateBack() 
 							}

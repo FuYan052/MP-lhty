@@ -1,10 +1,22 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		
 		{
 			"path": "pages/userCenter/accountDetails/accountDetails",
 			"style": {
 				"navigationBarTitleText": "账户明细"
+			}
+		},
+		{
+			"path": "pages/userInfo/registerInfo/registerInfo",
+			"style": {
+				"navigationBarTitleText": "完善信息"
+			}
+		},
+		{
+			"path": "pages/userInfo/selectionTags/selectionTags",
+			"style": {
+				"navigationBarTitleText": "选择标签",
+				"navigationBarBackgroundColor": "#020202"
 			}
 		},
 		{

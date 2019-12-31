@@ -1,7 +1,7 @@
 <template>
 	<view class="accountDetails">
 		<view class="topBox">
-			
+			<view class="date">2019年12月</view>
 		</view>
 		<view class="content whiteBg">
 			
@@ -19,10 +19,15 @@
 	.accountDetails{
 		width: 100%;
 		min-height: 100vh;
-		box-sizing: border-box;
+		box-sizing: border-box;  
 		padding: 0 32rpx;
 		.topBox{
 			width: 100%;
+			height: 72rpx;
+			border: 1rpx solid red;
+			.date{
+				color: #fff;
+			}
 		}
 		.content{
 			width:  100%;
