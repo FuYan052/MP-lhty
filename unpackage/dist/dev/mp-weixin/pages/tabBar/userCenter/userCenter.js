@@ -172,40 +172,106 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 {
   data: function data() {
     return {
+      stateTab: true,
+      loginState: null,
       showToLogin: false,
-      menuList: [{ title: '我的活动', path: '/pages/userCenter/myActivities/myActivities' },
-      { title: '俱乐部', path: '/pages/userCenter/club/club' },
-      { title: '管理中心', path: '/pages/userCenter/managementCenter/managementCenter' },
-      { title: '新俱乐部入驻', path: '/pages/userCenter/clubEntry/clubEntry' },
-      { title: '常见问题', path: '/pages/userCenter/commonProblem/commonProblem' }] };
+      showLoginOut: false,
+      menuList: [{ id: 1, title: '我的活动', path: '/pages/userCenter/myActivities/myActivities' },
+      { id: 2, title: '俱乐部', path: '/pages/userCenter/club/club' },
+      { id: 3, title: '管理中心', path: '/pages/userCenter/managementCenter/managementCenter' },
+      { id: 4, title: '新俱乐部入驻', path: '/pages/userCenter/clubEntry/clubEntry' },
+      { id: 5, title: '常见问题', path: '/pages/userCenter/commonProblem/commonProblem' }],
+      userData: {} };
 
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['hasLogin', 'userInfo'])),
 
+  created: function created() {
+    this.loginState = uni.getStorageSync('isLogin');
+    if (!this.loginState) {
+      this.showToLogin = true;
+      this.stateTab = false;
+    } else {
+      this.stateTab = true;
+    }
+  },
+  onShow: function onShow() {var _this = this;
+    this.loginState = uni.getStorageSync('isLogin');
+    if (!this.loginState) {
+      this.stateTab = false;
+    } else {
+      this.stateTab = true;
+    }
+    if (this.stateTab) {
+      this.$http.get({
+        url: '/v1/rest/login/personalCenter',
+        data: {
+          userId: uni.getStorageSync('userInfo').userId } }).
+
+      then(function (resp) {
+        console.log(resp);
+        if (resp.status == 200) {
+          _this.userData = resp.data;
+        }
+      });
+    }
+  },
   onLoad: function onLoad() {
     // console.log(this.hasLogin)
     // console.log(this.userInfo)
-    if (!this.hasLogin) {
-      this.showToLogin = true;
-    }
   },
-  methods: {
+  methods: _objectSpread({},
+  (0, _vuex.mapMutations)(['logout']), { //对全局方法login进行监控
     // 我的钱包
-    toMyWallet: function toMyWallet() {
+    toMyWallet: function toMyWallet(value) {
       uni.navigateTo({
-        url: '/pages/userCenter/myWallet/myWallet' });
+        url: '/pages/userCenter/myWallet/myWallet?totalMoney=' + value });
 
     },
     toLogin: function toLogin() {
       uni.navigateTo({
         url: '/pages/login/login' });
 
-    } } };exports.default = _default;
+    },
+    // 退出登录
+    doLoginout: function doLoginout() {
+      this.showLoginOut = true;
+    },
+    handleConfirm: function handleConfirm() {
+      this.logout();
+      uni.removeStorage({ //根据key值移除缓存数据
+        key: 'isLogin' });
+
+      uni.reLaunch({
+        url: '/pages/tabBar/userCenter/userCenter' });
+
+    },
+    handleCancel: function handleCancel() {
+      this.showLoginOut = false;
+    } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

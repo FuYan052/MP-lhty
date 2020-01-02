@@ -19,8 +19,8 @@
 					<view class="item" @click="choiceDeadline">
 						<van-field :value="deadline" label="报名截止" placeholder="选择时间" right-icon="arrow" size='large' :border='false' readonly/>
 					</view>
-					<view class="item">
-						<van-field :value="hour" label="活动地点" placeholder="填写位置" use-right-icon-slot size='large' :border='false' readonly >
+					<view class="item" @click="choiceVenue">
+						<van-field :value="venueName" label="活动地点" placeholder="选择场馆" use-right-icon-slot size='large' :border='false' readonly >
 							<van-icon slot='icon' name="location-o" size="32rpx" color='#010101'/>
 						</van-field>
 					</view>
@@ -46,7 +46,7 @@
 					<view class="level">
 						<view class="title">等级要求</view>
 						<view class="optionsBox">
-							<view class="optionItem" v-for="(item,index) in optionsList" :key='index' :class="{selected:selectedIds.indexOf(item.id)>=0}" @click="handleClick(item)">{{item.value}}</view>
+							<view class="optionItem" v-for="(item,index) in optionsList" :key='index' :class="{selected:selectedIds.indexOf(item.value)>=0}" @click="handleClick(item)">{{item.label}}</view>
 						</view>
 					</view>
 					<view class="item">
@@ -94,6 +94,7 @@
 		<w-picker
 			mode="selector" 
 			:selectList="columns"
+			:defaultVal='defaultValue'
 			@confirm="onConfirm" 
 			@cancel='onCancel'
 			ref="picker1" 
@@ -124,10 +125,13 @@
 				time: '',  //选择的时间值
 				isshow1: false,  //显示时间选择器
 				isshow2: false,  //其他选择器
+				defaultValue: ['2小时'],
 				hour: null,  //选择的时长
 				pickList1: [],
 				deadline: '',  //报名截止
 				timePickerType: 100,  //100为选择活动时间，200为选择报名截止时间
+				venueName: '',
+				venueId: '',
 				inputNumValue: '',  //人数
 				inputPrice1: '',  //钱包支付费用
 				inputPrice2: '',  //费用男
@@ -145,9 +149,25 @@
 				isUnderLine: true  //是否接受线下报名
 			}
 		},
-		onLoad() {
-			this.columns = [{label:"0.5小时",value:"0.5"},{label:"1小时",value:"1"},{label:"1.5小时",value:"1.5"},{label:"2小时",value:"2"},{label:"2.5小时",value:"2.5"},{label:"3小时",value:"3"},{label:"3.5小时",value:"3.5"},{label:"4小时",value:"4"}];
-			this.optionsList = [{id: 1, value: '菜鸟'},{id: 2, value: '初级'},{id: 3, value: '中级'},{id: 4, value: '高级'}]
+		onLoad(options) {
+			this.columns = [{label:"0.5小时",value:0.5},{label:"1小时",value:1},{label:"1.5小时",value:1.5},{label:"2小时",value:2},{label:"2.5小时",value:2.5},{label:"3小时",value:3},{label:"3.5小时",value:3.5},{label:"4小时",value:4}];
+			this.$http.get({
+				url: '/v1/rest/public/findDictList',
+				data: {
+					skey: 'level'
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.optionsList = resp.data
+				}
+			})
+		},
+		onShow() {
+			if(uni.getStorageSync('venue')) {
+				this.venueName = uni.getStorageSync('venue').name
+				this.venueId = uni.getStorageSync('venue').id
+			}
 		},
 		methods: {
 			// 选择活动时间
@@ -165,6 +185,7 @@
 				this.$refs.picker1.show()
 			},
 			onConfirm(v) {
+				console.log(v)
 				this.hour = v.checkArr.value
 				this.isshow2 = false
 			},
@@ -180,13 +201,19 @@
 				this.deadline = v1
 				this.isshow1 = v2
 			},
+			// 选择场馆
+			choiceVenue() {
+				uni.navigateTo({
+					url: '/pages/groupOwnerManage/selectVenue/selectVenue'
+				})
+			},
 			// 选择等级
 			handleClick(item) {
-				let selectedIndex = this.selectedIds.indexOf(item.id)
+				let selectedIndex = this.selectedIds.indexOf(item.value)
 				 if(selectedIndex >= 0) {
 					this.selectedIds.splice(selectedIndex, 1)
 				}else{
-					this.selectedIds.push(item.id)
+					this.selectedIds.push(item.value)
 				}
 				// console.log(this.selectedIds)
 			},
@@ -236,24 +263,33 @@
 			// 提交
 			submit() {
 				const params = {
-					type: '001',
-					time: this.time,
+					userId: uni.getStorageSync('userInfo').userId,
+					type: 'sportsKinds_01',
+					timeStart: this.time,
 					duration: this.hour,
-					deadline: this.deadline,
-					place: '',
+					endTime: this.deadline,
+					venueId: this.venueId,
 					people: this.inputNumValue,
-					money: this.inputPrice1,
+					walletPayMoney: this.inputPrice1,
 					moneyMan: this.inputPrice2,
 					moneyWomen: this.inputPrice3,
 					temporaryMoney: this.inputPrice4,
 					ballType: this.inputBallType,
-					level: this.selectedIds,
+					occupationLevel: this.selectedIds.join(','),
 					title: this.titleValue,
-					rule: this.ruleValue,
+					content: this.ruleValue,
+					isLower:this.isUnderLine,
 					isWeek: this.isWeek,
 					isCancel: this.isCancel
 				}
 				console.log(params)
+				this.$http.post({
+					url: '/v1/rest/manage/releaseActivities',
+					data: params
+				}).then(resp => {
+					console.log(resp)
+				})
+				uni.removeStorageSync('venue')
 			}
 		}
 	}
@@ -312,7 +348,7 @@
 			}
 			.level{
 				width: 100%;
-				height: 180rpx;
+				min-height: 180rpx;
 				background: #fff;
 				border-radius: 10rpx;
 				margin-bottom: 8rpx;
@@ -326,12 +362,14 @@
 				}
 				.optionsBox{
 					width: 100%;
-					height: 86rpx;
+					min-height: 86rpx;
 					display: flex;
-					justify-content: space-around;
+					flex-wrap: wrap;
 					.optionItem{
 						width: 136rpx;
 						height: 64rpx;
+						margin-left: 35rpx;
+						margin-bottom: 35rpx;
 						line-height: 64rpx;
 						text-align: center;
 						background: #e6e4e5;

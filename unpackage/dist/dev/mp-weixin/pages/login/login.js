@@ -260,6 +260,10 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
               token: resp.data.token };
 
             _this2.login(userInfo);
+            uni.setStorage({ //把用户信息保存到本地缓存
+              key: 'userInfo',
+              data: userInfo });
+
             if (resp.data.initCreate) {
               uni.redirectTo({
                 url: '/pages/userInfo/registerInfo/registerInfo' });
@@ -312,7 +316,9 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
                   token: res.data.token };
 
                 that.login(userInfo);
-                uni.navigateBack();
+                setTimeout(function () {
+                  uni.navigateBack();
+                }, 200);
               }
             }
           });

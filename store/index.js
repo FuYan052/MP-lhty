@@ -18,6 +18,7 @@ const store = new Vuex.Store({
 				key: 'userInfo',
 				data: provider
 			})
+			uni.setStorageSync('isLogin',true)
 			console.log(state.userInfo)
 		},
 		logout(state) {

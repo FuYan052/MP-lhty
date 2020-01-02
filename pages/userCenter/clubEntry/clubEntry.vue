@@ -6,7 +6,7 @@
 				<van-field custom-style='margin-top: 0rpx;' @change='InputName' label="名称" placeholder="请输入俱乐部名称" size='large' :border='false'/>
 				<van-field @change='InputQQgroup' label="QQ群" placeholder="请输入俱乐部使用的QQ群" size='large' :border='false'/>
 				<view @click='selectRegion'>
-					<van-field label="地区" placeholder="选择城市" right-icon="arrow" size='large' :border='false' readonly />
+					<van-field label="地区" :value='regionName' placeholder="选择城市" right-icon="arrow" size='large' :border='false' readonly />
 				</view>
 				<van-field @change='InputVenue' label="活动场馆" placeholder="常活动场馆" size='large' :border='false'/>
 			</van-cell-group>
@@ -14,7 +14,7 @@
 		<view class="sectionTitle">会长基本信息</view>
 		<view class="section2">
 			<van-cell-group :border='false'>
-				<van-field custom-style='margin-top: 0rpx;' @change='InputUserName' label="姓名" placeholder="请输入姓名" size='large' :border='false' readonly/>
+				<van-field custom-style='margin-top: 0rpx;' @change='InputUserName' label="姓名" placeholder="请输入姓名" size='large' :border='false'/>
 				<van-field @change='InputPhone' type='number' label="手机号" placeholder="请输入手机号" size='large' :border='false'/>
 				<van-field @change='InputWeixin' label="微信" placeholder="请输入微信" size='large' :border='false'/>
 				<van-field @change='InputQQ' label="QQ" placeholder="请输入QQ" size='large' :border='false'/>
@@ -31,11 +31,13 @@
 			如有疑问可拨打客服电话或添加客服微信咨询
 		</view>
 		<view class="btnBox">
-			<view class="myButton">提交申请</view>
+			<view class="myButton" @click="submit">提交申请</view>
 		</view>
 		<!-- 选择器 -->
 		<w-picker
 			mode="region" 
+			:hideArea='true'
+			:areaCode="['510000','510100','0']"
 			:selectList="columns"
 			@confirm="onConfirm" 
 			ref="picker1" 
@@ -58,36 +60,70 @@
 				UserName: '',
 				phone: '',
 				Weixin: '',
-				QQ: ''
+				QQ: '',
+				regionCode: '',
+				regionName: ''
 			}
 		},
 		methods: {
 			InputName(v) {
-				this.clubName = v
+				this.clubName = v.detail
 			},
 			InputQQgroup(v) {
-				this.QQgroup = v
+				this.QQgroup = v.detail
 			},
 			InputVenue(v) {
-				this.Venue = v
+				this.Venue = v.detail
 			},
 			selectRegion() {
 				this.$refs.picker1.show()
 			},
 			onConfirm(v) {
 				console.log(v)
+				this.regionName = v.result
+				this.regionCode = v.checkValue[1]
 			},
 			InputUserName(v) {
-				this.UserName = v
+				this.UserName = v.detail
 			},
 			InputPhone(v) {
-				this.phone = v
+				this.phone = v.detail
 			},
 			InputWeixin(v) {
-				this.Weixin = v
+				this.Weixin = v.detail
 			},
 			InputQQ(v) {
-				this.QQ = v
+				this.QQ = v.detail
+			},
+			submit() {
+				const params = {
+					clubName: this.clubName,
+					qqGroup: this.QQgroup,
+					region: this.regionCode,
+					venueName: this.Venue,
+					name: this.UserName,
+					phone: this.phone,
+					qq: this.QQ,
+					weixin: this.Weixin,
+					userId: uni.getStorageSync('userInfo').userId
+				}
+				console.log(params)
+				this.$http.post({
+					url: '/v1/rest/club/insertClub',
+					data: params
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						uni.showModal({
+							title: '提示',
+							content: '申请成功，请等待审核！',
+							showCancel: false,
+							confirmText: '知道了',
+							success: function (res) {
+							}
+						});
+					}
+				})
 			}
 		}
 	}

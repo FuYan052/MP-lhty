@@ -1,13 +1,12 @@
 {
   "pages": [
+    "pages/tabBar/badminton/badminton",
+    "pages/tabBar/userCenter/userCenter",
+    "pages/groupOwnerManage/publishActivities/publishActivities",
+    "pages/groupOwnerManage/selectVenue/selectVenue",
     "pages/userCenter/accountDetails/accountDetails",
     "pages/userInfo/registerInfo/registerInfo",
     "pages/userInfo/selectionTags/selectionTags",
-    "pages/tabBar/badminton/badminton",
-    "pages/tabBar/bookPlace/bookPlace",
-    "pages/tabBar/buyBall/buyBall",
-    "pages/tabBar/userCenter/userCenter",
-    "pages/groupOwnerManage/publishActivities/publishActivities",
     "pages/login/login",
     "pages/groupOwnerManage/membershipManage/membershipManage",
     "pages/groupOwnerManage/spotCharge/spotCharge",
@@ -58,18 +57,6 @@
         "iconPath": "static/imgs/tabbar1_1.png",
         "selectedIconPath": "static/imgs/tabbar1_2.png",
         "text": "约球"
-      },
-      {
-        "pagePath": "pages/tabBar/bookPlace/bookPlace",
-        "iconPath": "static/imgs/tabbar2_1.png",
-        "selectedIconPath": "static/imgs/tabbar2_2.png",
-        "text": "订场"
-      },
-      {
-        "pagePath": "pages/tabBar/buyBall/buyBall",
-        "iconPath": "static/imgs/tabbar3_1.png",
-        "selectedIconPath": "static/imgs/tabbar3_2.png",
-        "text": "购球"
       },
       {
         "pagePath": "pages/tabBar/userCenter/userCenter",

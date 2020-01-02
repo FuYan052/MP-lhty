@@ -89,6 +89,7 @@
       height: 52rpx;
       margin-top: 64rpx;
       line-height: 52rpx;
+      position: relative;
 }
 .userCenter .topWrap .walletWrap .left.data-v-3116ca4e {
         width: 210rpx;
@@ -118,13 +119,14 @@
 .userCenter .topWrap .walletWrap .right text.data-v-3116ca4e {
           font-size: 26rpx;
           color: #969696;
-          line-height: 52rpx;
+          line-height: 44rpx;
           padding-left: 5rpx;
 }
 .userCenter .topWrap .walletWrap.data-v-3116ca4e .van-icon {
         display: block;
-        float: left;
-        margin-left: 263rpx;
+        position: absolute;
+        right: 48rpx;
+        top: 15rpx;
 }
 .userCenter .menuWrap.data-v-3116ca4e {
     width: 100%;
@@ -155,20 +157,24 @@
         font-size: 26rpx;
         color: #636362;
 }
-.userCenter .menuWrap .menuItem.data-v-3116ca4e:nth-of-type(2) {
+.userCenter .menuWrap .menu2.data-v-3116ca4e {
       background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/teamIcon.png") no-repeat left center;
       background-size: 36rpx auto;
 }
-.userCenter .menuWrap .menuItem.data-v-3116ca4e:nth-of-type(3) {
+.userCenter .menuWrap .menu3.data-v-3116ca4e {
       background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/managementIcon.png") no-repeat left center;
       background-size: 30rpx auto;
 }
-.userCenter .menuWrap .menuItem.data-v-3116ca4e:nth-of-type(4) {
+.userCenter .menuWrap .menu4.data-v-3116ca4e {
       background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/joinIcon.png") no-repeat left center;
       background-size: 34rpx auto;
 }
-.userCenter .menuWrap .menuItem.data-v-3116ca4e:nth-of-type(5) {
+.userCenter .menuWrap .menu5.data-v-3116ca4e {
       background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/problemIcon.png") no-repeat left center;
       background-size: 34rpx auto;
+}
+.userCenter .menuWrap .menu6.data-v-3116ca4e {
+      background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/logoutIcon.png") no-repeat left center;
+      background-size: 33rpx auto;
 }
 

@@ -154,9 +154,12 @@ var _default =
 {
 
   data: function data() {
-    return {};
+    return {
+      total: '' };
 
-
+  },
+  onLoad: function onLoad(options) {
+    this.total = options.totalMoney;
   },
   methods: {
     // 充值

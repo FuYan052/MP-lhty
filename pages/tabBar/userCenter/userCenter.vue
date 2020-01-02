@@ -5,11 +5,11 @@
 				<view class="left">
 					<view class="imgBox">
 						<image :lazy-load='false' style="width: 100%; height: 100%; border-radius: 50%;"
-							src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg" mode="">
+							:src="userData.headPortrait">
 						</image>
 					</view>
 					<view class="nickName">
-						<view class="name">用户名</view>
+						<view class="name">{{userData.nickName}}</view>
 						<!-- <view class="role">群主</view> -->
 					</view>
 				</view>
@@ -17,15 +17,15 @@
 					<view class="iconBox"></view>
 				</view>
 			</view>
-			<view class="walletWrap" @click="toMyWallet">
+			<view class="walletWrap" @click="toMyWallet(userData.totalMoney)">
 				<view class="left">我的钱包</view>
-				<view class="right">2536<text>元</text></view>
-				<van-icon name="arrow" size='29rpx' color='#cccccd'/>
+				<view class="right">{{userData.totalMoney}}<text>元</text></view>
+				<van-icon class='rightIcon' name="arrow" size='29rpx' color='#cccccd'/>
 			</view>
 		</view>
 		<!-- 菜单部分 -->
 		<view class="menuWrap">
-			<view class="menuItem" v-for="(item,index) in menuList" :key='index'>
+			<view class="menuItem" :class="'menu' + item.id" v-for="(item,index) in menuList" :key='index'>
 				<van-cell
 				  :title="item.title"
 					:border='false'
@@ -33,6 +33,15 @@
 					is-link
 				  link-type="navigateTo"
 				  :url="item.path"
+				/>
+			</view>
+			<view class="menuItem menu6" @click="doLoginout">
+				<van-cell
+				  title="退出登录"
+					:border='false'
+					size='large'
+					is-link
+				  link-type="navigateTo"
 				/>
 			</view>
 		</view>
@@ -44,43 +53,100 @@
 			confirm-button-text='去登录'
 			@confirm='toLogin'
 			/>
+			<van-dialog 
+			id="van-dialog" 
+			:show="showLoginOut"
+			:showCancelButton='true'
+			title='提示'
+			message='确定要退出登录吗？'
+			@confirm='handleConfirm'
+			@cancel='handleCancel'
+			/>
 	</view> 
 </template>
 
 <script>
-	import { mapState } from 'vuex'
+	import { mapState, mapMutations } from 'vuex'
 	export default {
 		data() {
 			return {
+				stateTab: true,
+				loginState: null,
 				showToLogin: false,
-				menuList: [{title:'我的活动',path: '/pages/userCenter/myActivities/myActivities'},
-									{title:'俱乐部',path: '/pages/userCenter/club/club'},
-									{title:'管理中心',path: '/pages/userCenter/managementCenter/managementCenter'},
-									{title:'新俱乐部入驻',path: '/pages/userCenter/clubEntry/clubEntry'},
-									{title:'常见问题',path: '/pages/userCenter/commonProblem/commonProblem'},]
+				showLoginOut: false,
+				menuList: [{id: 1 , title:'我的活动',path: '/pages/userCenter/myActivities/myActivities'},
+									{id: 2, title:'俱乐部',path: '/pages/userCenter/club/club'},
+									{id: 3, title:'管理中心',path: '/pages/userCenter/managementCenter/managementCenter'},
+									{id: 4, title:'新俱乐部入驻',path: '/pages/userCenter/clubEntry/clubEntry'},
+									{id: 5,title:'常见问题',path: '/pages/userCenter/commonProblem/commonProblem'},],
+				userData: {}
 				}
 		},
 		computed: {
 			...mapState(['hasLogin', 'userInfo']),  //对全局变量hasLogin进行监控
 		},
+		created() {
+			this.loginState = uni.getStorageSync('isLogin')
+			if(!this.loginState) {
+				this.showToLogin = true
+				this.stateTab = false
+			}else{
+				this.stateTab = true
+			}
+		},
+		onShow() {
+			this.loginState = uni.getStorageSync('isLogin')
+			if(!this.loginState) {
+				this.stateTab = false
+			}else{
+				this.stateTab = true
+			}
+			if(this.stateTab) {
+				this.$http.get({
+					url: '/v1/rest/login/personalCenter',
+					data:{
+						userId: uni.getStorageSync('userInfo').userId,
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						this.userData = resp.data
+					}
+				})
+			}
+		},
 		onLoad() {
 			// console.log(this.hasLogin)
 			// console.log(this.userInfo)
-			if(!this.hasLogin) {
-				this.showToLogin = true
-			}
 		},
 		methods: {
+			...mapMutations(['logout']),  //对全局方法login进行监控
 			// 我的钱包
-			toMyWallet() {
+			toMyWallet(value) {
 				uni.navigateTo({
-				  url: '/pages/userCenter/myWallet/myWallet'
+				  url: '/pages/userCenter/myWallet/myWallet?totalMoney=' + value
 				});
 			},
 			toLogin() {
 				uni.navigateTo({
 				  url: '/pages/login/login'
 				});
+			},
+			// 退出登录
+			doLoginout() {
+				this.showLoginOut = true
+			},
+			handleConfirm() {
+				this.logout()
+				uni.removeStorage({  //根据key值移除缓存数据
+					key: 'isLogin'
+				})
+				uni.reLaunch({
+					url: '/pages/tabBar/userCenter/userCenter'
+				})
+			},
+			handleCancel() {
+				this.showLoginOut = false
 			}
 		}
 	}
@@ -155,6 +221,7 @@
 				height: 52rpx;
 				margin-top: 64rpx;
 				line-height: 52rpx;
+				position: relative;
 				.left{
 					width: 210rpx;
 					height: 38rpx;
@@ -181,14 +248,15 @@
 					text{
 						font-size: 26rpx;
 						color: #969696;
-						line-height: 52rpx;
+						line-height: 44rpx;
 						padding-left: 5rpx;
 					}
 				}
 				/deep/ .van-icon{
 					display: block;
-					float: left;
-					margin-left: 263rpx;
+					position: absolute;
+					right: 48rpx;
+					top: 15rpx;
 				}
 			}
 		}
@@ -218,7 +286,7 @@
 					color: #636362;
 				}
 			}
-			.menuItem:nth-of-type(2) {
+			.menu2 {
 				background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/teamIcon.png') no-repeat left center;
 				background-size: 36rpx auto;
 			}
@@ -226,17 +294,21 @@
 			// 	background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/dataIcon.png') no-repeat left center;
 			// 	background-size: 32rpx auto;
 			// }
-			.menuItem:nth-of-type(3) {
+			.menu3 {
 				background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/managementIcon.png') no-repeat left center;
 				background-size: 30rpx auto;
 			}
-			.menuItem:nth-of-type(4) {
+			.menu4 {
 				background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/joinIcon.png') no-repeat left center;
 				background-size: 34rpx auto;
 			}
-			.menuItem:nth-of-type(5) {
+			.menu5 {
 				background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/problemIcon.png') no-repeat left center;
 				background-size: 34rpx auto;
+			}
+			.menu6{
+				background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/logoutIcon.png') no-repeat left center;
+				background-size: 33rpx auto;
 			}
 		}
 	}

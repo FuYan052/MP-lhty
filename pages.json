@@ -1,42 +1,29 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/userCenter/accountDetails/accountDetails",
-			"style": {
-				"navigationBarTitleText": "账户明细"
-			}
-		},
-		{
-			"path": "pages/userInfo/registerInfo/registerInfo",
-			"style": {
-				"navigationBarTitleText": "完善信息"
-			}
-		},
-		{
-			"path": "pages/userInfo/selectionTags/selectionTags",
-			"style": {
-				"navigationBarTitleText": "选择标签",
-				"navigationBarBackgroundColor": "#020202"
-			}
-		},
+		// {
+		// 	"path": "pages/userCenter/billDetails/billDetails",
+		// 	"style": {
+		// 		"navigationBarTitleText": "账单详情"
+		// 	}
+		// },
 		{
 			"path": "pages/tabBar/badminton/badminton",
 			"style": {
 				"navigationBarTitleText": "约球"
 			}
 		},
-		{
-			"path": "pages/tabBar/bookPlace/bookPlace",
-			"style": {
-				"navigationBarTitleText": "订场"
-			}
-		},
-		{
-			"path": "pages/tabBar/buyBall/buyBall",
-			"style": {
-				"navigationBarTitleText": "购球"
-			}
-		},
+		// {
+		// 	"path": "pages/tabBar/bookPlace/bookPlace",
+		// 	"style": {
+		// 		"navigationBarTitleText": "订场"
+		// 	}
+		// },
+		// {
+		// 	"path": "pages/tabBar/buyBall/buyBall",
+		// 	"style": {
+		// 		"navigationBarTitleText": "购球"
+		// 	}
+		// },
 		{
 			"path": "pages/tabBar/userCenter/userCenter",
 			"style": {
@@ -56,6 +43,37 @@
 					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
 					"van-switch": "/wxcomponents/vant/dist/switch/index"
 				}
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/selectVenue/selectVenue",
+			"style": {
+				"navigationBarTitleText": "选择场馆",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index"
+				}
+			}
+		},
+		{
+			"path": "pages/userCenter/accountDetails/accountDetails",
+			"style": {
+				"navigationBarTitleText": "账户明细",
+				"usingComponents": {
+					"van-search": "/wxcomponents/vant/dist/search/index"
+				}
+			}
+		},
+		{
+			"path": "pages/userInfo/registerInfo/registerInfo",
+			"style": {
+				"navigationBarTitleText": "完善信息"
+			}
+		},
+		{
+			"path": "pages/userInfo/selectionTags/selectionTags",
+			"style": {
+				"navigationBarTitleText": "选择标签",
+				"navigationBarBackgroundColor": "#020202"
 			}
 		},
 		{
@@ -324,17 +342,19 @@
 				"selectedIconPath": "static/imgs/tabbar1_2.png",
 				"text": "约球"
 			},
+			// {
+			// 	"pagePath": "pages/tabBar/bookPlace/bookPlace",
+			// 	"iconPath": "static/imgs/tabbar2_1.png",
+			// 	"selectedIconPath": "static/imgs/tabbar2_2.png",
+			// 	"text": "订场"
+			// }, 
+			// {
+			// 	"pagePath": "pages/tabBar/buyBall/buyBall",
+			// 	"iconPath": "static/imgs/tabbar3_1.png",
+			// 	"selectedIconPath": "static/imgs/tabbar3_2.png",
+			// 	"text": "购球"
+			// }, 
 			{
-				"pagePath": "pages/tabBar/bookPlace/bookPlace",
-				"iconPath": "static/imgs/tabbar2_1.png",
-				"selectedIconPath": "static/imgs/tabbar2_2.png",
-				"text": "订场"
-			}, {
-				"pagePath": "pages/tabBar/buyBall/buyBall",
-				"iconPath": "static/imgs/tabbar3_1.png",
-				"selectedIconPath": "static/imgs/tabbar3_2.png",
-				"text": "购球"
-			}, {
 				"pagePath": "pages/tabBar/userCenter/userCenter",
 				"iconPath": "static/imgs/tabbar4_1.png",
 				"selectedIconPath": "static/imgs/tabbar4_2.png",

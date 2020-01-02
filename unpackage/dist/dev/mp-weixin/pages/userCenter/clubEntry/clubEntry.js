@@ -122,7 +122,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var wPicker = function wPicker() {return Promise.all(/*! import() | components/w-picker/w-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/w-picker/w-picker")]).then(__webpack_require__.bind(null, /*! @/components/w-picker/w-picker.vue */ 300));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var wPicker = function wPicker() {return Promise.all(/*! import() | components/w-picker/w-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/w-picker/w-picker")]).then(__webpack_require__.bind(null, /*! @/components/w-picker/w-picker.vue */ 300));};var _default =
+
+
 
 
 
@@ -182,37 +184,72 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       UserName: '',
       phone: '',
       Weixin: '',
-      QQ: '' };
+      QQ: '',
+      regionCode: '',
+      regionName: '' };
 
   },
   methods: {
     InputName: function InputName(v) {
-      this.clubName = v;
+      this.clubName = v.detail;
     },
     InputQQgroup: function InputQQgroup(v) {
-      this.QQgroup = v;
+      this.QQgroup = v.detail;
     },
     InputVenue: function InputVenue(v) {
-      this.Venue = v;
+      this.Venue = v.detail;
     },
     selectRegion: function selectRegion() {
       this.$refs.picker1.show();
     },
     onConfirm: function onConfirm(v) {
       console.log(v);
+      this.regionName = v.result;
+      this.regionCode = v.checkValue[1];
     },
     InputUserName: function InputUserName(v) {
-      this.UserName = v;
+      this.UserName = v.detail;
     },
     InputPhone: function InputPhone(v) {
-      this.phone = v;
+      this.phone = v.detail;
     },
     InputWeixin: function InputWeixin(v) {
-      this.Weixin = v;
+      this.Weixin = v.detail;
     },
     InputQQ: function InputQQ(v) {
-      this.QQ = v;
+      this.QQ = v.detail;
+    },
+    submit: function submit() {
+      var params = {
+        clubName: this.clubName,
+        qqGroup: this.QQgroup,
+        region: this.regionCode,
+        venueName: this.Venue,
+        name: this.UserName,
+        phone: this.phone,
+        qq: this.QQ,
+        weixin: this.Weixin,
+        userId: uni.getStorageSync('userInfo').userId };
+
+      console.log(params);
+      this.$http.post({
+        url: '/v1/rest/club/insertClub',
+        data: params }).
+      then(function (resp) {
+        console.log(resp);
+        if (resp.status == 200) {
+          uni.showModal({
+            title: '提示',
+            content: '申请成功，请等待审核！',
+            showCancel: false,
+            confirmText: '知道了',
+            success: function success(res) {
+            } });
+
+        }
+      });
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

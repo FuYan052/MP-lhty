@@ -93,7 +93,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   var l0 = _vm.__map(_vm.optionsList, function(item, index) {
-    var g0 = _vm.selectedIds.indexOf(item.id)
+    var g0 = _vm.selectedIds.indexOf(item.value)
     return {
       $orig: _vm.__get_orig(item),
       g0: g0
@@ -154,7 +154,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _methods;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var MyTimePicker = function MyTimePicker() {return __webpack_require__.e(/*! import() | components/myTimePicker/MyTimePicker */ "components/myTimePicker/MyTimePicker").then(__webpack_require__.bind(null, /*! @/components/myTimePicker/MyTimePicker.vue */ 295));};var wPicker = function wPicker() {return Promise.all(/*! import() | components/w-picker/w-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/w-picker/w-picker")]).then(__webpack_require__.bind(null, /*! @/components/w-picker/w-picker.vue */ 300));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _methods;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var MyTimePicker = function MyTimePicker() {return __webpack_require__.e(/*! import() | components/myTimePicker/MyTimePicker */ "components/myTimePicker/MyTimePicker").then(__webpack_require__.bind(null, /*! @/components/myTimePicker/MyTimePicker.vue */ 295));};var wPicker = function wPicker() {return Promise.all(/*! import() | components/w-picker/w-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/w-picker/w-picker")]).then(__webpack_require__.bind(null, /*! @/components/w-picker/w-picker.vue */ 300));};var _default =
+
 
 
 
@@ -280,10 +281,13 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       time: '', //选择的时间值
       isshow1: false, //显示时间选择器
       isshow2: false, //其他选择器
+      defaultValue: ['2小时'],
       hour: null, //选择的时长
       pickList1: [],
       deadline: '', //报名截止
       timePickerType: 100, //100为选择活动时间，200为选择报名截止时间
+      venueName: '',
+      venueId: '',
       inputNumValue: '', //人数
       inputPrice1: '', //钱包支付费用
       inputPrice2: '', //费用男
@@ -301,9 +305,25 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       isUnderLine: true //是否接受线下报名
     };
   },
-  onLoad: function onLoad() {
-    this.columns = [{ label: "0.5小时", value: "0.5" }, { label: "1小时", value: "1" }, { label: "1.5小时", value: "1.5" }, { label: "2小时", value: "2" }, { label: "2.5小时", value: "2.5" }, { label: "3小时", value: "3" }, { label: "3.5小时", value: "3.5" }, { label: "4小时", value: "4" }];
-    this.optionsList = [{ id: 1, value: '菜鸟' }, { id: 2, value: '初级' }, { id: 3, value: '中级' }, { id: 4, value: '高级' }];
+  onLoad: function onLoad(options) {var _this = this;
+    this.columns = [{ label: "0.5小时", value: 0.5 }, { label: "1小时", value: 1 }, { label: "1.5小时", value: 1.5 }, { label: "2小时", value: 2 }, { label: "2.5小时", value: 2.5 }, { label: "3小时", value: 3 }, { label: "3.5小时", value: 3.5 }, { label: "4小时", value: 4 }];
+    this.$http.get({
+      url: '/v1/rest/public/findDictList',
+      data: {
+        skey: 'level' } }).
+
+    then(function (resp) {
+      console.log(resp);
+      if (resp.status == 200) {
+        _this.optionsList = resp.data;
+      }
+    });
+  },
+  onShow: function onShow() {
+    if (uni.getStorageSync('venue')) {
+      this.venueName = uni.getStorageSync('venue').name;
+      this.venueId = uni.getStorageSync('venue').id;
+    }
   },
   methods: (_methods = {
     // 选择活动时间
@@ -321,6 +341,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       this.$refs.picker1.show();
     },
     onConfirm: function onConfirm(v) {
+      console.log(v);
       this.hour = v.checkArr.value;
       this.isshow2 = false;
     },
@@ -336,13 +357,19 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       this.deadline = v1;
       this.isshow1 = v2;
     },
+    // 选择场馆
+    choiceVenue: function choiceVenue() {
+      uni.navigateTo({
+        url: '/pages/groupOwnerManage/selectVenue/selectVenue' });
+
+    },
     // 选择等级
     handleClick: function handleClick(item) {
-      var selectedIndex = this.selectedIds.indexOf(item.id);
+      var selectedIndex = this.selectedIds.indexOf(item.value);
       if (selectedIndex >= 0) {
         this.selectedIds.splice(selectedIndex, 1);
       } else {
-        this.selectedIds.push(item.id);
+        this.selectedIds.push(item.value);
       }
       // console.log(this.selectedIds)
     },
@@ -392,25 +419,35 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   {
     var params = {
-      type: '001',
-      time: this.time,
+      userId: uni.getStorageSync('userInfo').userId,
+      type: 'sportsKinds_01',
+      timeStart: this.time,
       duration: this.hour,
-      deadline: this.deadline,
-      place: '',
+      endTime: this.deadline,
+      venueId: this.venueId,
       people: this.inputNumValue,
-      money: this.inputPrice1,
+      walletPayMoney: this.inputPrice1,
       moneyMan: this.inputPrice2,
       moneyWomen: this.inputPrice3,
       temporaryMoney: this.inputPrice4,
       ballType: this.inputBallType,
-      level: this.selectedIds,
+      occupationLevel: this.selectedIds.join(','),
       title: this.titleValue,
-      rule: this.ruleValue,
+      content: this.ruleValue,
+      isLower: this.isUnderLine,
       isWeek: this.isWeek,
       isCancel: this.isCancel };
 
     console.log(params);
+    this.$http.post({
+      url: '/v1/rest/manage/releaseActivities',
+      data: params }).
+    then(function (resp) {
+      console.log(resp);
+    });
+    uni.removeStorageSync('venue');
   }), _methods) };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
