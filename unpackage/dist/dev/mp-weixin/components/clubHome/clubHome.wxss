@@ -1,0 +1,270 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.clubHome.data-v-3bf7424a {
+  width: 100%;
+  height: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0 30rpx;
+  overflow: hidden;
+  padding-bottom: 40rpx;
+}
+.clubHome .topWrap.data-v-3bf7424a {
+    width: 100%;
+    height: 453rpx;
+    margin-top: 10rpx;
+    background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/clubPageBg.png") no-repeat center;
+    background-size: 690rpx 453rpx;
+    overflow: hidden;
+}
+.clubHome .topWrap .imgBox.data-v-3bf7424a {
+      width: 98rpx;
+      height: 98rpx;
+      border-radius: 50%;
+      margin: 0 auto;
+      margin-top: 65rpx;
+}
+.clubHome .topWrap .clubName.data-v-3bf7424a {
+      height: 33rpx;
+      font-size: 31rpx;
+      text-align: center;
+      font-weight: 600;
+      line-height: 32rpx;
+      margin-top: 28rpx;
+      color: #3a383d;
+}
+.clubHome .topWrap .number.data-v-3bf7424a {
+      height: 32rpx;
+      line-height: 32rpx;
+      width: 450rpx;
+      margin: 0 auto;
+      margin-top: 45rpx;
+      font-weight: 500;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      font-size: 30rpx;
+      color: #39383d;
+}
+.clubHome .topWrap .jionClub.data-v-3bf7424a {
+      width: 100%;
+      height: 90rpx;
+      line-height: 90rpx;
+      text-align: center;
+      font-size: 33rpx;
+      color: #fff;
+      margin-top: 64rpx;
+      letter-spacing: 4rpx;
+}
+.clubHome .weekActive.data-v-3bf7424a {
+    width: 100%;
+    min-height: 440rpx;
+    background: #fff;
+    border-radius: 26rpx;
+    margin-top: 20rpx;
+    overflow: hidden;
+}
+.clubHome .weekActive .content.data-v-3bf7424a {
+      width: 100%;
+      height: auto;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      padding: 0 34rpx;
+      margin-top: 25rpx;
+      padding-bottom: 25rpx;
+}
+.clubHome .weekActive .content .header.data-v-3bf7424a {
+        width: 100%;
+        height: 50rpx;
+        background: #f8f8f8;
+        border-bottom: 1rpx solid #f3f3f3;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+}
+.clubHome .weekActive .content .header .tableHeader.data-v-3bf7424a {
+          font-size: 22rpx;
+          color: #39393b;
+          text-align: center;
+}
+.clubHome .weekActive .content .header .tableHeader1.data-v-3bf7424a {
+          width: 138rpx;
+}
+.clubHome .weekActive .content .header .tableHeader2.data-v-3bf7424a {
+          width: 188rpx;
+}
+.clubHome .weekActive .content .header .tableHeader3.data-v-3bf7424a {
+          -webkit-box-flex: 1;
+          -webkit-flex: 1;
+              -ms-flex: 1;
+                  flex: 1;
+}
+.clubHome .weekActive .content .show.data-v-3bf7424a {
+        width: 100%;
+        height: auto;
+}
+.clubHome .weekActive .content .show .item.data-v-3bf7424a {
+          width: 100%;
+          min-height: 89rpx;
+          height: auto;
+          border-top: 1rpx solid #ededed;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+}
+.clubHome .weekActive .content .show .item .left.data-v-3bf7424a {
+            width: 134rpx;
+            float: left;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+}
+.clubHome .weekActive .content .show .item .left .weekDay.data-v-3bf7424a {
+              width: 68rpx;
+              height: 40rpx;
+              margin-top: 25rpx;
+              text-align: center;
+              line-height: 40rpx;
+              font-size: 21rpx;
+              color: #f9c309;
+              border: 1rpx solid #fbcf3a;
+              border-radius: 10rpx;
+}
+.clubHome .weekActive .content .show .item .rightContent.data-v-3bf7424a {
+            float: left;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+                -ms-flex: 1;
+                    flex: 1;
+}
+.clubHome .weekActive .content .show .item .rightContent .list.data-v-3bf7424a {
+              width: 100%;
+              height: 85rpx;
+              border-top: 1rpx dashed #eeeeee;
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-box-align: center;
+              -webkit-align-items: center;
+                  -ms-flex-align: center;
+                      align-items: center;
+}
+.clubHome .weekActive .content .show .item .rightContent .list .center.data-v-3bf7424a {
+                width: 184rpx;
+                font-size: 24rpx;
+                color: #010101;
+                text-align: center;
+}
+.clubHome .weekActive .content .show .item .rightContent .list .right.data-v-3bf7424a {
+                width: 296rpx;
+                -webkit-box-sizing: border-box;
+                        box-sizing: border-box;
+                padding-left: 60rpx;
+                font-size: 24rpx;
+                color: #010101;
+                line-height: 24rpx;
+                overflow: hidden;
+                white-space: nowrap;
+                -o-text-overflow: ellipsis;
+                   text-overflow: ellipsis;
+}
+.clubHome .weekActive .content .show .item .rightContent .list0.data-v-3bf7424a {
+              border: none;
+}
+.clubHome .weekActive .content .show1 .item.data-v-3bf7424a:nth-of-type(1) {
+        border: none;
+}
+.clubHome .weekActive .arrowWrap.data-v-3bf7424a {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+}
+.clubHome .sectionTitle.data-v-3bf7424a {
+    font-size: 30rpx;
+    color: #212121;
+    font-weight: 600;
+    line-height: 30rpx;
+    padding-left: 34rpx;
+    margin-top: 40rpx;
+    position: relative;
+}
+.clubHome .sectionTitle.data-v-3bf7424a::before {
+    content: '';
+    display: block;
+    width: 7rpx;
+    height: 30rpx;
+    background: #f9c307;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.clubHome .clubIntroduce.data-v-3bf7424a {
+    width: 100%;
+    min-height: 300rpx;
+    background: #fff;
+    border-radius: 26rpx;
+    margin-top: 20rpx;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-bottom: 40rpx;
+}
+.clubHome .clubIntroduce .intrDetail.data-v-3bf7424a {
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      padding: 0 34rpx;
+      font-size: 26rpx;
+      line-height: 45rpx;
+      margin-top: 23rpx;
+}
+

@@ -17,6 +17,9 @@
 		methods: {
 			handleEdit(v) {
 				console.log(v)
+				uni.navigateTo({
+					url: '/pages/groupOwnerManage/revisionActivity/revisionActivity'
+				})
 			},
 			handleCencel(v) {
 				console.log(v)

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "修改活动",
+  "usingComponents": {
+    "van-field": "/wxcomponents/vant/dist/field/index",
+    "van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
+    "van-switch": "/wxcomponents/vant/dist/switch/index",
+    "my-time-picker": "/components/myTimePicker/MyTimePicker",
+    "w-picker": "/components/w-picker/w-picker"
+  }
+}

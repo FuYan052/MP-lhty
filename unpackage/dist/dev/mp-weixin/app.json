@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/groupOwnerManage/revisionActivity/revisionActivity",
     "pages/tabBar/badminton/badminton",
     "pages/tabBar/userCenter/userCenter",
     "pages/groupOwnerManage/publishActivities/publishActivities",
@@ -29,7 +30,8 @@
     "pages/userCenter/myWallet/myWallet",
     "pages/userCenter/recharge/recharge",
     "pages/userCenter/order/order",
-    "pages/userCenter/club/club",
+    "pages/club/homePage/homePage",
+    "pages/userCenter/billDetails/billDetails",
     "pages/userCenter/commonProblem/commonProblem",
     "pages/groupOwnerManage/settlement/settlement",
     "pages/activity/activityDetails/activityDetails",
