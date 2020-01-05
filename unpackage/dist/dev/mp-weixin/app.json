@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/groupOwnerManage/revisionActivity/revisionActivity",
     "pages/tabBar/badminton/badminton",
     "pages/tabBar/userCenter/userCenter",
     "pages/groupOwnerManage/publishActivities/publishActivities",
+    "pages/groupOwnerManage/revisionActivity/revisionActivity",
     "pages/groupOwnerManage/selectVenue/selectVenue",
     "pages/userCenter/accountDetails/accountDetails",
     "pages/userInfo/registerInfo/registerInfo",

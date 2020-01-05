@@ -20,41 +20,42 @@
 		</view>
 		<!-- 标题及报名情况 -->
 		<view class="titleBox">
-			<view class="titleText">神羽联盟俱乐部周五晚19:00</view>
+			<view class="titleText">{{actDetail.title}}</view>
 			<view class="people">
-				<text class="span1">￥<text class="b">20</text>/人</text>
-				<text class="span2">3/15</text>
+				<text class="span1">￥<text class="b">{{actDetail.cost}}</text>/人</text>
+				<text class="span2">{{actDetail.enrolled}}/{{actDetail.totalPeople}}</text>
 			</view>
 		</view>
 		<!-- 俱乐部 -->
-		<view class="whiteBg club">
+		<view class="whiteBg club" @click="toClub(actDetail.clubId)">
 			<view class="imgBox">
 				<image src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg" style="width: 100%; height: 100%; border-radius: 7rpx;" alt="">
 			</view>
-			<view class="clubName">神羽联盟俱乐部</view>
+			<view class="clubName">{{actDetail.clubName}}</view>
 			<van-icon class="arrowIcon" name="arrow" size="26rpx" color='#000000'/>
 		</view>
 		<!-- 详细时间等信息 -->
 		<view class="whiteBg dateBox">
 			<view class="common date">
 				<text class="span1">时间</text>
-				<text class="span2">2019-12-31</text>
-				<text class="span3">19:00-21:00</text>
+				<text class="span2">{{actDetail.time}}</text>
+				<text class="span3">{{actDetail.timeStart}}-{{actDetail.timeEnd}}</text>
 			</view>
 			<view class="common place" @click="toMap">
 				<text class="span1">地点</text>
-				<text class="span2">波利杰喜美羽毛球俱乐部</text>
+				<text class="span2">{{actDetail.venueName}}</text>
 				<text class="span4" @click="toMap"></text>
 			</view>
 			<view class="common owner">
 				<text class="span1">组织</text>
-				<text class="span2">鲨鱼</text>
-				<text class="span3">{{organizerPhone}}</text>
+				<text class="span2">{{actDetail.nickName}}</text>
+				<text class="span3">{{actDetail.phone}}</text>
 				<text class="span4" @click="hanleCall"></text>
 			</view>
 			<view class="common guarantee">
 				<text class="span1">保障</text>
-				<text class="span2">活动开始前可取消</text>
+				<text class="span2" v-if='actDetail.isCancel'>活动开始前可取消</text>
+				<text class="span2" v-else>无保障</text>
 			</view>
 			<!-- 已报名会员 -->
 			<view class="people" @click="toList">
@@ -74,9 +75,7 @@
 		<!-- 活动介绍 -->
 		<view class="whiteBg introduction">
 			<view class="title">活动介绍</view>
-			<view class="introducText">
-				目前 nvue 在App端，还不支持 --status-bar-height变量，替代方案是在页面onLoad时通过uni.getSystemInfoSync().statusBarHeight获取状态栏高度，然后通过style绑定方式给占位view设定高度。下方提供了示例代码
-			</view>
+			<view class="introducText">{{actDetail.content}}</view>
 		</view>
 		<!-- 底部按钮 -->
 		<view class="signupWrap">
@@ -107,7 +106,9 @@
 				address: '四川省成都市武侯区新乐北街8号',
 				lat: '30.610880',
 				long: '104.040560',
-				
+				activityId: null,
+				actDetail: null,
+				clubId: null
 			}
 		},
 		created() {
@@ -137,8 +138,30 @@
 				"http://f1.haiqq.com/allimg/3831982416/2817233822.jpg",
 				"http://f1.haiqq.com/allimg/3831982416/2817233822.jpg",
 			]
-			const _endTime = (new Date(this.endTime.replace(/-/g,'/')).getTime()) / 1000
-			this.countdowm(_endTime) //执行倒计时函数
+		},
+		onLoad(options) {
+			console.log(options)
+			this.activityId = options.actId
+			this.$http.get({
+				url: '/v1/rest/home/homeActivitiesDetails',
+				data: {
+					activitiesId: options.actId
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.actDetail = resp.data
+					this.endTime = resp.data.endTime
+					this.lat = resp.data.lat
+					this.long = resp.data.lon
+					this.venueName = resp.data.venueName
+					this.address = resp.data.address
+					this.organizerPhone = resp.data.phone
+					this.clubId = resp.data.clubId
+					const _endTime = (new Date(this.endTime.replace(/-/g,'/')).getTime()) / 1000
+					this.countdowm(_endTime) //执行倒计时函数
+				}
+			})
 		},
 		computed: {
 			showPeopleImg() {
@@ -187,6 +210,12 @@
 				uni.makePhoneCall({
 				    phoneNumber: this.organizerPhone
 				});
+			},
+			// 点击俱乐部
+			toClub(clubId) {
+				uni.navigateTo({
+					url: '/pages/club/homePage/homePage?clubId=' + clubId
+				})
 			},
 			checked() {
 				this.isChecked = !this.isChecked
@@ -239,7 +268,47 @@
 				}
 			},
 			submit() {
-				
+				// 判断是否登录
+				if(uni.getStorageSync('isLogin')) {  //已登录
+					// 判断是否加入俱乐部
+					this.$http.get({
+						url: '/v1/rest/home/isClubMember',
+						data: {
+							userId: uni.getStorageSync('userInfo').userId,
+							clubId: this.clubId
+						}
+					}).then(resp => {
+						console.log(resp)
+						if(resp.status == 200) {
+							if(resp.data.initClubMember) {  //已加入俱乐部
+								if(this.isChecked) {  //已同意免责条款
+									uni.navigateTo({
+										url: '/pages/activity/pay/pay?actId=' + this.activityId
+									})
+								}else{  //未同意免责条款
+									uni.showToast({
+										title: '未同意《免责条款》！',
+										duration: 2000,
+										icon: 'none'
+									});
+								}
+							}else{  //未加入俱乐部
+								uni.showToast({
+									title: '加入该俱乐部后方可报名！',
+									duration: 2000,
+									icon: 'none'
+								});
+								uni.navigateTo({
+									url: '/pages/club/homePage/homePage?clubId=' + this.clubId
+								})
+							}
+						}
+					})
+				}else{  //未登录
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
 			}
 		}
 	}

@@ -2,13 +2,13 @@
 	<view class="pay">
 		<view class="whiteBg box1">
 			<view class="left">
-				<view class="time">18:00</view>
-				<view class="date">2019-12-31</view>
+				<view class="time">{{actDetail.timeStart}}</view>
+				<view class="date">{{actDetail.time}}</view>
 			</view>
 			<view class="right">
-				<view class="title">波利18点高级场-波利羽毛球训练馆</view>
-				<view class="text club">俱乐部：神羽联盟</view>
-				<view class="text place">场&nbsp;&nbsp;&nbsp;&nbsp;馆：波利羽毛球训练馆</view>
+				<view class="title">{{actDetail.title}}</view>
+				<view class="text club">俱乐部：{{actDetail.clubName}}</view>
+				<view class="text place">场&nbsp;&nbsp;&nbsp;&nbsp;馆：{{actDetail.venueName}}</view>
 			</view>
 		</view>
 		<view class="tilte">报名选择</view>
@@ -24,42 +24,42 @@
 		</view>
 		<view class="tilte">支付方式</view>
 		<view class="whiteBg box3 box3_1">
-			<view class="radioBox" :class="{currPay: payType == 10}" @click="choicePay(1)"></view>
+			<view class="radioBox" :class="{currPay: payType == 0}" @click="choicePay(1)"></view>
 			<view class="center">
 				<view class="title">会费支付</view>
 				<view class="huifei">
-					余额：<text class="text1">66.6元</text><text class="text2">去充值</text>
+					余额：<text class="text1">{{actDetail.memberMoney}}元</text><text class="text2" @click="Recharge">去充值</text>
 				</view>
 			</view>
 			<view class="price">
-				<view class="priceMan">男&nbsp;33.0元/人</view>
-				<view class="priceWomen">女&nbsp;33.0元/人</view>
+				<view class="priceMan">男&nbsp;{{actDetail.moneyMan}}元/人</view>
+				<view class="priceWomen">女&nbsp;{{actDetail.moneyWomen}}元/人</view>
 			</view>
 		</view>
 		<view class="whiteBg box3 box3_2">
-			<view class="radioBox" :class="{currPay: payType == 20}" @click="choicePay(2)"></view>
+			<view class="radioBox" :class="{currPay: payType == 1}" @click="choicePay(2)"></view>
 			<view class="center">微信支付</view>
-			<view class="price">33.0元/人</view>
+			<view class="price">{{actDetail.temporaryMoney}}元/人</view>
 		</view>
 		<view class="whiteBg box3 box3_2">
-			<view class="radioBox" :class="{currPay: payType == 30}" @click="choicePay(3)"></view>
+			<view class="radioBox" :class="{currPay: payType == 2}" @click="choicePay(3)"></view>
 			<view class="center">线下支付</view>
-			<view class="price">33.0元/人</view>
+			<view class="price">{{actDetail.temporaryMoney}}元/人</view>
 		</view>
 		<view class="whiteBg box3 box3_1">
-			<view class="radioBox" :class="{currPay: payType == 40}" @click="choicePay(4)"></view>
+			<view class="radioBox" :class="{currPay: payType == 3}" @click="choicePay(4)"></view>
 			<view class="center">
 				<view class="title">我的钱包</view>
 				<view class="huifei">
-					余额：<text class="text1">66.6元</text>
+					余额：<text class="text1">{{actDetail.walletMoney}}元</text>
 				</view>
 			</view>
-			<view class="price">33.0元/人</view>
+			<view class="price">{{actDetail.walletPayMoney}}元/人</view>
 		</view>
 		
 		<!-- 合计 -->
 		<view class="countBox">
-			合计：<text>70.0</text>元
+			合计：<text>{{payMoney}}</text>元
 		</view>
 		<view class="btnBox">
 			<view class="myButton" @click="submit">确定</view>
@@ -73,52 +73,180 @@
 			return {
 				isMen: false,  
 				isWomen: false,
-				payType: '',  //支付类型 10为会费支付，20为微信支付，30位线下支付，40为钱包支付
+				payType: -1,  //支付类型 0为会费支付，1为微信支付，2位线下支付，3为钱包支付
+				activityId: '',
+				actDetail: '',
+				payMoney: 0,
+				mNumber: 0,
+				gNumber: 0,
+				clubId: null,
+				orderNo: null
 			}
+		},
+		onLoad(options) {
+			console.log(options)
+			this.activityId = options.actId
+			this.$http.get({
+				url: '/v1/rest/home/signUpDetails',
+				data: {
+					activitiesId: options.actId,
+					userId: uni.getStorageSync('userInfo').userId
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.actDetail = resp.data
+					this.clubId = resp.data.clubId
+				}
+			})
 		},
 		methods: {
 			// 选择性别男
 			choiceSex1() {
 				this.isMen = !this.isMen
 				this.isWomen = false
+				this.gNumber = 0
+				this.mNumber = 1
 			},
 			// 选择性别女
 			choiceSex2() {
 				this.isWomen = !this.isWomen
 				this.isMen = false
+				this.gNumber = 1
+				this.mNumber = 0
 			},
 			// 选择支付方式
 			choicePay(v) {
 				switch(v) {
 					case 1:
-						this.payType = 10
+						this.payType = 0
+						if(this.isMen) {
+							this.payMoney = this.actDetail.moneyMan
+						}else{
+							this.payMoney = this.actDetail.moneyWomen
+						}
 						break;
 					case 2:
-						this.payType = 20
+						this.payType = 1
+						this.payMoney = this.actDetail.temporaryMoney
 						break;
 					case 3:
-						this.payType = 30
+						this.payType = 2
+						this.payMoney = this.actDetail.temporaryMoney
 						break;
 					case 4:
-						this.payType = 40
+						this.payType = 3
+						this.payMoney = this.actDetail.walletPayMoney
 						break;
 				}
 			},
+			// 充值
+			Recharge() {
+				uni.navigateTo({
+					url: '/pages/userCenter/recharge/recharge?clubId' + this.clubId
+				})
+			},
+			// 提交报名
 			submit() {
+				const that = this
 				if((!this.isMen) && (!this.isWomen)) {
 					uni.showToast({
 						title: '请选择性别！',
 						duration: 2000,
 						icon: 'none'
 					});
-				}else if(this.payType == ''){
+				}else if(this.payType <0){
 					uni.showToast({
 						title: '请选择支付方式！',
 						duration: 2000,
 						icon: 'none'
 					});
 				}else{
-					
+					const params = {
+						clubId: this.clubId,
+						payType: this.payType,
+						gNumber: this.gNumber,
+						mNumber: this.mNumber,
+						productId: this.activityId,
+						totalPrice: this.payMoney,
+						userId: uni.getStorageSync('userInfo').userId,
+					}
+					console.log(params)
+					//微信支付
+					if(this.payType === 1) {  
+						console.log('微信支付')
+						this.$http.post({
+							url: '/v1/rest/pay/payUpper',
+							data: params
+						}).then(resp => {
+							console.log(resp)
+							if(resp.status == 200) {
+								this.orderNo = resp.data.orderNo
+								uni.requestPayment({
+									provider: 'wxpay',
+									timeStamp: resp.data.timeStamp,
+									nonceStr: resp.data.nonceStr,
+									package: resp.data.package,
+									signType: resp.data.signType,
+									paySign: resp.data.paySign,
+									success: function (res) {
+										// 支付成功回调
+										that.$http.get({
+											url: '/v1/rest/pay/wechatPayCallback',
+											data: {
+												type: 'success',
+												orderNo: that.orderNo,
+												clubId: that.clubId
+											}
+										}).then(resp => {
+											console.log(resp)
+											if(resp.status == 200) {
+												uni.showToast({
+													title: resp.data.message,
+													duration: 2000,
+													icon: 'none'
+												}); 
+											}
+										})
+									},
+									fail: function (err) {
+										// 支付取消回调
+										that.$http.get({
+											url: '/v1/rest/pay/wechatPayCallback',
+											data: {
+												type: 'fail',
+												orderNo: that.orderNo,
+												clubId: that.clubId
+											}
+										}).then(resp => {
+											console.log(resp)
+											if(resp.status == 200) {
+												uni.showToast({
+													title: resp.data.message,
+													duration: 2000,
+													icon: 'none'
+												});
+											}
+										})
+									}
+								});
+							}
+						})
+					}else{  //非微信支付-线下支付
+						this.$http.post({
+							url: '/v1/rest/pay/payLower',
+							data: params
+						}).then(resp => {
+							console.log(resp)
+							if(resp.status == 200) {
+								uni.showToast({
+									title: resp.data.message,
+									duration: 2000,
+									icon: 'none'
+								});
+							}
+						})
+					}
 				}
 			}
 		}

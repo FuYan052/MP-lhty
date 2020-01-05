@@ -23,35 +23,35 @@
 			</swiper>
 		</view>
 		<view class="actBox">
-			<view class="actItem" v-for="(item,index) in 3" :key='index'>
+			<view class="actItem" v-for="(item,index) in actList" :key='index'>
 				<view class="title">
-					<view class="text">神羽联盟俱乐部</view>
+					<view class="text">{{item.clubName}}</view>
 					<van-icon class="arrowIcon" name="arrow" size="30rpx" color='#bcbcbe'/>
 				</view>
-				<view class="detail"  @click="toSignUp">
+				<view class="detail"  @click="toSignUp((item.activitiesId))">
 					<view class="dateTime">
-						2019-12-31
-						<text class="timeRange">17:00-21:00</text>
-						<text class="distance">1.9km</text>
+						{{item.time}}
+						<text class="timeRange">{{item.timeStart}}-{{item.timeEnd}}</text>
+						<text class="distance" v-show="isShowDiatance">{{item.distance}}km</text>
 						<text></text>
 					</view>
 					 <view class="place">
-						波利羽毛球馆<text class="text">￥<text class="text2">20</text>/人</text>
+						{{item.venueName}}<text class="text">￥<text class="text2">{{item.cost}}</text>/人</text>
 					</view>
-					<view class="ballType">LI-NING A6 (来虎专用球)</view>
+					<view class="ballType">{{item.ballType}}</view>
 				</view>
 				<view class="signUp">
 					<view class="imgBox">
 						<view 
 							class="imgItem" 
-							v-for="(it,ind) in 16" 
+							v-for="(it,ind) in item.enrolledVoList" 
 							:key="ind"
 							>
-							<image src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg" style="width: 100%; height: 100%; border-radius: 50%;" alt="">
+							<image :src="it.headPortrait" style="width: 100%; height: 100%; border-radius: 50%;" alt="">
 						</view>
 					</view>
-					<view class="peopleNUm">15/20</view>
-					<view class="signUpBtn" @click="toSignUp" :class="'currbtnBg' + ind">正在报名</view>
+					<view class="peopleNUm">{{item.enrolled}}/{{item.totalPeople}}</view>
+					<view class="signUpBtn" @click="toSignUp(item.activitiesId)" :class="'currbtnBg' + ind">正在报名</view>
 				</view>
 			</view>
 		</view>
@@ -66,10 +66,16 @@
 				currIndex: 0,
 				clickDate: '',
 				banners: [],
-				inWhiteList: true
+				actList: [],
+				inWhiteList: true,
+				isTwoLater: false,
+				lat: '30.57447',
+				lon: '103.92377',
+				isShowDiatance: false
 			}
 		},
 		created() {
+			const that = this
 			// 默认日期为当天日期
 		 this.clickDate = this.$utils.findDate(0)
 		 this.banners = [
@@ -90,27 +96,68 @@
 				 webUrl: 'https://www.baidu.com'
 			 }
 		 ]
+		 // 获取用户地理位置
+		 uni.getLocation({
+		    type: 'wgs84',
+		    success: function (res) {
+					console.log(res)
+					that.lat = res.latitude
+					that.lon = res.longitude
+					that.isShowDiatance = true
+					that.getList()
+		     },
+				fail: function (){
+					that.getList()
+					that.isShowDiatance = false
+				}
+		 });
+		 
 		},
 		methods: {
+			// 获取活动列表
+			getList() {
+				this.$http.post({
+					url: '/v1/rest/home/homeActivitiesList',
+					data: {
+						isTwoDaysLater: this.isTwoLater,
+						lat: this.lat,
+						lon: this.lon,
+						time: this.clickDate,
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						this.actList = resp.data
+					}
+				})
+			},
 			// 切换日期
 			changeDate(index) {
 				this.currIndex = index
 				switch(index) {
 					case 0: 
 						this.clickDate = this.$utils.findDate(0)
+						this.isTwoLater = false
+						this.getList()
 						break;
 					case 1: 
 						this.clickDate = this.$utils.findDate(1)
+						this.isTwoLater = false
+						this.getList()
 						break;
 					case 2: 
 						this.clickDate = this.$utils.findDate(2)
+						this.isTwoLater = false
+						this.getList()
 						break;
 					case 3: 
 						this.clickDate = this.$utils.findDate(3)
+						this.isTwoLater = true
+						this.getList()
 						break;
 				}
-				console.log(this.clickDate)
 			},
+			// 点击轮播图
 			clickBanner(item) {
 				console.log(item)
 				if (this.inWhiteList) { //如果在小程序的网址白名单中，会走内置webview打开，否则会复制网址提示在外部浏览器打开
@@ -127,9 +174,10 @@
 					});
 				}
 			},
-			toSignUp() {
+			// 点击去报名
+			toSignUp(id) {
 				uni.navigateTo({
-					url: '/pages/activity/activityDetails/activityDetails'
+					url: '/pages/activity/activityDetails/activityDetails?actId=' + id
 				})
 			}
 		}
@@ -315,7 +363,7 @@
 							border: 1rpx solid #fff;
 							border-radius: 50%;
 							float: left;
-							margin-left: -18rpx;
+							margin-left: -16rpx;
 							margin-top: 5rpx;
 						}
 					}

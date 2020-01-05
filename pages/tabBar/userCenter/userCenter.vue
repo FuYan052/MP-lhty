@@ -115,6 +115,9 @@
 				})
 			}
 		},
+		created() {
+			
+		},
 		onLoad() {
 			// console.log(this.hasLogin)
 			// console.log(this.userInfo)

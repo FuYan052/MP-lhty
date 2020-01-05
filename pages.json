@@ -1,16 +1,6 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/groupOwnerManage/revisionActivity/revisionActivity",
-			"style": {
-				"navigationBarTitleText": "修改活动",
-				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index",
-					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
-					"van-switch": "/wxcomponents/vant/dist/switch/index"
-				}
-			}
-		},
+		
 		{
 			"path": "pages/tabBar/badminton/badminton",
 			"style": {
@@ -43,6 +33,17 @@
 			"path": "pages/groupOwnerManage/publishActivities/publishActivities",
 			"style": {
 				"navigationBarTitleText": "发布活动",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
+					"van-switch": "/wxcomponents/vant/dist/switch/index"
+				}
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/revisionActivity/revisionActivity",
+			"style": {
+				"navigationBarTitleText": "修改活动",
 				"usingComponents": {
 					"van-field": "/wxcomponents/vant/dist/field/index",
 					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",

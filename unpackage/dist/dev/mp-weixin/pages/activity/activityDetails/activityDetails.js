@@ -216,7 +216,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 var _default =
 {
   data: function data() {
@@ -230,8 +229,10 @@ var _default =
       venueName: '波力羽毛球馆',
       address: '四川省成都市武侯区新乐北街8号',
       lat: '30.610880',
-      long: '104.040560' };
-
+      long: '104.040560',
+      activityId: null,
+      actDetail: null,
+      clubId: null };
 
   },
   created: function created() {
@@ -261,8 +262,30 @@ var _default =
     "http://f1.haiqq.com/allimg/3831982416/2817233822.jpg",
     "http://f1.haiqq.com/allimg/3831982416/2817233822.jpg"];
 
-    var _endTime = new Date(this.endTime.replace(/-/g, '/')).getTime() / 1000;
-    this.countdowm(_endTime); //执行倒计时函数
+  },
+  onLoad: function onLoad(options) {var _this = this;
+    console.log(options);
+    this.activityId = options.actId;
+    this.$http.get({
+      url: '/v1/rest/home/homeActivitiesDetails',
+      data: {
+        activitiesId: options.actId } }).
+
+    then(function (resp) {
+      console.log(resp);
+      if (resp.status == 200) {
+        _this.actDetail = resp.data;
+        _this.endTime = resp.data.endTime;
+        _this.lat = resp.data.lat;
+        _this.long = resp.data.lon;
+        _this.venueName = resp.data.venueName;
+        _this.address = resp.data.address;
+        _this.organizerPhone = resp.data.phone;
+        _this.clubId = resp.data.clubId;
+        var _endTime = new Date(_this.endTime.replace(/-/g, '/')).getTime() / 1000;
+        _this.countdowm(_endTime); //执行倒计时函数
+      }
+    });
   },
   computed: {
     showPeopleImg: function showPeopleImg() {
@@ -310,6 +333,12 @@ var _default =
     hanleCall: function hanleCall() {
       uni.makePhoneCall({
         phoneNumber: this.organizerPhone });
+
+    },
+    // 点击俱乐部
+    toClub: function toClub(clubId) {
+      uni.navigateTo({
+        url: '/pages/club/homePage/homePage?clubId=' + clubId });
 
     },
     checked: function checked() {
@@ -362,8 +391,48 @@ var _default =
         this.callback.apply(this, _toConsumableArray(this));
       }
     },
-    submit: function submit() {
+    submit: function submit() {var _this2 = this;
+      // 判断是否登录
+      if (uni.getStorageSync('isLogin')) {//已登录
+        // 判断是否加入俱乐部
+        this.$http.get({
+          url: '/v1/rest/home/isClubMember',
+          data: {
+            userId: uni.getStorageSync('userInfo').userId,
+            clubId: this.clubId } }).
 
+        then(function (resp) {
+          console.log(resp);
+          if (resp.status == 200) {
+            if (resp.data.initClubMember) {//已加入俱乐部
+              if (_this2.isChecked) {//已同意免责条款
+                uni.navigateTo({
+                  url: '/pages/activity/pay/pay?actId=' + _this2.activityId });
+
+              } else {//未同意免责条款
+                uni.showToast({
+                  title: '未同意《免责条款》！',
+                  duration: 2000,
+                  icon: 'none' });
+
+              }
+            } else {//未加入俱乐部
+              uni.showToast({
+                title: '加入该俱乐部后方可报名！',
+                duration: 2000,
+                icon: 'none' });
+
+              uni.navigateTo({
+                url: '/pages/club/homePage/homePage?clubId=' + _this2.clubId });
+
+            }
+          }
+        });
+      } else {//未登录
+        uni.navigateTo({
+          url: '/pages/login/login' });
+
+      }
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

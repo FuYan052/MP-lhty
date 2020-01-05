@@ -197,52 +197,180 @@ var _default =
     return {
       isMen: false,
       isWomen: false,
-      payType: '' //支付类型 10为会费支付，20为微信支付，30位线下支付，40为钱包支付
-    };
+      payType: -1, //支付类型 0为会费支付，1为微信支付，2位线下支付，3为钱包支付
+      activityId: '',
+      actDetail: '',
+      payMoney: 0,
+      mNumber: 0,
+      gNumber: 0,
+      clubId: null,
+      orderNo: null };
+
+  },
+  onLoad: function onLoad(options) {var _this = this;
+    console.log(options);
+    this.activityId = options.actId;
+    this.$http.get({
+      url: '/v1/rest/home/signUpDetails',
+      data: {
+        activitiesId: options.actId,
+        userId: uni.getStorageSync('userInfo').userId } }).
+
+    then(function (resp) {
+      console.log(resp);
+      if (resp.status == 200) {
+        _this.actDetail = resp.data;
+        _this.clubId = resp.data.clubId;
+      }
+    });
   },
   methods: {
     // 选择性别男
     choiceSex1: function choiceSex1() {
       this.isMen = !this.isMen;
       this.isWomen = false;
+      this.gNumber = 0;
+      this.mNumber = 1;
     },
     // 选择性别女
     choiceSex2: function choiceSex2() {
       this.isWomen = !this.isWomen;
       this.isMen = false;
+      this.gNumber = 1;
+      this.mNumber = 0;
     },
     // 选择支付方式
     choicePay: function choicePay(v) {
       switch (v) {
         case 1:
-          this.payType = 10;
+          this.payType = 0;
+          if (this.isMen) {
+            this.payMoney = this.actDetail.moneyMan;
+          } else {
+            this.payMoney = this.actDetail.moneyWomen;
+          }
           break;
         case 2:
-          this.payType = 20;
+          this.payType = 1;
+          this.payMoney = this.actDetail.temporaryMoney;
           break;
         case 3:
-          this.payType = 30;
+          this.payType = 2;
+          this.payMoney = this.actDetail.temporaryMoney;
           break;
         case 4:
-          this.payType = 40;
+          this.payType = 3;
+          this.payMoney = this.actDetail.walletPayMoney;
           break;}
 
     },
-    submit: function submit() {
+    // 充值
+    Recharge: function Recharge() {
+      uni.navigateTo({
+        url: '/pages/userCenter/recharge/recharge?clubId' + this.clubId });
+
+    },
+    // 提交报名
+    submit: function submit() {var _this2 = this;
+      var that = this;
       if (!this.isMen && !this.isWomen) {
         uni.showToast({
           title: '请选择性别！',
           duration: 2000,
           icon: 'none' });
 
-      } else if (this.payType == '') {
+      } else if (this.payType < 0) {
         uni.showToast({
           title: '请选择支付方式！',
           duration: 2000,
           icon: 'none' });
 
       } else {
+        var params = {
+          clubId: this.clubId,
+          payType: this.payType,
+          gNumber: this.gNumber,
+          mNumber: this.mNumber,
+          productId: this.activityId,
+          totalPrice: this.payMoney,
+          userId: uni.getStorageSync('userInfo').userId };
 
+        console.log(params);
+        //微信支付
+        if (this.payType === 1) {
+          console.log('微信支付');
+          this.$http.post({
+            url: '/v1/rest/pay/payUpper',
+            data: params }).
+          then(function (resp) {
+            console.log(resp);
+            if (resp.status == 200) {
+              _this2.orderNo = resp.data.orderNo;
+              uni.requestPayment({
+                provider: 'wxpay',
+                timeStamp: resp.data.timeStamp,
+                nonceStr: resp.data.nonceStr,
+                package: resp.data.package,
+                signType: resp.data.signType,
+                paySign: resp.data.paySign,
+                success: function success(res) {
+                  // 支付成功回调
+                  that.$http.get({
+                    url: '/v1/rest/pay/wechatPayCallback',
+                    data: {
+                      type: 'success',
+                      orderNo: that.orderNo,
+                      clubId: that.clubId } }).
+
+                  then(function (resp) {
+                    console.log(resp);
+                    if (resp.status == 200) {
+                      uni.showToast({
+                        title: resp.data.message,
+                        duration: 2000,
+                        icon: 'none' });
+
+                    }
+                  });
+                },
+                fail: function fail(err) {
+                  // 支付取消回调
+                  that.$http.get({
+                    url: '/v1/rest/pay/wechatPayCallback',
+                    data: {
+                      type: 'fail',
+                      orderNo: that.orderNo,
+                      clubId: that.clubId } }).
+
+                  then(function (resp) {
+                    console.log(resp);
+                    if (resp.status == 200) {
+                      uni.showToast({
+                        title: resp.data.message,
+                        duration: 2000,
+                        icon: 'none' });
+
+                    }
+                  });
+                } });
+
+            }
+          });
+        } else {//非微信支付-线下支付
+          this.$http.post({
+            url: '/v1/rest/pay/payLower',
+            data: params }).
+          then(function (resp) {
+            console.log(resp);
+            if (resp.status == 200) {
+              uni.showToast({
+                title: resp.data.message,
+                duration: 2000,
+                icon: 'none' });
+
+            }
+          });
+        }
       }
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
