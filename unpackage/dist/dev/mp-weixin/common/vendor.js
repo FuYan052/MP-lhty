@@ -734,7 +734,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -8211,7 +8211,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8232,14 +8232,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8315,7 +8315,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8723,7 +8723,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 321:
+/***/ 351:
 /*!*******************************************************************!*\
   !*** D:/小程序/12-23/lhty/components/w-picker/city-data/province.js ***!
   \*******************************************************************/
@@ -8878,7 +8878,7 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 322:
+/***/ 352:
 /*!***************************************************************!*\
   !*** D:/小程序/12-23/lhty/components/w-picker/city-data/city.js ***!
   \***************************************************************/
@@ -10423,7 +10423,7 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 323:
+/***/ 353:
 /*!***************************************************************!*\
   !*** D:/小程序/12-23/lhty/components/w-picker/city-data/area.js ***!
   \***************************************************************/
@@ -22567,7 +22567,7 @@ areaData;exports.default = _default;
 
 /***/ }),
 
-/***/ 324:
+/***/ 354:
 /*!*********************************************************!*\
   !*** D:/小程序/12-23/lhty/components/w-picker/w-picker.js ***!
   \*********************************************************/
@@ -24083,7 +24083,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/groupOwnerManage/revisionActivity/revisionActivity": { "navigationBarTitleText": "修改活动", "usingComponents": { "my-time-picker": "/components/myTimePicker/MyTimePicker", "w-picker": "/components/w-picker/w-picker" } }, "pages/tabBar/badminton/badminton": { "navigationBarTitleText": "约球", "usingComponents": {} }, "pages/tabBar/userCenter/userCenter": { "navigationBarTitleText": "个人中心", "usingComponents": {} }, "pages/groupOwnerManage/publishActivities/publishActivities": { "navigationBarTitleText": "发布活动", "usingComponents": { "my-time-picker": "/components/myTimePicker/MyTimePicker", "w-picker": "/components/w-picker/w-picker" } }, "pages/groupOwnerManage/selectVenue/selectVenue": { "navigationBarTitleText": "选择场馆", "usingComponents": {} }, "pages/userCenter/accountDetails/accountDetails": { "navigationBarTitleText": "账户明细", "usingComponents": {} }, "pages/userInfo/registerInfo/registerInfo": { "navigationBarTitleText": "完善信息", "usingComponents": {} }, "pages/userInfo/selectionTags/selectionTags": { "navigationBarTitleText": "选择标签", "navigationBarBackgroundColor": "#020202", "usingComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录", "usingComponents": {} }, "pages/groupOwnerManage/membershipManage/membershipManage": { "navigationBarTitleText": "会员管理", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/groupOwnerManage/spotCharge/spotCharge": { "navigationBarTitleText": "现场收费", "usingComponents": { "group-activity": "/components/groupActivity/groupActivity" } }, "pages/groupOwnerManage/activitySettlement/activitySettlement": { "navigationBarTitleText": "活动结算", "usingComponents": { "group-activity": "/components/groupActivity/groupActivity" } }, "pages/groupOwnerManage/attendanceManage/attendanceManage": { "navigationBarTitleText": "签到管理", "usingComponents": { "group-activity": "/components/groupActivity/groupActivity" } }, "pages/groupOwnerManage/editActivitie/editActivitie": { "navigationBarTitleText": "编辑活动", "usingComponents": { "group-activity": "/components/groupActivity/groupActivity" } }, "pages/groupOwnerManage/editMemberInfo/editMemberInfo": { "navigationBarTitleText": "修改会员", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": { "w-picker": "/components/w-picker/w-picker" } }, "pages/groupOwnerManage/capitalDetails/capitalDetails": { "navigationBarTitleText": "收支明细", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#fff", "usingComponents": {} }, "pages/groupOwnerManage/membershipDetails/membershipDetails": { "navigationBarTitleText": "会费明细", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#fff", "usingComponents": {} }, "pages/groupOwnerManage/membershipFeeManage/membershipFeeManage": { "navigationBarTitleText": "会费管理", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/groupOwnerManage/costAdjust/costAdjust": { "navigationBarTitleText": "会费调整", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/groupOwnerManage/spotChargeDetial/spotChargeDetial": { "navigationBarTitleText": "现场收费", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/groupOwnerManage/addMember/addMember": { "navigationBarTitleText": "添加成员", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/bindPhone/bindPhone": { "navigationBarTitleText": "绑定手机号", "usingComponents": {} }, "pages/userCenter/myActivities/myActivities": { "navigationBarTitleText": "我的活动", "navigationBarBackgroundColor": "#f4f4f4", "navigationBarTextStyle": "black", "backgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/userCenter/clubEntry/clubEntry": { "navigationBarTitleText": "俱乐部入驻", "usingComponents": { "w-picker": "/components/w-picker/w-picker" } }, "pages/userCenter/managementCenter/managementCenter": { "navigationBarTitleText": "管理中心", "navigationBarBackgroundColor": "#f4f4f4", "navigationBarTextStyle": "black", "backgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/groupOwnerManage/signInDetails/signInDetails": { "navigationBarTitleText": "签到详情", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/groupOwnerManage/searchMember/searchMember": { "navigationBarTitleText": "搜索成员", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/userCenter/myWallet/myWallet": { "navigationBarTitleText": "我的钱包", "usingComponents": {} }, "pages/userCenter/recharge/recharge": { "navigationBarTitleText": "充值", "usingComponents": { "w-picker": "/components/w-picker/w-picker" } }, "pages/userCenter/order/order": { "navigationBarTitleText": "订单", "usingComponents": {} }, "pages/club/homePage/homePage": { "navigationBarTitleText": "俱乐部", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f5f5f5", "usingComponents": { "club-home": "/components/clubHome/clubHome" } }, "pages/userCenter/billDetails/billDetails": { "navigationBarTitleText": "账单详情", "usingComponents": {} }, "pages/userCenter/commonProblem/commonProblem": { "navigationBarTitleText": "常见问题", "usingComponents": {} }, "pages/groupOwnerManage/settlement/settlement": { "navigationBarTitleText": "结算详情", "usingComponents": {} }, "pages/activity/activityDetails/activityDetails": { "navigationBarTitleText": "活动详情", "usingComponents": {} }, "pages/activity/pay/pay": { "navigationBarTitleText": "活动报名", "usingComponents": {} }, "pages/out/out": { "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "来虎体育", "navigationBarBackgroundColor": "#1e1e1e", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/userCenter/editUserInfo/editUserInfo": { "navigationBarTitleText": "基本信息", "usingComponents": {} }, "pages/club/clubMember/clubMember": { "navigationBarTitleText": "俱乐部", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f5f5f5", "usingComponents": {} }, "pages/club/homePage/homePage": { "navigationBarTitleText": "俱乐部", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f5f5f5", "usingComponents": { "club-home": "/components/clubHome/clubHome", "club-rank": "/components/clubRank/clubRank" } }, "pages/tabBar/badminton/badminton": { "navigationBarTitleText": "约球", "usingComponents": {} }, "pages/tabBar/userCenter/userCenter": { "navigationBarTitleText": "个人中心", "usingComponents": {} }, "pages/groupOwnerManage/publishActivities/publishActivities": { "navigationBarTitleText": "发布活动", "usingComponents": { "my-time-picker": "/components/myTimePicker/MyTimePicker", "w-picker": "/components/w-picker/w-picker" } }, "pages/groupOwnerManage/revisionActivity/revisionActivity": { "navigationBarTitleText": "修改活动", "usingComponents": { "my-time-picker": "/components/myTimePicker/MyTimePicker", "w-picker": "/components/w-picker/w-picker" } }, "pages/groupOwnerManage/selectVenue/selectVenue": { "navigationBarTitleText": "选择场馆", "usingComponents": {} }, "pages/userCenter/accountDetails/accountDetails": { "navigationBarTitleText": "账户明细", "usingComponents": {} }, "pages/userInfo/registerInfo/registerInfo": { "navigationBarTitleText": "完善信息", "usingComponents": {} }, "pages/userInfo/selectionTags/selectionTags": { "navigationBarTitleText": "选择标签", "navigationBarBackgroundColor": "#020202", "usingComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录", "usingComponents": {} }, "pages/groupOwnerManage/membershipManage/membershipManage": { "navigationBarTitleText": "会员管理", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/groupOwnerManage/spotCharge/spotCharge": { "navigationBarTitleText": "现场收费", "usingComponents": { "group-activity": "/components/groupActivity/groupActivity" } }, "pages/groupOwnerManage/activitySettlement/activitySettlement": { "navigationBarTitleText": "活动结算", "usingComponents": { "group-activity": "/components/groupActivity/groupActivity" } }, "pages/groupOwnerManage/attendanceManage/attendanceManage": { "navigationBarTitleText": "签到管理", "usingComponents": { "group-activity": "/components/groupActivity/groupActivity" } }, "pages/groupOwnerManage/editActivitie/editActivitie": { "navigationBarTitleText": "编辑活动", "usingComponents": { "group-activity": "/components/groupActivity/groupActivity" } }, "pages/groupOwnerManage/editMemberInfo/editMemberInfo": { "navigationBarTitleText": "修改会员", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": { "w-picker": "/components/w-picker/w-picker" } }, "pages/groupOwnerManage/capitalDetails/capitalDetails": { "navigationBarTitleText": "收支明细", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#fff", "usingComponents": {} }, "pages/groupOwnerManage/membershipDetails/membershipDetails": { "navigationBarTitleText": "会费明细", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#fff", "usingComponents": {} }, "pages/groupOwnerManage/membershipFeeManage/membershipFeeManage": { "navigationBarTitleText": "会费管理", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/groupOwnerManage/costAdjust/costAdjust": { "navigationBarTitleText": "会费调整", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/groupOwnerManage/spotChargeDetial/spotChargeDetial": { "navigationBarTitleText": "现场收费", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/groupOwnerManage/addMember/addMember": { "navigationBarTitleText": "添加成员", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/bindPhone/bindPhone": { "navigationBarTitleText": "绑定手机号", "usingComponents": {} }, "pages/userCenter/myActivities/myActivities": { "navigationBarTitleText": "我的活动", "navigationBarBackgroundColor": "#f4f4f4", "navigationBarTextStyle": "black", "backgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/userCenter/clubEntry/clubEntry": { "navigationBarTitleText": "俱乐部入驻", "usingComponents": { "w-picker": "/components/w-picker/w-picker" } }, "pages/userCenter/managementCenter/managementCenter": { "navigationBarTitleText": "管理中心", "navigationBarBackgroundColor": "#f4f4f4", "navigationBarTextStyle": "black", "backgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/groupOwnerManage/signInDetails/signInDetails": { "navigationBarTitleText": "签到详情", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/groupOwnerManage/searchMember/searchMember": { "navigationBarTitleText": "搜索成员", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#f4f4f4", "usingComponents": {} }, "pages/userCenter/myWallet/myWallet": { "navigationBarTitleText": "我的钱包", "usingComponents": {} }, "pages/userCenter/recharge/recharge": { "navigationBarTitleText": "充值", "usingComponents": { "w-picker": "/components/w-picker/w-picker" } }, "pages/userCenter/order/order": { "navigationBarTitleText": "订单", "usingComponents": {} }, "pages/userCenter/billDetails/billDetails": { "navigationBarTitleText": "账单详情", "usingComponents": {} }, "pages/userCenter/commonProblem/commonProblem": { "navigationBarTitleText": "常见问题", "usingComponents": {} }, "pages/groupOwnerManage/settlement/settlement": { "navigationBarTitleText": "结算详情", "usingComponents": {} }, "pages/activity/activityDetails/activityDetails": { "navigationBarTitleText": "活动详情", "usingComponents": {} }, "pages/activity/pay/pay": { "navigationBarTitleText": "活动报名", "usingComponents": {} }, "pages/out/out": { "usingComponents": {} }, "pages/club/clubMoney/clubMoney": { "navigationBarTitleText": "会费详情", "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#fff", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "来虎体育", "navigationBarBackgroundColor": "#1e1e1e", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

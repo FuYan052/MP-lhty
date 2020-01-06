@@ -1,0 +1,203 @@
+<template>
+	<view class="clubRank">
+		<view class="cateBox">
+			<view class="cateItem" :class="{currCate : currIndex == index}" v-for="(item,index) in cateList" :key='index' @click="changeCate(index)">
+				{{item}}
+			</view>
+		</view>
+		<view class="userRankInfo">
+			<view class="imgBox">
+				<image :lazy-load='false' style="width: 100%; height: 100%; border-radius: 50%;"
+					src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg">
+				</image>
+			</view>
+			<view class="name">芍子姑娘芍子姑娘芍子姑娘</view>
+			<view class="myRank">
+				<view class="title">我的排名</view>
+				<view class="rankNum">189</view>
+			</view>
+			<view class="myRank">
+				<view class="title">我的积分</view>
+				<view class="rankNum">9</view>
+			</view>
+		</view>
+		<view class="rankWrap">
+			<view class="rankItem" v-for="(item,index) in rankList" :key='index' :class="'curr' + index">
+				<view class="number">{{index + 1}}</view>
+				<view class="imgBox">
+					<image :lazy-load='false' style="width: 100%; height: 100%; border-radius: 50%;"
+						src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg">
+					</image>
+				</view>
+				<view class="name">{{item.name}}</view>
+				<view class="jifen">站内积分<text>196</text></view>
+				<van-icon name="arrow" size='31rpx' color='#9a929d'/>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				cateList: ['站内排名','俱乐部排名'],
+				currIndex: 0,
+				rankList: [{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '小幸运',integral: '6'},
+									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '幸运',integral: '16'},
+									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '小运',integral: '169'},
+									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '小小小',integral: '69'},
+									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '文艺',integral: '91'},
+									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '文艺青年',integral: '169'},
+									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '男一号',integral: '1689'},
+									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '清风徐来',integral: '69'},
+									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '小幸运小幸运',integral: '192'},
+									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '小幸运小幸运小幸运',integral: '1669'},],
+			}
+		},
+		methods: {
+			changeCate(index) {
+				this.currIndex = index
+			}
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.clubRank{
+		width: 100%;
+		min-height: 100vh;
+		background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/rankBg.jpg') no-repeat center;
+		background-size: 100% 100%;
+		.cateBox{
+			width: 100%;
+			height: 94rpx;
+			border-bottom: 2rpx solid #4c4d62;
+			display: flex;
+			align-items: center;
+			.cateItem{
+				width: 50%;
+				height: 92rpx;
+				text-align: center;
+				line-height: 94rpx;
+				font-size: 30rpx;
+				color: #a7a7a7;
+			}
+			.currCate{
+				color: #fac307;
+				border-bottom: 5rpx solid #f9c307;
+			}
+		}
+		.userRankInfo{
+			width: 100%;
+			height: 140rpx;
+			display: flex;
+			align-items: center;
+			.imgBox{
+				width: 80rpx;
+				height: 80rpx;
+				border-radius: 50%;
+				border: 6rpx solid #223a46;
+				margin-left: 50rpx;
+			}
+			.name{
+				width: 202rpx;
+				font-size: 27rpx;
+				color: #fff;
+				margin-left: 20rpx;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				box-sizing: border-box;
+				padding-right: 25rpx;
+			}
+			.myRank{
+				width: 190rpx;
+				height: 64rpx;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-between;
+				.title{
+					font-size: 23rpx;
+					color: #808082;
+					line-height: 24rpx;
+				}
+				.rankNum{
+					font-size: 32rpx;
+					color: #fff;
+					line-height: 32rpx;
+					font-weight: bold;
+				}
+			}
+		}
+		.rankWrap{
+			width: 100%;
+			height: auto;
+			overflow: hidden;
+			box-sizing: border-box;
+			padding: 0 30rpx;
+			padding-bottom: 100rpx;
+			.rankItem{
+				width: 100%;
+				height: 120rpx;
+				border-bottom: 1rpx solid #453252;
+				display: flex;
+				align-items: center;
+				.number{
+					width: 114rpx;
+					font-size: 57rpx;
+					color: #676771;
+					font-style: oblique;
+					font-weight: bold;
+					box-sizing: border-box;
+					margin-left: 30rpx;
+				}
+				.imgBox{
+					width: 80rpx;
+					height: 80rpx;
+					border-radius: 50%;
+					border: 6rpx solid #2e1d3f;
+				}
+				.name{
+					width: 160rpx;
+					margin-left: 35rpx;
+					font-size: 28rpx;
+					color: #fff;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+				}
+				.jifen{
+					width: 200rpx;
+					font-size: 24rpx;
+					color: #fff;
+					font-style: oblique;
+					margin-left: 35rpx;
+					text{
+						font-size: 30rpx;
+						font-weight: bold;
+						padding-left: 10rpx;
+					}
+				}
+			}
+			.curr0, 
+			.curr1, 
+			.curr2{
+				height: 128rpx;
+				border: none;
+				background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/rankItemBg.png') no-repeat center;
+				background-size: 100% 100%;
+				margin-top: 12rpx;
+				.number{
+					font-size: 54rpx;
+					color: #fff;
+					padding-left: 15rpx;
+				}
+				.imgBox{
+					border: 6rpx solid #af881f;
+				}
+			}
+		}
+	}
+</style>

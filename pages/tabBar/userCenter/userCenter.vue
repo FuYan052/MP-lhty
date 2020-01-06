@@ -103,7 +103,7 @@
 			}
 			if(this.stateTab) {
 				this.$http.get({
-					url: '/v1/rest/login/personalCenter',
+					url: '/v1/rest/personalCenter/personalCenter',
 					data:{
 						userId: uni.getStorageSync('userInfo').userId,
 					}

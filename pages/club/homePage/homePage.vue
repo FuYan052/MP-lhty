@@ -1,7 +1,8 @@
 <template>
 	<view class="homePage">
 		<view class="contentBox">
-			<club-home></club-home>
+			<club-home v-if="currIndex == 2"></club-home>
+			<club-rank v-else-if="currIndex == 1"></club-rank>
 		</view>
 		<view class="clubTabber">
 			<view class="menuItem" 
@@ -18,14 +19,16 @@
 
 <script>
 	import ClubHome from '../../../components/clubHome/clubHome.vue'
+	import ClubRank from '../../../components/clubRank/clubRank.vue'
 	export default {
 		components: {
-			ClubHome
+			ClubHome,
+			ClubRank
 		},
 		data() {
 			return {
 				tabList: [{id:2, title: '活动'},{id:1, title: '排行'},{id:3, title: '首页'},{id:4, title: '比赛'},{id:5, title: '相册'}],
-				currIndex: 2,
+				currIndex: 1,
 			}
 		},
 		methods: {

@@ -1,6 +1,17 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		
+		
+		{
+			"path": "pages/userCenter/editUserInfo/editUserInfo",
+			"style": {
+				"navigationBarTitleText": "基本信息",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+				}
+			}
+		},
 		{
 			"path": "pages/tabBar/badminton/badminton",
 			"style": {
@@ -27,6 +38,33 @@
 					"van-cell": "/wxcomponents/vant/dist/cell/index",
 					"van-dialog": "/wxcomponents/vant/dist/dialog/index"
 				}
+			}
+		},
+		{
+			"path": "pages/club/clubMember/clubMember",
+			"style": {
+				"navigationBarTitleText": "俱乐部",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f5f5f5",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index"
+				}
+			}
+		},
+		{
+			"path": "pages/club/homePage/homePage",
+			"style": {
+				"navigationBarTitleText": "俱乐部",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f5f5f5"
+			}
+		},
+		{
+			"path": "pages/club/clubMoney/clubMoney",
+			"style": {
+				"navigationBarTitleText": "会费详情",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#fff"
 			}
 		},
 		{
@@ -281,14 +319,6 @@
 			"path": "pages/userCenter/order/order",
 			"style": {
 				"navigationBarTitleText": "订单"
-			}
-		},
-		{
-			"path": "pages/club/homePage/homePage",
-			"style": {
-				"navigationBarTitleText": "俱乐部",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#f5f5f5"
 			}
 		},
 		{

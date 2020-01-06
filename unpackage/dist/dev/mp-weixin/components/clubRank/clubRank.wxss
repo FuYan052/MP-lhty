@@ -1,0 +1,203 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.clubRank.data-v-f80e150a {
+  width: 100%;
+  min-height: 100vh;
+  background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/rankBg.jpg") no-repeat center;
+  background-size: 100% 100%;
+}
+.clubRank .cateBox.data-v-f80e150a {
+    width: 100%;
+    height: 94rpx;
+    border-bottom: 2rpx solid #4c4d62;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.clubRank .cateBox .cateItem.data-v-f80e150a {
+      width: 50%;
+      height: 92rpx;
+      text-align: center;
+      line-height: 94rpx;
+      font-size: 30rpx;
+      color: #a7a7a7;
+}
+.clubRank .cateBox .currCate.data-v-f80e150a {
+      color: #fac307;
+      border-bottom: 5rpx solid #f9c307;
+}
+.clubRank .userRankInfo.data-v-f80e150a {
+    width: 100%;
+    height: 140rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.clubRank .userRankInfo .imgBox.data-v-f80e150a {
+      width: 80rpx;
+      height: 80rpx;
+      border-radius: 50%;
+      border: 6rpx solid #223a46;
+      margin-left: 50rpx;
+}
+.clubRank .userRankInfo .name.data-v-f80e150a {
+      width: 202rpx;
+      font-size: 27rpx;
+      color: #fff;
+      margin-left: 20rpx;
+      overflow: hidden;
+      white-space: nowrap;
+      -o-text-overflow: ellipsis;
+         text-overflow: ellipsis;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      padding-right: 25rpx;
+}
+.clubRank .userRankInfo .myRank.data-v-f80e150a {
+      width: 190rpx;
+      height: 64rpx;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+}
+.clubRank .userRankInfo .myRank .title.data-v-f80e150a {
+        font-size: 23rpx;
+        color: #808082;
+        line-height: 24rpx;
+}
+.clubRank .userRankInfo .myRank .rankNum.data-v-f80e150a {
+        font-size: 32rpx;
+        color: #fff;
+        line-height: 32rpx;
+        font-weight: bold;
+}
+.clubRank .rankWrap.data-v-f80e150a {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 0 30rpx;
+    padding-bottom: 100rpx;
+}
+.clubRank .rankWrap .rankItem.data-v-f80e150a {
+      width: 100%;
+      height: 120rpx;
+      border-bottom: 1rpx solid #453252;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+}
+.clubRank .rankWrap .rankItem .number.data-v-f80e150a {
+        width: 114rpx;
+        font-size: 57rpx;
+        color: #676771;
+        font-style: oblique;
+        font-weight: bold;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        margin-left: 30rpx;
+}
+.clubRank .rankWrap .rankItem .imgBox.data-v-f80e150a {
+        width: 80rpx;
+        height: 80rpx;
+        border-radius: 50%;
+        border: 6rpx solid #2e1d3f;
+}
+.clubRank .rankWrap .rankItem .name.data-v-f80e150a {
+        width: 160rpx;
+        margin-left: 35rpx;
+        font-size: 28rpx;
+        color: #fff;
+        overflow: hidden;
+        white-space: nowrap;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis;
+}
+.clubRank .rankWrap .rankItem .jifen.data-v-f80e150a {
+        width: 200rpx;
+        font-size: 24rpx;
+        color: #fff;
+        font-style: oblique;
+        margin-left: 35rpx;
+}
+.clubRank .rankWrap .rankItem .jifen text.data-v-f80e150a {
+          font-size: 30rpx;
+          font-weight: bold;
+          padding-left: 10rpx;
+}
+.clubRank .rankWrap .curr0.data-v-f80e150a,
+    .clubRank .rankWrap .curr1.data-v-f80e150a,
+    .clubRank .rankWrap .curr2.data-v-f80e150a {
+      height: 128rpx;
+      border: none;
+      background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/rankItemBg.png") no-repeat center;
+      background-size: 100% 100%;
+      margin-top: 12rpx;
+}
+.clubRank .rankWrap .curr0 .number.data-v-f80e150a,
+      .clubRank .rankWrap .curr1 .number.data-v-f80e150a,
+      .clubRank .rankWrap .curr2 .number.data-v-f80e150a {
+        font-size: 54rpx;
+        color: #fff;
+        padding-left: 15rpx;
+}
+.clubRank .rankWrap .curr0 .imgBox.data-v-f80e150a,
+      .clubRank .rankWrap .curr1 .imgBox.data-v-f80e150a,
+      .clubRank .rankWrap .curr2 .imgBox.data-v-f80e150a {
+        border: 6rpx solid #af881f;
+}
+

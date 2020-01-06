@@ -6,7 +6,7 @@
 			</view>
 			<view class="clubName">四川中船绿洲职工羽协</view>
 			<view class="number">
-				<view class="left">
+				<view class="left" @click="toMember">
 					成员&nbsp;&nbsp;876
 				</view>
 				<view class="right">
@@ -83,6 +83,11 @@
 		methods: {
 			handleShow2() {
 				this.isShow2 = !this.isShow2
+			},
+			toMember() {
+				uni.navigateTo({
+					url: '/pages/club/clubMember/clubMember'
+				})
 			}
 		}
 	}     

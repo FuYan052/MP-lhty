@@ -1,7 +1,11 @@
 {
   "pages": [
+    "pages/userCenter/editUserInfo/editUserInfo",
     "pages/tabBar/badminton/badminton",
     "pages/tabBar/userCenter/userCenter",
+    "pages/club/clubMember/clubMember",
+    "pages/club/homePage/homePage",
+    "pages/club/clubMoney/clubMoney",
     "pages/groupOwnerManage/publishActivities/publishActivities",
     "pages/groupOwnerManage/revisionActivity/revisionActivity",
     "pages/groupOwnerManage/selectVenue/selectVenue",
@@ -30,7 +34,6 @@
     "pages/userCenter/myWallet/myWallet",
     "pages/userCenter/recharge/recharge",
     "pages/userCenter/order/order",
-    "pages/club/homePage/homePage",
     "pages/userCenter/billDetails/billDetails",
     "pages/userCenter/commonProblem/commonProblem",
     "pages/groupOwnerManage/settlement/settlement",

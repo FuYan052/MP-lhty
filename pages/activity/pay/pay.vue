@@ -190,44 +190,46 @@
 									signType: resp.data.signType,
 									paySign: resp.data.paySign,
 									success: function (res) {
+										console.log(res)
 										// 支付成功回调
-										that.$http.get({
-											url: '/v1/rest/pay/wechatPayCallback',
-											data: {
-												type: 'success',
-												orderNo: that.orderNo,
-												clubId: that.clubId
-											}
-										}).then(resp => {
-											console.log(resp)
-											if(resp.status == 200) {
-												uni.showToast({
-													title: resp.data.message,
-													duration: 2000,
-													icon: 'none'
-												}); 
-											}
-										})
+										// that.$http.get({
+										// 	url: '/v1/rest/pay/wechatPayCallback',
+										// 	data: {
+										// 		// type: 'success',
+										// 		// orderNo: that.orderNo,
+										// 		// clubId: that.clubId
+										// 	}
+										// }).then(resp => {
+										// 	console.log(resp)
+										// 	if(resp.status == 200) {
+										// 		uni.showToast({
+										// 			title: resp.data.message,
+										// 			duration: 2000,
+										// 			icon: 'none'
+										// 		}); 
+										// 	}
+										// })
 									},
 									fail: function (err) {
+										console.log(err)
 										// 支付取消回调
-										that.$http.get({
-											url: '/v1/rest/pay/wechatPayCallback',
-											data: {
-												type: 'fail',
-												orderNo: that.orderNo,
-												clubId: that.clubId
-											}
-										}).then(resp => {
-											console.log(resp)
-											if(resp.status == 200) {
-												uni.showToast({
-													title: resp.data.message,
-													duration: 2000,
-													icon: 'none'
-												});
-											}
-										})
+										// that.$http.get({
+										// 	url: '/v1/rest/pay/wechatPayCallback',
+										// 	data: {
+										// 		// type: 'fail',
+										// 		// orderNo: that.orderNo,
+										// 		// clubId: that.clubId
+										// 	}
+										// }).then(resp => {
+										// 	console.log(resp)
+										// 	if(resp.status == 200) {
+										// 		uni.showToast({
+										// 			title: resp.data.message,
+										// 			duration: 2000,
+										// 			icon: 'none'
+										// 		});
+										// 	}
+										// })
 									}
 								});
 							}

@@ -3,6 +3,7 @@
   "navigationBarTextStyle": "black",
   "navigationBarBackgroundColor": "#f5f5f5",
   "usingComponents": {
-    "club-home": "/components/clubHome/clubHome"
+    "club-home": "/components/clubHome/clubHome",
+    "club-rank": "/components/clubRank/clubRank"
   }
 }
