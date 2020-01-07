@@ -25,22 +25,22 @@
 						</van-field>
 					</view>
 					<view class="item">
-						<van-field :value="inputNumValue" @change='inputNum' type='number' label="活动人数" placeholder="填写人数" size='large' :border='false'/>
+						<van-field @change='inputNum' type='number' label="活动人数" placeholder="填写人数" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field :value="inputPrice1" @change='InputPrice1' type='number' label="钱包支付" placeholder="填写费用/元" size='large' :border='false'/>
+						<van-field @change='InputPrice1' type='digit' label="钱包支付" placeholder="填写费用/元" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field :value="inputPrice2" @change='InputPrice2' type='number' label="费  用  男" placeholder="填写费用/元" size='large' :border='false'/>
+						<van-field @change='InputPrice2' type='digit' label="费  用  男" placeholder="填写费用/元" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field :value="inputPrice3" @change='InputPrice3' type='number' label="费  用  女" placeholder="填写费用/元" size='large' :border='false'/>
+						<van-field @change='InputPrice3' type='digit' label="费  用  女" placeholder="填写费用/元" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field :value="inputPrice4" @change='InputPrice4' type='number' label="临打费用" placeholder="填写费用/元" size='large' :border='false'/>
+						<van-field @change='InputPrice4' type='digit' label="临打费用" placeholder="填写费用/元" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field :value="inputBallType" @change='InputBall' label="活动用球" placeholder="填写用球" size='large' :border='false'/>
+						<van-field @change='InputBall' label="活动用球" placeholder="填写用球" size='large' :border='false'/>
 					</view>
 					<!-- 等级要求 -->
 					<view class="level">
@@ -50,20 +50,20 @@
 						</view>
 					</view>
 					<view class="item">
-						<van-field :value="inputOrganizer" @change='InputOrganizer' label="组 织 者" placeholder="填写组织者" size='large' :border='false'/>
+						<van-field @change='InputOrganizer' label="组 织 者" placeholder="填写组织者" size='large' :border='false'/>
 					</view>
 					<!-- 标题 -->
 					<view class="textAreaBox">
 						<view class="title">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</view>
 						<van-cell-group :border='false'>
-						  <van-field :value="titleValue" @change='inputTitleValue' type="textarea" placeholder="时间+地址+活动类型" autosize :border="false" :show-confirm-bar='false'/>
+						  <van-field @change='inputTitleValue' type="textarea" placeholder="时间+地址+活动类型" autosize :border="false" :show-confirm-bar='false'/>
 						</van-cell-group>
 					</view>
 					<!-- 活动规则 -->
 					<view class="textAreaBox">
 						<view class="title">活动规则</view>
 						<van-cell-group :border='false'>
-						  <van-field :value="ruleValue" @change='inputRuleValue' type="textarea" placeholder="请填写活动规则" autosize :border="false" :show-confirm-bar='false'/>
+						  <van-field @change='inputRuleValue' type="textarea" placeholder="请填写活动规则" autosize :border="false" :show-confirm-bar='false'/>
 						</van-cell-group>
 					</view>
 				</van-cell-group>
@@ -121,6 +121,8 @@
 		},
 		data() {
 			return {
+				actId: '',
+				actInfo: null,
 				type: '羽毛球',
 				time: '',  //选择的时间值
 				isshow1: false,  //显示时间选择器
@@ -150,7 +152,40 @@
 			}
 		},
 		onLoad(options) {
+			this.actId = options.editId
+			// 查询要编辑的活动信息
+			this.$http.get({
+				url: '/v1/rest/manage/editActivities',
+				data: {
+					activitiesId: this.actId
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.actInfo = resp.data
+					this.time = resp.data.timeStart
+					this.hour = resp.data.duration
+					this.deadline = resp.data.endTime
+					this.venueName = resp.data.venueName
+					this.venueId = resp.data.venueId
+					this.inputNumValue = resp.data.people
+					this.inputPrice1 = resp.data.walletPayMoney
+					this.inputPrice2 = resp.data.moneyMan
+					this.inputPrice3 = resp.data.moneyWomen
+					this.inputPrice4 = resp.data.temporaryMoney
+					this.inputBallType = resp.data.ballType
+					this.selectedIds = resp.data.occupationLevel.split(',')
+					this.inputOrganizer = resp.data.userName
+					this.titleValue = resp.data.title
+					this.ruleValue = resp.data.content
+					this.isUnderLine = resp.data.initLower
+					this.isCancel = resp.data.initCancel
+					this.isWeek = resp.data.initWeek
+				}
+			})
+			// 活动时长列表
 			this.columns = [{label:"0.5小时",value:0.5},{label:"1小时",value:1},{label:"1.5小时",value:1.5},{label:"2小时",value:2},{label:"2.5小时",value:2.5},{label:"3小时",value:3},{label:"3.5小时",value:3.5},{label:"4小时",value:4}];
+			// 等级列表
 			this.$http.get({
 				url: '/v1/rest/public/findDictList',
 				data: {
@@ -264,6 +299,7 @@
 			submit() {
 				const params = {
 					userId: uni.getStorageSync('userInfo').userId,
+					id: this.actId,
 					type: 'sportsKinds_01',
 					timeStart: this.time,
 					duration: this.hour,
@@ -288,6 +324,16 @@
 					data: params
 				}).then(resp => {
 					console.log(resp)
+					if(resp.status == 200) {
+						uni.showToast({
+							title: '修改成功！',
+							duration: 2000,
+							icon: 'none'
+						}); 
+						uni.redirectTo({
+							url: '/pages/groupOwnerManage/editActivitie/editActivitie'
+						})
+					}
 				})
 				uni.removeStorageSync('venue')
 			}

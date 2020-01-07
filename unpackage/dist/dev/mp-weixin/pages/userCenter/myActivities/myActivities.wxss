@@ -61,7 +61,7 @@
 }
 .myActivities .orderItem.data-v-611c47f0 {
     width: 100%;
-    height: 386rpx;
+    height: 366rpx;
     border-radius: 15rpx;
     background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/actItemBg.png") no-repeat center;
     background-size: 100% 100%;
@@ -129,15 +129,14 @@
 .myActivities .orderItem .content .detail .place .money.data-v-611c47f0 {
             color: #feaf01;
             font-size: 22rpx;
+            width: 150rpx;
 }
 .myActivities .orderItem .content .detail .place .money .cost.data-v-611c47f0 {
               font-size: 31rpx;
               font-weight: bold;
 }
 .myActivities .orderItem .content .detail .place .name.data-v-611c47f0 {
-            margin-left: 70rpx;
             width: 275rpx;
-            overflow: hidden;
             white-space: nowrap;
             -o-text-overflow: ellipsis;
                text-overflow: ellipsis;
@@ -145,7 +144,7 @@
 }
 .myActivities .orderItem .btnBox.data-v-611c47f0 {
       width: 100%;
-      height: 132rpx;
+      height: 102rpx;
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
@@ -160,19 +159,19 @@
               align-items: center;
 }
 .myActivities .orderItem .btnBox .btn.data-v-611c47f0 {
-        width: 164rpx;
-        height: 68rpx;
+        width: 124rpx;
+        height: 50rpx;
         text-align: center;
-        line-height: 68rpx;
-        font-size: 28rpx;
+        line-height: 50rpx;
+        font-size: 25rpx;
         border-radius: 10rpx;
         border: 1rpx solid #ee4e5a;
         color: #f1757d;
 }
 .myActivities .orderItem .btnBox .btn1.data-v-611c47f0 {
         color: #fff;
-        border: 1rpx solid #ffc102;
-        background: #ffc102;
+        border: 1rpx solid #84d948;
+        background: #84d948;
 }
 .myActivities .orderItem .btnBox .btn2.data-v-611c47f0 {
         color: #fff;
@@ -181,14 +180,20 @@
 }
 .myActivities .orderItem .btnBox .btn3.data-v-611c47f0 {
         color: #fff;
+        border: 1rpx solid #84d948;
+        background: #84d948;
+}
+.myActivities .orderItem .btnBox .btn5.data-v-611c47f0 {
+        color: #fff;
         border: 1rpx solid #353535;
         background: #353535;
 }
 .myActivities .orderItem .btnBox .btn4.data-v-611c47f0 {
-        color: #b1b1b1;
-        border: 1rpx solid #b1b1b1;
+        color: #fff;
+        border: 1rpx solid #ffc102;
+        background: #ffc102;
 }
-.myActivities .orderItem .btnBox .btn5.data-v-611c47f0 {
+.myActivities .orderItem .btnBox .btn6.data-v-611c47f0 {
         margin-left: 33rpx;
 }
 

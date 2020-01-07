@@ -6,25 +6,22 @@
 			</view>
 		</view>
 		<view class="orderItem" v-for="(item,index) in actList" :key='index'>
-			<view class="content">
+			<view class="content" @click="toDetail(item)">
 				<view class="imgBox">
-					<image src="../../../static/logo.png" style="width: 100%; height: 100%;" mode=""></image>
+					<image :src="item.venueImage" style="width: 100%; height: 100%;" mode=""></image>
 				</view>
 				<view class="detail">
-					<view class="title">神羽联盟俱乐部12月31日晚19：00羽毛球神羽联盟俱乐部12月31日晚19：00羽毛球</view>
-					<view class="clubName">2019-12-31<text class="time">19:00-21:00</text></view>
+					<view class="title">{{item.title}}</view>
+					<view class="clubName">{{item.time}}<text class="time">{{item.timeStart}}-{{item.timeEnd}}</text></view>
 					<view class="place">
-						<view class="money">￥<text class="cost">20</text>/人</view>
-						<view class="name">波利羽毛球馆</view>
+						<view class="money">￥<text class="cost">{{item.totalFee}}</text>/人</view>
+						<view class="name">{{item.venueName}}</view>
 					</view>
 				</view>
 			</view>
 			<view class="btnBox">
-				<view class="btn btn1" v-if="item.state == 1">预约成功</view>
-				<view class="btn btn2" v-else-if="item.state == 2">进行中</view>
-				<view class="btn btn3" v-else-if="item.state == 3">已结束</view>
-				<view class="btn btn4" v-else="item.state == 4">已取消</view>
-				<view class="btn btn5" v-show="item.state == 1">取消</view>
+				<view class="btn" :class="'btn' + item.osStateId">{{item.osState}}</view>
+				<view class="btn btn6" v-show="currIndex == 1" @click="handleCancel(item)">点击取消</view>
 			</view>
 		</view>
 	</view>
@@ -35,45 +32,69 @@
 		data() {
 			return {
 				cateList: ['全部','已预约','进行中','已完成','已取消'],
+				cateState: 0,
 				currIndex: 0,
 				actList: []
 			}
 		},
 		created() {
-			this.actList = [
-				{
-					state: 1
-				},
-				{
-					state: 3
-				},
-				{
-					state: 2
-				},
-				{
-					state: 1
-				},
-				{
-					state: 4
-				},
-				{
-					state: 2
-				},
-				{
-					state: 1
-				},
-				{
-					state: 3
-				},
-				{
-					state: 4
-				},
-			]
+			this.getList()
 		},
 		methods: {
+			// 获取活动列表
+			getList() {
+				this.$http.get({
+					url: '/v1/rest/personalCenter/myActivityList',
+					data: {
+						state: this.cateState,
+						userId: uni.getStorageSync('userInfo').userId
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						this.actList = resp.data
+					}
+				})
+			},
 			// 切换分类
 			changeCate(index) {
 				this.currIndex = index
+				this.cateState = index
+				this.getList()
+			},
+			// 取消活动
+			handleCancel(item) {
+				const that = this
+				uni.showModal({
+					title: '提示',
+					content: '确定要取消该条活动吗？',
+					success: function (res) {
+						if (res.confirm) {
+							that.$http.post({
+								url: '/v1/rest/pay/refund',
+								data: {
+									orderNo: item.orderNo
+								}
+							}).then(resp => {
+								console.log(resp)
+								if(resp.status == 200) {
+									that.getList()
+									uni.showToast({
+										title: resp.data.msg,
+										duration: 2000,
+										icon: 'none'
+									}); 
+								}
+							})
+						} else if (res.cancel) {}
+					}
+				});
+			},
+			// 活动详情
+			toDetail(item) {
+				uni.navigateTo({
+					url: '/pages/activity/activityDetails/activityDetails?actId=' + item.activitiesId
+				})
 			}
 		}
 	}
@@ -110,7 +131,7 @@
 		}
 		.orderItem{
 			width: 100%;
-			height: 386rpx;
+			height: 366rpx;
 			border-radius: 15rpx;
 			background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/actItemBg.png') no-repeat center;
 			background-size: 100% 100%;
@@ -156,15 +177,14 @@
 						.money{
 							color: #feaf01;
 							font-size: 22rpx;
+							width: 150rpx;
 							.cost{
 								font-size: 31rpx;
 								font-weight: bold;
 							}
 						}
 						.name{
-							margin-left: 70rpx;
 							width: 275rpx;
-							overflow: hidden;
 							white-space: nowrap;
 							text-overflow: ellipsis;
 							line-height: 26rpx;
@@ -174,40 +194,46 @@
 			}
 			.btnBox{
 				width: 100%;
-				height: 132rpx;
+				height: 102rpx;
 				display: flex;
 				justify-content: flex-end;
 				align-items: center;
 				.btn{
-					width: 164rpx;
-					height: 68rpx;
+					width: 124rpx;
+					height: 50rpx;
 					text-align: center;
-					line-height: 68rpx;
-					font-size: 28rpx;
+					line-height: 50rpx;
+					font-size: 25rpx;
 					border-radius: 10rpx;
 					border: 1rpx solid #ee4e5a;
 					color: #f1757d;
 				}
-				.btn1{
-					color: #fff;
-					border: 1rpx solid #ffc102;
-					background: #ffc102;
-				}
-				.btn2{
+				.btn1{  //预约成功
 					color: #fff;
 					border: 1rpx solid #84d948;
 					background: #84d948;
 				}
-				.btn3{
+				.btn2{  //预约成功
+					color: #fff;
+					border: 1rpx solid #84d948;
+					background: #84d948;
+				}
+				.btn3{ //预约成功
+					color: #fff;
+					border: 1rpx solid #84d948;
+					background: #84d948;
+				}
+				.btn5{  //已结束
 					color: #fff;
 					border: 1rpx solid #353535;
 					background: #353535;
 				}
-				.btn4{
-					color: #b1b1b1;
-					border: 1rpx solid #b1b1b1;
+				.btn4{  //进行中
+					color: #fff;
+					border: 1rpx solid #ffc102;
+					background: #ffc102;
 				}
-				.btn5{
+				.btn6{ //取消
 					margin-left: 33rpx;
 				}
 			}

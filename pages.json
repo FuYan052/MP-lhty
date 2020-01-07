@@ -1,21 +1,45 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		
-		
-		{
-			"path": "pages/userCenter/editUserInfo/editUserInfo",
-			"style": {
-				"navigationBarTitleText": "基本信息",
-				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index",
-					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
-				}
-			}
-		},
+		// {
+		// 	"path": "pages/userCenter/editUserInfo/editUserInfo",
+		// 	"style": {
+		// 		"navigationBarTitleText": "基本信息",
+		// 		"usingComponents": {
+		// 			"van-field": "/wxcomponents/vant/dist/field/index",
+		// 			"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+		// 		}
+		// 	}
+		// },
 		{
 			"path": "pages/tabBar/badminton/badminton",
 			"style": {
 				"navigationBarTitleText": "约球"
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/editActivitie/editActivitie",
+			"style": {
+				"navigationBarTitleText": "编辑活动"
+			}
+		},
+		{
+			"path": "pages/userCenter/myActivities/myActivities",
+			"style": {
+				"navigationBarTitleText": "我的活动",
+				"navigationBarBackgroundColor": "#f4f4f4",
+				"navigationBarTextStyle": "black",
+				"backgroundColor": "#f4f4f4"
+			}
+		},
+		{
+			"path": "pages/tabBar/userCenter/userCenter",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/dist/cell/index",
+					"van-dialog": "/wxcomponents/vant/dist/dialog/index"
+				}
 			}
 		},
 		// {
@@ -31,19 +55,9 @@
 		// 	}
 		// },
 		{
-			"path": "pages/tabBar/userCenter/userCenter",
-			"style": {
-				"navigationBarTitleText": "个人中心",
-				"usingComponents": {
-					"van-cell": "/wxcomponents/vant/dist/cell/index",
-					"van-dialog": "/wxcomponents/vant/dist/dialog/index"
-				}
-			}
-		},
-		{
 			"path": "pages/club/clubMember/clubMember",
 			"style": {
-				"navigationBarTitleText": "俱乐部",
+				"navigationBarTitleText": "俱乐部成员",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#f5f5f5",
 				"usingComponents": {
@@ -160,12 +174,6 @@
 			}
 		}, 
 		{
-			"path": "pages/groupOwnerManage/editActivitie/editActivitie",
-			"style": {
-				"navigationBarTitleText": "编辑活动"
-			}
-		},
-		{
 			"path": "pages/groupOwnerManage/editMemberInfo/editMemberInfo",
 			"style": {
 				"navigationBarTitleText": "修改会员",
@@ -247,15 +255,6 @@
 					"van-field": "/wxcomponents/vant/dist/field/index",
 					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
 				}
-			}
-		},
-		{
-			"path": "pages/userCenter/myActivities/myActivities",
-			"style": {
-				"navigationBarTitleText": "我的活动",
-				"navigationBarBackgroundColor": "#f4f4f4",
-				"navigationBarTextStyle": "black",
-				"backgroundColor": "#f4f4f4"
 			}
 		},
 		{

@@ -4,13 +4,13 @@
 			<view class="imgBox">
 				<image src="../../static/logo.png" mode="" style="width: 100%; height: 100%; border-radius: 50%;"></image>
 			</view>
-			<view class="clubName">四川中船绿洲职工羽协</view>
+			<view class="clubName">{{clubInfo.clubName}}</view>
 			<view class="number">
 				<view class="left" @click="toMember">
-					成员&nbsp;&nbsp;876
+					成员&nbsp;&nbsp;{{clubInfo.clubMembers}}
 				</view>
 				<view class="right">
-					活跃度&nbsp;&nbsp;86
+					活跃度&nbsp;&nbsp;{{clubInfo.activityLevel}}
 				</view>
 			</view>
 			<view class="jionClub">加入俱乐部</view>
@@ -28,26 +28,26 @@
 				<view class="show show1">
 					<view class="item" v-for="(item,index) in actList1" :key='index'>
 						<view class="left">
-							<view class="weekDay">{{item.date}}</view>
+							<view class="weekDay">{{item.weekName}}</view>
 						</view>
 						<view class="rightContent">
-							<view class="list" :class="'list' + ind " v-for="(it,ind) in item.act" :key='ind'>
-								<view class="center">{{it.time}}</view>
-								<view class="right">{{it.venue}}</view>
+							<view class="list" :class="'list' + ind " v-for="(it,ind) in item.sub" :key='ind'>
+								<view class="center">{{it.timeStart}}-{{it.timeEnd}}</view>
+								<view class="right">{{it.name}}</view>
 							</view>
 						</view>
 					</view>
 				</view>
 				<!-- 默认隐藏三天后的活动 -->
 				<view class="show show2" v-show="isShow2">
-					<view class="item" v-for="(item,index) in actList1" :key='index'>
+					<view class="item" v-for="(item,index) in actList2" :key='index'>
 						<view class="left">
-							<view class="weekDay">{{item.date}}</view>
+							<view class="weekDay">{{item.weekName}}</view>
 						</view>
 						<view class="rightContent">
-							<view class="list" :class="'list' + ind " v-for="(it,ind) in item.act" :key='ind'>
-								<view class="center">{{it.time}}</view>
-								<view class="right">{{it.venue}}</view>
+							<view class="list" :class="'list' + ind " v-for="(it,ind) in item.sub" :key='ind'>
+								<view class="center">{{it.timeStart}}-{{it.timeEnd}}</view>
+								<view class="right">{{it.name}}</view>
 							</view>
 						</view>
 					</view>
@@ -62,15 +62,14 @@
 		<!-- 俱乐部介绍 -->
 		<view class="clubIntroduce">
 			<view class="sectionTitle">俱乐部介绍</view>
-			<view class="intrDetail">
-				将自定义tabbar 写到 index.vue 中 或将其封装为组件 加载进来将 自定义tabbar 写到 index.vue 中 或将其封装为组件 加载进来将 自定义tabbar 写到 index.vue 中 或将其封装为组件 加载进来将 自定义tabbar 写到 index.vue 中 或将其封装为组件 加载进来
-			</view>
+			<view class="intrDetail">{{clubInfo.content}}</view>
 		</view>
 	</view>
 </template>
 
 <script>
 	export default {
+		props: ['clubId'],
 		data() {
 			return {
 				actList1: [{date: '周一',act: [{time: '19:00-21:00',venue: '波利羽毛球馆波利羽球馆波利'}]},
@@ -78,7 +77,27 @@
 				actList2: [{date: '周一',act: [{time: '19:00-21:00',venue: '波利羽毛球馆'}]},
 									{date: '周二',act: [{time: '19:00-21:00',venue: '波利羽毛球馆'},{time: '19:00-21:00',venue: '波利羽毛球馆'}]}],
 				isShow2: false,
+				clubInfo: {}
 			}
+		},
+		mounted() {
+			this.$nextTick(function(){
+				this.$http.get({
+					url: '/v1/rest/club/clubHome',
+					data: {
+						clubId: this.clubId
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						this.clubInfo = resp.data
+						this.actList1 = resp.data.clubActivityWeekList.slice(0,3)
+						this.actList2 = resp.data.clubActivityWeekList.slice(3)
+						console.log(this.actList1)
+						console.log(this.actList2)
+					}
+				})
+			})
 		},
 		methods: {
 			handleShow2() {

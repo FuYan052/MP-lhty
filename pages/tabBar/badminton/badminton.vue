@@ -24,7 +24,7 @@
 		</view>
 		<view class="actBox">
 			<view class="actItem" v-for="(item,index) in actList" :key='index'>
-				<view class="title">
+				<view class="title" @click="toClubId(item)">
 					<view class="text">{{item.clubName}}</view>
 					<van-icon class="arrowIcon" name="arrow" size="30rpx" color='#bcbcbe'/>
 				</view>
@@ -178,6 +178,13 @@
 			toSignUp(id) {
 				uni.navigateTo({
 					url: '/pages/activity/activityDetails/activityDetails?actId=' + id
+				})
+			},
+			// 俱乐部
+			toClubId(item) {
+				console.log(item)
+				uni.navigateTo({
+					url: '/pages/club/homePage/homePage?clubId=' + item.clubId
 				})
 			}
 		}

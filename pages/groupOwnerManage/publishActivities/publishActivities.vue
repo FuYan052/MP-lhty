@@ -25,22 +25,22 @@
 						</van-field>
 					</view>
 					<view class="item">
-						<van-field :value="inputNumValue" @change='inputNum' type='number' label="活动人数" placeholder="填写人数" size='large' :border='false'/>
+						<van-field @change='inputNum' type='number' label="活动人数" placeholder="填写人数" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field :value="inputPrice1" @change='InputPrice1' type='number' label="钱包支付" placeholder="填写费用/元" size='large' :border='false'/>
+						<van-field @change='InputPrice1' type='digit' label="钱包支付" placeholder="填写费用/元" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field :value="inputPrice2" @change='InputPrice2' type='number' label="费  用  男" placeholder="填写费用/元" size='large' :border='false'/>
+						<van-field @change='InputPrice2' type='digit' label="费  用  男" placeholder="填写费用/元" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field :value="inputPrice3" @change='InputPrice3' type='number' label="费  用  女" placeholder="填写费用/元" size='large' :border='false'/>
+						<van-field @change='InputPrice3' type='digit' label="费  用  女" placeholder="填写费用/元" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field :value="inputPrice4" @change='InputPrice4' type='number' label="临打费用" placeholder="填写费用/元" size='large' :border='false'/>
+						<van-field @change='InputPrice4' type='digit' label="临打费用" placeholder="填写费用/元" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field :value="inputBallType" @change='InputBall' label="活动用球" placeholder="填写用球" size='large' :border='false'/>
+						<van-field @change='InputBall' label="活动用球" placeholder="填写用球" size='large' :border='false'/>
 					</view>
 					<!-- 等级要求 -->
 					<view class="level">
@@ -50,20 +50,20 @@
 						</view>
 					</view>
 					<view class="item">
-						<van-field :value="inputOrganizer" @change='InputOrganizer' label="组 织 者" placeholder="填写组织者" size='large' :border='false'/>
+						<van-field @change='InputOrganizer' label="组 织 者" placeholder="填写组织者" size='large' :border='false'/>
 					</view>
 					<!-- 标题 -->
 					<view class="textAreaBox">
 						<view class="title">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</view>
 						<van-cell-group :border='false'>
-						  <van-field :value="titleValue" @change='inputTitleValue' type="textarea" placeholder="时间+地址+活动类型" autosize :border="false" :show-confirm-bar='false'/>
+						  <van-field @change='inputTitleValue' type="textarea" placeholder="时间+地址+活动类型" autosize :border="false" :show-confirm-bar='false'/>
 						</van-cell-group>
 					</view>
 					<!-- 活动规则 -->
 					<view class="textAreaBox">
 						<view class="title">活动规则</view>
 						<van-cell-group :border='false'>
-						  <van-field :value="ruleValue" @change='inputRuleValue' type="textarea" placeholder="请填写活动规则" autosize :border="false" :show-confirm-bar='false'/>
+						  <van-field @change='inputRuleValue' type="textarea" placeholder="请填写活动规则" autosize :border="false" :show-confirm-bar='false'/>
 						</van-cell-group>
 					</view>
 				</van-cell-group>

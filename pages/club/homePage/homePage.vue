@@ -1,7 +1,7 @@
 <template>
 	<view class="homePage">
 		<view class="contentBox">
-			<club-home v-if="currIndex == 2"></club-home>
+			<club-home v-if="currIndex == 2" :clubId='clubId'></club-home>
 			<club-rank v-else-if="currIndex == 1"></club-rank>
 		</view>
 		<view class="clubTabber">
@@ -23,13 +23,17 @@
 	export default {
 		components: {
 			ClubHome,
-			ClubRank
+			ClubRank,
 		},
 		data() {
 			return {
 				tabList: [{id:2, title: '活动'},{id:1, title: '排行'},{id:3, title: '首页'},{id:4, title: '比赛'},{id:5, title: '相册'}],
-				currIndex: 1,
+				currIndex: 2,
+				clubId: ''
 			}
+		},
+		onLoad(options) {
+			this.clubId = options.clubId
 		},
 		methods: {
 			clickTb(item,index) {

@@ -174,7 +174,6 @@
 					console.log(params)
 					//微信支付
 					if(this.payType === 1) {  
-						console.log('微信支付')
 						this.$http.post({
 							url: '/v1/rest/pay/payUpper',
 							data: params
@@ -192,44 +191,44 @@
 									success: function (res) {
 										console.log(res)
 										// 支付成功回调
-										// that.$http.get({
-										// 	url: '/v1/rest/pay/wechatPayCallback',
-										// 	data: {
-										// 		// type: 'success',
-										// 		// orderNo: that.orderNo,
-										// 		// clubId: that.clubId
-										// 	}
-										// }).then(resp => {
-										// 	console.log(resp)
-										// 	if(resp.status == 200) {
-										// 		uni.showToast({
-										// 			title: resp.data.message,
-										// 			duration: 2000,
-										// 			icon: 'none'
-										// 		}); 
-										// 	}
-										// })
+										that.$http.get({
+											url: '/v1/rest/pay/wechatPayCallback',
+											data: {
+												type: 'success',
+												orderNo: that.orderNo,
+												clubId: that.clubId
+											}
+										}).then(resp => {
+											console.log(resp)
+											if(resp.status == 200) {
+												uni.showToast({
+													title: resp.data.message,
+													duration: 2000,
+													icon: 'none'
+												}); 
+											}
+										})
 									},
 									fail: function (err) {
 										console.log(err)
 										// 支付取消回调
-										// that.$http.get({
-										// 	url: '/v1/rest/pay/wechatPayCallback',
-										// 	data: {
-										// 		// type: 'fail',
-										// 		// orderNo: that.orderNo,
-										// 		// clubId: that.clubId
-										// 	}
-										// }).then(resp => {
-										// 	console.log(resp)
-										// 	if(resp.status == 200) {
-										// 		uni.showToast({
-										// 			title: resp.data.message,
-										// 			duration: 2000,
-										// 			icon: 'none'
-										// 		});
-										// 	}
-										// })
+										that.$http.get({
+											url: '/v1/rest/pay/wechatPayCallback',
+											data: {
+												type: 'fail',
+												orderNo: that.orderNo,
+												clubId: that.clubId
+											}
+										}).then(resp => {
+											console.log(resp)
+											if(resp.status == 200) {
+												uni.showToast({
+													title: resp.data.message,
+													duration: 2000,
+													icon: 'none'
+												});
+											}
+										})
 									}
 								});
 							}
@@ -242,7 +241,7 @@
 							console.log(resp)
 							if(resp.status == 200) {
 								uni.showToast({
-									title: resp.data.message,
+									title: resp.info,
 									duration: 2000,
 									icon: 'none'
 								});

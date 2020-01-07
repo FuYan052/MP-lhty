@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/userCenter/editUserInfo/editUserInfo",
     "pages/tabBar/badminton/badminton",
+    "pages/groupOwnerManage/editActivitie/editActivitie",
+    "pages/userCenter/myActivities/myActivities",
     "pages/tabBar/userCenter/userCenter",
     "pages/club/clubMember/clubMember",
     "pages/club/homePage/homePage",
@@ -17,7 +18,6 @@
     "pages/groupOwnerManage/spotCharge/spotCharge",
     "pages/groupOwnerManage/activitySettlement/activitySettlement",
     "pages/groupOwnerManage/attendanceManage/attendanceManage",
-    "pages/groupOwnerManage/editActivitie/editActivitie",
     "pages/groupOwnerManage/editMemberInfo/editMemberInfo",
     "pages/groupOwnerManage/capitalDetails/capitalDetails",
     "pages/groupOwnerManage/membershipDetails/membershipDetails",
@@ -26,7 +26,6 @@
     "pages/groupOwnerManage/spotChargeDetial/spotChargeDetial",
     "pages/groupOwnerManage/addMember/addMember",
     "pages/bindPhone/bindPhone",
-    "pages/userCenter/myActivities/myActivities",
     "pages/userCenter/clubEntry/clubEntry",
     "pages/userCenter/managementCenter/managementCenter",
     "pages/groupOwnerManage/signInDetails/signInDetails",

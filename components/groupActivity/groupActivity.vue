@@ -1,20 +1,20 @@
 <template>
 	<view class="groupActivity">
-		<view class="orderItem" v-for="(item,index) in 6" :key='index'>
-			<view class="titleBox">
+		<view class="orderItem" v-for="(item,index) in activityList" :key='index'>
+			<view class="titleBox" @click="toDetail(item)">
 				<view class="text">
-					神羽联盟俱乐部12月31日晚19：00羽毛球神羽联盟俱乐部12月31日晚19：00羽毛球
+					{{item.title}}
 				</view>
 				<van-icon class="arrowIcon" name="arrow" size="28rpx" color='#3c3731'/>
 			</view>
-			<view class="content">
+			<view class="content" @click="toDetail(item)">
 				<view class="imgBox">
-					<image src="https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/manageIcon4.png" style="width: 100%; height: 100%;" mode=""></image>
+					<image :src="item.venueImage" style="width: 100%; height: 100%;" mode=""></image>
 				</view>
 				<view class="detail">
-					<view class="clubName">地点：波利羽毛球馆</view>
-					<view class="date">日期：2019-12-31</view>
-					<view class="time">时间：19:00-21:00</view>
+					<view class="clubName">地点：{{item.venueName}}</view>
+					<view class="date">日期：{{item.time}}</view>
+					<view class="time">时间：{{item.timeStart}}-{{item.timeEnd}}</view>
 				</view>
 			</view>
 			<view class="btnBox">
@@ -22,8 +22,8 @@
 					<text v-show="showPeople">共：{{signUpPeople}}人报名</text>
 				</view>
 				<view class="left">
-					<view class="btn btn1" v-show="showBtn" @click="clickBtn1(index)">{{btn1Text}}</view>
-					<view class="btn btn2" @click="clickBtn2(index)">{{btn2Text}}</view>
+					<view class="btn btn1" v-show="showBtn" @click="clickBtn1(item)">{{btn1Text}}</view>
+					<view class="btn btn2" @click="clickBtn2(item)">{{btn2Text}}</view>
 				</view>
 			</view>
 		</view>
@@ -32,7 +32,7 @@
 
 <script>
 	export default {
-		props: ['showPeople', 'showBtn2','btn1Text','btn2Text','signUpPeople'],
+		props: ['showPeople', 'showBtn','btn1Text','btn2Text','signUpPeople','activityList'],
 		data() {
 			return {
 				
@@ -45,6 +45,11 @@
 			clickBtn2(index) {
 				this.$emit('handle2',index)
 			},
+			toDetail(item) {
+				uni.navigateTo({
+					url: '/pages/activity/activityDetails/activityDetails?actId=' + item.activitiesId
+				})
+			}
 		}
 	}
 </script> 

@@ -71,7 +71,7 @@
 		data() {
 			return {
 				stateTab: true,
-				loginState: null,
+				// loginState: null,
 				showToLogin: false,
 				showLoginOut: false,
 				menuList: [{id: 1 , title:'我的活动',path: '/pages/userCenter/myActivities/myActivities'},
@@ -86,19 +86,30 @@
 			...mapState(['hasLogin', 'userInfo']),  //对全局变量hasLogin进行监控
 		},
 		created() {
-			this.loginState = uni.getStorageSync('isLogin')
-			if(!this.loginState) {
-				this.showToLogin = true
-				this.stateTab = false
-			}else{
-				this.stateTab = true
-			}
+			// this.loginState = uni.getStorageSync('isLogin')
+			// if(!this.loginState) {
+			// 	this.showToLogin = true
+			// 	this.stateTab = false
+			// }else{
+			// 	this.stateTab = true
+			// }
 		},
 		onShow() {
-			this.loginState = uni.getStorageSync('isLogin')
-			if(!this.loginState) {
+			// this.loginState = uni.getStorageSync('isLogin')
+			// if(!this.loginState) {
+			// 	this.showToLogin = true
+			// 	this.stateTab = false
+			// }else{
+			// 	this.stateTab = true
+			// }
+			
+			const loginState = uni.getStorageSync('isLogin')
+			if(!loginState) {
+				console.log('登录')
 				this.stateTab = false
+				this.showToLogin = true
 			}else{
+				console.log('未登录')
 				this.stateTab = true
 			}
 			if(this.stateTab) {

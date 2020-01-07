@@ -120,6 +120,7 @@
 							showCancel: false,
 							confirmText: '知道了',
 							success: function (res) {
+								uni.navigateBack()
 							}
 						});
 					}

@@ -122,7 +122,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var wPicker = function wPicker() {return Promise.all(/*! import() | components/w-picker/w-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/w-picker/w-picker")]).then(__webpack_require__.bind(null, /*! @/components/w-picker/w-picker.vue */ 346));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var wPicker = function wPicker() {return Promise.all(/*! import() | components/w-picker/w-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/w-picker/w-picker")]).then(__webpack_require__.bind(null, /*! @/components/w-picker/w-picker.vue */ 335));};var _default =
 
 
 
@@ -204,21 +204,78 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   data: function data() {
     return {
+      imgFile: '',
       nickName: '',
       sexValue: '',
-      sexList: [{ 'label': '男', value: 1 }, { 'label': '女', value: 2 }],
+      sexList: [{ label: '男', value: 1 }, { label: '女', value: 2 }],
+      heightList: [],
       heightValue: '',
       birthValue: '',
+      defaultValBirth: ['1990', '06', '15'],
+      workList: [{ label: '', value: '' }, { label: '', value: '' }],
       workValue: '',
       regionValue: '' };
 
   },
-  methods: _defineProperty({
+  onLoad: function onLoad() {var _this = this;
+    // 身高选择列表
+    for (var i = 120; i <= 200; i++) {
+      var item = {
+        label: i + ' cm',
+        value: i };
+
+      this.heightList.push(item);
+    }
+    // 职业选择列表
+    this.$http.get({
+      url: '/v1/rest/public/findDictList',
+      data: {
+        skey: 'occupation' } }).
+
+    then(function (resp) {
+      console.log(resp);
+      if (resp.status == 200) {
+        _this.workList = resp.data;
+      }
+    });
+  },
+  methods: {
+    choiceImg: function choiceImg() {
+      var that = this;
+      // uni.chooseImage({
+      // 	count: 6, //默认9
+      // 	sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      // 	success: function (res) {
+      // 		console.log(res)
+      // 		that.imgFile = res.tempFilePaths
+      // 	}
+      // });
+      uni.chooseImage({
+        count: 1,
+        sizeType: ['original', 'compressed'],
+        success: function success(res) {
+          // 预览图片
+          uni.previewImage({
+            urls: res.tempFilePaths,
+            success: function success(resp) {
+              console.log(resp);
+            }
+            // longPressActions: {
+            // 		success: function(data) {
+            // 				console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+            // 		},
+            // 		fail: function(err) {
+            // 				console.log(err.errMsg);
+            // 		}
+            // }
+          });
+        } });
+
+    },
     InputNickName: function InputNickName(v) {
       this.nickName = v.detail;
     },
     selectSex: function selectSex() {
-      this.columns = this.sexList;
       this.$refs.picker1.show();
     },
     confirmSex: function confirmSex(v) {
@@ -226,36 +283,33 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     },
     // 选择身高
     selectHeight: function selectHeight(v) {
-      this.columns = this.sexList;
-      this.$refs.picker1.show();
+      this.$refs.picker2.show();
     },
     confirmHeight: function confirmHeight(v) {
-      this.sexValue = v.result;
+      this.heightValue = v.result;
     },
     // 选择生日
     selectBirth: function selectBirth(v) {
-      this.columns = this.sexList;
-      this.$refs.picker1.show();
+      this.$refs.picker3.show();
     },
     confirmBirth: function confirmBirth(v) {
       this.birthValue = v.result;
     },
     // 选择职业
     selectWork: function selectWork(v) {
-      this.columns = this.sexList;
-      this.$refs.picker1.show();
+      this.$refs.picker4.show();
     },
     confirmWork: function confirmWork(v) {
-      this.sexValue = v.result;
+      this.workValue = v.result;
     },
     // 选择地区
     selectRegion: function selectRegion(v) {
-      this.columns = this.sexList;
-      this.$refs.picker1.show();
-    } }, "confirmWork", function confirmWork(
-  v) {
-    this.sexValue = v.result;
-  }) };exports.default = _default;
+      this.$refs.picker5.show();
+    },
+    confirmRegion: function confirmRegion(v) {
+      this.regionValue = v.result;
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
