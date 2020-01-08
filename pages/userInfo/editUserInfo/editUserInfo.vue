@@ -55,6 +55,16 @@
 					<van-icon name="arrow" />
 				</view>
 			</view>
+			<!-- 标签部分 -->
+			<view class="wrap whiteBg">
+				<view class="title">标签</view>
+				<view class="itemBox">
+					<view class="addBtn" @click="selectLabel"><van-icon name="plus" size='24rpx' color='#aaaaaa' /></view>
+					<view class="itemLabel" v-for="(item,index) in selectedList" :key="index">
+						{{item.label}}
+					</view>
+				</view>
+			</view>
 		</view>
 		<view class="bottom">
 			<view class="btn myButton">保存</view>
@@ -90,7 +100,8 @@
 				defaultValBirth: ['1990','06','15'],
 				workList: [{label: '',value: ''},{label: '',value: ''}],
 				workValue: '',
-				regionValue: ''
+				regionValue: '',
+				selectedList: [{label: '羽毛球',value: 1},{label: '跑步',value: 2},{label: '自驾游',value: 3},{label: '自驾游自驾游',value: 3}]
 			}
 		},
 		onLoad() {
@@ -103,48 +114,27 @@
 				this.heightList.push(item)
 			}
 			// 职业选择列表
-			this.$http.get({
-				url: '/v1/rest/public/findDictList',
-				data:{
-					skey: 'occupation',
-				}
-			}).then(resp => {
-				console.log(resp)
-				if(resp.status == 200) {
-					this.workList = resp.data
-				}
-			})
+			// this.$http.get({
+			// 	url: '/v1/rest/public/findDictList',
+			// 	data:{
+			// 		skey: 'occupation',
+			// 	}
+			// }).then(resp => {
+			// 	console.log(resp)
+			// 	if(resp.status == 200) {
+			// 		this.workList = resp.data
+			// 	}
+			// })
 		},
 		methods: {
 			choiceImg() {
 				const that = this
-				// uni.chooseImage({
-				// 	count: 6, //默认9
-				// 	sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-				// 	success: function (res) {
-				// 		console.log(res)
-				// 		that.imgFile = res.tempFilePaths
-				// 	}
-				// });
 				uni.chooseImage({
-					count: 1,
-					sizeType: ['original', 'compressed'],
-					success: function(res) {
-							// 预览图片
-							uni.previewImage({
-									urls: res.tempFilePaths,
-									success: function(resp) {
-										console.log(resp)
-									}
-									// longPressActions: {
-									// 		success: function(data) {
-									// 				console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
-									// 		},
-									// 		fail: function(err) {
-									// 				console.log(err.errMsg);
-									// 		}
-									// }
-							});
+					count: 6, //默认9
+					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+					success: function (res) {
+						console.log(res)
+						that.imgFile = res.tempFilePaths
 					}
 				});
 			},
@@ -217,6 +207,7 @@
 					align-items: center;
 					.title{
 						width: 130rpx;
+						font-size: 28rpx;
 						text-align-last: justify;
 						color: #4f4d4e;
 					}
@@ -249,6 +240,55 @@
 				}
 				.region{
 					border: none;
+				}
+			}
+			.wrap{
+				width: 100%;
+				min-height: 188rpx;
+				margin-top: 30rpx;
+				box-sizing: border-box;
+				padding: 0 32rpx;
+				.title{
+					width: 130rpx;
+					height: 76rpx;
+					line-height: 76rpx;
+					font-size: 28rpx;
+					text-align-last: justify;
+					color: #4f4d4e;
+				}
+				.itemBox{
+					width: 100%;
+					height: auto;
+					font-size: 0;
+					margin-top: 20rpx;
+					display: flex;
+					flex-wrap: wrap;
+					.addBtn{
+						width: 100rpx;
+						height: 46rpx;
+						color: #aaaaaa;
+						border: 1rpx solid #aaaaaa;
+						border-radius: 25rpx;
+						font-weight: bold;
+						margin-bottom: 30rpx;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						margin-right: 18rpx;
+					}
+					.itemLabel{
+						width: 157rpx;
+						height: 46rpx;
+						line-height: 46rpx;
+						border: 1rpx solid #f9c31b;
+						color: #f9c21f;
+						background: #fcebb8;
+						border-radius: 25rpx;
+						text-align: center;
+						font-size: 23rpx;
+						margin-right: 18rpx;
+						margin-bottom: 30rpx;
+					}
 				}
 			}
 		}

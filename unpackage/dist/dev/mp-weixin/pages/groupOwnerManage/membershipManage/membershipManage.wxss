@@ -32,7 +32,7 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 0 24rpx;
-  padding-bottom: 40rpx;
+  padding-bottom: 60rpx;
 }
 .membershipManage .searchBox.data-v-0b4ebd69 {
     width: 100%;
@@ -68,7 +68,6 @@
     overflow: auto;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    padding-bottom: 60rpx;
     -webkit-box-flex: 1;
     -webkit-flex: 1;
         -ms-flex: 1;
@@ -77,7 +76,7 @@
 .membershipManage .contentBox .itemBox.data-v-0b4ebd69 {
       width: 100%;
       height: auto;
-      margin-top: 23rpx;
+      margin-bottom: 23rpx;
       background: #fff;
       border-radius: 15rpx;
 }
@@ -112,11 +111,30 @@
             margin-left: 40rpx;
 }
 .membershipManage .contentBox .itemBox .detail .top .info .name.data-v-0b4ebd69 {
-              line-height: 40rpx;
-              overflow: hidden;
-              white-space: nowrap;
-              -o-text-overflow: ellipsis;
-                 text-overflow: ellipsis;
+              width: 420rpx;
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+}
+.membershipManage .contentBox .itemBox .detail .top .info .name .text.data-v-0b4ebd69 {
+                max-width: 330rpx;
+                overflow: hidden;
+                white-space: nowrap;
+                -o-text-overflow: ellipsis;
+                   text-overflow: ellipsis;
+}
+.membershipManage .contentBox .itemBox .detail .top .info .name .sexIcon.data-v-0b4ebd69 {
+                display: block;
+                width: 34rpx;
+                height: 34rpx;
+                margin-left: 15rpx;
+                background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/mIcon.png") no-repeat center;
+                background-size: 24rpx auto;
+}
+.membershipManage .contentBox .itemBox .detail .top .info .name .sex2.data-v-0b4ebd69 {
+                background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/wIcon.png") no-repeat center;
+                background-size: 22rpx auto;
 }
 .membershipManage .contentBox .itemBox .detail .top .info .phone.data-v-0b4ebd69 {
               line-height: 48rpx;
@@ -179,5 +197,17 @@
               color: #feba00;
               border: 1rpx solid #ffbc01;
               border-radius: 10rpx;
+}
+.membershipManage .contentChange .itemBox.data-v-0b4ebd69:nth-of-type(1) {
+    margin-top: 20rpx;
+}
+.membershipManage .sectionTitle.data-v-0b4ebd69 {
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding-left: 6rpx;
+    font-size: 30rpx;
 }
 

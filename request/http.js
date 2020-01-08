@@ -22,15 +22,22 @@ function request(url,method,data,header={}){
 				'token': tyToken
       },
       success: function(resp) {
-				// console.log(resp.data)
+				// console.log(resp)
         uni.hideLoading();
 				if (resp.data.status == 200) {
 					resolve(resp.data);
-				}
-				if (resp.data.status == 201) {
+				}else if(resp.data.status == 201) {
+					resolve(resp.data);
 					uni.showToast({
 						title: resp.data.message,
 						duration: 2500,
+						icon: 'none'
+					});
+				}else if(resp.statusCode == 200) {
+					resolve(resp);
+					uni.showToast({
+						title: resp.data.message,
+						duration: 4000,
 						icon: 'none'
 					});
 				}

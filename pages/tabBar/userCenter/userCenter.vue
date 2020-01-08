@@ -70,7 +70,7 @@
 	export default {
 		data() {
 			return {
-				stateTab: true,
+				stateTab: false, //是否重新请求数据
 				// loginState: null,
 				showToLogin: false,
 				showLoginOut: false,
@@ -80,39 +80,19 @@
 									{id: 4, title:'新俱乐部入驻',path: '/pages/userCenter/clubEntry/clubEntry'},
 									{id: 5,title:'常见问题',path: '/pages/userCenter/commonProblem/commonProblem'},],
 				userData: {}
-				}
+			}
 		},
 		computed: {
 			...mapState(['hasLogin', 'userInfo']),  //对全局变量hasLogin进行监控
 		},
 		created() {
-			// this.loginState = uni.getStorageSync('isLogin')
-			// if(!this.loginState) {
-			// 	this.showToLogin = true
-			// 	this.stateTab = false
-			// }else{
-			// 	this.stateTab = true
-			// }
-		},
-		onShow() {
-			// this.loginState = uni.getStorageSync('isLogin')
-			// if(!this.loginState) {
-			// 	this.showToLogin = true
-			// 	this.stateTab = false
-			// }else{
-			// 	this.stateTab = true
-			// }
-			
+			console.log('111')
 			const loginState = uni.getStorageSync('isLogin')
 			if(!loginState) {
-				console.log('登录')
-				this.stateTab = false
+				// this.stateTab = false
 				this.showToLogin = true
 			}else{
-				console.log('未登录')
-				this.stateTab = true
-			}
-			if(this.stateTab) {
+				// this.stateTab = true
 				this.$http.get({
 					url: '/v1/rest/personalCenter/personalCenter',
 					data:{
@@ -126,13 +106,36 @@
 				})
 			}
 		},
-		created() {
-			
-		},
 		onLoad() {
-			// console.log(this.hasLogin)
-			// console.log(this.userInfo)
+			console.log('222')
 		},
+		onShow() {
+			console.log('333')
+			const loginState = uni.getStorageSync('isLogin')
+			console.log(loginState)
+			// if(!loginState) {
+			// 	this.stateTab = false
+			// 	this.showToLogin = true
+			// }else{
+			// 	this.stateTab = true
+			// }
+			// console.log(this.stateTab)
+			// if(this.stateTab) {
+			// 	console.log('非登陆')
+			// 	this.$http.get({
+			// 		url: '/v1/rest/personalCenter/personalCenter',
+			// 		data:{
+			// 			userId: uni.getStorageSync('userInfo').userId,
+			// 		}
+			// 	}).then(resp => {
+			// 		console.log(resp)
+			// 		if(resp.status == 200) {
+			// 			this.userData = resp.data
+			// 		}
+			// 	})
+			// }
+		},
+		
 		methods: {
 			...mapMutations(['logout']),  //对全局方法login进行监控
 			// 我的钱包
@@ -155,7 +158,7 @@
 				uni.removeStorage({  //根据key值移除缓存数据
 					key: 'isLogin'
 				})
-				uni.reLaunch({
+				uni.switchTab({
 					url: '/pages/tabBar/userCenter/userCenter'
 				})
 			},

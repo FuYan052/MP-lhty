@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "个性标签",
+  "usingComponents": {
+    "van-field": "/wxcomponents/vant/dist/field/index",
+    "van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+  }
+}

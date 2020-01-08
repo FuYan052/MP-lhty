@@ -1,6 +1,10 @@
 {
   "pages": [
+    "pages/userCenter/managementCenter/managementCenter",
+    "pages/groupOwnerManage/membershipManage/membershipManage",
     "pages/tabBar/badminton/badminton",
+    "pages/userInfo/tagsPage/tagsPage",
+    "pages/userInfo/editUserInfo/editUserInfo",
     "pages/groupOwnerManage/editActivitie/editActivitie",
     "pages/userCenter/myActivities/myActivities",
     "pages/tabBar/userCenter/userCenter",
@@ -14,7 +18,6 @@
     "pages/userInfo/registerInfo/registerInfo",
     "pages/userInfo/selectionTags/selectionTags",
     "pages/login/login",
-    "pages/groupOwnerManage/membershipManage/membershipManage",
     "pages/groupOwnerManage/spotCharge/spotCharge",
     "pages/groupOwnerManage/activitySettlement/activitySettlement",
     "pages/groupOwnerManage/attendanceManage/attendanceManage",
@@ -27,7 +30,6 @@
     "pages/groupOwnerManage/addMember/addMember",
     "pages/bindPhone/bindPhone",
     "pages/userCenter/clubEntry/clubEntry",
-    "pages/userCenter/managementCenter/managementCenter",
     "pages/groupOwnerManage/signInDetails/signInDetails",
     "pages/groupOwnerManage/searchMember/searchMember",
     "pages/userCenter/myWallet/myWallet",

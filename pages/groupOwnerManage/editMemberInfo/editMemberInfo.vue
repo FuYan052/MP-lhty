@@ -2,9 +2,11 @@
 	<view class="editMemberInfo">
 		<view class="whiteBg topBox">
 			<van-field
+				:value='inputValue'
+				class='inputField'
 				custom-style='padding-right:32rpx'
 				input-align="right"
-				 placeholder="输入备注名称"
+				placeholder="输入备注名称"
 				label="备注"
 				type='number'
 				@change='inputName'
@@ -16,7 +18,7 @@
 				<van-field :value="roleValue" label="角色设计" placeholder="选择角色" input-align="right" right-icon="arrow" size='large' :border='false' readonly />
 			</view>
 		</view>
-		<view class="myButton">
+		<view class="myButton" @click="save">
 			保存
 		</view>
 		<!-- 选择器 -->
@@ -40,10 +42,31 @@
 			return {
 				inputValue: '',
 				columns: [{label: "", value: ''}],
+				optionsList: [],
+				clubStateList: [],
 				pickerType: '',
-				levelValue: '',
-				roleValue: ''
+				levelValue: '',  //等级名称
+				levelId: '',  //等级id
+				roleValue: '',  //角色名称
+				stateId: '',  //角色id
+				userId: '',
+				clubId: '',
 			}
+		},
+		created() {
+			
+		},
+		onLoad(options) {
+			console.log(options)
+			const item = JSON.parse(decodeURIComponent(options.item))
+			console.log(item)
+			this.userId = item.userId
+			this.clubId = '3'
+			this.levelId = item.levelId
+			this.levelValue = item.level
+			this.stateId = item.stateId
+			this.roleValue = item.state
+			this.inputValue = item.roleName
 		},
 		methods: {
 			inputName(v) {
@@ -51,24 +74,82 @@
 			},
 			// 选择级别
 			choiceLevel() {
-				this.columns = [{label: "菜鸟", value: '1'},{label: "初级", value: '2'},{label: "中级", value: '3'},{label: "高级", value: '4'}]
-				this.$refs.picker1.show()
-				this.pickerType = 100
+				// 查询级别
+				this.$http.get({
+					url: '/v1/rest/public/findDictList',
+					data: {
+						skey: 'level'
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						this.optionsList = resp.data
+						this.columns = this.optionsList
+						this.$refs.picker1.show()
+						this.pickerType = 100
+					}
+				})
 			},
 			// 选择角色
 			choiceRole() {
-				this.columns = [{label: "会长", value: '0'},{label: "管理员", value: '1'},{label: "会员", value: '2'},{label: "成员", value: '3'}]
-				this.$refs.picker1.show()
-				this.pickerType = 200
+				// 查询角色
+				this.$http.get({
+					url: '/v1/rest/public/findDictList',
+					data: {
+						skey: 'clubState'
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						// this.optionsList = resp.data
+						this.clubStateList = resp.data.filter(item => {
+							if(item.value != 'clubState_01') {
+								return item
+							}
+						})
+						this.columns = this.clubStateList
+						this.$refs.picker1.show()
+						this.pickerType = 200
+					}
+				})
 			},
 			onConfirm(v) {
 				console.log(v)
 				if(this.pickerType == 100) {
 					this.levelValue = v.checkArr.label
+					this.levelId = v.checkArr.value
 				}
 				if(this.pickerType == 200) {
 					this.roleValue = v.checkArr.label
+					this.stateId = v.checkArr.value
 				}
+			},
+			save() {
+				this.$http.post({
+					url: '/v1/rest/manage/updateMemberInfo',
+					data: {
+						clubId: this.clubId, 
+						level: this.levelId,
+						roleName: this.inputValue,
+						state: this.stateId,
+						userId: this.userId
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						uni.showToast({
+							title: '修改成功！',
+							duration: 1000,
+							icon: 'none'
+						});
+						const timer = setTimeout(function() {
+							uni.redirectTo({
+								url: '/pages/groupOwnerManage/membershipManage/membershipManage?clubId=' + this.clubId
+							})
+							clearTimeout(timer)
+						},500)
+					}
+				})
 			}
 		}
 	}

@@ -11,28 +11,73 @@
 				/>
 			</view>
 		</view>
-		<view class="contentBox">
-			<view class="itemBox" v-for="(item,index) in list" :key='index'>
+		<view class="sectionTitle" v-show="isShowTitle1">管理组</view>
+		<view class="contentBox" :class="{contentChange : !isShowTitle}">
+			<view class="itemBox" v-for="(item,index) in list1" :key='index'>
 				<view class="detail">
 					<view class="top">
 						<view class="imgBox">
 							<image style="width: 100%; height: 100%; border-radius: 50%;"
-								src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg" mode="">
+								:src="item.headPortrait" mode="">
 							</image>
 						</view>
 						<view class="info">
-							<view class="name">文艺青年(男)</view>
-							<view class="phone">18334531374</view>
+							<view class="name">
+								<view class="text">
+									{{item.nickName}} <text v-show="item.roleName">-({{item.roleName}})</text>
+								</view>
+								<view class="sex">
+									<view class="sexIcon sex1" v-if="item.sex == 1"></view>
+									<view class="sexIcon sex2" v-else></view>
+								</view>
+							</view>
+							<view class="phone">{{item.phone}}</view>
 						</view>
 						<view class="levelBox">
-							<view class="role">会长</view>
-							<view class="level">高级</view>
+							<view class="role">{{item.state}}</view>
+							<view class="level">{{item.level}}</view>
 						</view>
 					</view>
 					<view class="bottom">
 						<view class="left"></view>
 						<view class="right">
-							<view class="btn btn1">修改</view>
+							<view class="btn btn1" @click="editUser(item)">修改</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="sectionTitle" v-show="isShowTitle2">普通会员</view>
+		<view class="contentBox">
+			<view class="itemBox" v-for="(item,index) in list2" :key='index'>
+				<view class="detail">
+					<view class="top">
+						<view class="imgBox">
+							<image style="width: 100%; height: 100%; border-radius: 50%;"
+								:src="item.headPortrait" mode="">
+							</image>
+						</view>
+						<view class="info">
+							<view class="name">
+								<view class="text">
+									{{item.nickName}} <text v-show="item.roleName">-({{item.roleName}})</text>
+								</view>
+								<view class="sex">
+									<view class="sexIcon sex1" v-if="item.sex == 1"></view>
+									<view class="sexIcon sex2" v-else></view>
+								</view>
+							</view>
+							<view class="phone">{{item.phone}}</view>
+						</view>
+						<view class="levelBox">
+							<view class="role">{{item.state}}</view>
+							<view class="level">{{item.level}}</view>
+						</view>
+					</view>
+					<view class="bottom">
+						<view class="left"></view>
+						<view class="right">
+							<view class="btn btn1" @click="editUser(item)">修改</view>
 						</view>
 					</view>
 				</view>
@@ -46,14 +91,66 @@
 		data() {
 			return {
 				searchText: '',
-				list: [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9}],
+				isShowTitle: true,
+				list1: [],
+				list2: []
 			}
 		},
-		methods: {
-			onChange(v) {
-				this.searchText = v.detail
-				console.log(this.searchText)
+		computed: {
+			isShowTitle1() {
+				return this.isShowTitle && this.list1.length > 0
 			},
+			isShowTitle2() {
+				return this.isShowTitle && this.list2.length > 0
+			},
+		},
+		onLoad() {
+			this.getCateList()
+		},
+		methods: {
+			getCateList() {
+				this.$http.get({
+					url: '/v1/rest/club/clubMembersInfo',
+					data: {
+						clubId: 3
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						this.list1 = resp.data.clubMembersA
+						this.list2 = this.list2.concat(resp.data.clubMembersE).concat(resp.data.clubMembersD).concat(resp.data.clubMembersC).concat(resp.data.clubMembersB)
+					}
+				})
+			},
+			onChange(v) {
+				this.searchValue = v.detail
+				if(this.searchValue !== '') {
+					this.isShowTitle = false
+					this.$http.get({
+						url: '/v1/rest/club/clubMembersInfokeyWord',
+						data: {
+							clubId: 3,
+							keyWord: this.searchValue
+						}
+					}).then(resp => {
+						console.log(resp)
+						if(resp.status == 200) {
+							this.list2 = []
+							this.isShowTitle = false
+							this.list1 = resp.data
+						}
+					})
+				}else{
+					this.isShowTitle = true
+					this.getCateList()
+				}
+			},
+			editUser(item) {
+				console.log(item)
+				uni.navigateTo({
+					url: '/pages/groupOwnerManage/editMemberInfo/editMemberInfo?item=' + encodeURIComponent(JSON.stringify(item))
+				})
+			}
 		}
 	}
 </script>
@@ -66,7 +163,7 @@
 		overflow: hidden;
 		box-sizing: border-box;
 		padding: 0 24rpx;
-		padding-bottom: 40rpx;
+		padding-bottom: 60rpx;
 		.searchBox{
 			width: 100%;
 			height: 84rpx;
@@ -93,18 +190,15 @@
 			width: 100%;
 			overflow: auto;
 			box-sizing: border-box;
-			padding-bottom: 60rpx;
 			flex: 1;
 			.itemBox{
 				width: 100%;
-				// height: 240rpx; 
 				height: auto;
-				margin-top: 23rpx;
+				margin-bottom: 23rpx;
 				background: #fff;
 				border-radius: 15rpx;
 				.detail{
 					width: 100%;
-					// height: 160rpx;
 					height: auto;
 					box-sizing: border-box;
 					padding: 0 32rpx;
@@ -124,10 +218,26 @@
 							height: 88rpx;
 							margin-left: 40rpx;
 							.name{
-								line-height: 40rpx;
-								overflow: hidden;
-								white-space: nowrap;
-								text-overflow: ellipsis;
+								width: 420rpx;
+								display: flex;
+								.text{
+									max-width: 330rpx;
+									overflow: hidden;
+									white-space: nowrap;
+									text-overflow: ellipsis;
+								}
+								.sexIcon{
+									display: block;
+									width: 34rpx;
+									height: 34rpx;
+									margin-left: 15rpx;
+									background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/mIcon.png') no-repeat center;
+									background-size: 24rpx auto;
+								}
+								.sex2{
+									background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/wIcon.png') no-repeat center;
+									background-size: 22rpx auto;
+								}
 							}
 							.phone{
 								line-height: 48rpx;
@@ -180,6 +290,19 @@
 					}
 				}
 			}
+		}
+		.contentChange{
+			.itemBox:nth-of-type(1){
+				margin-top: 20rpx;
+			}
+		}
+		.sectionTitle{
+			width: 100%;
+			height: 100rpx;
+			line-height: 100rpx;
+			box-sizing: border-box;
+			padding-left: 6rpx;
+			font-size: 30rpx;
 		}
 	}
 </style>

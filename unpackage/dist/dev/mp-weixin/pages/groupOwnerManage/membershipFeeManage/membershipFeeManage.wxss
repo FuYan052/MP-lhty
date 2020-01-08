@@ -112,11 +112,30 @@
             margin-left: 40rpx;
 }
 .membershipFeeManage .contentBox .itemBox .detail .top .info .name.data-v-b38da816 {
-              line-height: 40rpx;
-              overflow: hidden;
-              white-space: nowrap;
-              -o-text-overflow: ellipsis;
-                 text-overflow: ellipsis;
+              width: 420rpx;
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+}
+.membershipFeeManage .contentBox .itemBox .detail .top .info .name .text.data-v-b38da816 {
+                max-width: 330rpx;
+                overflow: hidden;
+                white-space: nowrap;
+                -o-text-overflow: ellipsis;
+                   text-overflow: ellipsis;
+}
+.membershipFeeManage .contentBox .itemBox .detail .top .info .name .sexIcon.data-v-b38da816 {
+                display: block;
+                width: 34rpx;
+                height: 34rpx;
+                margin-left: 15rpx;
+                background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/mIcon.png") no-repeat center;
+                background-size: 24rpx auto;
+}
+.membershipFeeManage .contentBox .itemBox .detail .top .info .name .sex2.data-v-b38da816 {
+                background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/wIcon.png") no-repeat center;
+                background-size: 22rpx auto;
 }
 .membershipFeeManage .contentBox .itemBox .detail .top .info .phone.data-v-b38da816 {
               line-height: 48rpx;

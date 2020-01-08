@@ -13,7 +13,7 @@
 					活跃度&nbsp;&nbsp;{{clubInfo.activityLevel}}
 				</view>
 			</view>
-			<view class="jionClub">加入俱乐部</view>
+			<view class="jionClub" @click="jionClub">加入俱乐部</view>
 		</view>
 		<!-- 活动周期表 -->
 		<view class="weekActive">
@@ -53,8 +53,8 @@
 					</view>
 				</view>
 				<!-- 箭头 -->
-				<view class="arrowWrap" @click="handleShow2">
-					<van-icon v-if="!isShow2" color='#787878' name="arrow-down"/>
+				<view class="arrowWrap" @click="handleShow2" :class="{hiddenWrap: !showListArrow}">
+					<van-icon v-if="(!isShow2)" color='#787878' name="arrow-down"/>
 					<van-icon v-else color='#787878' name="arrow-up" />
 				</view>
 			</view>
@@ -62,7 +62,7 @@
 		<!-- 俱乐部介绍 -->
 		<view class="clubIntroduce">
 			<view class="sectionTitle">俱乐部介绍</view>
-			<view class="intrDetail">{{clubInfo.content}}</view>
+			<view class="intrDetail">{{clubInfo.content || ' '}}</view>
 		</view>
 	</view>
 </template>
@@ -80,6 +80,11 @@
 				clubInfo: {}
 			}
 		},
+		computed: {
+			showListArrow () {
+				return this.actList2.length > 0
+			}
+		},
 		mounted() {
 			this.$nextTick(function(){
 				this.$http.get({
@@ -93,8 +98,6 @@
 						this.clubInfo = resp.data
 						this.actList1 = resp.data.clubActivityWeekList.slice(0,3)
 						this.actList2 = resp.data.clubActivityWeekList.slice(3)
-						console.log(this.actList1)
-						console.log(this.actList2)
 					}
 				})
 			})
@@ -105,7 +108,25 @@
 			},
 			toMember() {
 				uni.navigateTo({
-					url: '/pages/club/clubMember/clubMember'
+					url: '/pages/club/clubMember/clubMember?clubId=' + this.clubInfo.clubId
+				})
+			},
+			jionClub() {
+				this.$http.get({
+					url: '/v1/rest/club/addClub',
+					data: {
+						clubId: this.clubInfo.clubId,
+						userId: uni.getStorageSync('userInfo').userId
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						uni.showToast({
+							title: resp.data.message,
+							duration: 2000,
+							icon: 'none'
+						});
+					}
 				})
 			}
 		}
@@ -168,7 +189,7 @@
 		}
 		.weekActive{
 			width: 100%;
-			min-height: 440rpx;
+			min-height: 240rpx;
 			background: #fff;
 			border-radius: 26rpx;
 			margin-top: 20rpx;
@@ -308,6 +329,9 @@
 				line-height: 45rpx;
 				margin-top: 23rpx;
 			}
+		}
+		.hiddenWrap{
+			display: none !important;
 		}
 	}
 </style>

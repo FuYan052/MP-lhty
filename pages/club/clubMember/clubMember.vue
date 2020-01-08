@@ -11,45 +11,137 @@
 				/>
 			</view>
 		</view>
-		<view class="sectionTitle" v-show="isShowTitle">管理组</view>
-		<view class="contentBox contentBox1" :class="{contentChange : !isShowTitle}">
+		<!-- 管理组 -->
+		<view class="sectionTitle" v-show="isShowTitle1">管理组</view>
+		<view class="contentBox contentBox1" :class="{contentChange : !isShowTitle}" v-show="isShowTitle">
 			<view class="itemBox" v-for="(item,index) in list1" :key='index'>
 				<view class="detail">
 					<view class="top">
 						<view class="imgBox">
 							<image style="width: 100%; height: 100%; border-radius: 50%;"
-								src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg" mode="">
+								:src="item.headPortrait" mode="">
 							</image>
 						</view>
 						<view class="info">
-							<view class="name">文艺青年(男)</view>
-							<view class="phone">18334531374</view>
+							<view class="name">{{item.nickName}}</view>
+							<text class="text1" v-if="item.sex == 1"></text><text class="text2" v-else></text>
 						</view>
 						<view class="levelBox">
-							<view class="role">会长</view>
-							<view class="level">高级</view>
+							<view class="role">{{item.state}}</view>
+							<view class="level">{{item.level}}</view>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
-		<view class="sectionTitle" v-show="isShowTitle">普通会员</view>
-		<view class="contentBox contentBox2">
+		<!-- 高级 -->
+		<view class="sectionTitle" v-show="isShowTitle2">高级</view>
+		<view class="contentBox contentBox2" :class="{contentChange : !isShowTitle}" v-show="isShowTitle">
 			<view class="itemBox" v-for="(item,index) in list2" :key='index'>
 				<view class="detail">
 					<view class="top">
 						<view class="imgBox">
 							<image style="width: 100%; height: 100%; border-radius: 50%;"
-								src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg" mode="">
+								:src="item.headPortrait" mode="">
 							</image>
 						</view>
 						<view class="info">
-							<view class="name">文艺青年(男)</view>
-							<view class="phone">18334531374</view>
+							<view class="name">{{item.nickName}}</view>
+							<text class="text1" v-if="item.sex == 1"></text><text class="text2" v-else></text>
 						</view>
 						<view class="levelBox">
-							<view class="role">会长</view>
-							<view class="level">高级</view>
+							<view class="role">{{item.state}}</view>
+							<view class="level">{{item.level}}</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 中级 -->
+		<view class="sectionTitle" v-show="isShowTitle3">中级</view>
+		<view class="contentBox contentBox2" :class="{contentChange : !isShowTitle}" v-show="isShowTitle">
+			<view class="itemBox" v-for="(item,index) in list3" :key='index'>
+				<view class="detail">
+					<view class="top">
+						<view class="imgBox">
+							<image style="width: 100%; height: 100%; border-radius: 50%;"
+								:src="item.headPortrait" mode="">
+							</image>
+						</view>
+						<view class="info">
+							<view class="name">{{item.nickName}}</view>
+							<text class="text1" v-if="item.sex == 1"></text><text class="text2" v-else></text>
+						</view>
+						<view class="levelBox">
+							<view class="role">{{item.state}}</view>
+							<view class="level">{{item.level}}</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 初级 -->
+		<view class="sectionTitle" v-show="isShowTitle4">初级</view>
+		<view class="contentBox contentBox2" :class="{contentChange : !isShowTitle}" v-show="isShowTitle">
+			<view class="itemBox" v-for="(item,index) in list4" :key='index'>
+				<view class="detail">
+					<view class="top">
+						<view class="imgBox">
+							<image style="width: 100%; height: 100%; border-radius: 50%;"
+								:src="item.headPortrait" mode="">
+							</image>
+						</view>
+						<view class="info">
+							<view class="name">{{item.nickName}}</view>
+							<text class="text1" v-if="item.sex == 1"></text><text class="text2" v-else></text>
+						</view>
+						<view class="levelBox">
+							<view class="role">{{item.state}}</view>
+							<view class="level">{{item.level}}</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 菜鸟 -->
+		<view class="sectionTitle" v-show="isShowTitle5">菜鸟</view>
+		<view class="contentBox contentBox2" :class="{contentChange : !isShowTitle}" v-show="isShowTitle">
+			<view class="itemBox" v-for="(item,index) in list5" :key='index'>
+				<view class="detail">
+					<view class="top">
+						<view class="imgBox">
+							<image style="width: 100%; height: 100%; border-radius: 50%;"
+								:src="item.headPortrait" mode="">
+							</image>
+						</view>
+						<view class="info">
+							<view class="name">{{item.nickName}}</view>
+							<text class="text1" v-if="item.sex == 1"></text><text class="text2" v-else></text>
+						</view>
+						<view class="levelBox">
+							<view class="role">{{item.state}}</view>
+							<view class="level">{{item.level}}</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 搜索结果列表 -->
+		<view class="contentBox contentBox2" :class="{contentChange : !isShowTitle}" v-show="!isShowTitle">
+			<view class="itemBox" v-for="(item,index) in list6" :key='index'>
+				<view class="detail">
+					<view class="top">
+						<view class="imgBox">
+							<image style="width: 100%; height: 100%; border-radius: 50%;"
+								:src="item.headPortrait" mode="">
+							</image>
+						</view>
+						<view class="info">
+							<view class="name">{{item.nickName}}<text v-if="item.sex == 1">(男)</text><text v-else>(女)</text></view>
+						</view>
+						<view class="levelBox">
+							<view class="role">{{item.state}}</view>
+							<view class="level">{{item.level}}</view>
 						</view>
 					</view>
 				</view>
@@ -62,19 +154,76 @@
 	export default {
 		data() {
 			return {
-				list1: [{id:1},{id:2},{id:3},{id:4}],
-				list2: [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9}],
+				list1: [],
+				list2: [],
+				list3: [],
+				list4: [],
+				list5: [],
+				list6: [],
 				searchValue: '',
-				isShowTitle: true
+				isShowTitle: true,
+				clubId: ''
 			}
 		},
+		computed: {
+			isShowTitle1() {
+				return this.isShowTitle && this.list1.length > 0
+			},
+			isShowTitle2() {
+				return this.isShowTitle && this.list2.length > 0
+			},
+			isShowTitle3() {
+				return this.isShowTitle && this.list3.length > 0
+			},
+			isShowTitle4() {
+				return this.isShowTitle && this.list4.length > 0
+			},
+			isShowTitle5() {
+				return this.isShowTitle && this.list5.length > 0
+			},
+		},
+		onLoad(options) {
+			this.clubId = options.clubId
+			this.getCateList()
+		},
 		methods: {
+			// 分组成员
+			getCateList() {
+				this.$http.get({
+					url: '/v1/rest/club/clubMembersInfo',
+					data: {
+						clubId: this.clubId
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						this.list1 = resp.data.clubMembersA
+						this.list2 = resp.data.clubMembersE
+						this.list3 = resp.data.clubMembersD
+						this.list4 = resp.data.clubMembersC
+						this.list5 = resp.data.clubMembersB
+					}
+				})
+			},
 			onChange(v) {
 				this.searchValue = v.detail
-				if(this.isShowTitle != '') {
+				if(this.searchValue !== '') {
 					this.isShowTitle = false
+					this.$http.get({
+						url: '/v1/rest/club/clubMembersInfokeyWord',
+						data: {
+							clubId: this.clubId,
+							keyWord: this.searchValue
+						}
+					}).then(resp => {
+						console.log(resp)
+						if(resp.status == 200) {
+							this.list6 = resp.data
+						}
+					})
 				}else{
 					this.isShowTitle = true
+					this.getCateList()
 				}
 			}
 		}
@@ -153,14 +302,30 @@
 							font-size: 27rpx;
 							height: 88rpx;
 							margin-left: 40rpx;
+							display: flex;
+							align-items: center;
 							.name{
-								line-height: 40rpx;
+								max-width: 370rpx;
+								line-height: 88rpx;
 								overflow: hidden;
 								white-space: nowrap;
 								text-overflow: ellipsis;
 							}
-							.phone{
-								line-height: 48rpx;
+							.text1{
+								display: block;
+								width: 34rpx;
+								height: 34rpx;
+								margin-left: 12rpx;
+								background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/mIcon.png') no-repeat center;
+								background-size: 24rpx auto;
+							}
+							.text2{
+								display: block;
+								width: 34rpx;
+								height: 34rpx;
+								margin-left: 15rpx;
+								background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/wIcon.png') no-repeat center;
+								background-size: 22rpx auto;
 							}
 						}
 						.levelBox{

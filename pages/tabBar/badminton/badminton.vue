@@ -182,7 +182,6 @@
 			},
 			// 俱乐部
 			toClubId(item) {
-				console.log(item)
 				uni.navigateTo({
 					url: '/pages/club/homePage/homePage?clubId=' + item.clubId
 				})
