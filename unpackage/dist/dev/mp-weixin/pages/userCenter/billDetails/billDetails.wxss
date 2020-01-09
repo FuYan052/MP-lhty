@@ -28,6 +28,7 @@
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
+  background: #dedede;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 0 32rpx;
@@ -42,10 +43,17 @@
     overflow: hidden;
     padding-bottom: 50rpx;
 }
+.billDetails .whiteBg .imgbox.data-v-1497ff70 {
+      width: 80rpx;
+      height: 80rpx;
+      border-radius: 50%;
+      margin: 10rpx auto;
+      margin-top: 40rpx;
+}
 .billDetails .whiteBg .top.data-v-1497ff70 {
       width: 100%;
-      height: 132rpx;
-      line-height: 150rpx;
+      height: 90rpx;
+      line-height: 60rpx;
       text-align: center;
       font-size: 33rpx;
       color: #ea470e;
@@ -80,5 +88,8 @@
 }
 .billDetails .whiteBg .itemLast .right.data-v-1497ff70 {
       line-height: 40rpx;
+}
+.billDetails .isNotIncome.data-v-1497ff70 {
+    color: #383838;
 }
 

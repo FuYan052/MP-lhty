@@ -4,27 +4,28 @@
 			<view class="userInfo">
 				<view class="imgBox">
 					<image :lazy-load='false' style="width: 100%; height: 100%; border-radius: 50%;"
-						src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg" mode="">
+						:src="headImg" mode="">
 					</image>
 				</view>
-				<view class="name">文艺青年(笑笑)</view>
+				<view class="name">{{name}}<text v-show="roleName">({{roleName}})</text></view>
 			</view>
 			<view class="title">账户余额</view>
 			<view class="moneyBox">
-				<view class="num">576.00</view>
+				<view class="num">{{money}}</view>
 				<view class="btn" @click="handleAdjust">调整会费</view>
 			</view>
 		</view>
 		<view class="detailBox">
 			<view class="title">会费变更记录</view>
-			<view class="detailItem" v-for="(item,index) in 10" :key='index'>
+			<view class="detailItem" v-for="(item,index) in list" :key='index'>
 				<view class="left">
-					<view class="type">会员充值</view>
-					<view class="date">日期：2019-12-31</view>
+					<view class="type">{{item.payState}}</view>
+					<view class="date">日期：{{item.createTime}}</view>
 				</view>
 				<view class="right">
-					<view class="number">+￥200.00</view>
-					<view class="name">张丽</view>
+					<view class="number n1" v-if="item.algorithmType">+￥{{item.totalMoney}}</view>
+					<view class="number n2" v-else>-￥{{item.totalMoney}}</view>
+					<view class="name">{{item.nickName}}</view>
 				</view>
 			</view>
 		</view>
@@ -35,13 +36,45 @@
 	export default {
 		data() {
 			return {
-				
+				userId: '',
+				clubId: '',
+				headImg: '',
+				name: '',
+				money: '',
+				roleName: null,
+				list: []
 			}
+		},
+		onLoad(options) {
+			this.userId = options.userId
+			this.clubId = options.clubId
+		},
+		onShow() {
+			this.$http.get({
+				url: '/v1/rest/manage/membershipFeeDetailed',
+				data: {
+					userId: this.userId,
+					clubId: this.clubId
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.headImg = resp.data.headPortrait
+					this.name = resp.data.nickName
+					this.roleName = resp.data.roleName
+					this.money = resp.data.totalMoney
+					this.list = resp.data.feeDetailedBackVoList
+				}
+			})
 		},
 		methods: {
 			handleAdjust() {
+				const item = {
+					totalMoney: this.money,
+					userId: this.userId
+				}
 				uni.navigateTo({
-					url: '/pages/groupOwnerManage/costAdjust/costAdjust'
+					url: '/pages/groupOwnerManage/costAdjust/costAdjust?item=' + encodeURIComponent(JSON.stringify(item))
 				})
 			}
 		}
@@ -140,10 +173,14 @@
 						line-height: 46rpx;
 						font-weight: 600;
 					}
+					.n2{
+						color: #2c2c2c;
+					}
 					.name{
 						font-size: 24rpx;
 						line-height: 44rpx;
 						color: #8a8a8a;
+						text-align: right;
 					}
 				}
 			}

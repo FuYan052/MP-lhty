@@ -224,6 +224,23 @@ var _default =
       }
     });
   },
+  onPullDownRefresh: function onPullDownRefresh() {var _this2 = this;
+    console.log('refresh');
+    this.$http.get({
+      url: '/v1/rest/home/signUpDetails',
+      data: {
+        activitiesId: this.activityId,
+        userId: uni.getStorageSync('userInfo').userId } }).
+
+    then(function (resp) {
+      console.log(resp);
+      uni.stopPullDownRefresh();
+      if (resp.status == 200) {
+        _this2.actDetail = resp.data;
+        _this2.clubId = resp.data.clubId;
+      }
+    });
+  },
   methods: {
     // 选择性别男
     choiceSex1: function choiceSex1() {
@@ -267,11 +284,11 @@ var _default =
     // 充值
     Recharge: function Recharge() {
       uni.navigateTo({
-        url: '/pages/userCenter/recharge/recharge?clubId' + this.clubId });
+        url: '/pages/userCenter/membershipFeeRecharge/membershipFeeRecharge?clubId' + this.clubId });
 
     },
     // 提交报名
-    submit: function submit() {var _this2 = this;
+    submit: function submit() {var _this3 = this;
       var that = this;
       if (!this.isMen && !this.isWomen) {
         uni.showToast({
@@ -304,7 +321,7 @@ var _default =
           then(function (resp) {
             console.log(resp);
             if (resp.status == 200) {
-              _this2.orderNo = resp.data.orderNo;
+              _this3.orderNo = resp.data.orderNo;
               uni.requestPayment({
                 provider: 'wxpay',
                 timeStamp: resp.data.timeStamp,

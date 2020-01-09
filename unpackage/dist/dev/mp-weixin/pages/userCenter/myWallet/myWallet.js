@@ -150,6 +150,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
 
@@ -158,14 +159,29 @@ var _default =
       total: '' };
 
   },
-  onLoad: function onLoad(options) {
-    this.total = options.totalMoney;
+  created: function created() {var _this = this;
+    this.$http.get({
+      url: '/v1/rest/personalCenter/personalCenter',
+      data: {
+        userId: uni.getStorageSync('userInfo').userId } }).
+
+    then(function (resp) {
+      console.log(resp);
+      if (resp.status == 200) {
+        _this.total = resp.data.totalMoney;
+      }
+    });
   },
   methods: {
     // 充值
     handleRecharge: function handleRecharge() {
       uni.navigateTo({
         url: '/pages/userCenter/recharge/recharge' });
+
+    },
+    toDetail: function toDetail() {
+      uni.navigateTo({
+        url: '/pages/userCenter/accountDetails/accountDetails' });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

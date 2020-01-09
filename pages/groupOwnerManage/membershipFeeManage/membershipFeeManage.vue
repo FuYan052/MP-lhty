@@ -42,8 +42,8 @@
 							余额：{{item.totalMoney}}元
 						</view>
 						<view class="right">
-							<view class="btn btn1">会费明细</view>
-							<view class="btn btn2">调整会费</view>
+							<view class="btn btn1" @click="moneyDetail(item)">会费明细</view>
+							<view class="btn btn2" @click="changeMoney(item)">调整会费</view>
 						</view>
 					</view>
 				</view>
@@ -61,10 +61,15 @@
 			}
 		},
 		onLoad() {
+			
+		},
+		onShow() {
+			console.log("刷新")
 			this.getCateList()
 		},
 		methods: {
 			getCateList() {
+				this.list = []
 				this.$http.get({
 					url: '/v1/rest/club/clubMembersInfo',
 					data: {
@@ -98,6 +103,16 @@
 					this.getCateList()
 				}
 			},
+			changeMoney(item) {
+				uni.navigateTo({
+					url: '/pages/groupOwnerManage/costAdjust/costAdjust?item=' + encodeURIComponent(JSON.stringify(item))
+				})
+			},
+			moneyDetail(item) {
+				uni.navigateTo({
+					url: '/pages/groupOwnerManage/membershipDetails/membershipDetails?clubId=' + item.clubId + '&userId=' + item.userId
+				})
+			}
 		}
 	}
 </script>

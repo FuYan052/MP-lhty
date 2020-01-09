@@ -1,6 +1,6 @@
 <template>
 	<view class="accountDetails">
-		<view class="topBox">
+		<!-- <view class="topBox">
 			<view class="date">2019年12月<van-icon name="arrow-down" size='25rpx'/></view>
 			<view class="search1" v-show="show1" @click="handleShow1"><van-icon name="search" size='28rpx'/></view>
 			<view class="search2" v-show="!show1">
@@ -12,18 +12,20 @@
 				  <view slot="action" @click="onClick">搜索</view>
 				</van-search>
 			</view>
-		</view>
+		</view> -->
 		<view class="content whiteBg">
 			<view class="itemBox" v-for="(item,index) in list" :key='index' @click="toDetail(item)">
 				<view class="box1">
-					{{item.title}}
+					<view class="imgBox">
+						<image :src="item.headPortrait" mode="" style="width: 100%; height: 100%; border-radius: 50%;"></image>
+					</view>
 				</view>
 				<view class="box2">
 					<view class="left">
-						<view class="user">{{item.name}}</view>
-						<view class="time">{{item.time}}</view>
+						<view class="user">{{item.payUser}}-{{item.phone}}</view>
+						<view class="time"><text>{{item.payType}}</text>{{item.createTime}}</view>
 					</view>
-					<view class="right" :class="{isNotIncome: !item.isIncome}"><text v-if="item.isIncome">+</text><text v-else>-</text>{{item.money}}</view>
+					<view class="right" :class="{isNotIncome: !item.algorithmType}"><text v-if="item.algorithmType">+</text><text v-else>-</text>{{item.totalMoney}}</view>
 				</view>
 			</view>
 		</view>
@@ -36,14 +38,21 @@
 			return {
 				show1: true,
 				searchValue: '',
-				list: [{id: 1,title: '会员报名活动',name: '文文-18884205462',time: '2020-01-15',money: '592.5',isIncome: true},
-							{id: 2,title: '会员报名活动',name: '文文-18884205462',time: '2020-01-15',money: '6492.85',isIncome: true},
-							{id: 3,title: '会员报名活动',name: '文文静静-18884205462',time: '2020-01-15',money: '592.85',isIncome: false},
-							{id: 4,title: '会员报名活动',name: '文文-18884205462',time: '2020-01-15',money: '92.8',isIncome: false},
-							{id: 5,title: '会员报名活动',name: '文文文文静静文文静静文文静静-18884205462',time: '2020-01-15',money: '5625.85',isIncome: true},
-							{id: 6,title: '会员报名活动',name: '文文-18884205462',time: '2020-01-15',money: '692.85',isIncome: false},
-							{id: 7,title: '会员报名活动',name: '文文-18884205462',time: '2020-01-15',money: '52.5',isIncome: true}]
+				list: []
 			}
+		},
+		created() {
+			this.$http.get({
+				url: '/v1/rest/userwallet/userWalletBillList',
+				data: {
+					userId: uni.getStorageSync('userInfo').userId
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.list = resp.data
+				}
+			})
 		},
 		methods: {
 			handleShow1() {
@@ -58,7 +67,7 @@
 			},
 			toDetail(item) {
 				uni.navigateTo({
-					url: '/pages/userCenter/billDetails/billDetails?id=' + item.id
+					url: '/pages/userCenter/billDetails/billDetails?id=' + item.userWalletBillId
 				})
 			}
 		}
@@ -69,8 +78,10 @@
 	.accountDetails{
 		width: 100%;
 		min-height: 100vh;
+		background: #dedede;
 		box-sizing: border-box;  
 		padding: 0 32rpx;
+		padding-top: 30rpx;
 		.topBox{
 			width: 100%;
 			height: 72rpx;
@@ -147,14 +158,17 @@
 				display: flex;
 				align-items: center;
 				.box1{
-					width: 75rpx;
-					height: 72rpx;
-					border-right: 1rpx dashed #e6e6e6;
-					font-size: 21rpx;
+					width: 115rpx;
+					height: 130rpx;
 					color: #444444;
 					display: flex;
 					align-items: center;
 					overflow: hidden;
+					.imgBox{
+						width: 60rpx;
+						height: 60rpx;
+						border-radius: 50%;
+					}
 				}
 				.box2{
 					flex: 1;
@@ -179,6 +193,11 @@
 							color: #858585;
 							line-height: 24rpx;
 							margin-top: 20rpx;
+							text{
+								font-size: 22rpx;
+								color: #333333;
+								padding-right: 40rpx;
+							}
 						}
 					}
 					.right{

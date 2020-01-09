@@ -14,6 +14,7 @@
 			  title="账户明细"
 			  link-type="navigateTo"
 			  url="/pages/dashboard/index"
+				@click='toDetail'
 			/>
 			<van-cell
 			  is-link
@@ -34,8 +35,18 @@
 				total: ''
 			}
 		},
-		onLoad(options) {
-			this.total = options.totalMoney
+		created() {
+			this.$http.get({
+				url: '/v1/rest/personalCenter/personalCenter',
+				data:{
+					userId: uni.getStorageSync('userInfo').userId,
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.total = resp.data.totalMoney
+				}
+			})
 		},
 		methods: {
 			// 充值
@@ -43,6 +54,11 @@
 				uni.navigateTo({
 				  url: '/pages/userCenter/recharge/recharge'
 				});
+			},
+			toDetail() {
+				uni.navigateTo({
+					url: '/pages/userCenter/accountDetails/accountDetails'
+				})
 			}
 		}
 	}

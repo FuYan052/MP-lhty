@@ -1,12 +1,73 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/groupOwnerManage/membershipFeeManage/membershipFeeManage",
+			"style": {
+				"navigationBarTitleText": "会费管理",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f4f4f4",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index"
+				}
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/costAdjust/costAdjust",
+			"style": {
+				"navigationBarTitleText": "会费调整",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f4f4f4",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index"
+				}
+			}
+		},
+		{
+			"path": "pages/userCenter/recharge/recharge",
+			"style": {
+				"navigationBarTitleText": "充值",
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/dist/cell/index",
+					"van-field": "/wxcomponents/vant/dist/field/index"
+				}
+			}
+		},
+		{
+			"path": "pages/userCenter/membershipFeeRecharge/membershipFeeRecharge",
+			"style": {
+				"navigationBarTitleText": "会费充值",
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/dist/cell/index",
+					"van-field": "/wxcomponents/vant/dist/field/index"
+				}
+			}
+		},
+		{
+			"path": "pages/tabBar/userCenter/userCenter",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/dist/cell/index",
+					"van-dialog": "/wxcomponents/vant/dist/dialog/index"
+				}
+			}
+		},
+		{
 			"path": "pages/userCenter/managementCenter/managementCenter",
 			"style": {
 				"navigationBarTitleText": "管理中心",
 				"navigationBarBackgroundColor": "#f4f4f4",
 				"navigationBarTextStyle": "black",
 				"backgroundColor": "#f4f4f4"
+			}
+		},
+		{
+			"path": "pages/userCenter/getCash/getCash",
+			"style": {
+				"navigationBarTitleText": "提现",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index"
+				}
 			}
 		},
 		{
@@ -62,16 +123,7 @@
 				"backgroundColor": "#f4f4f4"
 			}
 		},
-		{
-			"path": "pages/tabBar/userCenter/userCenter",
-			"style": {
-				"navigationBarTitleText": "个人中心",
-				"usingComponents": {
-					"van-cell": "/wxcomponents/vant/dist/cell/index",
-					"van-dialog": "/wxcomponents/vant/dist/dialog/index"
-				}
-			}
-		},
+		
 		// {
 		// 	"path": "pages/tabBar/bookPlace/bookPlace",
 		// 	"style": {
@@ -221,28 +273,6 @@
 			}
 		},
 		{
-			"path": "pages/groupOwnerManage/membershipFeeManage/membershipFeeManage",
-			"style": {
-				"navigationBarTitleText": "会费管理",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#f4f4f4",
-				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index"
-				}
-			}
-		},
-		{
-			"path": "pages/groupOwnerManage/costAdjust/costAdjust",
-			"style": {
-				"navigationBarTitleText": "会费调整",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#f4f4f4",
-				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index"
-				}
-			}
-		},
-		{
 			"path": "pages/groupOwnerManage/spotChargeDetial/spotChargeDetial",
 			"style": {
 				"navigationBarTitleText": "现场收费",
@@ -315,16 +345,6 @@
 			}
 		},
 		{
-			"path": "pages/userCenter/recharge/recharge",
-			"style": {
-				"navigationBarTitleText": "充值",
-				"usingComponents": {
-					"van-cell": "/wxcomponents/vant/dist/cell/index",
-					"van-field": "/wxcomponents/vant/dist/field/index"
-				}
-			}
-		},
-		{
 			"path": "pages/userCenter/order/order",
 			"style": {
 				"navigationBarTitleText": "订单"
@@ -360,7 +380,8 @@
 		{
 			"path": "pages/activity/pay/pay",
 			"style": {
-				"navigationBarTitleText": "活动报名"
+				"navigationBarTitleText": "活动报名",
+				"enablePullDownRefresh": true
 			}
 		},
 		{

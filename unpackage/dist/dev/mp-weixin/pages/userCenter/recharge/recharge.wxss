@@ -93,7 +93,7 @@
           margin-right: 10rpx;
           line-height: 92rpx;
 }
-.recharge .topBox .account.data-v-2537c7b0 {
+.recharge .topBox .paytype.data-v-2537c7b0 {
       border-top: 1px solid #e8e8e8;
 }
 .recharge .topBox.data-v-2537c7b0 .van-field__input {

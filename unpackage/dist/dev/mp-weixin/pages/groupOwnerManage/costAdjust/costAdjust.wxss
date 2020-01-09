@@ -50,6 +50,138 @@
 .costAdjust .box1.data-v-5c3010c9 .van-field__input {
       padding-right: 16rpx;
 }
+.costAdjust .box2.data-v-5c3010c9 {
+    height: 200rpx;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 0 34rpx;
+    margin-top: 20rpx;
+}
+.costAdjust .box2 .item.data-v-5c3010c9 {
+      width: 100%;
+      height: 95rpx;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+}
+.costAdjust .box2 .item .left.data-v-5c3010c9 {
+        font-size: 28rpx;
+        color: #000;
+        font-weight: 700;
+}
+.costAdjust .box2 .item .rigth.data-v-5c3010c9 {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
+}
+.costAdjust .box2 .item1.data-v-5c3010c9 {
+      border-bottom: 1rpx solid #ebebeb;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+}
+.costAdjust .box2 .item1 .right.data-v-5c3010c9 {
+        width: 256rpx;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+}
+.costAdjust .box2 .item1 .right .btnWrap.data-v-5c3010c9 {
+          width: 104rpx;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-pack: justify;
+          -webkit-justify-content: space-between;
+              -ms-flex-pack: justify;
+                  justify-content: space-between;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+              -ms-flex-align: center;
+                  align-items: center;
+}
+.costAdjust .box2 .item1 .right .btnWrap .btn.data-v-5c3010c9 {
+            width: 30rpx;
+            height: 30rpx;
+            border-radius: 50%;
+            border: 1rpx solid #d7d7d7;
+            position: relative;
+}
+.costAdjust .box2 .item1 .right .btnWrap .btn.data-v-5c3010c9::before {
+            content: '';
+            width: 18rpx;
+            height: 18rpx;
+            background: #a0a0a0;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+}
+.costAdjust .box2 .item1 .right .btnWrap .text.data-v-5c3010c9 {
+            font-size: 27rpx;
+            color: #404040;
+}
+.costAdjust .box2 .item1 .right .increaseStyle .btn.data-v-5c3010c9 {
+          border: 1rpx solid #ffce41;
+}
+.costAdjust .box2 .item1 .right .increaseStyle .btn.data-v-5c3010c9::before {
+          content: '';
+          width: 18rpx;
+          height: 18rpx;
+          background: #ffbc01;
+          border-radius: 50%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+}
+.costAdjust .box2 .item2.data-v-5c3010c9 {
+      height: 100rpx;
+}
+.costAdjust .box2 .item2 .right.data-v-5c3010c9 {
+        width: 100%;
+}
+.costAdjust .box2 .item2 .right.data-v-5c3010c9 .van-cell {
+          border-radius: 12rpx;
+          padding: 0;
+}
+.costAdjust .box2 .item2 .right.data-v-5c3010c9 .van-cell__title {
+          font-size: 28rpx;
+          color: #000;
+          font-weight: 700;
+}
+.costAdjust .box2 .item2 .right.data-v-5c3010c9 .van-cell__value {
+          color: #404040;
+}
+.costAdjust .box2 .item2 .right.data-v-5c3010c9 .van-field__input {
+          padding-right: 16rpx;
+}
 .costAdjust .myButton.data-v-5c3010c9 {
     margin-top: 530rpx;
 }

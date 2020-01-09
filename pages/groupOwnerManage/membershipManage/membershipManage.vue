@@ -105,6 +105,9 @@
 			},
 		},
 		onLoad() {
+			
+		},
+		onShow() {
 			this.getCateList()
 		},
 		methods: {
@@ -146,7 +149,7 @@
 				}
 			},
 			editUser(item) {
-				console.log(item)
+				// console.log(item)
 				uni.navigateTo({
 					url: '/pages/groupOwnerManage/editMemberInfo/editMemberInfo?item=' + encodeURIComponent(JSON.stringify(item))
 				})

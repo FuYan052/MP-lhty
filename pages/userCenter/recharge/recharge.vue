@@ -1,17 +1,17 @@
 <template>
 	<view class="recharge">
 		<view class="whiteBg topBox">
-			<van-cell title="充值俱乐部" :border='false' :value="clubName" title-width='190rpx' is-link size='large' @click='choiceClub'/>
-			<view class="myCell account">
+			<view class="myCell">
 				<view class="title">充值账户</view>
 				<view class="right">
-					<text>幸运</text>
+					<text>{{userName}}</text>
 					<view class="imgBox">
-						<image style="width: 100%; height: 100%;" src="https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/weixinIcon2.png" mode=""></image>
+						<image style="width: 100%; height: 100%;" :src="headImg" mode=""></image>
 					</view>
 				</view>
 			</view>
-			<view class="myCell">
+			<van-cell title="充值用途" :border='false' :value="clubName" title-width='190rpx' size='large'/>
+			<view class="myCell paytype">
 				<view class="title">支付方式</view>
 				<view class="right">
 					<text>微信支付</text>
@@ -21,29 +21,19 @@
 				</view>
 			</view>
 			<van-field
-				<van-field
-					:value="money"
-					type='number'
-					title-width='260rpx'
-					:border='false'
-					label="充值金额"
-					placeholder="请输入您要充值的金额"
-					placeholder-style='font-size:26rpx;'
-					@change='inputMoney'
-				/>
+				:value="money"
+				type='digit'
+				title-width='260rpx'
+				:border='false'
+				label="充值金额"
+				placeholder="请输入您要充值的金额"
+				placeholder-style='font-size:26rpx;'
+				@change='inputMoney'
 			/>
 		</view>
 		<view class="btnbox">
 			<view class="myButton" type="primary" @click="submit">确认充值</view>
 		</view>
-		<!-- 选择器 -->
-		<w-picker
-			mode="selector" 
-			:selectList="columns"
-			@confirm="onConfirm" 
-			ref="picker1" 
-			themeColor="#ffbc01" 
-		></w-picker>
 	</view>
 </template>
 
@@ -56,45 +46,108 @@
 		data() {
 			return {
 				columns: [],
-				clubName: '请选择俱乐部',
-				clubId: '',
-				money: ''
+				clubName: '余额',
+				money: '',
+				walletId: '',
+				headImg: '',
+				userName: ''
 			}
 		},
 		created() {
-			this.columns = [{label:"来虎",value:"1"},{label:"波利",value:"2"},{label:"晴天",value:"3"}]
+			this.$http.get({
+				url: '/v1/rest/userwallet/userRecharge',
+				data: {
+					userId: uni.getStorageSync('userInfo').userId
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.walletId = resp.data.userWalletId
+					this.headImg = resp.data.headPortrait
+					this.userName = resp.data.account
+				}
+			})
 		},
 		methods: {
-			choiceClub() {
-				this.$refs.picker1.show()
-			},
-			onConfirm(v) {
-				// console.log(v)
-				this.clubId = v.checkArr.value
-				this.clubName = v.checkArr.label
-			},
 			inputMoney(v) {
 				this.money = v.detail
 			},
 			submit() {
-				if(this.clubId == '') {
-					uni.showToast({
-						title: '请选择要充值的俱乐部',
-						duration: 2000,
-						icon: 'none'
-					});
-				}else if(Number(this.money) <= 0) {
+				const that = this
+				if(Number(this.money) <= 0) {
 					uni.showToast({
 						title: '请输入您要充值的金额',
 						duration: 2000,
 						icon: 'none'
 					});
 				}else{
-					const params = {
-						clubId: this.clubId,
-						money: this.money
-					}
-					console.log(params)
+					this.$http.post({
+						url: '/v1/rest/userwallet/userRechargeOk',
+						data: {
+							userId: uni.getStorageSync('userInfo').userId,
+							totalPrice: Number(this.money),
+							clubOrUserWalletId: this.walletId,
+							type: 0  //与后端约定钱包type为0，会费充值type为1
+						}
+					}).then(resp => {
+						console.log(resp)
+						if(resp.status == 200) {
+							this.orderNo = resp.data.orderNo
+							uni.requestPayment({
+								provider: 'wxpay',
+								timeStamp: resp.data.timeStamp,
+								nonceStr: resp.data.nonceStr,
+								package: resp.data.package,
+								signType: resp.data.signType,
+								paySign: resp.data.paySign,
+								success: function (res) {
+									console.log(res)
+									// 支付成功回调
+									that.$http.get({
+										url: '/v1/rest/pay/memberWechatPayCallback',
+										data: {
+											type: 'success',
+											orderNo: that.orderNo,
+											rechargeType: 0
+										}
+									}).then(resp => {
+										console.log(resp)
+										if(resp.status == 200) {
+											uni.showToast({
+												title: resp.data.message,
+												duration: 2000,
+												icon: 'none'
+											}); 
+											uni.redirectTo({
+												url: '/pages/userCenter/myWallet/myWallet'
+											})
+										}
+									})
+								},
+								fail: function (err) {
+									console.log(err)
+									// 支付取消回调
+									that.$http.get({
+										url: '/v1/rest/pay/memberWechatPayCallback',
+										data: {
+											type: 'fail',
+											orderNo: that.orderNo,
+											rechargeType: 0
+										}
+									}).then(resp => {
+										console.log(resp)
+										if(resp.status == 200) {
+											uni.showToast({
+												title: resp.data.message,
+												duration: 2000,
+												icon: 'none'
+											});
+										}
+									})
+								}
+							});
+						}
+					})
 				}
 			}
 		}
@@ -167,7 +220,7 @@
 					}
 				}	
 			}
-			.account{
+			.paytype{
 				border-top: 1px solid #e8e8e8;
 			}
 			/deep/ .van-field__input{

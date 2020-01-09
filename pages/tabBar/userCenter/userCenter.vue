@@ -86,13 +86,13 @@
 			...mapState(['hasLogin', 'userInfo']),  //对全局变量hasLogin进行监控
 		},
 		created() {
-			console.log('111')
+			// console.log('111')
 			const loginState = uni.getStorageSync('isLogin')
 			if(!loginState) {
-				// this.stateTab = false
+				this.stateTab = true
 				this.showToLogin = true
 			}else{
-				// this.stateTab = true
+				this.stateTab = false
 				this.$http.get({
 					url: '/v1/rest/personalCenter/personalCenter',
 					data:{
@@ -107,33 +107,33 @@
 			}
 		},
 		onLoad() {
-			console.log('222')
+			// console.log('222')
 		},
 		onShow() {
-			console.log('333')
+			// console.log('333')
 			const loginState = uni.getStorageSync('isLogin')
 			console.log(loginState)
 			// if(!loginState) {
-			// 	this.stateTab = false
+			// 	this.stateTab = true
 			// 	this.showToLogin = true
 			// }else{
-			// 	this.stateTab = true
+			// 	this.stateTab = false
 			// }
-			// console.log(this.stateTab)
-			// if(this.stateTab) {
-			// 	console.log('非登陆')
-			// 	this.$http.get({
-			// 		url: '/v1/rest/personalCenter/personalCenter',
-			// 		data:{
-			// 			userId: uni.getStorageSync('userInfo').userId,
-			// 		}
-			// 	}).then(resp => {
-			// 		console.log(resp)
-			// 		if(resp.status == 200) {
-			// 			this.userData = resp.data
-			// 		}
-			// 	})
-			// }
+			console.log(this.stateTab)
+			if(this.stateTab) {
+				console.log('非登陆')
+				this.$http.get({
+					url: '/v1/rest/personalCenter/personalCenter',
+					data:{
+						userId: uni.getStorageSync('userInfo').userId,
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						this.userData = resp.data
+					}
+				})
+			}
 		},
 		
 		methods: {

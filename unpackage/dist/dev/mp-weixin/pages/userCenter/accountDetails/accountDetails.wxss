@@ -27,9 +27,11 @@
 .accountDetails.data-v-3320fb20 {
   width: 100%;
   min-height: 100vh;
+  background: #dedede;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 0 32rpx;
+  padding-top: 30rpx;
 }
 .accountDetails .topBox.data-v-3320fb20 {
     width: 100%;
@@ -149,10 +151,8 @@
               align-items: center;
 }
 .accountDetails .content .itemBox .box1.data-v-3320fb20 {
-        width: 75rpx;
-        height: 72rpx;
-        border-right: 1rpx dashed #e6e6e6;
-        font-size: 21rpx;
+        width: 115rpx;
+        height: 130rpx;
         color: #444444;
         display: -webkit-box;
         display: -webkit-flex;
@@ -163,6 +163,11 @@
             -ms-flex-align: center;
                 align-items: center;
         overflow: hidden;
+}
+.accountDetails .content .itemBox .box1 .imgBox.data-v-3320fb20 {
+          width: 60rpx;
+          height: 60rpx;
+          border-radius: 50%;
 }
 .accountDetails .content .itemBox .box2.data-v-3320fb20 {
         -webkit-box-flex: 1;
@@ -196,6 +201,11 @@
             color: #858585;
             line-height: 24rpx;
             margin-top: 20rpx;
+}
+.accountDetails .content .itemBox .box2 .left .time text.data-v-3320fb20 {
+              font-size: 22rpx;
+              color: #333333;
+              padding-right: 40rpx;
 }
 .accountDetails .content .itemBox .box2 .right.data-v-3320fb20 {
           width: 172rpx;

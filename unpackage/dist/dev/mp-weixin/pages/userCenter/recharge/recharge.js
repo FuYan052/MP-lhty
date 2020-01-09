@@ -163,16 +163,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
 {
   components: {
     wPicker: wPicker },
@@ -180,45 +170,108 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       columns: [],
-      clubName: '请选择俱乐部',
-      clubId: '',
-      money: '' };
+      clubName: '余额',
+      money: '',
+      walletId: '',
+      headImg: '',
+      userName: '' };
 
   },
-  created: function created() {
-    this.columns = [{ label: "来虎", value: "1" }, { label: "波利", value: "2" }, { label: "晴天", value: "3" }];
+  created: function created() {var _this = this;
+    this.$http.get({
+      url: '/v1/rest/userwallet/userRecharge',
+      data: {
+        userId: uni.getStorageSync('userInfo').userId } }).
+
+    then(function (resp) {
+      console.log(resp);
+      if (resp.status == 200) {
+        _this.walletId = resp.data.userWalletId;
+        _this.headImg = resp.data.headPortrait;
+        _this.userName = resp.data.account;
+      }
+    });
   },
   methods: {
-    choiceClub: function choiceClub() {
-      this.$refs.picker1.show();
-    },
-    onConfirm: function onConfirm(v) {
-      // console.log(v)
-      this.clubId = v.checkArr.value;
-      this.clubName = v.checkArr.label;
-    },
     inputMoney: function inputMoney(v) {
       this.money = v.detail;
     },
-    submit: function submit() {
-      if (this.clubId == '') {
-        uni.showToast({
-          title: '请选择要充值的俱乐部',
-          duration: 2000,
-          icon: 'none' });
-
-      } else if (Number(this.money) <= 0) {
+    submit: function submit() {var _this2 = this;
+      var that = this;
+      if (Number(this.money) <= 0) {
         uni.showToast({
           title: '请输入您要充值的金额',
           duration: 2000,
           icon: 'none' });
 
       } else {
-        var params = {
-          clubId: this.clubId,
-          money: this.money };
+        this.$http.post({
+          url: '/v1/rest/userwallet/userRechargeOk',
+          data: {
+            userId: uni.getStorageSync('userInfo').userId,
+            totalPrice: Number(this.money),
+            clubOrUserWalletId: this.walletId,
+            type: 0 //与后端约定钱包type为0，会费充值type为1
+          } }).
+        then(function (resp) {
+          console.log(resp);
+          if (resp.status == 200) {
+            _this2.orderNo = resp.data.orderNo;
+            uni.requestPayment({
+              provider: 'wxpay',
+              timeStamp: resp.data.timeStamp,
+              nonceStr: resp.data.nonceStr,
+              package: resp.data.package,
+              signType: resp.data.signType,
+              paySign: resp.data.paySign,
+              success: function success(res) {
+                console.log(res);
+                // 支付成功回调
+                that.$http.get({
+                  url: '/v1/rest/pay/memberWechatPayCallback',
+                  data: {
+                    type: 'success',
+                    orderNo: that.orderNo,
+                    rechargeType: 0 } }).
 
-        console.log(params);
+                then(function (resp) {
+                  console.log(resp);
+                  if (resp.status == 200) {
+                    uni.showToast({
+                      title: resp.data.message,
+                      duration: 2000,
+                      icon: 'none' });
+
+                    uni.redirectTo({
+                      url: '/pages/userCenter/myWallet/myWallet' });
+
+                  }
+                });
+              },
+              fail: function fail(err) {
+                console.log(err);
+                // 支付取消回调
+                that.$http.get({
+                  url: '/v1/rest/pay/memberWechatPayCallback',
+                  data: {
+                    type: 'fail',
+                    orderNo: that.orderNo,
+                    rechargeType: 0 } }).
+
+                then(function (resp) {
+                  console.log(resp);
+                  if (resp.status == 200) {
+                    uni.showToast({
+                      title: resp.data.message,
+                      duration: 2000,
+                      icon: 'none' });
+
+                  }
+                });
+              } });
+
+          }
+        });
       }
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

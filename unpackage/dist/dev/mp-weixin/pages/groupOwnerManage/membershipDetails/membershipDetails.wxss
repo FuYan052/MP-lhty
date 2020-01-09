@@ -143,10 +143,14 @@
         line-height: 46rpx;
         font-weight: 600;
 }
+.membershipDetails .detailBox .detailItem .right .n2.data-v-8c0f8fba {
+        color: #2c2c2c;
+}
 .membershipDetails .detailBox .detailItem .right .name.data-v-8c0f8fba {
         font-size: 24rpx;
         line-height: 44rpx;
         color: #8a8a8a;
+        text-align: right;
 }
 .membershipDetails .detailBox .detailItem.data-v-8c0f8fba:nth-last-of-type(1) {
       border: none;

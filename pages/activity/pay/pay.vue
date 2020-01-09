@@ -100,6 +100,23 @@
 				}
 			})
 		},
+		onPullDownRefresh() {
+			console.log('refresh');
+			this.$http.get({
+				url: '/v1/rest/home/signUpDetails',
+				data: {
+					activitiesId: this.activityId,
+					userId: uni.getStorageSync('userInfo').userId
+				}
+			}).then(resp => {
+				console.log(resp)
+				uni.stopPullDownRefresh();
+				if(resp.status == 200) {
+					this.actDetail = resp.data
+					this.clubId = resp.data.clubId
+				}
+			})
+		},
 		methods: {
 			// 选择性别男
 			choiceSex1() {
@@ -143,7 +160,7 @@
 			// 充值
 			Recharge() {
 				uni.navigateTo({
-					url: '/pages/userCenter/recharge/recharge?clubId' + this.clubId
+					url: '/pages/userCenter/membershipFeeRecharge/membershipFeeRecharge?clubId' + this.clubId
 				})
 			},
 			// 提交报名
