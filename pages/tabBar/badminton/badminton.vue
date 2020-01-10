@@ -113,6 +113,26 @@
 		 });
 		 
 		},
+		onPullDownRefresh() {
+			wx.setBackgroundColor({
+			  backgroundColor: '#000000', // 窗口的背景色为白色
+			})
+			this.$http.post({
+				url: '/v1/rest/home/homeActivitiesList',
+				data: {
+					isTwoDaysLater: this.isTwoLater,
+					lat: this.lat,
+					lon: this.lon,
+					time: this.clickDate,
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					uni.stopPullDownRefresh()
+					this.actList = resp.data
+				}
+			})
+		},
 		methods: {
 			// 获取活动列表
 			getList() {

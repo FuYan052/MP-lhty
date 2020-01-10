@@ -6,23 +6,34 @@
 					<view class="top">
 						<view class="imgBox">
 							<image style="width: 100%; height: 100%; border-radius: 50%;"
-								src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg" mode="">
+								:src="item.headPortrait" mode="">
 							</image>
 						</view>
 						<view class="info">
-							<view class="name">文艺青年(男)</view>
-							<view class="phone">18334531374</view>
+							<!-- <view class="name">{{item.nickName}}(男)</view> -->
+							<view class="name">
+								<view class="text">
+									{{item.nickName}} <text v-show="item.roleName">-({{item.roleName}})</text>
+								</view>
+								<view class="sex">
+									<view class="sexIcon sex1" v-if="item.sex == 1"></view>
+									<view class="sexIcon sex2" v-else></view>
+								</view>
+							</view>
+							<view class="phone">{{item.phone}}</view>
 						</view>
-						<view class="money">支付金额：32元</view>
+						<view class="money">支付金额：{{item.totalFee}}元</view>
 					</view>
 					<view class="bottom">
-						<view>支付方式：微信支付</view>
-						<view>报名时间：2019年8月18日</view>
-						<view>12:00</view>
+						<view>支付方式：{{item.payTypeName}}</view>
+						<view>报名时间：{{item.createTime}}</view>
 					</view>
 				</view>
-				<view class="chekcBox" :class="{checked : selectedList.indexOf(item.id) >= 0}">
-					<icon class="myIcon" v-show="selectedList.indexOf(item.id) >= 0" type="success_no_circle" size="27rpx" color="#f1b202"/>
+				<view class="chekcBox" v-if="!item.signInState" :class="{checked : selectedList.indexOf(item.orderId) >= 0}">
+					<icon class="myIcon" v-show="selectedList.indexOf(item.orderId) >= 0" type="success_no_circle" size="27rpx" color="#f1b202"/>
+				</view>
+				<view class="chekcBox chekcBox2" v-else>
+					<icon class="myIcon" type="success_no_circle" size="29rpx" color="#48d131"/>
 				</view>
 			</view>
 		</view>
@@ -33,7 +44,7 @@
 					<icon class="myIcon" v-show="isAllChecked" type="success_no_circle" size="27rpx" color="#f1b202"/>
 				</view>
 			</view>
-			<view class="btn">签到</view>
+			<view class="btn" @click="submit">签到</view>
 		</view>
 		
 	</view>
@@ -43,31 +54,47 @@
 	export default {
 		data() {
 			return {
-				list: [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6}],
+				list: [],
 				selectedList: [],
-				isAllChecked: false
-				
+				isAllChecked: false,
+				actId: '',
 			}
-		},
-		computed: {
-			
 		},
 		onLoad(options) {
 			console.log(options)
+			this.actId = options.id
+		},
+		onShow() {
+			this.getList()
 		},
 		methods: {
+			getList() {
+				this.$http.get({
+					url: '/v1/rest/manage/signInDetails',
+					data: {
+						activitiesId: this.actId
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						this.list = resp.data
+					}
+				})
+			},
 			handleCheck(item) {
 				this.Item = item
-				let selectedIndex = this.selectedList.indexOf(item.id)
-				 if(selectedIndex >= 0) {
-					this.selectedList.splice(selectedIndex, 1)
-				}else{
-					this.selectedList.push(item.id)
-				}
-				if(this.selectedList.length == this.list.length) {
-					this.isAllChecked = true
-				}else{
-					this.isAllChecked = false
+				if(!item.signInState) {
+					let selectedIndex = this.selectedList.indexOf(item.orderId)
+					 if(selectedIndex >= 0) {
+						this.selectedList.splice(selectedIndex, 1)
+					}else{
+						this.selectedList.push(item.orderId)
+					}
+					if(this.selectedList.length == this.list.length) {
+						this.isAllChecked = true
+					}else{
+						this.isAllChecked = false
+					}
 				}
 			},
 			// 全选
@@ -78,9 +105,30 @@
 				}else{
 					this.selectedList = []
 					this.list.forEach(function(item){
-						this.selectedList.push(item.id)
+						if(!item.signInState){
+							this.selectedList.push(item.orderId)
+						}
 					},this)
 				}
+			},
+			submit() {
+				console.log(typeof(this.selectedList))
+				this.$http.get({
+					url: '/v1/rest/manage/signInOk',
+					data: {
+						orderId: this.selectedList.join(',')
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						this.getList()
+						uni.showToast({
+							title: '签到成功！',
+							duration: 2000,
+							icon: 'none'
+						});
+					}
+				})
 			}
 		}
 	}
@@ -129,10 +177,28 @@
 							font-size: 27rpx;
 							height: 86rpx;
 							.name{
-								line-height: 50rpx;
-								overflow: hidden;
-								white-space: nowrap;
-								text-overflow: ellipsis;
+								width: 420rpx;
+								display: flex;
+								height: 50rpx;
+								align-items: center;
+								.text{
+									max-width: 330rpx;
+									overflow: hidden;
+									white-space: nowrap;
+									text-overflow: ellipsis;
+								}
+								.sexIcon{
+									display: block;
+									width: 34rpx;
+									height: 34rpx;
+									margin-left: 15rpx;
+									background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/mIcon.png') no-repeat center;
+									background-size: 22rpx auto;
+								}
+								.sex2{
+									background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/wIcon.png') no-repeat center;
+									background-size: 20rpx auto;
+								}
 							}
 							.phone{
 								line-height: 36rpx;
@@ -152,7 +218,7 @@
 						font-size: 18rpx;
 						align-items: center;
 						color: #5e5e5e;
-						view{
+						view {
 							margin: 0 20rpx;
 						}
 					}
@@ -166,6 +232,9 @@
 					display: flex;
 					justify-content: center;
 					align-items: center;
+				}
+				.chekcBox2{
+					border: none !important;
 				}
 				.checked {
 					border: 1rpx solid #ffbd05;

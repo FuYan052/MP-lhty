@@ -144,10 +144,14 @@
         line-height: 46rpx;
         font-weight: 600;
 }
+.capitalDetails .detailBox .detailItem .right .n2.data-v-341ffcee {
+        color: #2c2c2c;
+}
 .capitalDetails .detailBox .detailItem .right .name.data-v-341ffcee {
         font-size: 24rpx;
         line-height: 44rpx;
         color: #8a8a8a;
+        text-align: right;
 }
 .capitalDetails .detailBox .detailItem.data-v-341ffcee:nth-last-of-type(1) {
       border: none;

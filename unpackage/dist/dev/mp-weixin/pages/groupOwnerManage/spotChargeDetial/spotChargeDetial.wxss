@@ -96,11 +96,35 @@
             margin-left: 32rpx;
 }
 .spotCharge .contentBox .itemBox .detail .top .info .name.data-v-240244e9 {
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+              height: 70rpx;
               line-height: 70rpx;
-              overflow: hidden;
-              white-space: nowrap;
-              -o-text-overflow: ellipsis;
-                 text-overflow: ellipsis;
+              -webkit-box-align: center;
+              -webkit-align-items: center;
+                  -ms-flex-align: center;
+                      align-items: center;
+}
+.spotCharge .contentBox .itemBox .detail .top .info .name .text.data-v-240244e9 {
+                max-width: 220rpx;
+                overflow: hidden;
+                white-space: nowrap;
+                -o-text-overflow: ellipsis;
+                   text-overflow: ellipsis;
+}
+.spotCharge .contentBox .itemBox .detail .top .info .name .sexIcon.data-v-240244e9 {
+                display: block;
+                width: 34rpx;
+                height: 34rpx;
+                margin-left: 15rpx;
+                background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/mIcon.png") no-repeat center;
+                background-size: 18rpx auto;
+}
+.spotCharge .contentBox .itemBox .detail .top .info .name .sex2.data-v-240244e9 {
+                background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/wIcon.png") no-repeat center;
+                background-size: 18rpx auto;
 }
 .spotCharge .contentBox .itemBox .detail .top .editMoney.data-v-240244e9 {
             width: 134rpx;
@@ -140,6 +164,9 @@
         -webkit-align-items: center;
             -ms-flex-align: center;
                 align-items: center;
+}
+.spotCharge .contentBox .itemBox .chekcBox2.data-v-240244e9 {
+        border: none !important;
 }
 .spotCharge .contentBox .itemBox .checked.data-v-240244e9 {
         border: 1rpx solid #ffbd05;
@@ -258,6 +285,6 @@
       border: 1rpx solid #ebedf0;
 }
 .spotCharge .inputBox.data-v-240244e9 .van-cell .van-field__input {
-        font-size: 32rpx;
+        font-size: 28rpx;
 }
 

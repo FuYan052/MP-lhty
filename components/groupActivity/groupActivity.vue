@@ -19,7 +19,7 @@
 			</view>
 			<view class="btnBox">
 				<view class="people">
-					<text v-show="showPeople">共：{{signUpPeople}}人报名</text>
+					<text v-show="showPeople">共：{{item.enrolledTotal}}人报名</text>
 				</view>
 				<view class="left">
 					<view class="btn btn1" v-show="showBtn" @click="clickBtn1(item)">{{btn1Text}}</view>
@@ -32,7 +32,7 @@
 
 <script>
 	export default {
-		props: ['showPeople', 'showBtn','btn1Text','btn2Text','signUpPeople','activityList'],
+		props: ['showPeople', 'showBtn','btn1Text','btn2Text','activityList'],
 		data() {
 			return {
 				

@@ -1,18 +1,17 @@
 <template>
 	<view class="addMember">
 		<view class="whiteBg box1">
-			<van-cell title="昵称" value="文艺青年" />
-			<van-cell title="手机号" value="18919127017" />
-			<van-cell title="性别" value="男" />
+			<van-cell title="昵称" :value="item.nickName" />
+			<van-cell title="手机号" :value="item.phone" />
+			<van-cell title="性别" :value="sex" />
 		</view>
 		<view class="box2">
 			<van-field
-				value="35"
 				input-align="right"
 				 placeholder="请输入费用"
 				label="费用"
 				:border='false'
-				type='number'
+				type='digit'
 				@change='inputMoney'
 			/>
 		</view>
@@ -26,19 +25,58 @@
 	export default {
 		data() {
 			return {
-				inputMoneyValue: ''
+				inputMoneyValue: '',
+				item: '',
+				sex: '',
+				gNumber: 0,
+				mNumber: 0,
 			}
 		},
 		onLoad(options) {
-			console.log(options)
+			this.item = JSON.parse(decodeURIComponent(options.item))
+			console.log(this.item)
+			if(this.item.sex == 1) {
+				this.sex = '男'
+				this.mNumber = 1
+				this.gNumber = 0
+			}else{
+				this.sex = '女'
+				this.gNumber = 1
+				this.mNumber = 0
+			}
 		},
 		methods: {
 			inputMoney(v) {
 				this.inputMoneyValue = v.detail
 			},
 			sureAdd() {
-				uni.redirectTo({
-					url: '/pages/groupOwnerManage/spotChargeDetial/spotChargeDetial'
+				this.$http.post({
+					url: '/v1/rest/manage/sceneChargeAddMember',
+					data: {
+						clubId: uni.getStorageSync('clubId'),
+						gNumber: this.gNumber,
+						mNumber: this.mNumber,
+						payType: 2,
+						productId: uni.getStorageSync('addActId'),
+						totalPrice: this.inputMoneyValue,
+						userId: this.item.userId
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						uni.showToast({
+							title: '添加成功！',
+							duration: 2000,
+							icon: 'none'
+						});
+						uni.navigateBack()
+					}else{
+						uni.showToast({
+							title: '操作失败！',
+							duration: 2000,
+							icon: 'none'
+						});
+					}
 				})
 			}
 		}

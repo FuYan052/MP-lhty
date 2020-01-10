@@ -17,16 +17,24 @@
 					<view class="top">
 						<view class="imgBox">
 							<image style="width: 100%; height: 100%; border-radius: 50%;"
-								src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg" mode="">
+								:src="item.headPortrait" mode="">
 							</image>
 						</view>
 						<view class="info">
-							<view class="name">文艺青年(男)</view>
-							<view class="phone">18334531374</view>
+							<view class="name">
+								<view class="text">
+									{{item.nickName}} <text v-show="item.roleName">-({{item.roleName}})</text>
+								</view>
+								<view class="sex">
+									<view class="sexIcon sex1" v-if="item.sex == 1"></view>
+									<view class="sexIcon sex2" v-else></view>
+								</view>
+							</view>
+							<view class="phone">{{item.phone}}</view>
 						</view>
 						<view class="levelBox">
-							<view class="role">会长</view>
-							<view class="level">高级</view>
+							<view class="role">{{item.state}}</view>
+							<view class="level">{{item.level}}</view>
 						</view>
 					</view>
 				</view>
@@ -39,9 +47,22 @@
 	export default {
 		data() {
 			return {
-				list: [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9}],
+				list: [],
 				searchText: ''
 			}
+		},
+		onLoad() {
+			this.$http.get({
+				url: '/v1/rest/club/clubMembersInfo',
+				data: {
+					clubId: uni.getStorageSync('clubId')
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.list = this.list.concat(resp.data.clubMembersA).concat(resp.data.clubMembersE).concat(resp.data.clubMembersD).concat(resp.data.clubMembersC).concat(resp.data.clubMembersB)
+				}
+			})
 		},
 		methods: {
 			onChange(v) {
@@ -50,7 +71,7 @@
 			},
 			handleClick(item) {
 				uni.redirectTo({
-					url: '/pages/groupOwnerManage/addMember/addMember?id=' + item.id
+					url: '/pages/groupOwnerManage/addMember/addMember?item=' + encodeURIComponent(JSON.stringify(item))
 				})
 			}
 		}
@@ -134,10 +155,26 @@
 							height: 88rpx;
 							margin-left: 40rpx;
 							.name{
-								line-height: 50rpx;
-								overflow: hidden;
-								white-space: nowrap;
-								text-overflow: ellipsis;
+								width: 420rpx;
+								display: flex;
+								.text{
+									max-width: 330rpx;
+									overflow: hidden;
+									white-space: nowrap;
+									text-overflow: ellipsis;
+								}
+								.sexIcon{
+									display: block;
+									width: 34rpx;
+									height: 34rpx;
+									margin-left: 15rpx;
+									background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/mIcon.png') no-repeat center;
+									background-size: 22rpx auto;
+								}
+								.sex2{
+									background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/wIcon.png') no-repeat center;
+									background-size: 20rpx auto;
+								}
 							}
 							.phone{
 								line-height: 36rpx;

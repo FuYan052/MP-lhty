@@ -1,6 +1,34 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/groupOwnerManage/capitalDetails/capitalDetails",
+			"style": {
+				"navigationBarTitleText": "收支明细",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#fff"
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/spotCharge/spotCharge",
+			"style": {
+				"navigationBarTitleText": "现场收费"
+			}
+		}, 
+		{
+			"path": "pages/groupOwnerManage/attendanceManage/attendanceManage",
+			"style": {
+				"navigationBarTitleText": "签到管理"
+			}
+		}, 
+		{
+			"path": "pages/tabBar/badminton/badminton",
+			"style": {
+				"navigationBarTitleText": "约球",
+				"enablePullDownRefresh": true,
+				"backgroundTextStyle": "light"
+			}
+		},
+		{
 			"path": "pages/groupOwnerManage/membershipFeeManage/membershipFeeManage",
 			"style": {
 				"navigationBarTitleText": "会费管理",
@@ -11,6 +39,14 @@
 				}
 			}
 		},
+		{
+			"path": "pages/userCenter/clubList/clubList",
+			"style": {
+				"navigationBarTitleText": "俱乐部"
+			}
+		},
+		
+		
 		{
 			"path": "pages/groupOwnerManage/costAdjust/costAdjust",
 			"style": {
@@ -81,13 +117,6 @@
 				}
 			}
 		}, 
-		
-		{
-			"path": "pages/tabBar/badminton/badminton",
-			"style": {
-				"navigationBarTitleText": "约球"
-			}
-		},
 		{
 			"path": "pages/userInfo/tagsPage/tagsPage",
 			"style": {
@@ -227,21 +256,9 @@
 			}
 		},
 		{
-			"path": "pages/groupOwnerManage/spotCharge/spotCharge",
-			"style": {
-				"navigationBarTitleText": "现场收费"
-			}
-		}, 
-		{
 			"path": "pages/groupOwnerManage/activitySettlement/activitySettlement",
 			"style": {
 				"navigationBarTitleText": "活动结算"
-			}
-		}, 
-		{
-			"path": "pages/groupOwnerManage/attendanceManage/attendanceManage",
-			"style": {
-				"navigationBarTitleText": "签到管理"
 			}
 		}, 
 		{
@@ -254,14 +271,6 @@
 					"van-field": "/wxcomponents/vant/dist/field/index",
 					"van-cell": "/wxcomponents/vant/dist/cell/index"
 				}
-			}
-		},
-		{
-			"path": "pages/groupOwnerManage/capitalDetails/capitalDetails",
-			"style": {
-				"navigationBarTitleText": "收支明细",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#fff"
 			}
 		},
 		{

@@ -88,10 +88,7 @@
 		created() {
 			// console.log('111')
 			const loginState = uni.getStorageSync('isLogin')
-			if(!loginState) {
-				this.stateTab = true
-				this.showToLogin = true
-			}else{
+			if(loginState) {
 				this.stateTab = false
 				this.$http.get({
 					url: '/v1/rest/personalCenter/personalCenter',
@@ -102,8 +99,12 @@
 					console.log(resp)
 					if(resp.status == 200) {
 						this.userData = resp.data
+						uni.setStorageSync('clubId', resp.data.clubId)
 					}
 				})
+			}else{
+				this.stateTab = true
+				this.showToLogin = true
 			}
 		},
 		onLoad() {
@@ -111,13 +112,12 @@
 		},
 		onShow() {
 			// console.log('333')
-			const loginState = uni.getStorageSync('isLogin')
-			console.log(loginState)
-			// if(!loginState) {
-			// 	this.stateTab = true
-			// 	this.showToLogin = true
-			// }else{
+			// const loginState = uni.getStorageSync('isLogin')
+			// // console.log(loginState)
+			// if(loginState) {
 			// 	this.stateTab = false
+			// }else{
+			// 	this.stateTab = true
 			// }
 			console.log(this.stateTab)
 			if(this.stateTab) {
@@ -131,6 +131,7 @@
 					console.log(resp)
 					if(resp.status == 200) {
 						this.userData = resp.data
+						uni.setStorageSync('clubId', resp.data.clubId)
 					}
 				})
 			}
@@ -154,12 +155,13 @@
 				this.showLoginOut = true
 			},
 			handleConfirm() {
+				console.log('确定退出')
 				this.logout()
 				uni.removeStorage({  //根据key值移除缓存数据
 					key: 'isLogin'
 				})
 				uni.switchTab({
-					url: '/pages/tabBar/userCenter/userCenter'
+					url: '/pages/tabBar/badminton/badminton'
 				})
 			},
 			handleCancel() {

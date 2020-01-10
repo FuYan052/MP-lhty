@@ -3,30 +3,31 @@
 		<view class="topBox">
 			<view class="total">
 				<view class="title">账户总额</view>
-				<view class="num">576.00</view>
+				<view class="num">{{total}}</view>
 			</view>
 			<view class="wrap">
 				<view class="box">
 					<view class="tit">线下金额：</view>
-					<view class="num">35555943.00</view>
+					<view class="num">{{lower}}</view>
 				</view>
 				<view class="box">
 					<view class="tit">线上金额：</view>
-					<view class="num">6525.00</view>
+					<view class="num">{{upper}}</view>
 				</view>
 				<view class="btn">可提现</view>
 			</view>
 		</view>
 		<view class="detailBox">
 			<view class="title">明细</view>
-			<view class="detailItem" v-for="(item,index) in 10" :key='index'>
+			<view class="detailItem" v-for="(item,index) in list" :key='index'>
 				<view class="left">
-					<view class="type">会员充值</view>
-					<view class="date">日期：2019-12-31</view>
+					<view class="type">{{item.payState}}</view>
+					<view class="date">日期：{{item.createTime}}</view>
 				</view>
 				<view class="right">
-					<view class="number">+￥200.00</view>
-					<view class="name">张丽</view>
+					<view class="number n1" v-if="item.algorithmType">+￥{{item.totalMoney}}</view>
+					<view class="number n2" v-else>-￥{{item.totalMoney}}</view>
+					<view class="name">{{item.nickName}}</view>
 				</view>
 			</view>
 		</view>
@@ -35,7 +36,30 @@
 
 <script>
 	export default {
-		
+		data() {
+			return {
+				list: [],
+				total: '',
+				lower: '',
+				upper: ''
+			}
+		},
+		onLoad() {
+			this.$http.get({
+				url: '/v1/rest/manage/receiptsDetailed',
+				data: {
+					clubId: uni.getStorageSync('clubId')
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.list = resp.data.feeDetailedBackVoList
+					this.total = resp.data.totalMoney
+					this.lower = resp.data.lowerMoney
+					this.upper = resp.data.upperMoney
+				}
+			})
+		}
 	}
 </script>
 
@@ -142,10 +166,14 @@
 						line-height: 46rpx;
 						font-weight: 600;
 					}
+					.n2{
+						color: #2c2c2c;
+					}
 					.name{
 						font-size: 24rpx;
 						line-height: 44rpx;
 						color: #8a8a8a;
+						text-align: right;
 					}
 				}
 			}
