@@ -75,7 +75,7 @@
 				showToLogin: false,
 				showLoginOut: false,
 				menuList: [{id: 1 , title:'我的活动',path: '/pages/userCenter/myActivities/myActivities'},
-									{id: 2, title:'俱乐部',path: '/pages/userCenter/club/club'},
+									{id: 2, title:'俱乐部',path: '/pages/userCenter/clubList/clubList'},
 									{id: 3, title:'管理中心',path: '/pages/userCenter/managementCenter/managementCenter'},
 									{id: 4, title:'新俱乐部入驻',path: '/pages/userCenter/clubEntry/clubEntry'},
 									{id: 5,title:'常见问题',path: '/pages/userCenter/commonProblem/commonProblem'},],
@@ -86,32 +86,33 @@
 			...mapState(['hasLogin', 'userInfo']),  //对全局变量hasLogin进行监控
 		},
 		created() {
-			// console.log('111')
-			const loginState = uni.getStorageSync('isLogin')
-			if(loginState) {
+			console.log('222')
+			console.log(uni.getStorageSync('isLogin'))
+			if(uni.getStorageSync('userInfo').userId > 0) {
 				this.stateTab = false
-				this.$http.get({
-					url: '/v1/rest/personalCenter/personalCenter',
-					data:{
-						userId: uni.getStorageSync('userInfo').userId,
-					}
-				}).then(resp => {
-					console.log(resp)
-					if(resp.status == 200) {
-						this.userData = resp.data
-						uni.setStorageSync('clubId', resp.data.clubId)
-					}
-				})
 			}else{
 				this.stateTab = true
 				this.showToLogin = true
+				// console.log('调接口')
+				// this.$http.get({
+				// 	url: '/v1/rest/personalCenter/personalCenter',
+				// 	data:{
+				// 		userId: uni.getStorageSync('userInfo').userId,
+				// 	}
+				// }).then(resp => {
+				// 	console.log(resp)
+				// 	if(resp.status == 200) {
+				// 		this.userData = resp.data
+				// 		uni.setStorageSync('clubId', resp.data.clubId)
+				// 	}
+				// })
 			}
 		},
 		onLoad() {
 			// console.log('222')
 		},
 		onShow() {
-			// console.log('333')
+			console.log('333')
 			// const loginState = uni.getStorageSync('isLogin')
 			// // console.log(loginState)
 			// if(loginState) {
@@ -119,9 +120,7 @@
 			// }else{
 			// 	this.stateTab = true
 			// }
-			console.log(this.stateTab)
-			if(this.stateTab) {
-				console.log('非登陆')
+			if(!this.stateTab) {
 				this.$http.get({
 					url: '/v1/rest/personalCenter/personalCenter',
 					data:{
@@ -160,9 +159,8 @@
 				uni.removeStorage({  //根据key值移除缓存数据
 					key: 'isLogin'
 				})
-				uni.switchTab({
-					url: '/pages/tabBar/badminton/badminton'
-				})
+				this.userData = {}
+				this.showToLogin = true
 			},
 			handleCancel() {
 				this.showLoginOut = false

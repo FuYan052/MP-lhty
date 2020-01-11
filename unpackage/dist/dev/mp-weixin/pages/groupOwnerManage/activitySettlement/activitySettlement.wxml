@@ -1,1 +1,1 @@
-<group-activity vue-id="1" showPeople="{{true}}" showBtn="{{false}}" btn1Text="{{btn1Text}}" btn2Text="{{btn2Text}}" signUpPeople="{{people}}" data-event-opts="{{[['^handle2',[['handle']]]]}}" bind:handle2="__e" class="data-v-679f0449" bind:__l="__l"></group-activity>
+<group-activity vue-id="1" showPeople="{{true}}" showBtn="{{false}}" btn1Text="{{btn1Text}}" btn2Text="{{btn2Text}}" activityList="{{activityList}}" data-event-opts="{{[['^handle2',[['handle']]]]}}" bind:handle2="__e" class="data-v-679f0449" bind:__l="__l"></group-activity>

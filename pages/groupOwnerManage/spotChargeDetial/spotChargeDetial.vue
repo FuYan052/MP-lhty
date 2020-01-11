@@ -213,6 +213,7 @@
 					console.log(resp)
 					if(resp.status == 200) {
 						const that = this
+						uni.removeStorageSync('addActId')
 						uni.showModal({
 							title: '提示',
 							content: `${resp.data.message}\n收入：${resp.data.expenditure} + 元\n账户余额：${resp.data.income} + 元`,

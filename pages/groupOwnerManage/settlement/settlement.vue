@@ -6,8 +6,9 @@
 				<van-field
 					label="场地费"
 					size='large'
-					type='number'
+					type='digit'
 					title-width='212rpx'
+					@change='change1'
 				/>
 				<view class="text">元</view>
 			</view>
@@ -15,9 +16,10 @@
 				<van-field
 					label="羽毛球"
 					:border="true"
-					type='number'
+					type='digit'
 					size='large'
 					title-width='212rpx'
+					@change='change2'
 				/>
 				<view class="text">元</view>
 			</view>
@@ -25,9 +27,10 @@
 				<van-field
 					label="其他"
 					:border="false"
-					type='number'
+					type='digit'
 					size='large'
 					title-width='212rpx'
+					@change='change3'
 				/>
 				<view class="text">元</view>
 			</view>
@@ -37,28 +40,32 @@
 			<view class="item1">
 				<van-field
 					label="男"
-					type='number'
+					title-width='212rpx'
+					type='digit'
 					:border="true"
 					size='large'
+					@change='change4'
 				/>
 				<view class="text">元</view>
 			</view>
 			<view class="item1">
 				<van-field
 					label="女"
-					type='number'
+					title-width='212rpx'
+					type='digit'
 					:border="false"
 					size='large'
+					@change='change5'
 				/>
 				<view class="text">元</view>
 			</view>
 		</view>
 		<!-- 合计 -->
 		<view class="countBox">
-			合计：<text>70.0</text>元
+			合计：<text>{{total}}</text>元
 		</view>
 		<view class="btnBox">
-			<view class="myButton">结算</view>
+			<view class="myButton" @click="handleSubmit">结算</view>
 		</view>
 	</view>
 </template>
@@ -69,10 +76,71 @@
 			return {
 				columns: [],
 				clubName: '请选择俱乐部',
+				actId: '',
 				clubId: '',
-				money: ''
+				money1: '',
+				money2: '',
+				money3: '',
+				money4: '',
+				money5: '',
+				
 			}
 		},
+		computed: {
+			total() {
+				return Number(this.money1) + Number(this.money2) + Number(this.money3) + Number(this.money4) + Number(this.money5)
+			}
+		},
+		onLoad(options) {
+			console.log(options)
+			this.actId = options.actId
+		},
+		methods: {
+			change1(v) {
+				this.money1 = v.detail
+			},
+			change2(v) {
+				this.money2 = v.detail
+			},
+			change3(v) {
+				this.money3 = v.detail
+			},
+			change4(v) {
+				this.money4 = v.detail
+			},
+			change5(v) {
+				this.money5 = v.detail
+			},
+			handleSubmit() {
+				this.$http.post({
+					url: '/v1/rest/manage/settlementDetails',
+					data: {
+						activitiesId: this.actId,
+						clubId: uni.getStorageSync('clubId'),
+						badmintonFee: this.money2,
+						moneyMan: this.money4,
+						moneyWomen: this.money5,
+						operatorId: uni.getStorageSync('userInfo').userId,
+						otherFee: this.money3,
+						venueFee: this.money1,
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						uni.showModal({
+							title: '提示',
+							showCancel: false,
+							content: `${resp.data.message}\n支出：${resp.data.expenditure}元\n收入：${resp.data.income}元`,
+							success: function (res) {
+								if (res.confirm) {
+									uni.navigateBack()
+								} 
+							}
+						});
+					}
+				})
+			}
+		}
 	}
 </script>
 
@@ -109,6 +177,7 @@
 			/deep/ .van-cell__title{
 				color: #303030;
 				font-size: 26rpx;
+				width: 106rpx;
 			}
 		}
 		.item1{

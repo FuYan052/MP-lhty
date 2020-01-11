@@ -1,9 +1,11 @@
 {
   "pages": [
+    "pages/tabBar/badminton/badminton",
+    "pages/groupOwnerManage/activitySettlement/activitySettlement",
+    "pages/club/clubMemberInfo/clubMemberInfo",
     "pages/groupOwnerManage/capitalDetails/capitalDetails",
     "pages/groupOwnerManage/spotCharge/spotCharge",
     "pages/groupOwnerManage/attendanceManage/attendanceManage",
-    "pages/tabBar/badminton/badminton",
     "pages/groupOwnerManage/membershipFeeManage/membershipFeeManage",
     "pages/userCenter/clubList/clubList",
     "pages/groupOwnerManage/costAdjust/costAdjust",
@@ -27,7 +29,6 @@
     "pages/userInfo/registerInfo/registerInfo",
     "pages/userInfo/selectionTags/selectionTags",
     "pages/login/login",
-    "pages/groupOwnerManage/activitySettlement/activitySettlement",
     "pages/groupOwnerManage/editMemberInfo/editMemberInfo",
     "pages/groupOwnerManage/membershipDetails/membershipDetails",
     "pages/groupOwnerManage/spotChargeDetial/spotChargeDetial",

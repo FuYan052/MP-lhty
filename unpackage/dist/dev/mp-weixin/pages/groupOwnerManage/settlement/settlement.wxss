@@ -62,6 +62,7 @@
 .settlment .topBox2.data-v-1608aaae .van-cell__title {
       color: #303030;
       font-size: 26rpx;
+      width: 106rpx;
 }
 .settlment .item1.data-v-1608aaae {
     position: relative;

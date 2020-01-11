@@ -1,6 +1,31 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/tabBar/badminton/badminton",
+			"style": {
+				"navigationBarTitleText": "约球",
+				"enablePullDownRefresh": true,
+				"backgroundTextStyle": "light"
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/activitySettlement/activitySettlement",
+			"style": {
+				"navigationBarTitleText": "活动结算"
+			}
+		}, 
+		{
+			"path": "pages/club/clubMemberInfo/clubMemberInfo",
+			"style": {
+				"navigationBarTitleText": "Ta人资料",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#1e1e1e",
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/dist/cell/index"
+				}
+			}
+		},
+		{
 			"path": "pages/groupOwnerManage/capitalDetails/capitalDetails",
 			"style": {
 				"navigationBarTitleText": "收支明细",
@@ -20,14 +45,6 @@
 				"navigationBarTitleText": "签到管理"
 			}
 		}, 
-		{
-			"path": "pages/tabBar/badminton/badminton",
-			"style": {
-				"navigationBarTitleText": "约球",
-				"enablePullDownRefresh": true,
-				"backgroundTextStyle": "light"
-			}
-		},
 		{
 			"path": "pages/groupOwnerManage/membershipFeeManage/membershipFeeManage",
 			"style": {
@@ -255,12 +272,6 @@
 				}
 			}
 		},
-		{
-			"path": "pages/groupOwnerManage/activitySettlement/activitySettlement",
-			"style": {
-				"navigationBarTitleText": "活动结算"
-			}
-		}, 
 		{
 			"path": "pages/groupOwnerManage/editMemberInfo/editMemberInfo",
 			"style": {
