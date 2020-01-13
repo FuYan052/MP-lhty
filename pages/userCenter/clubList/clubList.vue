@@ -49,11 +49,15 @@
 			},
 			// 会费详情
 			toMoneyDetail(item) {
-				
+				uni.navigateTo({
+					url: '/pages/club/clubMoney/clubMoney?clubId=' + item.clubId
+				})
 			},
 			// 会费充值
 			toclubRecharge(item) {
-				
+				uni.navigateTo({
+					url: '/pages/userCenter/membershipFeeRecharge/membershipFeeRecharge?clubId=' + item.clubId
+				})
 			}
 		}
 	}

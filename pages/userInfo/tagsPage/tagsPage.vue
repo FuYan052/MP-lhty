@@ -14,8 +14,16 @@
 			<view class="btn save" @click="saveSelectLabels">保存</view>
 		</view>
 		<view class="addLabel" v-show="isShow">
-			<input type="text" v-model="addValue" ref="input" placeholder="请输入标签">
-			<text @click="toAdd">添加</text>
+			<!-- <input type="text" v-model="addValue" placeholder="请输入标签"> -->
+			<van-field
+				placeholder="请输入少于六个字的自定义标签"
+				:border="false"
+				@change="onChange"
+				maxlength='6'
+				use-button-slot
+			 >
+				<van-button slot="button" size="small" type="primary" @click='toAdd'>添加</van-button>
+			</van-field>
 		</view>
 	</view>
 </template>
@@ -27,7 +35,9 @@
 				labelList: [],  //请求回来的一维数组
 				resultList1: [], 
 				resultList2: [], //变成二维数组渲染,用于渲染
-				selectedListIds: []
+				selectedListIds: [],
+				isShow: false,
+				addLabel: ''
 			}
 		},
 		created() {
@@ -85,6 +95,33 @@
 				}
 				this.resultList2 = this.resultList2.reduce(function (a, b) { return a.concat(b)} )
 				// console.log(this.resultList2)
+			},
+			showAddBox() {
+				this.isShow = true
+			},
+			onChange(v) {
+				this.addLabel = v.detail
+			},
+			toAdd() {
+				// 创建并提交后台
+				const params = {
+					labelName: this.addValue,
+					userId: window.localStorage.getItem('userId')
+				}
+				this.$http.createLabel(params).then(resp => {
+					// console.log(resp)
+					if(resp.status == 200) {
+						this.isShow = false
+						// this.$toast({
+						//   message: '创建成功！',
+						//   duration: 2000
+						// });
+						this.addValue = ''
+					}
+					if(!this.isShow) {  //创建标签成功之后获取新的标签列表
+						this.getAllList()
+					}
+				})
 			},
 		}
 	}
@@ -159,33 +196,25 @@
 		.addLabel{
 			width: 100%;
 			height: 100rpx;
-			background: #fff;
+			box-sizing: border-box;
 			padding: 0 38rpx;
-			position: fixed;
-			bottom: 0;
-			z-index: 9;
-			position: relative;
-			input{
-				width: 100%;
-				height: 70rpx;
-				border: 1rpx solid #313131;
+			/deep/ .van-cell{
+				height: 76rpx;
+				border: 1rpx solid #fff;
+				box-sizing: border-box;
 				border-radius: 40rpx;
-				padding-left: 25rpx;
-				font-size: 21rpx;
-			}
-			text{
-				width: 90rpx;
-				height: 55rpx;
-				line-height: 55rpx;
-				text-align: center;
-				color: #fff;
-				background: #fac31e;
-				display: block;
-				font-size: 25rpx;
-				border-radius: 25rpx;
-				position: absolute;
-				top: 7rpx;
-				right: 50rpx;
+				padding: 0;
+				padding: 0 25rpx;
+				font-size: 24rpx;
+				background: none;
+				align-items: center;
+				.van-field__input{
+					color: #fff;
+				}
+				.van-field__button{
+					font-size: 28rpx;
+					color: #fac31e;
+				}
 			}
 		}
 	}

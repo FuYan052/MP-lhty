@@ -358,7 +358,7 @@ var _default =
           uni.removeStorageSync('addActId');
           uni.showModal({
             title: '提示',
-            content: "".concat(resp.data.message, "\n\u6536\u5165\uFF1A").concat(resp.data.expenditure, " + \u5143\n\u8D26\u6237\u4F59\u989D\uFF1A").concat(resp.data.income, " + \u5143"),
+            content: "".concat(resp.data.message, "\n\u6536\u5165\uFF1A").concat(resp.data.expenditure, "\u5143\n\u8D26\u6237\u4F59\u989D\uFF1A").concat(resp.data.income, "\u5143"),
             cancelText: '去结算',
             success: function success(res) {
               if (res.confirm) {

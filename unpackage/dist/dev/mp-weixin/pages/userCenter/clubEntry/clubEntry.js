@@ -172,6 +172,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   components: {
     wPicker: wPicker },
@@ -186,7 +209,9 @@ __webpack_require__.r(__webpack_exports__);
       Weixin: '',
       QQ: '',
       regionCode: '',
-      regionName: '' };
+      regionName: '',
+      introduce: '',
+      imgUrl: '../../../static/logo.png' };
 
   },
   methods: {
@@ -210,6 +235,41 @@ __webpack_require__.r(__webpack_exports__);
     InputUserName: function InputUserName(v) {
       this.UserName = v.detail;
     },
+    choiceImg: function choiceImg() {
+      var that = this;
+      uni.chooseImage({
+        count: 1, //默认9
+        sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album'], //从相册选择
+        success: function success(res) {
+          console.log(res);
+          that.imgUrl = res.tempFilePaths[0];
+          var filepath = res.tempFilePaths[0];
+          uni.showLoading({
+            title: '上传中...' });
+
+          uni.uploadFile({
+            url: that.$http.baseUrl + '/v1/rest/file/uploadOSS', //仅为示例，非真实的接口地址
+            filePath: filepath,
+            name: 'file',
+            success: function success(uploadFileRes) {
+              uni.hideLoading();
+              var resp = JSON.parse(uploadFileRes.data);
+              console.log(resp);
+              if (resp.status == 200) {
+                that.imgUrl = resp.data[0];
+              }
+            },
+            fail: function fail(err) {
+              console.log(err);
+            } });
+
+        } });
+
+    },
+    inputIntrValue: function inputIntrValue(v) {
+      this.introduce = v.detail;
+    },
     InputPhone: function InputPhone(v) {
       this.phone = v.detail;
     },
@@ -229,6 +289,8 @@ __webpack_require__.r(__webpack_exports__);
         phone: this.phone,
         qq: this.QQ,
         weixin: this.Weixin,
+        logo: this.imgUrl,
+        content: this.introduce,
         userId: uni.getStorageSync('userInfo').userId };
 
       console.log(params);

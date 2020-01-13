@@ -6,7 +6,6 @@
 					<view class="title">头像</view>
 					<view class="content">
 						<view class="imgBox">
-							<!-- <image src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg" style="width: 100%; height: 100%; border-radius: 50%;" alt=""> -->
 							<image :src="imgFile" style="width: 100%; height: 100%; border-radius: 50%;" alt="">
 						</view>
 					</view>
@@ -114,17 +113,17 @@
 				this.heightList.push(item)
 			}
 			// 职业选择列表
-			// this.$http.get({
-			// 	url: '/v1/rest/public/findDictList',
-			// 	data:{
-			// 		skey: 'occupation',
-			// 	}
-			// }).then(resp => {
-			// 	console.log(resp)
-			// 	if(resp.status == 200) {
-			// 		this.workList = resp.data
-			// 	}
-			// })
+			this.$http.get({
+				url: '/v1/rest/public/findDictList',
+				data:{
+					skey: 'occupation',
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.workList = resp.data
+				}
+			})
 		},
 		methods: {
 			choiceImg() {
@@ -175,6 +174,12 @@
 			confirmRegion(v) {
 				this.regionValue = v.result
 			},
+			// 选择标签
+			selectLabel() {
+				uni.navigateTo({
+					url: '/pages/userInfo/tagsPage/tagsPage'
+				})
+			}
 		}
 	}
 </script>

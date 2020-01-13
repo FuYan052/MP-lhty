@@ -27,7 +27,7 @@
 .accountDetails.data-v-3320fb20 {
   width: 100%;
   min-height: 100vh;
-  background: #dedede;
+  background: #1E1E1E;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 0 32rpx;

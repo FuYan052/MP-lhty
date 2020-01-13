@@ -78,7 +78,8 @@
 	.accountDetails{
 		width: 100%;
 		min-height: 100vh;
-		background: #dedede;
+		// background: #dedede;
+		background: #1E1E1E;
 		box-sizing: border-box;  
 		padding: 0 32rpx;
 		padding-top: 30rpx;

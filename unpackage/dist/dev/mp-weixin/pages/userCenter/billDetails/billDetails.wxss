@@ -28,7 +28,7 @@
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background: #dedede;
+  background: #1E1E1E;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 0 32rpx;

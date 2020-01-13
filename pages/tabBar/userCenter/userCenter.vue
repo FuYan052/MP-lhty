@@ -86,41 +86,16 @@
 			...mapState(['hasLogin', 'userInfo']),  //对全局变量hasLogin进行监控
 		},
 		created() {
-			console.log('222')
-			console.log(uni.getStorageSync('isLogin'))
-			if(uni.getStorageSync('userInfo').userId > 0) {
-				this.stateTab = false
-			}else{
-				this.stateTab = true
-				this.showToLogin = true
-				// console.log('调接口')
-				// this.$http.get({
-				// 	url: '/v1/rest/personalCenter/personalCenter',
-				// 	data:{
-				// 		userId: uni.getStorageSync('userInfo').userId,
-				// 	}
-				// }).then(resp => {
-				// 	console.log(resp)
-				// 	if(resp.status == 200) {
-				// 		this.userData = resp.data
-				// 		uni.setStorageSync('clubId', resp.data.clubId)
-				// 	}
-				// })
-			}
-		},
-		onLoad() {
-			// console.log('222')
+			
 		},
 		onShow() {
-			console.log('333')
-			// const loginState = uni.getStorageSync('isLogin')
-			// // console.log(loginState)
-			// if(loginState) {
-			// 	this.stateTab = false
-			// }else{
-			// 	this.stateTab = true
-			// }
-			if(!this.stateTab) {
+			if(uni.getStorageSync('userInfo').userId > 0) {  //登录
+				this.stateTab = true
+			}else{  //未登录
+				this.stateTab = false
+				this.showToLogin = true
+			}
+			if(this.stateTab) {
 				this.$http.get({
 					url: '/v1/rest/personalCenter/personalCenter',
 					data:{
@@ -135,7 +110,6 @@
 				})
 			}
 		},
-		
 		methods: {
 			...mapMutations(['logout']),  //对全局方法login进行监控
 			// 我的钱包
@@ -148,16 +122,19 @@
 				uni.navigateTo({
 				  url: '/pages/login/login'
 				});
+				this.showToLogin = false
 			},
 			// 退出登录
 			doLoginout() {
 				this.showLoginOut = true
 			},
 			handleConfirm() {
-				console.log('确定退出')
 				this.logout()
 				uni.removeStorage({  //根据key值移除缓存数据
 					key: 'isLogin'
+				})
+				uni.removeStorage({  //根据key值移除缓存数据
+					key: 'clubId'
 				})
 				this.userData = {}
 				this.showToLogin = true

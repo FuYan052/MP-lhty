@@ -5,6 +5,7 @@
 			<view class="searchBox">
 				<van-field
 					placeholder="搜索成员"
+					placeholder-style='color: #1e1e1e'
 					:border="false"
 					left-icon="search"
 					@change="onChange"
@@ -234,17 +235,19 @@
 	.clubMember{
 		width: 100%;
 		min-height: 100vh;
-		background: #f5f5f5;
+		background: #1e1a19;
 		overflow: hidden;
 		box-sizing: border-box;
-		padding: 0 24rpx;
+		padding: 0 41rpx;
 		padding-bottom: 40rpx;
 		.searchBox{
 			width: 100%;
 			height: 84rpx;
 			border-radius: 35rpx;
-			background: #fad57a;
+			background: #dfa923;
 			box-sizing: border-box;
+			color: #1E1E1E;
+			margin-top: 30rpx;
 			/deep/ .van-cell{
 				height: 84rpx;
 				border-radius: 30rpx;
@@ -263,11 +266,13 @@
 		}
 		.sectionTitle{
 			width: 100%;
-			height: 100rpx;
-			line-height: 100rpx;
+			height: 98rpx;
+			color: #e1e0e0;
+			line-height: 98rpx;
 			box-sizing: border-box;
-			padding-left: 6rpx;
+			padding-left: 10rpx;
 			font-size: 30rpx;
+			font-weight: 600;
 		}
 		.contentBox{
 			width: 100%;
@@ -276,15 +281,13 @@
 			flex: 1;
 			.itemBox{
 				width: 100%;
-				// height: 240rpx; 
 				height: auto;
 				margin-bottom: 20rpx;
-				background: #fff;
+				background: #322e2f;
 				border-radius: 15rpx;
 				.detail{
 					width: 100%;
-					// height: 160rpx;
-					height: auto;
+					height: 160rpx;
 					box-sizing: border-box;
 					padding: 0 32rpx;
 					.top{
@@ -307,6 +310,8 @@
 							.name{
 								max-width: 370rpx;
 								line-height: 88rpx;
+								font-size: 31rpx;
+								color: #e1e0e0;
 								overflow: hidden;
 								white-space: nowrap;
 								text-overflow: ellipsis;
@@ -332,14 +337,14 @@
 							width: 80rpx;
 							height: 88rpx;
 							font-size: 22rpx;
-							color: #ffbb00;
+							color: #6d6b6b;
 							margin-left: 25rpx;
 							.role{
 								line-height: 35rpx;
 							}
 							.level{
-								font-size: 25rpx;
-								color: #000;
+								font-size: 24rpx;
+								color: #e1e0e0;
 								line-height: 50rpx;
 							}
 						}

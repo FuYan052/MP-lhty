@@ -3,20 +3,21 @@
 		<view class="topBox">
 			<view class="total">
 				<view class="title">账户余额</view>
-				<view class="num">￥576.00</view>
+				<view class="num">￥{{feeData.totalMoney}}</view>
 			</view>
-			<view class="wrap">未结算费用：<text>583.56</text></view>
+			<view class="wrap">未结算费用：<text>{{feeData.unsettledMoney}}</text></view>
 		</view>
 		<view class="detailBox">
 			<view class="title">明细</view>
-			<view class="detailItem" v-for="(item,index) in 10" :key='index'>
+			<view class="detailItem" v-for="(item,index) in feeData.feeDetailedBackVoList" :key='index'>
 				<view class="left">
-					<view class="type">会费调整</view>
-					<view class="date">日期：2019-12-31</view>
+					<view class="type">{{item.payState}}</view>
+					<view class="date">日期：{{item.createTime}}</view>
 				</view>
 				<view class="right">
-					<view class="number">+￥200.00</view>
-					<view class="name">张丽</view>
+					<view class="number n1" v-if="item.algorithmType">+￥{{item.totalMoney}}</view>
+					<view class="number n2" v-else>-￥{{item.totalMoney}}</view>
+					<view class="name">{{item.nickName}}</view>
 				</view>
 			</view>
 		</view>
@@ -25,7 +26,30 @@
 
 <script>
 	export default {
-		
+		data() {
+			return {
+				clubId: '',
+				feeData: {}
+			}
+		},
+		onLoad(options) {
+			this.clubId = options.clubId
+			this.$http.get({
+				url: '/v1/rest/club/detailsMmembershipFees',
+				data: {
+					clubId: this.clubId,
+					userId: uni.getStorageSync('userInfo').userId
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.feeData = resp.data
+				}
+			})
+		},
+		methods: {
+			
+		}
 	}
 </script>
 
@@ -41,7 +65,7 @@
 			width: 100%;
 			height: 280rpx;
 			border-radius: 10rpx;
-			background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/manageBg1.png') no-repeat center;
+			background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/huifeiBg.png') no-repeat center;
 			background-size: cover;
 			box-sizing: border-box;
 			padding: 0 40rpx;
@@ -114,10 +138,14 @@
 						line-height: 46rpx;
 						font-weight: 600;
 					}
+					.n2{
+						color: #2c2c2c;
+					}
 					.name{
 						font-size: 24rpx;
 						line-height: 44rpx;
 						color: #8a8a8a;
+						text-align: right;
 					}
 				}
 			}

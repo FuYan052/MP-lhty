@@ -10,6 +10,29 @@
 				</view>
 				<van-field @change='InputVenue' label="活动场馆" placeholder="常活动场馆" size='large' :border='false'/>
 			</van-cell-group>
+			<view class="logoBox whiteBg2">
+				<view class="title">俱乐部LOGO</view>
+				<view class="logoUpperBox">
+					<view class="imgBox" v-if="imgUrl == ''" @click="choiceImg">
+						<van-icon name="plus" size='30rpx' color='#8a8a8a'/>
+					</view>
+					<view class="LogoImg" v-else @click="choiceImg">
+						<image :src="imgUrl" mode="" style="width: 100%; height: 100%;"></image>
+					</view>
+				</view>
+			</view>
+			<view class="intro whiteBg2">
+				<view class="title">俱乐部介绍</view>
+				<view class="textAreaBox">
+						<van-field
+							type="textarea"
+							placeholder="请输入俱乐部简介"
+							:autosize='true'
+							:border="false"
+							:show-confirm-bar='false'
+						/>
+				</view>
+			</view>
 		</view>
 		<view class="sectionTitle">会长基本信息</view>
 		<view class="section2">
@@ -62,7 +85,9 @@
 				Weixin: '',
 				QQ: '',
 				regionCode: '',
-				regionName: ''
+				regionName: '',
+				introduce: '',
+				imgUrl: '../../../static/logo.png',
 			}
 		},
 		methods: {
@@ -86,6 +111,41 @@
 			InputUserName(v) {
 				this.UserName = v.detail
 			},
+			choiceImg() {
+				const that = this
+				uni.chooseImage({
+					count: 1, //默认9
+					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+					sourceType: ['album'], //从相册选择
+					success: function (res) {
+						console.log(res)
+						that.imgUrl = res.tempFilePaths[0]
+						const filepath = res.tempFilePaths[0]
+						uni.showLoading({
+						  title: '上传中...'
+						})
+						uni.uploadFile({
+							url: that.$http.baseUrl + '/v1/rest/file/uploadOSS', //仅为示例，非真实的接口地址
+							filePath: filepath,
+							name: 'file',
+							success: (uploadFileRes) => {
+								uni.hideLoading();
+								const resp = JSON.parse(uploadFileRes.data)
+								console.log(resp);
+								if(resp.status == 200) {
+									that.imgUrl = resp.data[0]
+								}
+							},
+							fail: (err) => {
+								console.log(err)
+							}
+						});
+					}
+				});
+			},
+			inputIntrValue(v) {
+				this.introduce = v.detail
+			},
 			InputPhone(v) {
 				this.phone = v.detail
 			},
@@ -105,6 +165,8 @@
 					phone: this.phone,
 					qq: this.QQ,
 					weixin: this.Weixin,
+					logo: this.imgUrl,
+					content: this.introduce,
 					userId: uni.getStorageSync('userInfo').userId
 				}
 				console.log(params)
@@ -148,6 +210,76 @@
 			margin-top: 8rpx;
 			.van-cell__title{
 				font-size: 28rpx;
+			}
+		}
+		.section1{
+			.whiteBg2{
+				width: 100%;
+				min-height: 250rpx;
+				background: #fff;
+				border-radius: 10rpx;
+				margin-top: 8rpx;
+				box-sizing: border-box;
+				padding-bottom: 35rpx;
+				.title{
+					height: 92rpx;
+					margin-left: 32rpx;
+					letter-spacing: 1rpx;
+					font-size: 28rpx;
+					color: #1f1f1f;
+					line-height: 92rpx;
+				}
+			}
+			.intro{
+				width: 100%;
+				min-height: 250rpx;
+				box-sizing: border-box;
+				padding: 0 35rpx;
+				padding-bottom: 35rpx;
+				.title{
+					margin-left: 0;
+				}
+				.textAreaBox{
+					width: 100%;
+					min-height: 135rpx;
+					box-sizing: border-box;
+					display: flex;
+					border: 1rpx solid #222222;
+					padding: 20rpx;
+					/deep/ .van-cell{
+						width: 600rpx;
+						padding: 0;
+						.van-field__input{
+							min-height: 135rpx;
+							font-size: 28rpx;
+							line-height: 40rpx;
+						}
+						.van-field__body--textarea.van-field__body--ios{
+							margin-top: 0;
+						}
+					}
+				}
+			}
+			.logoBox{
+				height: 196rpx;
+				.logoUpperBox{
+					height: 100rpx;
+					display: flex;
+				}
+				.imgBox{
+					width: 83rpx;
+					height: 83rpx;
+					border: 1rpx dashed #898989;
+					margin-left: 35rpx;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+				.LogoImg{
+					width: 83rpx;
+					height: 83rpx;
+					margin-left: 35rpx;
+				}
 			}
 		}
 		.tips{

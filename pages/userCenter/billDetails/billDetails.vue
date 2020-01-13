@@ -62,7 +62,8 @@
 		width: 100%;
 		min-height: 100vh;
 		overflow: hidden;
-		background: #dedede;
+		// background: #dedede;
+		background: #1E1E1E;
 		box-sizing: border-box;
 		padding: 0 32rpx;
 		.whiteBg{

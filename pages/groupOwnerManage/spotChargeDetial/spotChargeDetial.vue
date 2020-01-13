@@ -216,7 +216,7 @@
 						uni.removeStorageSync('addActId')
 						uni.showModal({
 							title: '提示',
-							content: `${resp.data.message}\n收入：${resp.data.expenditure} + 元\n账户余额：${resp.data.income} + 元`,
+							content: `${resp.data.message}\n收入：${resp.data.expenditure}元\n账户余额：${resp.data.income}元`,
 							cancelText: '去结算',
 							success: function (res) {
 								if (res.confirm) {

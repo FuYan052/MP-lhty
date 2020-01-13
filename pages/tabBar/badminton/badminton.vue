@@ -18,7 +18,7 @@
 				easing-function="default"
 				duration="1000">
 				<swiper-item v-for="(item,index) in banners" :key='index'>
-					<image :src="item.imgUrl" style="width: 100%; height: 100%; border-radius: 12rpx;" @click="clickBanner(item)" mode=""></image>
+					<image :src="item.imgPath" style="width: 100%; height: 100%; border-radius: 12rpx;" @click="clickBanner(item)" mode=""></image>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -78,26 +78,20 @@
 			const that = this
 			// 默认日期为当天日期
 		 this.clickDate = this.$utils.findDate(0)
-		 this.banners = [
-			 {
-				 imgUrl: 'https://weiliicimg6.pstatp.com/weili/l/255348441617793179.webp',
-				 webUrl: 'https://www.laihu.baogongxia.com'
-			 },
-			 {
-				 imgUrl: 'https://weiliicimg1.pstatp.com/weili/l/262282047841894496.webp',
-				 webUrl: 'https://uniapp.dcloud.io/'
-			 },
-			 {
-				 imgUrl: 'https://weiliicimg1.pstatp.com/weili/l/458286230512861820.webp',
-				 webUrl: 'https://youzan.github.io/vant-weapp/#/intro'
-			 },
-			 {
-				 imgUrl: 'https://icweiliimg6.pstatp.com/weili/l/328163178242899976.webp',
-				 webUrl: 'https://www.baidu.com'
+		// 获取banner
+		this.$http.get({
+			 url: '/v1/rest/home/homeNewsList',
+			 data: {
+				 region:''
 			 }
-		 ]
+		}).then(resp => {
+			console.log(resp)
+			if(resp.status == 200) {
+				this.banners = resp.data
+			}
+		})
 		 // 获取用户地理位置
-		 uni.getLocation({
+		uni.getLocation({
 		    type: 'wgs84',
 		    success: function (res) {
 					console.log(res)

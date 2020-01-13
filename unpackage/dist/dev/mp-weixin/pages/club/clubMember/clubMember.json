@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "俱乐部成员",
-  "navigationBarTextStyle": "black",
-  "navigationBarBackgroundColor": "#f5f5f5",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#1e1e1e",
   "usingComponents": {
     "van-field": "/wxcomponents/vant/dist/field/index"
   }
