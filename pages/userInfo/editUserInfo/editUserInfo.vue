@@ -14,7 +14,7 @@
 				<view class="infoItem nickName">
 					<view class="title">昵称</view>
 					<view class="content">
-						<van-field @change='InputNickName' input-align='right' placeholder="填写昵称" size='large' :border='false'/>
+						<van-field :value='nickName' @change='InputNickName' input-align='right' placeholder="填写昵称" size='large' :border='false'/>
 					</view>
 					<van-icon name="arrow" color='#fff'/>
 				</view>
@@ -66,7 +66,7 @@
 			</view>
 		</view>
 		<view class="bottom">
-			<view class="btn myButton">保存</view>
+			<view class="btn myButton" @click="submit">保存</view>
 		</view>
 		<!-- 性别选择器 -->
 		<w-picker mode="selector" :selectList="sexList" @confirm="confirmSex" ref="picker1" themeColor="#ffbc01"></w-picker>
@@ -91,6 +91,7 @@
 			return {
 				imgFile: '',
 				nickName: '',
+				sex: '',
 				sexValue: '',
 				sexList: [{label: '男',value: 1},{label: '女',value: 2}],
 				heightList: [],
@@ -98,12 +99,42 @@
 				birthValue: '',
 				defaultValBirth: ['1990','06','15'],
 				workList: [{label: '',value: ''},{label: '',value: ''}],
+				workId: '',
 				workValue: '',
+				regionId: '',
 				regionValue: '',
+				selectedIds: '',
 				selectedList: [{label: '羽毛球',value: 1},{label: '跑步',value: 2},{label: '自驾游',value: 3},{label: '自驾游自驾游',value: 3}]
 			}
 		},
-		onLoad() {
+		onLoad(options) {
+			// 获取信息
+			this.$http.get({
+				url: '/v1/rest/mydata/findUserInfo',
+				data: {
+					userId: uni.getStorageSync('userInfo').userId
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.imgFile = resp.data.headPortrait
+					this.nickName = resp.data.nickName
+					this.sex = resp.data.sex
+					if(resp.data.sex == 1) {
+						this.sexValue = '男'
+					}else{
+						this.sexValue = '女'
+					}
+					this.heightValue = resp.data.height
+					this.birthValue = resp.data.birthday
+					this.workId = resp.data.occupationId
+					this.workValue = resp.data.occupation
+					this.regionId = resp.data.region
+					this.regionValue = resp.data.regionName
+					this.selectedIds = resp.data.labelId
+					this.selectedList = resp.data.labelVoList
+				}
+			})
 			// 身高选择列表
 			for(let i=120; i<=200; i++) {
 				let item = {
@@ -125,15 +156,44 @@
 				}
 			})
 		},
+		onShow() {
+			
+		},
 		methods: {
 			choiceImg() {
 				const that = this
 				uni.chooseImage({
-					count: 6, //默认9
+					count: 1, //默认9
 					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+					sourceType: ['album'], //从相册选择
 					success: function (res) {
 						console.log(res)
-						that.imgFile = res.tempFilePaths
+						that.imgFile = res.tempFilePaths[0]
+						const filepath = res.tempFilePaths[0]
+						uni.showLoading({
+						  title: '上传中...'
+						})
+						uni.uploadFile({
+							url: that.$http.baseUrl + '/v1/rest/file/uploadOSS', //仅为示例，非真实的接口地址
+							filePath: filepath,
+							name: 'file',
+							success: (uploadFileRes) => {
+								uni.hideLoading();
+								const resp = JSON.parse(uploadFileRes.data)
+								console.log(resp);
+								if(resp.status == 200) {
+									that.imgFile = resp.data[0]
+									uni.showToast({
+										title: '上传成功！',
+										duration: 1500,
+										icon: 'none'
+									});
+								}
+							},
+							fail: (err) => {
+								console.log(err)
+							}
+						});
 					}
 				});
 			},
@@ -179,6 +239,10 @@
 				uni.navigateTo({
 					url: '/pages/userInfo/tagsPage/tagsPage'
 				})
+			},
+			//保存
+			submit() {
+				
 			}
 		}
 	}

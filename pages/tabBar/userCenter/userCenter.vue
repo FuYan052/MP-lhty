@@ -13,7 +13,7 @@
 						<!-- <view class="role">群主</view> -->
 					</view>
 				</view>
-				<view class="right">
+				<view class="right" @click="editUserInfo">
 					<view class="iconBox"></view>
 				</view>
 			</view>
@@ -141,6 +141,12 @@
 			},
 			handleCancel() {
 				this.showLoginOut = false
+			},
+			// 完善信息
+			editUserInfo() {
+				uni.navigateTo({
+					url: '/pages/userInfo/editUserInfo/editUserInfo?userId=' + uni.getStorageSync('userInfo').userId
+				})
 			}
 		}
 	}

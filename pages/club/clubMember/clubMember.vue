@@ -15,7 +15,7 @@
 		<!-- 管理组 -->
 		<view class="sectionTitle" v-show="isShowTitle1">管理组</view>
 		<view class="contentBox contentBox1" :class="{contentChange : !isShowTitle}" v-show="isShowTitle">
-			<view class="itemBox" v-for="(item,index) in list1" :key='index'>
+			<view class="itemBox" v-for="(item,index) in list1" :key='index' @click="toUserInfo(item)">
 				<view class="detail">
 					<view class="top">
 						<view class="imgBox">
@@ -38,7 +38,7 @@
 		<!-- 高级 -->
 		<view class="sectionTitle" v-show="isShowTitle2">高级</view>
 		<view class="contentBox contentBox2" :class="{contentChange : !isShowTitle}" v-show="isShowTitle">
-			<view class="itemBox" v-for="(item,index) in list2" :key='index'>
+			<view class="itemBox" v-for="(item,index) in list2" :key='index' @click="toUserInfo(item)">
 				<view class="detail">
 					<view class="top">
 						<view class="imgBox">
@@ -61,7 +61,7 @@
 		<!-- 中级 -->
 		<view class="sectionTitle" v-show="isShowTitle3">中级</view>
 		<view class="contentBox contentBox2" :class="{contentChange : !isShowTitle}" v-show="isShowTitle">
-			<view class="itemBox" v-for="(item,index) in list3" :key='index'>
+			<view class="itemBox" v-for="(item,index) in list3" :key='index' @click="toUserInfo(item)">
 				<view class="detail">
 					<view class="top">
 						<view class="imgBox">
@@ -84,7 +84,7 @@
 		<!-- 初级 -->
 		<view class="sectionTitle" v-show="isShowTitle4">初级</view>
 		<view class="contentBox contentBox2" :class="{contentChange : !isShowTitle}" v-show="isShowTitle">
-			<view class="itemBox" v-for="(item,index) in list4" :key='index'>
+			<view class="itemBox" v-for="(item,index) in list4" :key='index' @click="toUserInfo(item)">
 				<view class="detail">
 					<view class="top">
 						<view class="imgBox">
@@ -107,7 +107,7 @@
 		<!-- 菜鸟 -->
 		<view class="sectionTitle" v-show="isShowTitle5">菜鸟</view>
 		<view class="contentBox contentBox2" :class="{contentChange : !isShowTitle}" v-show="isShowTitle">
-			<view class="itemBox" v-for="(item,index) in list5" :key='index'>
+			<view class="itemBox" v-for="(item,index) in list5" :key='index' @click="toUserInfo(item)">
 				<view class="detail">
 					<view class="top">
 						<view class="imgBox">
@@ -129,7 +129,7 @@
 		</view>
 		<!-- 搜索结果列表 -->
 		<view class="contentBox contentBox2" :class="{contentChange : !isShowTitle}" v-show="!isShowTitle">
-			<view class="itemBox" v-for="(item,index) in list6" :key='index'>
+			<view class="itemBox" v-for="(item,index) in list6" :key='index' @click="toUserInfo(item)">
 				<view class="detail">
 					<view class="top">
 						<view class="imgBox">
@@ -226,6 +226,11 @@
 					this.isShowTitle = true
 					this.getCateList()
 				}
+			},
+			toUserInfo(item) {
+				uni.navigateTo({
+					url: "/pages/club/clubMemberInfo/clubMemberInfo?userId=" + item.userId
+				})
 			}
 		}
 	}

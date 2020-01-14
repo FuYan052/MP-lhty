@@ -1,10 +1,12 @@
 {
   "pages": [
-    "pages/activity/signUpList/signUpList",
+    "pages/userInfo/editUserInfo/editUserInfo",
     "pages/tabBar/badminton/badminton",
+    "pages/club/memberClubList/memberClubList",
+    "pages/club/homePage/homePage",
+    "pages/activity/signUpList/signUpList",
     "pages/tabBar/userCenter/userCenter",
     "pages/userInfo/tagsPage/tagsPage",
-    "pages/userInfo/editUserInfo/editUserInfo",
     "pages/userInfo/selectionTags/selectionTags",
     "pages/userCenter/clubEntry/clubEntry",
     "pages/club/clubMember/clubMember",
@@ -23,7 +25,6 @@
     "pages/groupOwnerManage/membershipManage/membershipManage",
     "pages/groupOwnerManage/editActivitie/editActivitie",
     "pages/userCenter/myActivities/myActivities",
-    "pages/club/homePage/homePage",
     "pages/club/clubMoney/clubMoney",
     "pages/groupOwnerManage/publishActivities/publishActivities",
     "pages/groupOwnerManage/revisionActivity/revisionActivity",

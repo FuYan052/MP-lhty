@@ -1,21 +1,21 @@
 <template>
 	<view class="signUpList">
-		<view class="userItem" v-for="(item,index) in 10" :key='index'>
+		<view class="userItem" v-for="(item,index) in peopleList" :key='index'>
 			<view class="left">
 				<view class="imgBox">
-					<image src="../../../static/logo.png" style="width: 100%; height: 100%; border-radius: 50%;" mode=""></image>
+					<image :src="item.headPortrait" style="width: 100%; height: 100%; border-radius: 50%;" mode=""></image>
 				</view>
 				<view class="name">
 					<view class="text">
-						清风徐来 <text v-show="item.roleName">-({{item.roleName}})</text>
+						{{item.nickName}}
 					</view>
 					<view class="sex">
-						<view class="sexIcon sex1" v-if="sex == 1"></view>
+						<view class="sexIcon sex1" v-if="item.sex == 1"></view>
 						<view class="sexIcon sex2" v-else></view>
 					</view>
 				</view>
 			</view>
-			
+			<view class="right">{{item.level}}</view>
 		</view>
 	</view>
 </template>
@@ -24,8 +24,23 @@
 	export default {
 		data() {
 			return {
-				sex: 2
+				actId: null,
+				peopleList: [],
 			}
+		},
+		onLoad(options) {
+			this.actId = options.actId
+			this.$http.get({
+				url: '/v1/rest/home/activitiesEnrolled',
+				data: {
+					activitiesId: this.actId
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.peopleList = resp.data
+				}
+			})
 		}
 	}
 </script>
@@ -54,7 +69,7 @@
 				align-items: center;
 				.imgBox{
 					width: 88rpx;
-					height: 88rpx;
+					height: 88rpx; 
 					border-radius: 50%;
 					margin-left: 31rpx;
 				}
@@ -86,7 +101,10 @@
 					}
 				}
 			}
-			
+			.right{
+				font-size: 24rpx;
+				margin-right: 41rpx;
+			}
 		}
 	}
 </style>

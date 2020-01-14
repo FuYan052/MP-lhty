@@ -31,7 +31,7 @@
 }
 .clubMemberInfo .topBox.data-v-a8de66f4 {
     width: 100%;
-    height: 519rpx;
+    height: 442rpx;
     background: #1e1e1e;
     overflow: hidden;
 }
@@ -52,7 +52,7 @@
       margin-top: 25rpx;
 }
 .clubMemberInfo .topBox .name .text.data-v-a8de66f4 {
-        padding-right: 32rpx;
+        padding-right: 36rpx;
         background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/manIcon2.png") no-repeat right center;
         background-size: 22rpx 32rpx;
 }

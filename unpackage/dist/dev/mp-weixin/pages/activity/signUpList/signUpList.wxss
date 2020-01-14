@@ -101,4 +101,8 @@
           background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/wIcon.png") no-repeat left center;
           background-size: 20rpx auto;
 }
+.signUpList .userItem .right.data-v-53ff3e1f {
+      font-size: 24rpx;
+      margin-right: 41rpx;
+}
 

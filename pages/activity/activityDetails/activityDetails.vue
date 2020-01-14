@@ -13,7 +13,7 @@
 					easing-function="default"
 					duration="1000">
 					<swiper-item v-for="(item,index) in banners" :key='index'>
-						<image :src="item.imgUrl" style="width: 100%; height: 100%; border-radius: 12rpx;" @click="clickBanner(item)" mode=""></image>
+						<image :src="item.imgPath" style="width: 100%; height: 100%; border-radius: 12rpx;" @click="clickBanner(item)" mode=""></image>
 					</swiper-item>
 				</swiper>
 			</view>
@@ -63,10 +63,10 @@
 				<view class="headImgBox" v-show="showPeopleImg">
 					<view class="left">
 						<view 
-							class="imgItem" v-for="(it,ind) in list" 
+							class="imgItem" v-for="(it,ind) in peopleList" 
 							:key="ind"
 							>
-							<image :src="it" style="width:100%; height: 100%; border-radius: 50%;" alt=""/>
+							<image :src="it.headPortrait" style="width:100%; height: 100%; border-radius: 50%;" alt=""/>
 						</view>
 					</view>
 				</view>
@@ -97,7 +97,7 @@
 		data() {
 			return {
 				banners: [],
-				list: [],
+				peopleList: [],
 				content: '',  //倒计时内容
 				isChecked: false,  //是否勾选免责条款
 				endTime: "2019-12-31 19:00",
@@ -108,36 +108,23 @@
 				long: '104.040560',
 				activityId: null,
 				actDetail: null,
-				clubId: null
+				clubId: null,
+				state: null
 			}
 		},
 		created() {
-			this.banners = [
-			 {
-				 imgUrl: 'https://weiliicimg6.pstatp.com/weili/l/255348441617793179.webp',
-				 webUrl: 'https://www.laihu.baogongxia.com'
-			 },
-			 {
-				 imgUrl: 'https://weiliicimg1.pstatp.com/weili/l/262282047841894496.webp',
-				 webUrl: 'https://uniapp.dcloud.io/'
-			 },
-			 {
-				 imgUrl: 'https://weiliicimg1.pstatp.com/weili/l/458286230512861820.webp',
-				 webUrl: 'https://youzan.github.io/vant-weapp/#/intro'
-			 },
-			 {
-				 imgUrl: 'https://icweiliimg6.pstatp.com/weili/l/328163178242899976.webp',
-				 webUrl: 'https://www.baidu.com'
-			 }
-			]
-			this.list = [
-				"http://f1.haiqq.com/allimg/3831982416/2817233822.jpg",
-				"http://f1.haiqq.com/allimg/3831982416/2817233822.jpg",
-				"http://f1.haiqq.com/allimg/3831982416/2817233822.jpg",
-				"http://f1.haiqq.com/allimg/3831982416/2817233822.jpg",
-				"http://f1.haiqq.com/allimg/3831982416/2817233822.jpg",
-				"http://f1.haiqq.com/allimg/3831982416/2817233822.jpg",
-			]
+			// 获取banner
+			this.$http.get({
+				 url: '/v1/rest/home/homeNewsList',
+				 data: {
+					 region:''
+				 }
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.banners = resp.data
+				}
+			})
 		},
 		onLoad(options) {
 			console.log(options)
@@ -158,19 +145,33 @@
 					this.address = resp.data.address
 					this.organizerPhone = resp.data.phone
 					this.clubId = resp.data.clubId
+					this.state = resp.data.osStateId
 					const _endTime = (new Date(this.endTime.replace(/-/g,'/')).getTime()) / 1000
 					this.countdowm(_endTime) //执行倒计时函数
+				}
+			})
+			// 获取报名列表
+			this.$http.get({
+				url: '/v1/rest/home/activitiesEnrolled',
+				data: {
+					activitiesId: this.activityId
+				}
+			}).then(resp => {
+				if(resp.status == 200) {
+					this.peopleList = resp.data
 				}
 			})
 		},
 		computed: {
 			showPeopleImg() {
-				return this.list.length > 0
+				return this.peopleList.length > 0
 			}
 		},
 		methods: {
 			toList() {
-				
+				uni.navigateTo({
+					url: '/pages/activity/signUpList/signUpList?actId=' + this.activityId
+				});
 			},
 			clickBanner(item) {
 				console.log(item)
@@ -268,46 +269,61 @@
 				}
 			},
 			submit() {
-				// 判断是否登录
-				if(uni.getStorageSync('isLogin')) {  //已登录
-					// 判断是否加入俱乐部
-					this.$http.get({
-						url: '/v1/rest/home/isClubMember',
-						data: {
-							userId: uni.getStorageSync('userInfo').userId,
-							clubId: this.clubId
-						}
-					}).then(resp => {
-						console.log(resp)
-						if(resp.status == 200) {
-							if(resp.data.initClubMember) {  //已加入俱乐部
-								if(this.isChecked) {  //已同意免责条款
-									uni.navigateTo({
-										url: '/pages/activity/pay/pay?actId=' + this.activityId
-									})
-								}else{  //未同意免责条款
+				// 判断活动是否可报名
+				if(this.state == 2) {
+					uni.showToast({
+						title: '抱歉，名额已满！',
+						duration: 2000,
+						icon: 'none'
+					});
+				}else if(this.state == 3) {
+					uni.showToast({
+						title: '抱歉，报名已结束！',
+						duration: 2000,
+						icon: 'none'
+					});
+				}else{
+					// 判断是否登录
+					if(uni.getStorageSync('isLogin')) {  //已登录
+						// 判断是否加入俱乐部
+						this.$http.get({
+							url: '/v1/rest/home/isClubMember',
+							data: {
+								userId: uni.getStorageSync('userInfo').userId,
+								clubId: this.clubId
+							}
+						}).then(resp => {
+							console.log(resp)
+							if(resp.status == 200) {
+								if(resp.data.initClubMember) {  //已加入俱乐部
+									if(this.isChecked) {  //已同意免责条款
+										uni.navigateTo({
+											url: '/pages/activity/pay/pay?actId=' + this.activityId
+										})
+									}else{  //未同意免责条款
+										uni.showToast({
+											title: '未同意《免责条款》！',
+											duration: 2000,
+											icon: 'none'
+										});
+									}
+								}else{  //未加入俱乐部
 									uni.showToast({
-										title: '未同意《免责条款》！',
+										title: '加入该俱乐部后方可报名！',
 										duration: 2000,
 										icon: 'none'
 									});
+									uni.navigateTo({
+										url: '/pages/club/homePage/homePage?clubId=' + this.clubId
+									})
 								}
-							}else{  //未加入俱乐部
-								uni.showToast({
-									title: '加入该俱乐部后方可报名！',
-									duration: 2000,
-									icon: 'none'
-								});
-								uni.navigateTo({
-									url: '/pages/club/homePage/homePage?clubId=' + this.clubId
-								})
 							}
-						}
-					})
-				}else{  //未登录
-					uni.navigateTo({
-						url: '/pages/login/login'
-					})
+						})
+					}else{  //未登录
+						uni.navigateTo({
+							url: '/pages/login/login'
+						})
+					}
 				}
 			}
 		}

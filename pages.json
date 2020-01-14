@@ -1,11 +1,13 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/activity/signUpList/signUpList",
+			"path": "pages/userInfo/editUserInfo/editUserInfo",
 			"style": {
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#f4f4f4",
-				"navigationBarTitleText": "已报名会员"
+				"navigationBarTitleText": "基本信息",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+				}
 			}
 		},
 		{
@@ -14,6 +16,30 @@
 				"navigationBarTitleText": "约球",
 				"enablePullDownRefresh": true,
 				"backgroundTextStyle": "light"
+			}
+		},
+		{
+			"path": "pages/club/memberClubList/memberClubList",
+			"style": {
+				"navigationBarTitleText": "Ta参加的俱乐部",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f5f5f5"
+			}
+		},
+		{
+			"path": "pages/club/homePage/homePage",
+			"style": {
+				"navigationBarTitleText": "俱乐部",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f5f5f5"
+			}
+		},
+		{
+			"path": "pages/activity/signUpList/signUpList",
+			"style": {
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#f4f4f4",
+				"navigationBarTitleText": "已报名会员"
 			}
 		},
 		{
@@ -30,16 +56,6 @@
 			"path": "pages/userInfo/tagsPage/tagsPage",
 			"style": {
 				"navigationBarTitleText": "个性标签",
-				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index",
-					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
-				}
-			}
-		},
-		{
-			"path": "pages/userInfo/editUserInfo/editUserInfo",
-			"style": {
-				"navigationBarTitleText": "基本信息",
 				"usingComponents": {
 					"van-field": "/wxcomponents/vant/dist/field/index",
 					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
@@ -129,7 +145,6 @@
 			}
 		},
 		
-		
 		{
 			"path": "pages/groupOwnerManage/costAdjust/costAdjust",
 			"style": {
@@ -218,15 +233,6 @@
 		// 		"navigationBarTitleText": "购球"
 		// 	}
 		// },
-		
-		{
-			"path": "pages/club/homePage/homePage",
-			"style": {
-				"navigationBarTitleText": "俱乐部",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#f5f5f5"
-			}
-		},
 		{
 			"path": "pages/club/clubMoney/clubMoney",
 			"style": {

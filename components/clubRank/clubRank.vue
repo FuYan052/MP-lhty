@@ -5,32 +5,32 @@
 				{{item}}
 			</view>
 		</view>
-		<view class="userRankInfo">
+		<view class="userRankInfo" v-if="isShowOwner">
 			<view class="imgBox">
 				<image :lazy-load='false' style="width: 100%; height: 100%; border-radius: 50%;"
-					src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg">
+					:src="ownerImg">
 				</image>
 			</view>
-			<view class="name">芍子姑娘芍子姑娘芍子姑娘</view>
+			<view class="name">{{ownerName}}</view>
 			<view class="myRank">
 				<view class="title">我的排名</view>
-				<view class="rankNum">189</view>
+				<view class="rankNum">{{ownerRank}}</view>
 			</view>
 			<view class="myRank">
 				<view class="title">我的积分</view>
-				<view class="rankNum">9</view>
+				<view class="rankNum">{{ownerScore}}</view>
 			</view>
 		</view>
 		<view class="rankWrap">
 			<view class="rankItem" v-for="(item,index) in rankList" :key='index' :class="'curr' + index">
-				<view class="number">{{index + 1}}</view>
+				<view class="number">{{item.rownum}}</view>
 				<view class="imgBox">
 					<image :lazy-load='false' style="width: 100%; height: 100%; border-radius: 50%;"
-						src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg">
+						:src="item.headPortrait">
 					</image>
 				</view>
-				<view class="name">{{item.name}}</view>
-				<view class="jifen">站内积分<text>196</text></view>
+				<view class="name">{{item.nickName}}</view>
+				<view class="jifen">站内积分<text>{{item.score}}</text></view>
 				<van-icon name="arrow" size='31rpx' color='#9a929d'/>
 			</view>
 		</view>
@@ -39,25 +39,56 @@
 
 <script>
 	export default {
+		props: ['clubId'],
 		data() {
 			return {
 				cateList: ['站内排名','俱乐部排名'],
 				currIndex: 0,
-				rankList: [{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '小幸运',integral: '6'},
-									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '幸运',integral: '16'},
-									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '小运',integral: '169'},
-									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '小小小',integral: '69'},
-									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '文艺',integral: '91'},
-									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '文艺青年',integral: '169'},
-									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '男一号',integral: '1689'},
-									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '清风徐来',integral: '69'},
-									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '小幸运小幸运',integral: '192'},
-									{mingUrl: 'http://f1.haiqq.com/allimg/3831982416/2817233822.jpg',name: '小幸运小幸运小幸运',integral: '1669'},],
+				rankList: [],
+				ownerName: '',
+				ownerImg: '',
+				ownerRank: '',
+				ownerScore: '',
+				type: 0
 			}
 		},
+		computed: {
+			isShowOwner() {
+				return Number(uni.getStorageSync('userInfo').userId) > 0
+			}
+		},
+		created() {
+			this.getRank()
+		},
 		methods: {
+			getRank() {
+				this.$http.get({
+					url: '/v1/rest/club/clubRanking',
+					data: {
+						type: this.type,
+						clubId: this.clubId,
+						userId: uni.getStorageSync('userInfo').userId || ''
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						this.rankList = resp.data.clubRankingBackVoList,
+						this.ownerName = resp.data.nickName,
+						this.ownerImg = resp.data.headPortrait,
+						this.ownerRank = resp.data.rownum,
+						this.ownerScore = resp.data.score
+					}
+				})
+			},
 			changeCate(index) {
 				this.currIndex = index
+				this.type = index
+				// if(index == 0) {
+				// 	this.type = 0
+				// }else{
+				// 	this.type = 1
+				// }
+				this.getRank()
 			}
 		}
 	}

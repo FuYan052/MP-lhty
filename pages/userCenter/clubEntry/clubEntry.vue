@@ -134,6 +134,11 @@
 								console.log(resp);
 								if(resp.status == 200) {
 									that.imgUrl = resp.data[0]
+									uni.showToast({
+										title: '上传成功！',
+										duration: 2000,
+										icon: 'none'
+									});
 								}
 							},
 							fail: (err) => {

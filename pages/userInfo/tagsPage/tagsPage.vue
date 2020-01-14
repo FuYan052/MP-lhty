@@ -20,10 +20,9 @@
 				:border="false"
 				@change="onChange"
 				maxlength='6'
-				use-button-slot
 			 >
-				<van-button slot="button" size="small" type="primary" @click='toAdd'>添加</van-button>
 			</van-field>
+			<view class="addButton" @click="toAdd">添加</view>
 		</view>
 	</view>
 </template>
@@ -104,22 +103,18 @@
 			},
 			toAdd() {
 				// 创建并提交后台
-				const params = {
-					labelName: this.addValue,
-					userId: window.localStorage.getItem('userId')
-				}
-				this.$http.createLabel(params).then(resp => {
-					// console.log(resp)
-					if(resp.status == 200) {
-						this.isShow = false
-						// this.$toast({
-						//   message: '创建成功！',
-						//   duration: 2000
-						// });
-						this.addValue = ''
+				this.$http.get({
+					url: '/v1/rest/mydata/createLabel',
+					data: {
+						userId: uni.getStorageSync('userInfo').userId,
+						labelName: this.addLabel
 					}
-					if(!this.isShow) {  //创建标签成功之后获取新的标签列表
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
 						this.getAllList()
+						this.addLabel = ''
+						this.isShow = false
 					}
 				})
 			},
@@ -136,6 +131,7 @@
 			width: 100%;
 			height: auto;
 			padding: 0 30rpx;
+			padding-left: 20rpx;
 			margin-top: 40rpx;
 			box-sizing: border-box;
 			.li{
@@ -143,7 +139,6 @@
 				height: 80rpx;
 				box-sizing: border-box;
 				display: flex;
-				justify-content: space-between;
 				text{
 					display: block;
 					background: #fff;
@@ -156,6 +151,7 @@
 					border-radius: 30rpx;
 					color: #565656;
 					border: 1rpx solid #313131;
+					margin-left: 12rpx;
 				}
 				.selected{
 					background: #fffaec;
@@ -164,7 +160,11 @@
 				}
 			}
 			.li:nth-child(even){
-				padding: 0 80rpx;
+				padding-right: 80rpx;
+				padding-left: 60rpx;
+				text{
+					margin-left: 20rpx;
+				}
 			}
 		}
 		.btnBox{
@@ -198,6 +198,7 @@
 			height: 100rpx;
 			box-sizing: border-box;
 			padding: 0 38rpx;
+			position: relative;
 			/deep/ .van-cell{
 				height: 76rpx;
 				border: 1rpx solid #fff;
@@ -211,10 +212,17 @@
 				.van-field__input{
 					color: #fff;
 				}
-				.van-field__button{
-					font-size: 28rpx;
-					color: #fac31e;
-				}
+			}
+			.addButton{
+				width: 70rpx;
+				height: 76rpx;
+				line-height: 76rpx;
+				font-size: 28rpx;
+				color: #fac31e;
+				position: absolute;
+				top: 0;
+				right: 48rpx;
+				z-index: 99;
 			}
 		}
 	}

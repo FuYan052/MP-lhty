@@ -2,7 +2,8 @@
 	<view class="homePage">
 		<view class="contentBox">
 			<club-home v-if="currIndex == 2" :clubId='clubId'></club-home>
-			<club-rank v-else-if="currIndex == 1"></club-rank>
+			<club-rank v-else-if="currIndex == 1" :clubId='clubId'></club-rank>
+			<club-activities v-else-if="currIndex == 0" :clubId='clubId'></club-activities>
 		</view>
 		<view class="clubTabber">
 			<view class="menuItem" 
@@ -20,10 +21,12 @@
 <script>
 	import ClubHome from '../../../components/clubHome/clubHome.vue'
 	import ClubRank from '../../../components/clubRank/clubRank.vue'
+	import clubActivities from '../../../components/clubActivities/clubActivities.vue'
 	export default {
 		components: {
 			ClubHome,
 			ClubRank,
+			clubActivities
 		},
 		data() {
 			return {
@@ -38,6 +41,38 @@
 		methods: {
 			clickTb(item,index) {
 				this.currIndex = index
+				if(index == 0) {
+					
+				}
+				switch(index) {
+					case 0 : 
+						uni.setNavigationBarTitle({
+						   title: '俱乐部活动'
+						});
+						uni.setNavigationBarColor({
+							frontColor: '#ffffff',
+							backgroundColor: '#1e1e1e',
+						})
+						break;
+					case 1 :
+						uni.setNavigationBarTitle({
+						   title: '俱乐部排行'
+						});
+						uni.setNavigationBarColor({
+							frontColor: '#ffffff',
+							backgroundColor: '#1e1e1e',
+						})
+						break;
+					case 2 :
+						uni.setNavigationBarTitle({
+						   title: '俱乐部'
+						});
+						uni.setNavigationBarColor({
+							frontColor: '#000000',
+							backgroundColor: '#f5f5f5',
+						})
+						break;
+				}
 			}
 		}
 	}

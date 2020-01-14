@@ -4,6 +4,7 @@
   "navigationBarBackgroundColor": "#f5f5f5",
   "usingComponents": {
     "club-home": "/components/clubHome/clubHome",
-    "club-rank": "/components/clubRank/clubRank"
+    "club-rank": "/components/clubRank/clubRank",
+    "club-activities": "/components/clubActivities/clubActivities"
   }
 }

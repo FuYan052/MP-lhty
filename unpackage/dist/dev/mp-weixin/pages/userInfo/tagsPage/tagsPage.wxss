@@ -33,6 +33,7 @@
     width: 100%;
     height: auto;
     padding: 0 30rpx;
+    padding-left: 20rpx;
     margin-top: 40rpx;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -46,10 +47,6 @@
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-          -ms-flex-pack: justify;
-              justify-content: space-between;
 }
 .tagsPage .ul .li text.data-v-6ecdb129 {
         display: block;
@@ -63,6 +60,7 @@
         border-radius: 30rpx;
         color: #565656;
         border: 1rpx solid #313131;
+        margin-left: 12rpx;
 }
 .tagsPage .ul .li .selected.data-v-6ecdb129 {
         background: #fffaec;
@@ -70,7 +68,11 @@
         color: #f9c31b;
 }
 .tagsPage .ul .li.data-v-6ecdb129:nth-child(even) {
-      padding: 0 80rpx;
+      padding-right: 80rpx;
+      padding-left: 60rpx;
+}
+.tagsPage .ul .li:nth-child(even) text.data-v-6ecdb129 {
+        margin-left: 20rpx;
 }
 .tagsPage .btnBox.data-v-6ecdb129 {
     width: 100%;
@@ -111,6 +113,7 @@
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     padding: 0 38rpx;
+    position: relative;
 }
 .tagsPage .addLabel.data-v-6ecdb129 .van-cell {
       height: 76rpx;
@@ -130,8 +133,15 @@
 .tagsPage .addLabel.data-v-6ecdb129 .van-cell .van-field__input {
         color: #fff;
 }
-.tagsPage .addLabel.data-v-6ecdb129 .van-cell .van-field__button {
-        font-size: 28rpx;
-        color: #fac31e;
+.tagsPage .addLabel .addButton.data-v-6ecdb129 {
+      width: 70rpx;
+      height: 76rpx;
+      line-height: 76rpx;
+      font-size: 28rpx;
+      color: #fac31e;
+      position: absolute;
+      top: 0;
+      right: 48rpx;
+      z-index: 99;
 }
 

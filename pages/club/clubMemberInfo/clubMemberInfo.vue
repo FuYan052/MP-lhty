@@ -2,20 +2,20 @@
 	<view class="clubMemberInfo">
 		<view class="topBox">
 			<view class="imgBox">
-				<image src="../../../static/logo.png" style="width: 100%; height: 100%; border-radius: 50%;" mode=""></image>
+				<image :src="headImg" style="width: 100%; height: 100%; border-radius: 50%;" mode=""></image>
 			</view>
 			<view class="name">
-				<text class="text" v-if="sex == 1">清风徐来</text>
-				<text class="text text2" v-else>清风徐来</text>
+				<text class="text" v-if="sex == 1">{{name}}</text>
+				<text class="text text2" v-else>{{name}}</text>
 			</view>
-			<view class="region">四川成都</view>
+			<view class="region">{{region}}</view>
 			<view class="number">
-				<text class="num1">俱乐部：835</text>
-				<text class="num2">活跃度：635</text>
+				<text class="num1" @click="toClubList">俱乐部：{{clubNum}}</text>
+				<text class="num2">活跃度：{{activityLevel}}</text>
 			</view>
-			<view class="currClub">
+			<!-- <view class="currClub">
 				<text>俱乐部：神羽联盟俱乐部</text>
-			</view>
+			</view> -->
 		</view>
 		<view class="content">
 			<view class="title">他的装备</view>
@@ -32,7 +32,41 @@
 	export default {
 		data() {
 			return {
-				sex: 1
+				sex: 1,
+				userId: null,
+				name: '',
+				sex: null,
+				clubNum: '',
+				region: '',
+				activityLevel: '',
+				headImg: ''
+			}
+		},
+		onLoad(options) {
+			this.userId = options.userId
+			this.$http.get({
+				url: '/v1/rest/club/hisData',
+				data: {
+					userId: this.userId
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.name = resp.data.nickName,
+					this.sex = resp.data.sex,
+					this.clubNum = resp.data.clubCount,
+					this.region = resp.data.region || '',
+					this.activityLevel = resp.data.activityLevel,
+					this.headImg = resp.data.headPortrait
+					this.userId = resp.data.userId
+				}
+			})
+		},
+		methods: {
+			toClubList() {
+				uni.navigateTo({
+					url: '/pages/club/memberClubList/memberClubList?userId' + this.userId
+				})
 			}
 		}
 	}
@@ -45,7 +79,8 @@
 		background: #fff;
 		.topBox{
 			width: 100%;
-			height: 519rpx;
+			// height: 519rpx;
+			height: 442rpx;
 			background: #1e1e1e;
 			overflow: hidden;
 			.imgBox{
@@ -63,7 +98,7 @@
 				text-align: center;
 				margin-top: 25rpx;
 				.text{
-					padding-right: 32rpx;
+					padding-right: 36rpx;
 					background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/manIcon2.png') no-repeat right center;
 					background-size: 22rpx 32rpx;
 				}

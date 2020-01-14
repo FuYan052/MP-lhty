@@ -112,22 +112,37 @@
 				})
 			},
 			jionClub() {
-				this.$http.get({
-					url: '/v1/rest/club/addClub',
-					data: {
-						clubId: this.clubInfo.clubId,
-						userId: uni.getStorageSync('userInfo').userId
-					}
-				}).then(resp => {
-					console.log(resp)
-					if(resp.status == 200) {
-						uni.showToast({
-							title: resp.data.message,
-							duration: 2000,
-							icon: 'none'
-						});
-					}
-				})
+				if(Number(uni.getStorageSync('userInfo').userId > 0)) {
+					this.$http.get({
+						url: '/v1/rest/club/addClub',
+						data: {
+							clubId: this.clubInfo.clubId,
+							userId: uni.getStorageSync('userInfo').userId
+						}
+					}).then(resp => {
+						console.log(resp)
+						if(resp.status == 200) {
+							uni.showToast({
+								title: resp.data.message,
+								duration: 2000,
+								icon: 'none'
+							});
+						}
+					})
+				}else{
+					uni.showModal({
+						content: '登录后即可加入俱乐部！',
+						confirmText: '登录',
+						confirmColor: '#feb300',
+						success: function (res) {
+							if (res.confirm) {
+								uni.navigateTo({
+									url: '/pages/login/login'
+								})
+							} else if (res.cancel) {} 
+						}
+					});
+				}
 			}
 		}
 	}     
