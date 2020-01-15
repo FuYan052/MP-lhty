@@ -2,9 +2,9 @@ let baseUrl = '';
 // 区分环境
 if (process.env.NODE_ENV == 'development') {
     baseUrl = 'http://192.168.0.116:8089/lhty' // 开发环境
-    // baseUrl = 'https://laihu.baogongxia.com/lhty' // 开发环境
+    // baseUrl = 'http://baogongxia.com/lhty/' // 开发环境
 } else {
-    baseUrl = 'https://laihu.baogongxia.com/lhty' // 生产环境
+    baseUrl = 'http://baogongxia.com/lhty/' // 生产环境
 }
 
 const tyToken = uni.getStorageSync('userInfo').token;

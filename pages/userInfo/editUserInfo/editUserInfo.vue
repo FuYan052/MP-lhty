@@ -73,7 +73,7 @@
 		<!-- 身高选择器 -->
 		<w-picker mode="selector" :selectList="heightList" :defaultVal="['165 cm']" @confirm="confirmHeight" ref="picker2" themeColor="#ffbc01" ></w-picker>
 		<!-- 生日选择器 -->
-		<w-picker mode="date" startYear="1940" endYear="2019" :defaultVal="defaultValBirth" @confirm="confirmBirth" ref="picker3" themeColor="#ffbc01"></w-picker>
+		<w-picker mode="date" startYear="1940" endYear="2020" :defaultVal="defaultValBirth" @confirm="confirmBirth" ref="picker3" themeColor="#ffbc01"></w-picker>
 		<!-- 职业选择器 -->
 		<w-picker mode="selector" :selectList="workList" @confirm="confirmWork" ref="picker4" themeColor="#ffbc01"></w-picker>
 		<!-- 地区选择器 -->
@@ -98,13 +98,14 @@
 				heightValue: '',
 				birthValue: '',
 				defaultValBirth: ['1990','06','15'],
+				birthRangeValue: '',
 				workList: [{label: '',value: ''},{label: '',value: ''}],
 				workId: '',
 				workValue: '',
 				regionId: '',
 				regionValue: '',
-				selectedIds: '',
-				selectedList: [{label: '羽毛球',value: 1},{label: '跑步',value: 2},{label: '自驾游',value: 3},{label: '自驾游自驾游',value: 3}]
+				selectedIds: [],
+				selectedList: []
 			}
 		},
 		onLoad(options) {
@@ -131,7 +132,11 @@
 					this.workValue = resp.data.occupation
 					this.regionId = resp.data.region
 					this.regionValue = resp.data.regionName
-					this.selectedIds = resp.data.labelId
+					if(resp.data.labelId) {
+						this.selectedIds = resp.data.labelId.split(',')
+					}else{
+						this.selectedIds = []
+					}
 					this.selectedList = resp.data.labelVoList
 				}
 			})
@@ -157,7 +162,10 @@
 			})
 		},
 		onShow() {
-			
+			if(uni.getStorageSync('selectedLabels')) {
+				this.selectedIds = uni.getStorageSync('selectedLabels').labelIds
+				this.selectedList = uni.getStorageSync('selectedLabels').labelList
+			}
 		},
 		methods: {
 			choiceImg() {
@@ -219,6 +227,17 @@
 			},
 			confirmBirth(v) {
 				this.birthValue = v.result
+				// 计算年龄段
+				const birthYear = v.checkArr[0].toString()
+				if(Number(v.checkArr[0]) <= 1969) {
+					this.birthRangeValue = '69前'
+				}else if(Number(v.checkArr[0]) >= 2000 && Number(v.checkArr[0]) < 2010) {
+					this.birthRangeValue = '00后'
+				}else if(Number(v.checkArr[0]) >= 2010) {
+					this.birthRangeValue = '10后'
+				}else{
+					this.birthRangeValue = birthYear.substring(2,3) + '0后'
+				}
 			},
 			// 选择职业
 			selectWork(v) {
@@ -236,13 +255,40 @@
 			},
 			// 选择标签
 			selectLabel() {
+				console.log(this.selectedIds)
 				uni.navigateTo({
-					url: '/pages/userInfo/tagsPage/tagsPage'
+					url: '/pages/userInfo/tagsPage/tagsPage?ids=' + encodeURIComponent(JSON.stringify(this.selectedIds)) 
 				})
 			},
 			//保存
 			submit() {
-				
+				const params = {
+					headPortrait: this.imgFile,
+					nickName: this.nickName,
+					sex: this.sex,
+					height: this.heightValue,
+					birthday: this.birthValue,
+					ageGroup: this.birthRangeValue,
+					occupationId: this.workValue,
+					region: this.regionValue,
+					labelId: this.selectedIds.join(','),
+					userId: uni.getStorageSync('userInfo').userId
+				}
+				this.$http.post({
+					url: '/v1/rest/mydata/saveUserInfo',
+					data: params
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						uni.removeStorageSync('selectedLabels')
+						uni.navigateBack()
+						uni.showToast({
+							title: '保存成功！',
+							duration: 1500,
+							icon: 'none'
+						});
+					}
+				})
 			}
 		}
 	}

@@ -82,7 +82,7 @@
 					});
 				}else{
 					this.$http.post({
-						url: '/v1/rest/userwallet/userRechargeOk',
+						url: '/v1/rest/pay/pay',
 						data: {
 							userId: uni.getStorageSync('userInfo').userId,
 							totalPrice: Number(this.money),
@@ -104,7 +104,7 @@
 									console.log(res)
 									// 支付成功回调
 									that.$http.get({
-										url: '/v1/rest/pay/memberWechatPayCallback',
+										url: '/v1/rest/pay/memberWechatPayCallback1',
 										data: {
 											type: 'success',
 											orderNo: that.orderNo,
@@ -118,17 +118,20 @@
 												duration: 2000,
 												icon: 'none'
 											}); 
-											uni.redirectTo({
-												url: '/pages/userCenter/myWallet/myWallet'
-											})
+											uni.navigateBack()
 										}
 									})
 								},
 								fail: function (err) {
 									console.log(err)
+									uni.showToast({
+										title: '支付取消！',
+										duration: 2000,
+										icon: 'none'
+									});
 									// 支付取消回调
 									that.$http.get({
-										url: '/v1/rest/pay/memberWechatPayCallback',
+										url: '/v1/rest/pay/memberWechatPayCallback1',
 										data: {
 											type: 'fail',
 											orderNo: that.orderNo,

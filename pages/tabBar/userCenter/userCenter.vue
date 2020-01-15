@@ -85,6 +85,27 @@
 		computed: {
 			...mapState(['hasLogin', 'userInfo']),  //对全局变量hasLogin进行监控
 		},
+		// created() {
+		// 	if(Number(uni.getStorageSync('userInfo').userId > 0)) {
+		// 		this.getInfo()
+		// 		this.stateTab = false
+		// 		this.showToLogin = false
+		// 	}else{
+		// 		// this.showToLogin = true
+		// 		this.stateTab = true
+		// 		this.showToLogin = true
+		// 	}
+		// },
+		// onShow() {
+		// 	// if(Number(uni.getStorageSync('userInfo').userId > 0)) {  //登录
+		// 	// 	this.showToLogin = false
+		// 	// }else{  //未登录
+		// 	// 	this.showToLogin = true
+		// 	// }
+		// 	if(this.stateTab && (!this.showToLogin)) {
+		// 		this.getInfo()
+		// 	}
+		// },
 		created() {
 			
 		},
@@ -96,6 +117,12 @@
 				this.showToLogin = true
 			}
 			if(this.stateTab) {
+				this.getInfo()
+			}
+		},
+		methods: {
+			...mapMutations(['logout']),  //对全局方法login进行监控
+			getInfo() {
 				this.$http.get({
 					url: '/v1/rest/personalCenter/personalCenter',
 					data:{
@@ -108,10 +135,7 @@
 						uni.setStorageSync('clubId', resp.data.clubId)
 					}
 				})
-			}
-		},
-		methods: {
-			...mapMutations(['logout']),  //对全局方法login进行监控
+			},
 			// 我的钱包
 			toMyWallet(value) {
 				uni.navigateTo({

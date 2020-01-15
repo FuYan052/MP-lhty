@@ -104,7 +104,7 @@
 				}else{
 					const that = this
 					this.$http.post({
-						url: '/v1/rest/userwallet/userRechargeOk',
+						url: '/v1/rest/pay/pay',
 						data: {
 							userId: uni.getStorageSync('userInfo').userId,
 							totalPrice: Number(this.money),

@@ -36,6 +36,9 @@
 			}
 		},
 		created() {
+			
+		},
+		onShow() {
 			this.$http.get({
 				url: '/v1/rest/personalCenter/personalCenter',
 				data:{

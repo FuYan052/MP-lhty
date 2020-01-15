@@ -1,12 +1,12 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/userInfo/editUserInfo/editUserInfo",
+			"path": "pages/tabBar/userCenter/userCenter",
 			"style": {
-				"navigationBarTitleText": "基本信息",
+				"navigationBarTitleText": "个人中心",
 				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index",
-					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+					"van-cell": "/wxcomponents/vant/dist/cell/index",
+					"van-dialog": "/wxcomponents/vant/dist/dialog/index"
 				}
 			}
 		},
@@ -18,6 +18,22 @@
 				"backgroundTextStyle": "light"
 			}
 		},
+		{
+			"path": "pages/noDataPage/noDataPage",
+			"style": {
+			}
+		},
+		{
+			"path": "pages/userInfo/editUserInfo/editUserInfo",
+			"style": {
+				"navigationBarTitleText": "基本信息",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+				}
+			}
+		},
+		
 		{
 			"path": "pages/club/memberClubList/memberClubList",
 			"style": {
@@ -40,16 +56,6 @@
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#f4f4f4",
 				"navigationBarTitleText": "已报名会员"
-			}
-		},
-		{
-			"path": "pages/tabBar/userCenter/userCenter",
-			"style": {
-				"navigationBarTitleText": "个人中心",
-				"usingComponents": {
-					"van-cell": "/wxcomponents/vant/dist/cell/index",
-					"van-dialog": "/wxcomponents/vant/dist/dialog/index"
-				}
 			}
 		},
 		{

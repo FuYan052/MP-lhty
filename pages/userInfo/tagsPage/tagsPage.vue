@@ -5,7 +5,7 @@
 				<text 
 					v-for="(it,ind) in item" 
 					:key="ind" @click="selected(it,ind)"
-					:class="{selected:selectedListIds.indexOf(it.id)>=0}"
+					:class="{selected:selectedListIds.indexOf(it.value)>=0}"
 				>{{it.label}}</text>
 			</view>
 		</view>
@@ -40,13 +40,13 @@
 			}
 		},
 		created() {
-				// 从完善信息页传过来的标签集合
-				// this.selectedList =JSON.parse(window.sessionStorage.getItem('labels')) 
-				// for(let i in this.selectedList) {
-				// 	this.selectedListIds.push(this.selectedList[i].id)
-				// }
-				// 获取所有标签
-				this.getAllList()
+			// 获取所有标签
+			this.getAllList()
+		},
+		onLoad(options) {
+			console.log(options)
+			// 上一页传过来的id
+			this.selectedListIds = JSON.parse(decodeURIComponent(options.ids)) 
 		},
 		methods: {
 			// 获取所有标签
@@ -54,7 +54,6 @@
 				this.labelList = []
 				this.resultList1 = []
 				this.resultList2 = []
-				// this.$http.findAllLabel(this.userId).then(resp => {
 				this.$http.get({
 					url: '/v1/rest/mydata/findAllLabel',
 					data: {
@@ -93,13 +92,26 @@
 					this.resultList2.push(result2)
 				}
 				this.resultList2 = this.resultList2.reduce(function (a, b) { return a.concat(b)} )
-				// console.log(this.resultList2)
 			},
 			showAddBox() {
 				this.isShow = true
 			},
 			onChange(v) {
 				this.addLabel = v.detail
+			},
+			selected(it,ind) {
+				this.selectedList = []
+				// 选中的标签id集合
+				let selectedIdIndex = this.selectedListIds.indexOf(it.value)
+				if(selectedIdIndex >= 0) {
+					this.selectedListIds.splice(selectedIdIndex, 1)
+				}else{
+					this.selectedListIds.push(it.value)
+				}
+	
+				this.selectedList = this.labelList.filter(item => {
+					return this.selectedListIds.includes(item.value)
+				})  
 			},
 			toAdd() {
 				// 创建并提交后台
@@ -115,9 +127,34 @@
 						this.getAllList()
 						this.addLabel = ''
 						this.isShow = false
+						uni.showToast({
+							title: '创建成功！',
+							duration: 1500,
+							icon: 'none'
+						});
 					}
 				})
 			},
+			saveSelectLabels() {
+				const labels = {
+					labelList: this.selectedList,
+					labelIds: this.selectedListIds
+				}
+				uni.setStorage({
+					key: 'selectedLabels',
+					data: labels,
+					success() {
+						uni.navigateBack()
+					},
+					fail() {
+						uni.showToast({
+							title: '保存失败！',
+							duration: 1500,
+							icon: 'none'
+						});
+					}
+				})
+			}
 		}
 	}
 </script>
@@ -154,9 +191,8 @@
 					margin-left: 12rpx;
 				}
 				.selected{
-					background: #fffaec;
-					border: 1rpx solid #fac41c;
-					color: #f9c31b;
+					color: #fff;
+					background: #fac31e;
 				}
 			}
 			.li:nth-child(even){

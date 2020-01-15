@@ -63,9 +63,8 @@
         margin-left: 12rpx;
 }
 .tagsPage .ul .li .selected.data-v-6ecdb129 {
-        background: #fffaec;
-        border: 1rpx solid #fac41c;
-        color: #f9c31b;
+        color: #fff;
+        background: #fac31e;
 }
 .tagsPage .ul .li.data-v-6ecdb129:nth-child(even) {
       padding-right: 80rpx;

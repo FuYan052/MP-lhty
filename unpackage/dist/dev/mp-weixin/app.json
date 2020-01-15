@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/userInfo/editUserInfo/editUserInfo",
+    "pages/tabBar/userCenter/userCenter",
     "pages/tabBar/badminton/badminton",
+    "pages/noDataPage/noDataPage",
+    "pages/userInfo/editUserInfo/editUserInfo",
     "pages/club/memberClubList/memberClubList",
     "pages/club/homePage/homePage",
     "pages/activity/signUpList/signUpList",
-    "pages/tabBar/userCenter/userCenter",
     "pages/userInfo/tagsPage/tagsPage",
     "pages/userInfo/selectionTags/selectionTags",
     "pages/userCenter/clubEntry/clubEntry",
