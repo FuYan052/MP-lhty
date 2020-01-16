@@ -4,6 +4,7 @@
 			<club-home v-if="currIndex == 2" :clubId='clubId'></club-home>
 			<club-rank v-else-if="currIndex == 1" :clubId='clubId'></club-rank>
 			<club-activities v-else-if="currIndex == 0" :clubId='clubId'></club-activities>
+			<developing v-else></developing>
 		</view>
 		<view class="clubTabber">
 			<view class="menuItem" 
@@ -22,11 +23,13 @@
 	import ClubHome from '../../../components/clubHome/clubHome.vue'
 	import ClubRank from '../../../components/clubRank/clubRank.vue'
 	import clubActivities from '../../../components/clubActivities/clubActivities.vue'
+	import developing from '../../../components/developing/developing.vue'
 	export default {
 		components: {
 			ClubHome,
 			ClubRank,
-			clubActivities
+			clubActivities,
+			developing
 		},
 		data() {
 			return {
@@ -47,7 +50,7 @@
 				switch(index) {
 					case 0 : 
 						uni.setNavigationBarTitle({
-						   title: '俱乐部活动'
+						   title: '活动'
 						});
 						uni.setNavigationBarColor({
 							frontColor: '#ffffff',
@@ -56,7 +59,7 @@
 						break;
 					case 1 :
 						uni.setNavigationBarTitle({
-						   title: '俱乐部排行'
+						   title: '排行'
 						});
 						uni.setNavigationBarColor({
 							frontColor: '#ffffff',
@@ -70,6 +73,24 @@
 						uni.setNavigationBarColor({
 							frontColor: '#000000',
 							backgroundColor: '#f5f5f5',
+						})
+						break;
+					case 3 :
+						uni.setNavigationBarTitle({
+						   title: '比赛'
+						});
+						uni.setNavigationBarColor({
+							frontColor: '#ffffff',
+							backgroundColor: '#1e1e1e',
+						})
+						break;
+					case 4 :
+						uni.setNavigationBarTitle({
+						   title: '相册'
+						});
+						uni.setNavigationBarColor({
+							frontColor: '#ffffff',
+							backgroundColor: '#1e1e1e',
 						})
 						break;
 				}

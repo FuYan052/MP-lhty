@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/tabBar/userCenter/userCenter",
     "pages/tabBar/badminton/badminton",
     "pages/noDataPage/noDataPage",
+    "pages/tabBar/userCenter/userCenter",
     "pages/userInfo/editUserInfo/editUserInfo",
     "pages/club/memberClubList/memberClubList",
     "pages/club/homePage/homePage",

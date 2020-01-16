@@ -35,11 +35,13 @@ function request(url,method,data,header={}){
 					});
 				}else if(resp.statusCode == 200) {
 					resolve(resp);
-					uni.showToast({
-						title: resp.data.message,
-						duration: 4000,
-						icon: 'none'
-					});
+					if(resp.data.code !== 203) {
+						uni.showToast({
+							title: resp.data.message,
+							duration: 4000,
+							icon: 'none'
+						});
+					}
 				}
       },
       fail: function(resp) {

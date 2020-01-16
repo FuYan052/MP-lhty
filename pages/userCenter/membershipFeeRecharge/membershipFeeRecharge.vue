@@ -113,7 +113,23 @@
 						}
 					}).then(resp => {
 						console.log(resp)
-						if(resp.status == 200) {
+						if(resp.statusCode == 200) {
+							uni.login({
+							  provider: 'weixin',
+							  success: function (loginRes) {
+							    that.$http.get({
+							    	url: '/v1/rest/login/updateOpenId',
+							    	data:{
+							    		code: loginRes.code,
+											userId: uni.getStorageSync('userInfo').userId
+							    	}
+							    }).then(resp => {
+										console.log(resp)
+										that.submit()
+									})
+							  }
+							});
+						}else if(resp.status == 200) {
 							this.orderNo = resp.data.orderNo
 							uni.requestPayment({
 								provider: 'wxpay',

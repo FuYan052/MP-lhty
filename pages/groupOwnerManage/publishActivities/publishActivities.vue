@@ -56,14 +56,14 @@
 					<view class="textAreaBox">
 						<view class="title">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</view>
 						<van-cell-group :border='false'>
-						  <van-field @change='inputTitleValue' type="textarea" placeholder="时间+地址+活动类型" autosize :border="false" :show-confirm-bar='false'/>
+						  <van-field :fixed='true' @change='inputTitleValue' type="textarea" placeholder="时间+地址+活动类型" autosize :border="false" :show-confirm-bar='false'/>
 						</van-cell-group>
 					</view>
 					<!-- 活动规则 -->
 					<view class="textAreaBox">
 						<view class="title">活动规则</view>
 						<van-cell-group :border='false'>
-						  <van-field @change='inputRuleValue' type="textarea" placeholder="请填写活动规则" autosize :border="false" :show-confirm-bar='false'/>
+						  <van-field :fixed='true' @change='inputRuleValue' type="textarea" placeholder="请填写活动规则" autosize :border="false" :show-confirm-bar='false'/>
 						</van-cell-group>
 					</view>
 				</van-cell-group>

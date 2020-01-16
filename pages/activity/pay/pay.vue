@@ -62,7 +62,8 @@
 			合计：<text>{{payMoney}}</text>元
 		</view>
 		<view class="btnBox">
-			<view class="myButton" @click="submit">确定</view>
+			<!-- <view class="myButton" @click="submit">确定</view> -->
+			<button class="myButton" @click="submit">确定</button>
 		</view>
 	</view>
 </template>
@@ -172,7 +173,7 @@
 						duration: 2000,
 						icon: 'none'
 					});
-				}else if(this.payType <0){
+				}else if(this.payType < 0){
 					uni.showToast({
 						title: '请选择支付方式！',
 						duration: 2000,
@@ -196,7 +197,23 @@
 							data: params
 						}).then(resp => {
 							console.log(resp)
-							if(resp.status == 200) {
+							if(resp.statusCode == 200) {
+								uni.login({
+								  provider: 'weixin',
+								  success: function (loginRes) {
+								    that.$http.get({
+								    	url: '/v1/rest/login/updateOpenId',
+								    	data:{
+								    		code: loginRes.code,
+												userId: uni.getStorageSync('userInfo').userId
+								    	}
+								    }).then(resp => {
+											console.log(resp)
+											that.submit()
+										})
+								  }
+								});
+							}else if(resp.status == 200) {
 								this.orderNo = resp.data.orderNo
 								uni.requestPayment({
 									provider: 'wxpay',
@@ -220,9 +237,15 @@
 											if(resp.status == 200) {
 												uni.showToast({
 													title: resp.data.message,
-													duration: 2000,
+													duration: 1500,
 													icon: 'none'
 												}); 
+												var timer = setTimeout(() => {
+													uni.redirectTo({
+														url: '/pages/userCenter/myActivities/myActivities'
+													})
+													clearTimeout(timer)
+												},1500)
 											}
 										})
 									},
@@ -262,11 +285,17 @@
 									duration: 2000,
 									icon: 'none'
 								});
+								var timer = setTimeout(() => {
+									uni.redirectTo({
+										url: '/pages/userCenter/myActivities/myActivities'
+									})
+									clearTimeout(timer)
+								},1500)
 							}
 						})
 					}
 				}
-			}
+			},
 		}
 	}
 </script>

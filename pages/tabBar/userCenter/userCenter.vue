@@ -132,7 +132,9 @@
 					console.log(resp)
 					if(resp.status == 200) {
 						this.userData = resp.data
-						uni.setStorageSync('clubId', resp.data.clubId)
+						if(resp.data.clubId) {
+							uni.setStorageSync('clubId', resp.data.clubId)
+						}
 					}
 				})
 			},

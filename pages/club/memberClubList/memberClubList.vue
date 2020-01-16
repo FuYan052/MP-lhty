@@ -23,6 +23,7 @@
 			}
 		},
 		onLoad(options) {
+			console.log(options)
 			this.$http.get({
 				url: '/v1/rest/club/clubList',
 				data: {
@@ -32,6 +33,11 @@
 				console.log(resp)
 				if(resp.status == 200) {
 					this.list = resp.data
+					if(this.list.length == 0) {
+						uni.redirectTo({
+							url: '/pages/noDataPage/noDataPage'
+						})
+					}
 				}
 			})
 		},

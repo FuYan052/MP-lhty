@@ -5,6 +5,7 @@
   "usingComponents": {
     "club-home": "/components/clubHome/clubHome",
     "club-rank": "/components/clubRank/clubRank",
-    "club-activities": "/components/clubActivities/clubActivities"
+    "club-activities": "/components/clubActivities/clubActivities",
+    "developing": "/components/developing/developing"
   }
 }

@@ -87,7 +87,7 @@
 				regionCode: '',
 				regionName: '',
 				introduce: '',
-				imgUrl: '../../../static/logo.png',
+				imgUrl: '',
 			}
 		},
 		methods: {
@@ -249,7 +249,8 @@
 					min-height: 135rpx;
 					box-sizing: border-box;
 					display: flex;
-					border: 1rpx solid #222222;
+					// border: 1rpx solid #222222;
+					border: 1rpx dashed #898989;
 					padding: 20rpx;
 					/deep/ .van-cell{
 						width: 600rpx;

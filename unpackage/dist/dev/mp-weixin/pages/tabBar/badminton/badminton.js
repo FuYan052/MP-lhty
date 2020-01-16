@@ -1,22 +1,5 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/tabBar/badminton/badminton"],{
 
-/***/ 19:
-/*!***********************************************************************************!*\
-  !*** D:/小程序/12-23/lhty/main.js?{"page":"pages%2FtabBar%2Fbadminton%2Fbadminton"} ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);__webpack_require__(/*! @dcloudio/uni-stat */ 5);
-
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _badminton = _interopRequireDefault(__webpack_require__(/*! ./pages/tabBar/badminton/badminton.vue */ 20));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_badminton.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
-
-/***/ }),
-
 /***/ 20:
 /*!**************************************************************!*\
   !*** D:/小程序/12-23/lhty/pages/tabBar/badminton/badminton.vue ***!
@@ -182,6 +165,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -195,7 +181,8 @@ var _default =
       isTwoLater: false,
       lat: '30.57447',
       lon: '103.92377',
-      isShowDiatance: false };
+      isShowDiatance: false,
+      showNoData: false };
 
   },
   created: function created() {var _this = this;
@@ -266,11 +253,17 @@ var _default =
         console.log(resp);
         if (resp.status == 200) {
           _this3.actList = resp.data;
+          if (resp.data.length == 0) {
+            _this3.showNoData = true;
+          } else {
+            _this3.showNoData = false;
+          }
         }
       });
     },
     // 切换日期
     changeDate: function changeDate(index) {
+      this.showNoData = false;
       this.currIndex = index;
       switch (index) {
         case 0:
@@ -353,7 +346,24 @@ __webpack_require__.r(__webpack_exports__);
 
 // extracted by mini-css-extract-plugin
 
+/***/ }),
+
+/***/ 441:
+/*!***********************************************************************************!*\
+  !*** D:/小程序/12-23/lhty/main.js?{"page":"pages%2FtabBar%2Fbadminton%2Fbadminton"} ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);__webpack_require__(/*! @dcloudio/uni-stat */ 5);
+
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _badminton = _interopRequireDefault(__webpack_require__(/*! ./pages/tabBar/badminton/badminton.vue */ 20));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+createPage(_badminton.default);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
 /***/ })
 
-},[[19,"common/runtime","common/vendor"]]]);
+},[[441,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../../.sourcemap/mp-weixin/pages/tabBar/badminton/badminton.js.map

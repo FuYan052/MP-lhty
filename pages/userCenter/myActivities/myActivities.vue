@@ -210,18 +210,19 @@
 				}
 				.btn1{  //预约成功
 					color: #fff;
-					border: 1rpx solid #84d948;
-					background: #84d948;
+					border: 1rpx solid #ffc102;
+					background: #ffc102;
 				}
 				.btn2{  //预约成功
 					color: #fff;
-					border: 1rpx solid #84d948;
-					background: #84d948;
+					border: 1rpx solid #ffc102;
+					background: #ffc102;
 				}
 				.btn3{ //预约成功
 					color: #fff;
-					border: 1rpx solid #84d948;
-					background: #84d948;
+					border: 1rpx solid #ffc102;
+					background: #ffc102;
+					// background: #84d948;
 				}
 				.btn5{  //已结束
 					color: #fff;
@@ -231,7 +232,7 @@
 				.btn4{  //进行中
 					color: #fff;
 					border: 1rpx solid #ffc102;
-					background: #ffc102;
+					background: #84d948;
 				}
 				.btn6{ //取消
 					margin-left: 33rpx;

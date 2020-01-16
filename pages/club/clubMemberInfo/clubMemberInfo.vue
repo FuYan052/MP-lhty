@@ -65,7 +65,7 @@
 		methods: {
 			toClubList() {
 				uni.navigateTo({
-					url: '/pages/club/memberClubList/memberClubList?userId' + this.userId
+					url: '/pages/club/memberClubList/memberClubList?userId=' + this.userId
 				})
 			}
 		}

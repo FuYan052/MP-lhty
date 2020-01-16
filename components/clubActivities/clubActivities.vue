@@ -55,6 +55,8 @@
 				</view>
 			</view>
 		</view>
+		<!-- 缺省页 -->
+		<view class="noData" v-show="showNoData"></view>
 	</view>
 </template>
 
@@ -71,7 +73,8 @@
 				isTwoLater: false,
 				lat: '30.57447',
 				lon: '103.92377',
-				isShowDiatance: false
+				isShowDiatance: false,
+				showNoData: false
 			}
 		},
 		created() {
@@ -142,11 +145,17 @@
 					console.log(resp)
 					if(resp.status == 200) {
 						this.actList = resp.data
+						if(resp.data.length == 0) {
+							this.showNoData = true
+						}else{
+							this.showNoData = false
+						}
 					}
 				})
 			},
 			// 切换日期
 			changeDate(index) {
+				this.showNoData = false
 				this.currIndex = index
 				switch(index) {
 					case 0: 
@@ -430,6 +439,13 @@
 					}
 				}
 			}
+		}
+		.noData{
+			width: 100%;
+			height: 900rpx;
+			background: url(~@/static/imgs/noActivity.png) no-repeat;
+			background-size: 271rpx auto;
+			background-position: center 280rpx; 
 		}
 	}
 </style>

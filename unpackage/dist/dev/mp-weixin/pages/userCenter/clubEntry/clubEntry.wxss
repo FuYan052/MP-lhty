@@ -83,7 +83,7 @@
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
-      border: 1rpx solid #222222;
+      border: 1rpx dashed #898989;
       padding: 20rpx;
 }
 .clubEntry .section1 .intro .textAreaBox.data-v-cd28e86c .van-cell {

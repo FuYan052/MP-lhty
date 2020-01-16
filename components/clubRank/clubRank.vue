@@ -22,7 +22,7 @@
 			</view>
 		</view>
 		<view class="rankWrap">
-			<view class="rankItem" v-for="(item,index) in rankList" :key='index' :class="'curr' + index">
+			<view class="rankItem" v-for="(item,index) in rankList" :key='index' :class="'curr' + index" @click="toInfo(item)">
 				<view class="number">{{item.rownum}}</view>
 				<view class="imgBox">
 					<image :lazy-load='false' style="width: 100%; height: 100%; border-radius: 50%;"
@@ -82,13 +82,13 @@
 			},
 			changeCate(index) {
 				this.currIndex = index
-				this.type = index
-				// if(index == 0) {
-				// 	this.type = 0
-				// }else{
-				// 	this.type = 1
-				// }
+				this.type = index  //后端约定0为站内排名，1为俱乐部排名，刚好与index对应
 				this.getRank()
+			},
+			toInfo(item) {
+				uni.navigateTo({
+					url: '/pages/club/clubMemberInfo/clubMemberInfo?userId=' + item.userId
+				})
 			}
 		}
 	}

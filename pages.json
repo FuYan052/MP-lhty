@@ -1,16 +1,6 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/tabBar/userCenter/userCenter",
-			"style": {
-				"navigationBarTitleText": "个人中心",
-				"usingComponents": {
-					"van-cell": "/wxcomponents/vant/dist/cell/index",
-					"van-dialog": "/wxcomponents/vant/dist/dialog/index"
-				}
-			}
-		},
-		{
 			"path": "pages/tabBar/badminton/badminton",
 			"style": {
 				"navigationBarTitleText": "约球",
@@ -21,6 +11,17 @@
 		{
 			"path": "pages/noDataPage/noDataPage",
 			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/tabBar/userCenter/userCenter",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/dist/cell/index",
+					"van-dialog": "/wxcomponents/vant/dist/dialog/index"
+				}
 			}
 		},
 		{

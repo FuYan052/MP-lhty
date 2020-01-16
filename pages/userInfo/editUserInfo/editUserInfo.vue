@@ -105,7 +105,8 @@
 				regionId: '',
 				regionValue: '',
 				selectedIds: [],
-				selectedList: []
+				selectedList: [],
+				infoId: ''
 			}
 		},
 		onLoad(options) {
@@ -118,6 +119,7 @@
 			}).then(resp => {
 				console.log(resp)
 				if(resp.status == 200) {
+					this.infoId = resp.data.id
 					this.imgFile = resp.data.headPortrait
 					this.nickName = resp.data.nickName
 					this.sex = resp.data.sex
@@ -244,14 +246,18 @@
 				this.$refs.picker4.show()
 			},
 			confirmWork(v) {
-				this.workValue = v.result
+				console.log(v)
+				this.workValue = v.checkArr.label
+				this.workId = v.checkArr.value
 			},
 			// 选择地区
 			selectRegion(v) {
 				this.$refs.picker5.show()
 			},
 			confirmRegion(v) {
+				console.log(v)
 				this.regionValue = v.result
+				this.regionId = v.checkValue[1]
 			},
 			// 选择标签
 			selectLabel() {
@@ -263,14 +269,15 @@
 			//保存
 			submit() {
 				const params = {
+					id: this.infoId,
 					headPortrait: this.imgFile,
 					nickName: this.nickName,
 					sex: this.sex,
 					height: this.heightValue,
 					birthday: this.birthValue,
 					ageGroup: this.birthRangeValue,
-					occupationId: this.workValue,
-					region: this.regionValue,
+					occupationId: this.workId,
+					region: this.regionId,
 					labelId: this.selectedIds.join(','),
 					userId: uni.getStorageSync('userInfo').userId
 				}

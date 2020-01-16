@@ -39,6 +39,12 @@
 				console.log(resp)
 				if(resp.status == 200) {
 					this.peopleList = resp.data
+					this.peopleList = []
+					if(this.peopleList.length == 0) {
+						uni.redirectTo({
+							url: '/pages/noDataPage/noDataPage'
+						})
+					}
 				}
 			})
 		}

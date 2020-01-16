@@ -170,18 +170,18 @@
 }
 .myActivities .orderItem .btnBox .btn1.data-v-611c47f0 {
         color: #fff;
-        border: 1rpx solid #84d948;
-        background: #84d948;
+        border: 1rpx solid #ffc102;
+        background: #ffc102;
 }
 .myActivities .orderItem .btnBox .btn2.data-v-611c47f0 {
         color: #fff;
-        border: 1rpx solid #84d948;
-        background: #84d948;
+        border: 1rpx solid #ffc102;
+        background: #ffc102;
 }
 .myActivities .orderItem .btnBox .btn3.data-v-611c47f0 {
         color: #fff;
-        border: 1rpx solid #84d948;
-        background: #84d948;
+        border: 1rpx solid #ffc102;
+        background: #ffc102;
 }
 .myActivities .orderItem .btnBox .btn5.data-v-611c47f0 {
         color: #fff;
@@ -191,7 +191,7 @@
 .myActivities .orderItem .btnBox .btn4.data-v-611c47f0 {
         color: #fff;
         border: 1rpx solid #ffc102;
-        background: #ffc102;
+        background: #84d948;
 }
 .myActivities .orderItem .btnBox .btn6.data-v-611c47f0 {
         margin-left: 33rpx;

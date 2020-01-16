@@ -5,7 +5,7 @@
 			<view class="money">{{total}}<text>元</text></view>
 			<view class="btnBox">
 				<view class="btn recharge" @click="handleRecharge">充值</view>
-				<view class="btn cash">提现</view>
+				<view class="btn cash" @click="cash">提现</view>
 			</view>
 		</view>
 		<view class="menuBox">
@@ -56,6 +56,12 @@
 			handleRecharge() {
 				uni.navigateTo({
 				  url: '/pages/userCenter/recharge/recharge'
+				});
+			},
+			// 提现
+			cash() {
+				uni.navigateTo({
+				  url: '/pages/userCenter/getCash/getCash'
 				});
 			},
 			toDetail() {

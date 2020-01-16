@@ -41,7 +41,7 @@
 					<view class="bottom">
 						<view class="left"></view>
 						<view class="right">
-							<view class="btn btn1" @click="editUser(item)">修改</view>
+							<view class="btn btn1" @click="editUser(item)" v-show="">修改</view>
 						</view>
 					</view>
 				</view>
@@ -77,7 +77,7 @@
 					<view class="bottom">
 						<view class="left"></view>
 						<view class="right">
-							<view class="btn btn1" @click="editUser(item)">修改</view>
+							<view class="btn btn1" @click="editUser(item)" v-show="item.userId != currUserId">修改</view>
 						</view>
 					</view>
 				</view>
@@ -93,7 +93,8 @@
 				searchText: '',
 				isShowTitle: true,
 				list1: [],
-				list2: []
+				list2: [],
+				currUserId: uni.getStorageSync('userInfo').userId
 			}
 		},
 		computed: {

@@ -143,9 +143,10 @@
 							icon: 'none'
 						});
 						const timer = setTimeout(function() {
-							uni.redirectTo({
-								url: '/pages/groupOwnerManage/membershipManage/membershipManage?clubId=' + this.clubId
-							})
+							// uni.redirectTo({
+							// 	url: '/pages/groupOwnerManage/membershipManage/membershipManage?clubId=' + this.clubId
+							// })
+							uni.navigateBack()
 							clearTimeout(timer)
 						},500)
 					}
