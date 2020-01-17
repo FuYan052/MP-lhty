@@ -1,20 +1,6 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/tabBar/badminton/badminton",
-			"style": {
-				"navigationBarTitleText": "约球",
-				"enablePullDownRefresh": true,
-				"backgroundTextStyle": "light"
-			}
-		},
-		{
-			"path": "pages/noDataPage/noDataPage",
-			"style": {
-				"navigationBarTitleText": ""
-			}
-		},
-		{
 			"path": "pages/tabBar/userCenter/userCenter",
 			"style": {
 				"navigationBarTitleText": "个人中心",
@@ -24,6 +10,42 @@
 				}
 			}
 		},
+		{
+			"path": "pages/userCenter/getCash/getCash",
+			"style": {
+				"navigationBarTitleText": "提现",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-popup": "/wxcomponents/vant/dist/popup/index"
+				}
+			}
+		},
+		{
+			"path": "pages/tabBar/badminton/badminton",
+			"style": {
+				"navigationBarTitleText": "约球",
+				"enablePullDownRefresh": true,
+				"backgroundTextStyle": "light"
+			}
+		},
+		{
+			"path": "pages/groupOwnerManage/publishActivities/publishActivities",
+			"style": {
+				"navigationBarTitleText": "发布活动",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
+					"van-switch": "/wxcomponents/vant/dist/switch/index"
+				}
+			}
+		},
+		{
+			"path": "pages/noDataPage/noDataPage",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		
 		{
 			"path": "pages/userInfo/editUserInfo/editUserInfo",
 			"style": {
@@ -193,15 +215,6 @@
 			}
 		},
 		{
-			"path": "pages/userCenter/getCash/getCash",
-			"style": {
-				"navigationBarTitleText": "提现",
-				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index"
-				}
-			}
-		},
-		{
 			"path": "pages/groupOwnerManage/membershipManage/membershipManage",
 			"style": {
 				"navigationBarTitleText": "会员管理",
@@ -246,17 +259,6 @@
 				"navigationBarTitleText": "会费详情",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#fff"
-			}
-		},
-		{
-			"path": "pages/groupOwnerManage/publishActivities/publishActivities",
-			"style": {
-				"navigationBarTitleText": "发布活动",
-				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index",
-					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
-					"van-switch": "/wxcomponents/vant/dist/switch/index"
-				}
 			}
 		},
 		{

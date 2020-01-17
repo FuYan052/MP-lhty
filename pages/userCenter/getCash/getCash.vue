@@ -3,7 +3,7 @@
 		<view class="cashWrap1">
 			<view class="account">
 				<view class="title">到账账户</view>
-				<view class="accountName">得之我信</view>
+				<view class="accountName">{{accout}}</view>
 			</view>
 			<view class="time">72小时内到账</view>
 		</view>
@@ -24,10 +24,23 @@
 				<view class="tipMoney" v-show="showTips1">当前可提现金额{{hasMoney}}元,<text @click="cashTotal">全部提现</text></view>
 				<view class="errTips" v-show="!showTips1">输入金额超过可提现金额</view>
 			</view>
-			<view class="btnBox myButton">
+			<view class="btnBox myButton" @click="handleGetCash">
 				提现
 			</view>
 		</view>
+		<van-popup :show="isShow">
+			<view class="box">
+				<view class="titl1"><van-icon name="warning-o" size='30rpx' color='#ffbc01' />首次提现需要验证您的真实姓名</view>
+				<van-field
+					:border='false'
+					placeholder="请输入您的真实姓名"
+					bind:change="onChange"
+					input-align='center'
+					@change='inputName'
+				/>
+				<view class="btn" @click="submitName">提交</view>
+			</view>
+		</van-popup>
  	</view>
  </template>
  
@@ -36,7 +49,12 @@
  		data() {
 			return {
 				cashMoney: '',
-				hasMoney: 869.5
+				hasMoney: 869.5,
+				isShow: false,
+				realName: '',
+				accout: '',
+				initTransfer: null,
+				type: null
 			}
 		},
 		computed: {
@@ -48,12 +66,73 @@
 				}
 			}
 		},
+		onLoad(options) {
+			this.type = options.type //上一页传过来的提现类型，0为用户提现，1为俱乐部会长提现
+		},
+		onShow() {
+			this.$http.get({
+				url: '/v1/rest/userwallet/transferDetails',
+				data: {
+					type: this.type,  //0为用户提现，1为俱乐部会长提现
+					userId: uni.getStorageSync('userInfo').userId
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.isShow = resp.data.initTransfer
+					this.accout = resp.data.account
+					this.hasMoney = resp.data.totalPrice
+					this.realName = resp.data.userName
+					this.initTransfer = resp.data.initTransfer
+				}
+			})
+		},
 		methods: {
 			onChange(v) {
 				this.cashMoney = v.detail
 			},
 			cashTotal() {
 				this.cashMoney = this.hasMoney
+			},
+			inputName(v) {
+				this.realName = v.detail
+			},
+			submitName() {
+				this.isShow = false
+			},
+			handleGetCash() {
+				this.$http.post({
+					url: '/v1/rest/pay/transferPay',
+					data: {
+						clubId: '',
+						initTransfer: this.initTransfer,
+						totalPrice: Number(this.cashMoney),
+						type: this.type,
+						userId: uni.getStorageSync('userInfo').userId,
+						userName: this.realName
+					}
+				}).then(resp => {
+					console.log(resp)
+					if(resp.status == 200) {
+						const that = this
+						if(resp.data.errCode == 'NAME_MISMATCH') {
+							uni.showModal({
+								content: '真实姓名不一致，是否重新填写？',
+								success: function (res) {
+									if (res.confirm) {
+										that.isShow = true
+									} else if (res.cancel) {}
+								}
+							});
+						}else{
+							uni.showToast({
+								title: resp.data.msg,
+								duration: 4000,
+								icon: 'none'
+							})
+						}
+					}
+				})
 			}
 		}
  	}
@@ -156,6 +235,43 @@
 			.btnBox{
 				color: #fff;
 				margin-top: 30rpx;
+			}
+		}
+		/deep/ .van-popup--center{
+			top: 35%;
+		}
+		.box{
+			width: 600rpx;
+			height: 420rpx;
+			box-sizing: border-box;
+			padding: 0 36rpx;
+			.titl1{
+				width: 100%;
+				height: 110rpx;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 26rpx;
+				color: #333333;
+				/deep/ .van-icon{
+					padding-right: 10rpx;
+				}
+			}
+			/deep/ .van-cell{
+				margin-top: 40rpx;
+				border-bottom: 1rpx solid #999999;
+			}
+			.btn{
+				width: 60%;
+				height: 62rpx;
+				text-align: center;
+				color: #fff;
+				font-size: 26rpx;
+				line-height: 62rpx;
+				background: #ffbc01;
+				margin: 0 auto;
+				margin-top: 70rpx;
+				border-radius: 15rpx;
 			}
 		}
 	}

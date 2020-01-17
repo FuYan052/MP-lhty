@@ -72,7 +72,7 @@
 				this.$http.get({
 					url: '/v1/rest/login/registerLabelSaveOne',
 					data: {
-						userId: '',
+						userId: uni.getStorageSync('userInfo').userId,
 						labelId: this.selectedList.join(',')
 					},
 				}).then(resp => {

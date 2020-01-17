@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "添加成员",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#f4f4f4",
+  "usingComponents": {
+    "van-field": "/wxcomponents/vant/dist/field/index",
+    "van-cell": "/wxcomponents/vant/dist/cell/index"
+  }
+}

@@ -61,7 +61,7 @@
 			// 提现
 			cash() {
 				uni.navigateTo({
-				  url: '/pages/userCenter/getCash/getCash'
+				  url: '/pages/userCenter/getCash/getCash?type=' + 0
 				});
 			},
 			toDetail() {

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "选择场馆",
+  "usingComponents": {
+    "van-field": "/wxcomponents/vant/dist/field/index"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "个人中心",
+  "usingComponents": {
+    "van-cell": "/wxcomponents/vant/dist/cell/index",
+    "van-dialog": "/wxcomponents/vant/dist/dialog/index"
+  }
+}

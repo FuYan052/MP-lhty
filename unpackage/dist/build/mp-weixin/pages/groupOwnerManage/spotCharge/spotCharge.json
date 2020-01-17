@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "现场收费",
+  "usingComponents": {
+    "group-activity": "/components/groupActivity/groupActivity"
+  }
+}

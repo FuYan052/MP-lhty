@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "活动结算",
+  "usingComponents": {
+    "group-activity": "/components/groupActivity/groupActivity"
+  }
+}

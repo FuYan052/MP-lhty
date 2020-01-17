@@ -16,6 +16,8 @@
 				<view class="btn btn2" @click="toclubRecharge(item)">会费充值</view>
 			</view>
 		</view>
+		<!-- 缺省页 -->
+		<view class="noData" v-show="isShowNoData"></view>
 	</view>
 </template>
 
@@ -23,7 +25,8 @@
 	export default {
 		data() {
 			return {
-				list: []
+				list: [],
+				isShowNoData: false
 			}
 		},
 		onLoad() {
@@ -35,7 +38,13 @@
 			}).then(resp => {
 				console.log(resp)
 				if(resp.status == 200) {
-					this.list = resp.data
+					// this.list = resp.data
+					this.list = []
+					if(this.list.length == 0) {
+						this.isShowNoData = true
+					}else{
+						this.isShowNoData = false
+					}
 				}
 			})
 		},
@@ -130,6 +139,14 @@
 					border-left: 1rpx solid #f4f4f4;
 				}
 			}
+		}
+		.noData{
+			width: 100%;
+			height: 500rpx;
+			background: url(~@/static/imgs/noData.png) no-repeat center;
+			background-size: 460rpx auto;
+			z-index: 9;
+			margin-top: 150rpx;
 		}
 	}
 </style>

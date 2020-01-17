@@ -24,6 +24,8 @@
 				<view class="btn btn6" v-show="currIndex == 1" @click="handleCancel(item)">点击取消</view>
 			</view>
 		</view>
+		<!-- 缺省页 -->
+		<view class="noData" v-show="isShowNoData"></view>
 	</view>
 </template>
 
@@ -34,7 +36,8 @@
 				cateList: ['全部','已预约','进行中','已完成','已取消'],
 				cateState: 0,
 				currIndex: 0,
-				actList: []
+				actList: [],
+				isShowNoData: false
 			}
 		},
 		created() {
@@ -53,11 +56,17 @@
 					console.log(resp)
 					if(resp.status == 200) {
 						this.actList = resp.data
+						if(this.actList.length == 0) {
+							this.isShowNoData = true
+						}else{
+							this.isShowNoData = false
+						}
 					}
 				})
 			},
 			// 切换分类
 			changeCate(index) {
+				this.isShowNoData = false
 				this.currIndex = index
 				this.cateState = index
 				this.getList()
@@ -106,6 +115,7 @@
 		min-height: 100vh;
 		background: #f4f4f4;
 		box-sizing: border-box;
+		overflow: hidden;
 		padding: 0 32rpx;
 		padding-top: 90rpx;
 		padding-bottom: 20rpx;
@@ -238,6 +248,14 @@
 					margin-left: 33rpx;
 				}
 			}
+		}
+		.noData{
+			width: 100%;
+			height: 500rpx;
+			background: url(~@/static/imgs/noData.png) no-repeat center;
+			background-size: 460rpx auto;
+			z-index: 9;
+			margin-top: 150rpx;
 		}
 	}
 </style>

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "现场收费",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#f4f4f4",
+  "usingComponents": {
+    "van-field": "/wxcomponents/vant/dist/field/index",
+    "van-dialog": "/wxcomponents/vant/dist/dialog/index"
+  }
+}

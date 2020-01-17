@@ -19,3 +19,10 @@
 .van-cell--large{
 	border-radius: 12rpx;
 }
+
+/* 没数据时显示缺省背景 */
+.commonNoData{
+	background: url(~@/static/imgs/noData.png) no-repeat center;
+	background-size: 500rpx auto;
+	background-position: center 400rpx; 
+}

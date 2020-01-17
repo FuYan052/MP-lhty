@@ -325,6 +325,16 @@
 						})
 					}
 				}
+			},
+			// 分享
+			onShareAppMessage(res) {
+				// if (res.from === 'button') {// 来自页面内分享按钮
+				// 	console.log(res.target)
+				// }
+				return {
+					title: '贵州茅台邀你打球——波利羽毛球馆',
+					path: '/pages/activity/activityDetails/activityDetails?actId=' + this.activityId
+				}
 			}
 		}
 	}

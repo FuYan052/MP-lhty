@@ -27,6 +27,7 @@
 				</view>
 			</view>
 		</view>
+		<view class="noData" v-show="isShowNoData"></view>
 	</view>
 </template>
 
@@ -36,6 +37,11 @@
 		data() {
 			return {
 				
+			}
+		},
+		computed: {
+			isShowNoData() {
+				return this.activityList.length == 0
 			}
 		},
 		methods: {
@@ -132,6 +138,13 @@
 					}
 				}
 			}
+		}
+		.noData{
+			width: 100%;
+			height: 80vh;
+			background: url(~@/static/imgs/noData.png) no-repeat center;
+			background-size: 500rpx auto;
+			background-position: center 300rpx; 
 		}
 	}
 </style>

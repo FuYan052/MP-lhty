@@ -56,14 +56,18 @@
 					<view class="textAreaBox">
 						<view class="title">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</view>
 						<van-cell-group :border='false'>
-						  <van-field :fixed='true' @change='inputTitleValue' type="textarea" placeholder="时间+地址+活动类型" autosize :border="false" :show-confirm-bar='false'/>
+						  <van-field @change='inputTitleValue' type="textarea" placeholder="时间+地址+活动类型" autosize :border="false" :show-confirm-bar='false'/>
 						</van-cell-group>
 					</view>
 					<!-- 活动规则 -->
 					<view class="textAreaBox">
 						<view class="title">活动规则</view>
-						<van-cell-group :border='false'>
-						  <van-field :fixed='true' @change='inputRuleValue' type="textarea" placeholder="请填写活动规则" autosize :border="false" :show-confirm-bar='false'/>
+						<view class="myText" v-show="showMyTextArea" @click="showMyText">
+							<text class="text1" v-if="ruleValue == ''">请填写活动规则</text>
+							<text class="text2" v-else>{{ruleValue}}</text>
+						</view>
+						<van-cell-group :border='false' v-show="!showMyTextArea">
+						  <van-field @change='inputRuleValue' :focus='true' :value='ruleValue' @blur='blur1' type="textarea" placeholder="请填写活动规则" autosize :border="false" :show-confirm-bar='false'/>
 						</van-cell-group>
 					</view>
 				</van-cell-group>
@@ -146,7 +150,8 @@
 				ruleValue: '',  //活动规则
 				isWeek: false,  //是否周活动
 				isCancel: true,  //是否可取消
-				isUnderLine: true  //是否接受线下报名
+				isUnderLine: true,  //是否接受线下报名
+				showMyTextArea: false
 			}
 		},
 		onLoad(options) {
@@ -170,6 +175,12 @@
 			}
 		},
 		methods: {
+			showMyText() {
+				this.showMyTextArea = false
+			},
+			blur1() {
+				this.showMyTextArea = true
+			},
 			// 选择活动时间
 			choiceTime() {
 				this.isshow1 = !this.isshow1
@@ -300,18 +311,18 @@
 		width: 100%;
 		height: 100vh;
 		box-sizing: border-box;
-		position: relative;
 		padding: 0 16rpx;
-		// padding-bottom: 250rpx;
-		display: flex;
-		flex-direction: column;
+		position: relative;
+		// display: flex;
+		// flex-direction: column;
 		.wrap1{
 			width: 100%;
-			height: auto;
-			overflow: auto;
+			// height: auto;
+			// overflow: auto;
 			flex: 1;
 			box-sizing: border-box;
-			padding-bottom: 50rpx;
+			// padding-bottom: 50rpx;
+			padding-bottom: 200rpx;
 			/deep/ .van-cell-group{
 				border-radius: 10rpx;
 				background: #1e1e1e;
@@ -341,7 +352,7 @@
 						-webkit-text-fill-color: #1f1f1f;
 					}
 					.van-icon{
-						size: 30rpx; 
+						font-size: 30rpx; 
 						color: #3d3a35;
 					}
 				}
@@ -395,6 +406,24 @@
 					min-height: 192rpx;
 					border-radius: 10rpx;
 				}
+				.myText{
+					width: 100%;
+					min-height: 192rpx;
+					border-radius: 10rpx;
+					background: #fff;
+					box-sizing: border-box;
+					padding: 0 34rpx;
+					line-height: 70rpx;
+					font-size: 28rpx;
+					.text1{
+						line-height: 70rpx;
+						color: #8f8f8f;
+					}
+					.text2{
+						line-height: 70rpx;
+						color: #1f1f1f;
+					}
+				}
 			}
 		}
 		.switchBox{
@@ -419,6 +448,11 @@
 			height: 160rpx;
 			background: #1e1e1e;
 			box-sizing: border-box;
+			padding: 0 16rpx;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			z-index: 9999;
 			.buttonBox{
 				width: 100%;
 				height: 96rpx;

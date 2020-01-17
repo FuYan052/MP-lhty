@@ -8,7 +8,6 @@
 					<van-cell-group :border="false">
 					  <van-field
 							size='large'
-							:value='userPhone'
 					    placeholder="请输入手机号"
 							placeholder-style="color: #b1b1b1;font-size: 28rpx;"
 							type='number'
@@ -21,7 +20,6 @@
 					<van-cell-group :border="false">
 					  <van-field
 							size='large'
-							:value='checkCode'
 					    placeholder="请输入验证码"
 							placeholder-style="color: #b1b1b1;font-size: 28rpx;"
 							type="number"

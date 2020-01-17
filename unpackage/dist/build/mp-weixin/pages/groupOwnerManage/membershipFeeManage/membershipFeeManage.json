@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "会费管理",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#f4f4f4",
+  "usingComponents": {
+    "van-field": "/wxcomponents/vant/dist/field/index"
+  }
+}

@@ -1,0 +1,1 @@
+<group-activity vue-id="1" showPeople="{{false}}" showBtn="{{true}}" btn1Text="{{btn1Text}}" btn2Text="{{btn2Text}}" activityList="{{actList}}" data-event-opts="{{[['^handle1',[['handleEdit']]],['^handle2',[['handleCencel']]]]}}" bind:handle1="__e" bind:handle2="__e" class="data-v-65ff93e3" bind:__l="__l"></group-activity>

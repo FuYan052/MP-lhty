@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "会费充值",
+  "usingComponents": {
+    "van-cell": "/wxcomponents/vant/dist/cell/index",
+    "van-field": "/wxcomponents/vant/dist/field/index",
+    "w-picker": "/components/w-picker/w-picker"
+  }
+}
