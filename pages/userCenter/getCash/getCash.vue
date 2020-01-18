@@ -54,7 +54,8 @@
 				realName: '',
 				accout: '',
 				initTransfer: null,
-				type: null
+				type: null,
+				clubId: ''
 			}
 		},
 		computed: {
@@ -68,12 +69,16 @@
 		},
 		onLoad(options) {
 			this.type = options.type //上一页传过来的提现类型，0为用户提现，1为俱乐部会长提现
+			if(this.type == 1) {
+				this.clubId = uni.getStorageSync('clubId')
+			}
 		},
 		onShow() {
 			this.$http.get({
 				url: '/v1/rest/userwallet/transferDetails',
 				data: {
 					type: this.type,  //0为用户提现，1为俱乐部会长提现
+					clubId: this.clubId,
 					userId: uni.getStorageSync('userInfo').userId
 				}
 			}).then(resp => {
@@ -104,7 +109,7 @@
 				this.$http.post({
 					url: '/v1/rest/pay/transferPay',
 					data: {
-						clubId: '',
+						clubId: this.clubId,
 						initTransfer: this.initTransfer,
 						totalPrice: Number(this.cashMoney),
 						type: this.type,

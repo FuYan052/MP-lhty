@@ -132,6 +132,18 @@
       width: 100%;
       min-height: 270rpx;
 }
+.revisionActivity .wrap1 .textAreaBox.data-v-51249d6e .van-cell {
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        padding: 10rpx 32rpx;
+        line-height: 36rpx;
+}
+.revisionActivity .wrap1 .textAreaBox.data-v-51249d6e .van-cell .van-field__input--textarea {
+          font-size: 30rpx;
+}
+.revisionActivity .wrap1 .textAreaBox.data-v-51249d6e .van-cell .van-field__body--textarea.van-field__body--ios {
+          margin-top: 0;
+}
 .revisionActivity .wrap1 .textAreaBox .title.data-v-51249d6e {
         height: 70rpx;
         line-height: 70rpx;
@@ -141,6 +153,23 @@
 .revisionActivity .wrap1 .textAreaBox.data-v-51249d6e .van-cell {
         min-height: 192rpx;
         border-radius: 10rpx;
+}
+.revisionActivity .wrap1 .textAreaBox .myText.data-v-51249d6e {
+        width: 100%;
+        min-height: 192rpx;
+        border-radius: 10rpx;
+        background: #fff;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        padding: 10rpx 32rpx;
+        line-height: 38rpx;
+        font-size: 30rpx;
+}
+.revisionActivity .wrap1 .textAreaBox .myText .text1.data-v-51249d6e {
+          color: #8f8f8f;
+}
+.revisionActivity .wrap1 .textAreaBox .myText .text2.data-v-51249d6e {
+          color: #1f1f1f;
 }
 .revisionActivity .switchBox.data-v-51249d6e {
     width: 100%;

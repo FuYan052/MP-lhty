@@ -83,7 +83,7 @@
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
-      border: 1rpx dashed #898989;
+      border: 1rpx solid #898989;
       padding: 20rpx;
 }
 .clubEntry .section1 .intro .textAreaBox.data-v-cd28e86c .van-cell {
@@ -97,6 +97,22 @@
 }
 .clubEntry .section1 .intro .textAreaBox.data-v-cd28e86c .van-cell .van-field__body--textarea.van-field__body--ios {
           margin-top: 0;
+}
+.clubEntry .section1 .intro .textAreaBox .myText.data-v-cd28e86c {
+        width: 100%;
+        min-height: 135rpx;
+        border-radius: 10rpx;
+        background: #fff;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        line-height: 38rpx;
+        font-size: 28rpx;
+}
+.clubEntry .section1 .intro .textAreaBox .myText .text1.data-v-cd28e86c {
+          color: #8f8f8f;
+}
+.clubEntry .section1 .intro .textAreaBox .myText .text2.data-v-cd28e86c {
+          color: #1f1f1f;
 }
 .clubEntry .section1 .logoBox.data-v-cd28e86c {
     height: 196rpx;

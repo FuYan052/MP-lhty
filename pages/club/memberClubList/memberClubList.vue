@@ -3,7 +3,7 @@
 		<view class="listItem" v-for="(item,index) in list" :key='index'>
 			<view class="top" @click="toDetail(item)">
 				<view class="imgBox">
-					<image :src="item.logo" mode=""></image>
+					<image :src="item.logo" style="width: 100%; height: 100%;" mode=""></image>
 				</view>
 				<view class="detail">
 					<view class="title">{{item.clubName}}</view>

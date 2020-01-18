@@ -14,7 +14,7 @@
 					<view class="tit">线上金额：</view>
 					<view class="num">{{upper}}</view>
 				</view>
-				<view class="btn">可提现</view>
+				<view class="btn" @click="getCash">可提现</view>
 			</view>
 		</view>
 		<view class="detailBox">
@@ -44,7 +44,7 @@
 				upper: ''
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.$http.get({
 				url: '/v1/rest/manage/receiptsDetailed',
 				data: {
@@ -59,6 +59,21 @@
 					this.upper = resp.data.upperMoney
 				}
 			})
+		},
+		methods: {
+			getCash() {
+				if(uni.getStorageSync('userType') == 102) {
+					uni.navigateTo({
+					  url: '/pages/userCenter/getCash/getCash?type=' + 1
+					});
+				}else{
+					uni.showToast({
+						title: '俱乐部会长才可提现！',
+						duration: 2500,
+						icon: 'none'
+					})
+				}
+			}
 		}
 	}
 </script>

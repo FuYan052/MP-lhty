@@ -53,15 +53,6 @@
 			confirm-button-text='去登录'
 			@confirm='toLogin'
 			/>
-			<van-dialog 
-			id="van-dialog" 
-			:show="showLoginOut"
-			:showCancelButton='true'
-			title='提示'
-			message='确定要退出登录吗？'
-			@confirm='handleConfirm'
-			@cancel='handleCancel'
-			/>
 	</view> 
 </template>
 
@@ -73,42 +64,18 @@
 				stateTab: false, //是否重新请求数据
 				// loginState: null,
 				showToLogin: false,
-				showLoginOut: false,
 				menuList: [{id: 1 , title:'我的活动',path: '/pages/userCenter/myActivities/myActivities'},
 									{id: 2, title:'俱乐部',path: '/pages/userCenter/clubList/clubList'},
-									{id: 3, title:'管理中心',path: '/pages/userCenter/managementCenter/managementCenter'},
 									{id: 4, title:'新俱乐部入驻',path: '/pages/userCenter/clubEntry/clubEntry'},
 									{id: 5,title:'常见问题',path: '/pages/userCenter/commonProblem/commonProblem'},],
-				userData: {}
+				userData: {},
+				// isShowManageCenter: false
 			}
 		},
 		computed: {
 			...mapState(['hasLogin', 'userInfo']),  //对全局变量hasLogin进行监控
 		},
-		// created() {
-		// 	if(Number(uni.getStorageSync('userInfo').userId > 0)) {
-		// 		this.getInfo()
-		// 		this.stateTab = false
-		// 		this.showToLogin = false
-		// 	}else{
-		// 		// this.showToLogin = true
-		// 		this.stateTab = true
-		// 		this.showToLogin = true
-		// 	}
-		// },
-		// onShow() {
-		// 	// if(Number(uni.getStorageSync('userInfo').userId > 0)) {  //登录
-		// 	// 	this.showToLogin = false
-		// 	// }else{  //未登录
-		// 	// 	this.showToLogin = true
-		// 	// }
-		// 	if(this.stateTab && (!this.showToLogin)) {
-		// 		this.getInfo()
-		// 	}
-		// },
-		created() {
-			
-		},
+		
 		onShow() {
 			if(uni.getStorageSync('userInfo').userId > 0) {  //登录
 				this.stateTab = true
@@ -132,6 +99,19 @@
 					console.log(resp)
 					if(resp.status == 200) {
 						this.userData = resp.data
+						if((resp.data.role == 102) || (resp.data.role == 103)) {
+							this.menuList = [{id: 1 , title:'我的活动',path: '/pages/userCenter/myActivities/myActivities'},
+															{id: 2, title:'俱乐部',path: '/pages/userCenter/clubList/clubList'},
+															{id: 3, title:'管理中心',path: '/pages/userCenter/managementCenter/managementCenter'},
+															{id: 4, title:'新俱乐部入驻',path: '/pages/userCenter/clubEntry/clubEntry'},
+															{id: 5,title:'常见问题',path: '/pages/userCenter/commonProblem/commonProblem'},]
+						}else{
+							this.menuList = [{id: 1 , title:'我的活动',path: '/pages/userCenter/myActivities/myActivities'},
+															{id: 2, title:'俱乐部',path: '/pages/userCenter/clubList/clubList'},
+															{id: 4, title:'新俱乐部入驻',path: '/pages/userCenter/clubEntry/clubEntry'},
+															{id: 5,title:'常见问题',path: '/pages/userCenter/commonProblem/commonProblem'},]
+						}
+						uni.setStorageSync('userType', resp.data.role)  //102俱乐部会长，103俱乐部管理员，104俱乐部成员
 						if(resp.data.clubId) {
 							uni.setStorageSync('clubId', resp.data.clubId)
 						}
@@ -152,21 +132,26 @@
 			},
 			// 退出登录
 			doLoginout() {
-				this.showLoginOut = true
-			},
-			handleConfirm() {
-				this.logout()
-				uni.removeStorage({  //根据key值移除缓存数据
-					key: 'isLogin'
-				})
-				uni.removeStorage({  //根据key值移除缓存数据
-					key: 'clubId'
-				})
-				this.userData = {}
-				this.showToLogin = true
-			},
-			handleCancel() {
-				this.showLoginOut = false
+				const that = this
+				uni.showModal({
+					content: '确定要退出登录吗？',
+					success: function (res) {
+						if (res.confirm) {
+							that.logout()
+							uni.removeStorage({  //根据key值移除缓存数据
+								key: 'isLogin'
+							})
+							uni.removeStorage({  //根据key值移除缓存数据
+								key: 'clubId'
+							})
+							uni.removeStorage({  //根据key值移除缓存数据
+								key: 'userType'
+							})
+							that.userData = {}
+							that.showToLogin = true
+						} else if (res.cancel) {}
+					}
+				});
 			},
 			// 完善信息
 			editUserInfo() {

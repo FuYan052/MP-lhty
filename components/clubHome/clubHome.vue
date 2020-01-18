@@ -2,7 +2,7 @@
 	<view class="clubHome">
 		<view class="topWrap">
 			<view class="imgBox">
-				<image src="../../static/logo.png" mode="" style="width: 100%; height: 100%; border-radius: 50%;"></image>
+				<image :src="clubInfo.logo" mode="" style="width: 100%; height: 100%; border-radius: 50%;"></image>
 			</view>
 			<view class="clubName">{{clubInfo.clubName}}</view>
 			<view class="number">

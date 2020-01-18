@@ -29,7 +29,7 @@
 		<!-- 俱乐部 -->
 		<view class="whiteBg club" @click="toClub(actDetail.clubId)">
 			<view class="imgBox">
-				<image src="http://f1.haiqq.com/allimg/3831982416/2817233822.jpg" style="width: 100%; height: 100%; border-radius: 7rpx;" alt="">
+				<image :src="actDetail.logo" style="width: 100%; height: 100%; border-radius: 7rpx;" alt="">
 			</view>
 			<view class="clubName">{{actDetail.clubName}}</view>
 			<van-icon class="arrowIcon" name="arrow" size="26rpx" color='#000000'/>
@@ -46,11 +46,11 @@
 				<text class="span2">{{actDetail.venueName}}</text>
 				<text class="span4" @click="toMap"></text>
 			</view>
-			<view class="common owner">
+			<view class="common owner" @click="hanleCall">
 				<text class="span1">组织</text>
 				<text class="span2">{{actDetail.nickName}}</text>
 				<text class="span3">{{actDetail.phone}}</text>
-				<text class="span4" @click="hanleCall"></text>
+				<text class="span4"></text>
 			</view>
 			<view class="common guarantee">
 				<text class="span1">保障</text>
@@ -193,17 +193,17 @@
 			toMap() {
 				const that = this
 				uni.openLocation({
-						latitude: Number(that.lat),
-						longitude:Number( that.long),
-						name: that.venueName,
-						address: that.address,
-						scale: 13,
-						success: function () {
-								console.log('success');
-						},
-						fail: function () {
-								console.log('fail');
-						}
+					latitude: Number(that.lat),
+					longitude:Number( that.long),
+					name: that.venueName,
+					address: that.address,
+					scale: 13,
+					success: function () {
+							console.log('success');
+					},
+					fail: function () {
+							console.log('fail');
+					}
 				});
 			},
 			// 拨打电话
@@ -535,7 +535,7 @@
 		}
 		.signupWrap{
 			width: 100%;
-			height: 320rpx;
+			height: 230rpx;
 			box-sizing: border-box;
 			padding: 0 16rpx;
 			position: fixed;

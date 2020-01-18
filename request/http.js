@@ -7,7 +7,7 @@ if (process.env.NODE_ENV == 'development') {
     baseUrl = 'http://baogongxia.com/lhty/' // 生产环境
 }
 
-const tyToken = uni.getStorageSync('userInfo').token;
+const tyToken = uni.getStorageSync('userInfo').token || '';
 function request(url,method,data,header={}){
   uni.showLoading({
     title: '加载中...'

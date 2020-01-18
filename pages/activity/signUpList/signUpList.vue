@@ -17,6 +17,8 @@
 			</view>
 			<view class="right">{{item.level}}</view>
 		</view>
+		<!-- 缺省页 -->
+		<view class="noData" v-show="isShowNoData"></view>
 	</view>
 </template>
 
@@ -26,6 +28,7 @@
 			return {
 				actId: null,
 				peopleList: [],
+				isShowNoData: false
 			}
 		},
 		onLoad(options) {
@@ -39,11 +42,10 @@
 				console.log(resp)
 				if(resp.status == 200) {
 					this.peopleList = resp.data
-					this.peopleList = []
 					if(this.peopleList.length == 0) {
-						uni.redirectTo({
-							url: '/pages/noDataPage/noDataPage'
-						})
+						this.isShowNoData = true
+					}else{
+						this.isShowNoData = false
 					}
 				}
 			})
@@ -111,6 +113,14 @@
 				font-size: 24rpx;
 				margin-right: 41rpx;
 			}
+		}
+		.noData{
+			width: 100%;
+			height: 500rpx;
+			background: url(~@/static/imgs/noData.png) no-repeat center;
+			background-size: 460rpx auto;
+			z-index: 9;
+			margin-top: 150rpx;
 		}
 	}
 </style>

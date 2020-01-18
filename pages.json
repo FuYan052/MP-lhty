@@ -1,6 +1,14 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/tabBar/badminton/badminton",
+			"style": {
+				"navigationBarTitleText": "约球",
+				"enablePullDownRefresh": true,
+				"backgroundTextStyle": "light"
+			}
+		},
+		{
 			"path": "pages/tabBar/userCenter/userCenter",
 			"style": {
 				"navigationBarTitleText": "个人中心",
@@ -11,21 +19,24 @@
 			}
 		},
 		{
-			"path": "pages/userCenter/getCash/getCash",
+			"path": "pages/groupOwnerManage/revisionActivity/revisionActivity",
 			"style": {
-				"navigationBarTitleText": "提现",
+				"navigationBarTitleText": "修改活动",
 				"usingComponents": {
 					"van-field": "/wxcomponents/vant/dist/field/index",
-					"van-popup": "/wxcomponents/vant/dist/popup/index"
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
+					"van-switch": "/wxcomponents/vant/dist/switch/index"
 				}
 			}
 		},
 		{
-			"path": "pages/tabBar/badminton/badminton",
+			"path": "pages/userCenter/clubEntry/clubEntry",
 			"style": {
-				"navigationBarTitleText": "约球",
-				"enablePullDownRefresh": true,
-				"backgroundTextStyle": "light"
+				"navigationBarTitleText": "俱乐部入驻",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+				}
 			}
 		},
 		{
@@ -36,6 +47,17 @@
 					"van-field": "/wxcomponents/vant/dist/field/index",
 					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
 					"van-switch": "/wxcomponents/vant/dist/switch/index"
+				}
+			}
+		},
+		
+		{
+			"path": "pages/userCenter/getCash/getCash",
+			"style": {
+				"navigationBarTitleText": "提现",
+				"usingComponents": {
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-popup": "/wxcomponents/vant/dist/popup/index"
 				}
 			}
 		},
@@ -96,16 +118,6 @@
 			"style": {
 				"navigationBarTitleText": "选择标签",
 				"navigationBarBackgroundColor": "#020202"
-			}
-		},
-		{
-			"path": "pages/userCenter/clubEntry/clubEntry",
-			"style": {
-				"navigationBarTitleText": "俱乐部入驻",
-				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index",
-					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
-				}
 			}
 		},
 		{
@@ -259,17 +271,6 @@
 				"navigationBarTitleText": "会费详情",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#fff"
-			}
-		},
-		{
-			"path": "pages/groupOwnerManage/revisionActivity/revisionActivity",
-			"style": {
-				"navigationBarTitleText": "修改活动",
-				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index",
-					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
-					"van-switch": "/wxcomponents/vant/dist/switch/index"
-				}
 			}
 		},
 		{

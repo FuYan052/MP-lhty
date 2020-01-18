@@ -24,13 +24,13 @@
 			<view class="intro whiteBg2">
 				<view class="title">俱乐部介绍</view>
 				<view class="textAreaBox">
-						<van-field
-							type="textarea"
-							placeholder="请输入俱乐部简介"
-							:autosize='true'
-							:border="false"
-							:show-confirm-bar='false'
-						/>
+					<view class="myText" v-if="showMyTextArea" @click="showMyText">
+						<text class="text1" v-if="introduce == ''">请输入俱乐部简介</text>
+						<text class="text2" v-else>{{introduce}}</text>
+					</view>
+					<van-cell-group :border='false' v-else>
+						<van-field @change='inputIntrValue' :focus='true' :value='introduce' @blur='blur1' type="textarea" placeholder="请输入俱乐部简介" autosize :border="false" :show-confirm-bar='false'/>
+					</van-cell-group>
 				</view>
 			</view>
 		</view>
@@ -88,9 +88,16 @@
 				regionName: '',
 				introduce: '',
 				imgUrl: '',
+				showMyTextArea: true
 			}
 		},
 		methods: {
+			showMyText() {
+				this.showMyTextArea = false
+			},
+			blur1() {
+				this.showMyTextArea = true
+			},
 			InputName(v) {
 				this.clubName = v.detail
 			},
@@ -250,7 +257,7 @@
 					box-sizing: border-box;
 					display: flex;
 					// border: 1rpx solid #222222;
-					border: 1rpx dashed #898989;
+					border: 1rpx solid #898989;
 					padding: 20rpx;
 					/deep/ .van-cell{
 						width: 600rpx;
@@ -262,6 +269,21 @@
 						}
 						.van-field__body--textarea.van-field__body--ios{
 							margin-top: 0;
+						}
+					}
+					.myText{
+						width: 100%;
+						min-height: 135rpx;
+						border-radius: 10rpx;
+						background: #fff;
+						box-sizing: border-box;
+						line-height: 38rpx;
+						font-size: 28rpx;
+						.text1{
+							color: #8f8f8f;
+						}
+						.text2{
+							color: #1f1f1f;
 						}
 					}
 				}

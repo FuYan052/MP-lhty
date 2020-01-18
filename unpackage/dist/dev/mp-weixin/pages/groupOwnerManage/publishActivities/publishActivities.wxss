@@ -121,6 +121,18 @@
       width: 100%;
       min-height: 270rpx;
 }
+.publishActivities .wrap1 .textAreaBox.data-v-8f5b347a .van-cell {
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        padding: 10rpx 32rpx;
+        line-height: 36rpx;
+}
+.publishActivities .wrap1 .textAreaBox.data-v-8f5b347a .van-cell .van-field__input--textarea {
+          font-size: 30rpx;
+}
+.publishActivities .wrap1 .textAreaBox.data-v-8f5b347a .van-cell .van-field__body--textarea.van-field__body--ios {
+          margin-top: 0;
+}
 .publishActivities .wrap1 .textAreaBox .title.data-v-8f5b347a {
         height: 70rpx;
         line-height: 70rpx;
@@ -138,16 +150,14 @@
         background: #fff;
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
-        padding: 0 34rpx;
-        line-height: 70rpx;
-        font-size: 28rpx;
+        padding: 10rpx 32rpx;
+        line-height: 38rpx;
+        font-size: 30rpx;
 }
 .publishActivities .wrap1 .textAreaBox .myText .text1.data-v-8f5b347a {
-          line-height: 70rpx;
           color: #8f8f8f;
 }
 .publishActivities .wrap1 .textAreaBox .myText .text2.data-v-8f5b347a {
-          line-height: 70rpx;
           color: #1f1f1f;
 }
 .publishActivities .switchBox.data-v-8f5b347a {
@@ -178,7 +188,7 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    z-index: 9999;
+    z-index: 99;
 }
 .publishActivities .wrap2 .buttonBox.data-v-8f5b347a {
       width: 100%;
@@ -190,4 +200,7 @@
 .van-field__input--textarea{
 	overflow: auto;
 }
+/* .van-field__body--textarea.van-field__body--ios{
+	margin-top: 0;
+} */
 

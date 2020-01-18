@@ -243,20 +243,20 @@
           background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg1.png") no-repeat center;
           background-size: 100% 100%;
 }
-.badminton .actBox .actItem .signUp .currbtnBg0.data-v-a9c5ae48 {
-          background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg1.png") no-repeat center;
-          background-size: 100% 100%;
-}
 .badminton .actBox .actItem .signUp .currbtnBg1.data-v-a9c5ae48 {
-          background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg2.png") no-repeat center;
+          background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg1.png") no-repeat center;
           background-size: 100% 100%;
 }
 .badminton .actBox .actItem .signUp .currbtnBg2.data-v-a9c5ae48 {
           background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg3.png") no-repeat center;
           background-size: 100% 100%;
 }
+.badminton .actBox .actItem .signUp .currbtnBg3.data-v-a9c5ae48 {
+          background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg3.png") no-repeat center;
+          background-size: 100% 100%;
+}
 .badminton .actBox .actItem .signUp .currbtnBg4.data-v-a9c5ae48 {
-          background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg4.png") no-repeat center;
+          background: url("https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg2.png") no-repeat center;
           background-size: 100% 100%;
 }
 .badminton .noData.data-v-a9c5ae48 {

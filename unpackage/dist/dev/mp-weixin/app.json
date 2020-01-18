@@ -1,9 +1,11 @@
 {
   "pages": [
-    "pages/tabBar/userCenter/userCenter",
-    "pages/userCenter/getCash/getCash",
     "pages/tabBar/badminton/badminton",
+    "pages/tabBar/userCenter/userCenter",
+    "pages/groupOwnerManage/revisionActivity/revisionActivity",
+    "pages/userCenter/clubEntry/clubEntry",
     "pages/groupOwnerManage/publishActivities/publishActivities",
+    "pages/userCenter/getCash/getCash",
     "pages/noDataPage/noDataPage",
     "pages/userInfo/editUserInfo/editUserInfo",
     "pages/club/memberClubList/memberClubList",
@@ -11,7 +13,6 @@
     "pages/activity/signUpList/signUpList",
     "pages/userInfo/tagsPage/tagsPage",
     "pages/userInfo/selectionTags/selectionTags",
-    "pages/userCenter/clubEntry/clubEntry",
     "pages/club/clubMember/clubMember",
     "pages/groupOwnerManage/activitySettlement/activitySettlement",
     "pages/club/clubMemberInfo/clubMemberInfo",
@@ -28,7 +29,6 @@
     "pages/groupOwnerManage/editActivitie/editActivitie",
     "pages/userCenter/myActivities/myActivities",
     "pages/club/clubMoney/clubMoney",
-    "pages/groupOwnerManage/revisionActivity/revisionActivity",
     "pages/groupOwnerManage/selectVenue/selectVenue",
     "pages/userCenter/accountDetails/accountDetails",
     "pages/userInfo/registerInfo/registerInfo",
@@ -86,5 +86,6 @@
   },
   "usingComponents": {
     "van-icon": "/wxcomponents/vant/dist/icon/index"
-  }
+  },
+  "sitemapLocation": "sitemap87.json"
 }

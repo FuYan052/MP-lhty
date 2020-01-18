@@ -54,19 +54,27 @@
 					</view>
 					<!-- 标题 -->
 					<view class="textAreaBox">
-						<view class="title">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</view>
-						<van-cell-group :border='false'>
-						  <van-field @change='inputTitleValue' type="textarea" placeholder="时间+地址+活动类型" autosize :border="false" :show-confirm-bar='false'/>
-						</van-cell-group>
-					</view>
-					<!-- 活动规则 -->
-					<view class="textAreaBox">
-						<view class="title">活动规则</view>
-						<van-cell-group :border='false'>
-						  <van-field @change='inputRuleValue' type="textarea" placeholder="请填写活动规则" autosize :border="false" :show-confirm-bar='false'/>
-						</van-cell-group>
-					</view>
-				</van-cell-group>
+							<view class="title">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</view>
+							<view class="myText" v-if="showMyTextArea2" @click="showMyText2">
+								<text class="text1" v-if="titleValue == ''">时间+地址+活动类型</text>
+								<text class="text2" v-else>{{titleValue}}</text>
+							</view>
+							<van-cell-group :border='false' v-else>
+							  <van-field @change='inputTitleValue' :focus='true' :value='titleValue' @blur='blur2' type="textarea" placeholder="时间+地址+活动类型" autosize :border="false" :show-confirm-bar='false'/>
+							</van-cell-group>
+						</view>
+						<!-- 活动规则 -->
+						<view class="textAreaBox">
+							<view class="title">活动规则</view>
+							<view class="myText" v-if="showMyTextArea" @click="showMyText">
+								<text class="text1" v-if="ruleValue == ''">请填写活动规则</text>
+								<text class="text2" v-else>{{ruleValue}}</text>
+							</view>
+							<van-cell-group :border='false' v-else>
+							  <van-field @change='inputRuleValue' :focus='true' :value='ruleValue' @blur='blur1' type="textarea" placeholder="请填写活动规则" autosize :border="false" :show-confirm-bar='false'/>
+							</van-cell-group>
+						</view>
+					</van-cell-group>
 				<!-- switch -->
 				<view class="switchBox">
 					<text class="text">接受线下报名</text>
@@ -148,7 +156,9 @@
 				ruleValue: '',  //活动规则
 				isWeek: false,  //是否周活动
 				isCancel: true,  //是否可取消
-				isUnderLine: true  //是否接受线下报名
+				isUnderLine: true,  //是否接受线下报名
+				showMyTextArea: true,
+				showMyTextArea2: true,
 			}
 		},
 		onLoad(options) {
@@ -205,6 +215,18 @@
 			}
 		},
 		methods: {
+			showMyText() {
+				this.showMyTextArea = false
+			},
+			blur1() {
+				this.showMyTextArea = true
+			},
+			showMyText2() {
+				this.showMyTextArea2 = false
+			},
+			blur2() {
+				this.showMyTextArea2 = true
+			},
 			// 选择活动时间
 			choiceTime() {
 				this.isshow1 = !this.isshow1
@@ -431,6 +453,17 @@
 			.textAreaBox{
 				width: 100%;
 				min-height: 270rpx;
+				/deep/ .van-cell{
+					box-sizing: border-box;
+					padding: 10rpx 32rpx;
+					line-height: 36rpx;
+					.van-field__input--textarea{
+						font-size: 30rpx;
+					}
+					.van-field__body--textarea.van-field__body--ios{
+						margin-top: 0;
+					}
+				}
 				.title{
 					height: 70rpx;
 					line-height: 70rpx;
@@ -440,6 +473,24 @@
 				/deep/ .van-cell{
 					min-height: 192rpx;
 					border-radius: 10rpx;
+				}
+				.myText{
+					width: 100%;
+					min-height: 192rpx;
+					border-radius: 10rpx;
+					background: #fff;
+					box-sizing: border-box;
+					padding: 10rpx 32rpx;
+					line-height: 38rpx;
+					font-size: 30rpx;
+					.text1{
+						// line-height: 36rpx;
+						color: #8f8f8f;
+					}
+					.text2{
+						// line-height: 38rpx;
+						color: #1f1f1f;
+					}
 				}
 			}
 		}

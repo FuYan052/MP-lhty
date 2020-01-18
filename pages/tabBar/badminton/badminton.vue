@@ -52,7 +52,7 @@
 						</view>
 					</view>
 					<view class="peopleNUm">{{item.enrolled}}/{{item.totalPeople}}</view>
-					<view class="signUpBtn" @click="toSignUp(item.activitiesId)" :class="'currbtnBg' + ind">正在报名</view>
+					<view class="signUpBtn" @click="toSignUp(item.activitiesId)" :class="'currbtnBg' + item.osStateId">{{item.osState}}</view>
 				</view>
 			</view>
 		</view>
@@ -418,20 +418,20 @@
 						background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg1.png') no-repeat center;
 						background-size: 100% 100%;
 					}
-					.currbtnBg0{
+					.currbtnBg1{  //正在报名
 						background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg1.png') no-repeat center;
 						background-size: 100% 100%;
 					}
-					.currbtnBg1{
-						background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg2.png') no-repeat center;
-						background-size: 100% 100%;
-					}
-					.currbtnBg2{
+					.currbtnBg2{  //名额已满
 						background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg3.png') no-repeat center;
 						background-size: 100% 100%;
 					}
-					.currbtnBg4{
-						background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg4.png') no-repeat center;
+					.currbtnBg3{  //报名结束
+						background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg3.png') no-repeat center;
+						background-size: 100% 100%;
+					}
+					.currbtnBg4{  //正在进行
+						background: url('https://lhty-vue.oss-cn-shenzhen.aliyuncs.com/btnBg2.png') no-repeat center;
 						background-size: 100% 100%;
 					}
 				}

@@ -3,7 +3,7 @@
 		<view class="listItem" v-for="(item,index) in list" :key='index'>
 			<view class="top" @click="toDetail(item)">
 				<view class="imgBox">
-					<image :src="item.logo" mode=""></image>
+					<image :src="item.logo" mode="" style="width: 100%; height: 100%;"></image>
 				</view>
 				<view class="detail">
 					<view class="title">{{item.clubName}}</view>
@@ -38,8 +38,7 @@
 			}).then(resp => {
 				console.log(resp)
 				if(resp.status == 200) {
-					// this.list = resp.data
-					this.list = []
+					this.list = resp.data
 					if(this.list.length == 0) {
 						this.isShowNoData = true
 					}else{
