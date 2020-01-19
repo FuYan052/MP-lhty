@@ -70,7 +70,7 @@
 			},
 			handleSure() {
 				this.$http.get({
-					url: '/v1/rest/login/registerLabelSaveOne',
+					url: '/v1/rest/login/registerLabelSaveTwo',
 					data: {
 						userId: uni.getStorageSync('userInfo').userId,
 						labelId: this.selectedList.join(',')

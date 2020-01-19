@@ -81,35 +81,34 @@
 		created() {
 			const that = this
 			// 默认日期为当天日期
-		 this.clickDate = this.$utils.findDate(0)
-		// 获取banner
-		this.$http.get({
-			 url: '/v1/rest/home/homeNewsList',
-			 data: {
-				 region:''
-			 }
-		}).then(resp => {
-			console.log(resp)
-			if(resp.status == 200) {
-				this.banners = resp.data
-			}
-		})
-		 // 获取用户地理位置
-		uni.getLocation({
-		    type: 'wgs84',
-		    success: function (res) {
-					console.log(res)
-					that.lat = res.latitude
-					that.lon = res.longitude
-					that.isShowDiatance = true
-					that.getList()
-		     },
-				fail: function (){
-					that.getList()
-					that.isShowDiatance = false
+			this.clickDate = this.$utils.findDate(0)
+			// 获取banner
+			this.$http.get({
+				 url: '/v1/rest/home/homeNewsList',
+				 data: {
+					 region:''
+				 }
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.banners = resp.data
 				}
-		 });
-		 
+			})
+		 // 获取用户地理位置
+			uni.getLocation({
+					type: 'wgs84',
+					success: function (res) {
+						console.log(res)
+						that.lat = res.latitude
+						that.lon = res.longitude
+						that.isShowDiatance = true
+						that.getList()
+					 },
+					fail: function (){
+						that.getList()
+						that.isShowDiatance = false
+					}
+			 });
 		},
 		onPullDownRefresh() {
 			wx.setBackgroundColor({
@@ -128,6 +127,18 @@
 				if(resp.status == 200) {
 					uni.stopPullDownRefresh()
 					this.actList = resp.data
+				}
+			})
+			// 获取banner
+			this.$http.get({
+				 url: '/v1/rest/home/homeNewsList',
+				 data: {
+					 region:''
+				 }
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.banners = resp.data
 				}
 			})
 		},

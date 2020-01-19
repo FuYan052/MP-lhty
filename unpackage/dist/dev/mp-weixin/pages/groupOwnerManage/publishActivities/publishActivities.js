@@ -466,6 +466,13 @@ __webpack_require__.r(__webpack_exports__);
       data: params }).
     then(function (resp) {
       console.log(resp);
+      if (resp.status == 200) {
+        uni.showToast({
+          title: '发布成功！',
+          duration: 2500,
+          icon: 'none' });
+
+      }
     });
     uni.removeStorageSync('venue');
   }), _methods) };exports.default = _default;

@@ -138,7 +138,8 @@
 							</image>
 						</view>
 						<view class="info">
-							<view class="name">{{item.nickName}}<text v-if="item.sex == 1">(男)</text><text v-else>(女)</text></view>
+							<view class="name">{{item.nickName}}</view>
+							<text class="text1" v-if="item.sex == 1"></text><text class="text2" v-else></text>
 						</view>
 						<view class="levelBox">
 							<view class="role">{{item.state}}</view>

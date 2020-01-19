@@ -240,7 +240,7 @@ var _default =
       this.$http.get({
         url: '/v1/rest/club/clubMembersInfo',
         data: {
-          clubId: 3 } }).
+          clubId: uni.getStorageSync('clubId') } }).
 
       then(function (resp) {
         console.log(resp);
@@ -257,7 +257,7 @@ var _default =
         this.$http.get({
           url: '/v1/rest/club/clubMembersInfokeyWord',
           data: {
-            clubId: 3,
+            clubId: uni.getStorageSync('clubId'),
             keyWord: this.searchValue } }).
 
         then(function (resp) {

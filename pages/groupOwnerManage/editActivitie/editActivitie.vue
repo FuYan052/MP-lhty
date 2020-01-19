@@ -24,7 +24,8 @@
 				this.$http.get({
 					url: '/v1/rest/manage/listActivities',
 					data: {
-						userId: uni.getStorageSync('userInfo').userId
+						// userId: uni.getStorageSync('userInfo').userId
+						clubId: uni.getStorageSync('clubId')
 					}
 				}).then(resp => {
 					console.log(resp)

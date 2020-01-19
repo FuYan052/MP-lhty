@@ -35,34 +35,34 @@
 				<view class="text">元</view>
 			</view>
 		</view>
-		<view class="title">会费支出</view>
+		<view class="title">会费收入</view>
 		<view class="whiteBg topBox2">
 			<view class="item1">
 				<van-field
 					label="男"
+					:value='money4'
 					title-width='212rpx'
 					type='digit'
 					:border="true"
 					size='large'
-					@change='change4'
+					readonly
 				/>
-				<view class="text">元</view>
 			</view>
 			<view class="item1">
 				<van-field
+					:value='money5'
 					label="女"
 					title-width='212rpx'
 					type='digit'
 					:border="false"
 					size='large'
-					@change='change5'
+					readonly
 				/>
-				<view class="text">元</view>
 			</view>
 		</view>
 		<!-- 合计 -->
 		<view class="countBox">
-			合计：<text>{{total}}</text>元
+			总支出：<text>{{total}}</text>元
 		</view>
 		<view class="btnBox">
 			<view class="myButton" @click="handleSubmit">结算</view>
@@ -74,8 +74,6 @@
 	export default {
 		data() {
 			return {
-				columns: [],
-				clubName: '请选择俱乐部',
 				actId: '',
 				clubId: '',
 				money1: '',
@@ -88,12 +86,24 @@
 		},
 		computed: {
 			total() {
-				return Number(this.money1) + Number(this.money2) + Number(this.money3) + Number(this.money4) + Number(this.money5)
+				return Number(this.money1) + Number(this.money2) + Number(this.money3)
 			}
 		},
 		onLoad(options) {
 			console.log(options)
 			this.actId = options.actId
+			this.$http.get({
+				url: '/v1/rest/manage/settlementIncome',
+				data: {
+					activitiesId: this.actId
+				}
+			}).then(resp => {
+				console.log(resp)
+				if(resp.status == 200) {
+					this.money4 = resp.data.moneyMan + '/人'
+					this.money5 = resp.data.moneyWomen + '/人'
+				}
+			})
 		},
 		methods: {
 			change1(v) {

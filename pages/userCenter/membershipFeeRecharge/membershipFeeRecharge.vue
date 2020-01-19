@@ -22,7 +22,7 @@
 			</view>
 			<van-field
 				:value="money"
-				type='number'
+				type='digit'
 				title-width='260rpx'
 				:border='false'
 				label="充值金额"
@@ -157,6 +157,10 @@
 												duration: 2000,
 												icon: 'none'
 											}); 
+											const _userId = uni.getStorageSync('userInfo').userId
+											uni.redirectTo({
+												url: '/pages/groupOwnerManage/membershipDetails/membershipDetails?clubId=' + that.clubId + '&userId=' + _userId
+											})
 										}
 									})
 								},

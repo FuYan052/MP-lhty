@@ -198,8 +198,6 @@ var _default =
 {
   data: function data() {
     return {
-      columns: [],
-      clubName: '请选择俱乐部',
       actId: '',
       clubId: '',
       money1: '',
@@ -212,12 +210,24 @@ var _default =
   },
   computed: {
     total: function total() {
-      return Number(this.money1) + Number(this.money2) + Number(this.money3) + Number(this.money4) + Number(this.money5);
+      return Number(this.money1) + Number(this.money2) + Number(this.money3);
     } },
 
-  onLoad: function onLoad(options) {
+  onLoad: function onLoad(options) {var _this = this;
     console.log(options);
     this.actId = options.actId;
+    this.$http.get({
+      url: '/v1/rest/manage/settlementIncome',
+      data: {
+        activitiesId: this.actId } }).
+
+    then(function (resp) {
+      console.log(resp);
+      if (resp.status == 200) {
+        _this.money4 = resp.data.moneyMan + '/人';
+        _this.money5 = resp.data.moneyWomen + '/人';
+      }
+    });
   },
   methods: {
     change1: function change1(v) {

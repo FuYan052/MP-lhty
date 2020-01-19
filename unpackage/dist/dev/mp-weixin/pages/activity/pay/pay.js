@@ -192,6 +192,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
@@ -208,25 +209,11 @@ var _default =
       orderNo: null };
 
   },
-  onLoad: function onLoad(options) {var _this = this;
+  onLoad: function onLoad(options) {
     console.log(options);
     this.activityId = options.actId;
-    this.$http.get({
-      url: '/v1/rest/home/signUpDetails',
-      data: {
-        activitiesId: options.actId,
-        userId: uni.getStorageSync('userInfo').userId } }).
-
-    then(function (resp) {
-      console.log(resp);
-      if (resp.status == 200) {
-        _this.actDetail = resp.data;
-        _this.clubId = resp.data.clubId;
-      }
-    });
   },
-  onPullDownRefresh: function onPullDownRefresh() {var _this2 = this;
-    console.log('refresh');
+  onShow: function onShow() {var _this = this;
     this.$http.get({
       url: '/v1/rest/home/signUpDetails',
       data: {
@@ -235,10 +222,9 @@ var _default =
 
     then(function (resp) {
       console.log(resp);
-      uni.stopPullDownRefresh();
       if (resp.status == 200) {
-        _this2.actDetail = resp.data;
-        _this2.clubId = resp.data.clubId;
+        _this.actDetail = resp.data;
+        _this.clubId = resp.data.clubId;
       }
     });
   },
@@ -289,7 +275,7 @@ var _default =
 
     },
     // 提交报名
-    submit: function submit() {var _this3 = this;
+    submit: function submit() {var _this2 = this;
       var that = this;
       if (!this.isMen && !this.isWomen) {
         uni.showToast({
@@ -338,7 +324,7 @@ var _default =
                 } });
 
             } else if (resp.status == 200) {
-              _this3.orderNo = resp.data.orderNo;
+              _this2.orderNo = resp.data.orderNo;
               uni.requestPayment({
                 provider: 'wxpay',
                 timeStamp: resp.data.timeStamp,
@@ -369,7 +355,7 @@ var _default =
                           url: '/pages/userCenter/myActivities/myActivities' });
 
                         clearTimeout(timer);
-                      }, 1500);
+                      }, 1000);
                     }
                   });
                 },

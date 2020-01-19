@@ -416,7 +416,7 @@
 		}
 		.bottom{
 			width: 100%;
-			height: 190rpx;
+			height: 160rpx;
 			box-sizing: border-box;
 			padding: 0 16rpx;
 			padding-top: 32rpx;

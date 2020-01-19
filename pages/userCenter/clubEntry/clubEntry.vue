@@ -320,7 +320,7 @@
 		}
 		.btnBox{
 			width: 100%;
-			height: 220rpx;
+			height: 150rpx;
 			box-sizing: border-box;
 			padding: 0 16rpx;
 			padding-top: 30rpx;

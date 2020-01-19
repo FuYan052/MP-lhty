@@ -203,8 +203,10 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
   onShow: function onShow() {
     if (uni.getStorageSync('userInfo').userId > 0) {//登录
       this.stateTab = true;
+      this.showToLogin = false;
     } else {//未登录
       this.stateTab = false;
+
       this.showToLogin = true;
     }
     if (this.stateTab) {
@@ -261,18 +263,26 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
         content: '确定要退出登录吗？',
         success: function success(res) {
           if (res.confirm) {
-            that.logout();
-            uni.removeStorage({ //根据key值移除缓存数据
-              key: 'isLogin' });
+            that.$http.get({
+              url: '/v1/rest/login/loginOut',
+              data: {} }).
+            then(function (resp) {
+              console.log(resp);
+              if (resp.status == 200) {
+                that.logout();
+                uni.removeStorage({ //根据key值移除缓存数据
+                  key: 'isLogin' });
 
-            uni.removeStorage({ //根据key值移除缓存数据
-              key: 'clubId' });
+                uni.removeStorage({ //根据key值移除缓存数据
+                  key: 'clubId' });
 
-            uni.removeStorage({ //根据key值移除缓存数据
-              key: 'userType' });
+                uni.removeStorage({ //根据key值移除缓存数据
+                  key: 'userType' });
 
-            that.userData = {};
-            that.showToLogin = true;
+                that.userData = {};
+                that.showToLogin = true;
+              }
+            });
           } else if (res.cancel) {}
         } });
 

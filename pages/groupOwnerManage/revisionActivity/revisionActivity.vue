@@ -25,22 +25,22 @@
 						</van-field>
 					</view>
 					<view class="item">
-						<van-field @change='inputNum' type='number' label="活动人数" placeholder="填写人数" size='large' :border='false'/>
+						<van-field :value="inputNumValue" @change='inputNum' type='number' label="活动人数" placeholder="填写人数" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field @change='InputPrice1' type='digit' label="钱包支付" placeholder="填写费用/元" size='large' :border='false'/>
+						<van-field :value="inputPrice1" @change='InputPrice1' type='digit' label="钱包支付" placeholder="填写费用/元" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field @change='InputPrice2' type='digit' label="费  用  男" placeholder="填写费用/元" size='large' :border='false'/>
+						<van-field :value="inputPrice2" @change='InputPrice2' type='digit' label="费  用  男" placeholder="填写费用/元" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field @change='InputPrice3' type='digit' label="费  用  女" placeholder="填写费用/元" size='large' :border='false'/>
+						<van-field :value="inputPrice3" @change='InputPrice3' type='digit' label="费  用  女" placeholder="填写费用/元" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field @change='InputPrice4' type='digit' label="临打费用" placeholder="填写费用/元" size='large' :border='false'/>
+						<van-field :value="inputPrice4" @change='InputPrice4' type='digit' label="临打费用" placeholder="填写费用/元" size='large' :border='false'/>
 					</view>
 					<view class="item">
-						<van-field @change='InputBall' label="活动用球" placeholder="填写用球" size='large' :border='false'/>
+						<van-field :value="inputBallType" @change='InputBall' label="活动用球" placeholder="填写用球" size='large' :border='false'/>
 					</view>
 					<!-- 等级要求 -->
 					<view class="level">
@@ -513,7 +513,7 @@
 		}
 		.wrap2{
 			width: 100%;
-			height: 160rpx;
+			height: 140rpx;
 			background: #1e1e1e;
 			box-sizing: border-box;
 			.buttonBox{

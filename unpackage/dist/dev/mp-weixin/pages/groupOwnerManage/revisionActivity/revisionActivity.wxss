@@ -191,7 +191,7 @@
 }
 .revisionActivity .wrap2.data-v-51249d6e {
     width: 100%;
-    height: 160rpx;
+    height: 140rpx;
     background: #1e1e1e;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;

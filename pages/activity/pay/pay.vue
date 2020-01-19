@@ -56,14 +56,15 @@
 			</view>
 			<view class="price">{{actDetail.walletPayMoney}}元/人</view>
 		</view>
-		
-		<!-- 合计 -->
-		<view class="countBox">
-			合计：<text>{{payMoney}}</text>元
-		</view>
-		<view class="btnBox">
-			<!-- <view class="myButton" @click="submit">确定</view> -->
-			<button class="myButton" @click="submit">确定</button>
+		<view class="bottomBox">
+			<!-- 合计 -->
+			<view class="countBox">
+				合计：<text>{{payMoney}}</text>元
+			</view>
+			<view class="btnBox">
+				<!-- <view class="myButton" @click="submit">确定</view> -->
+				<button class="myButton" @click="submit">确定</button>
+			</view>
 		</view>
 	</view>
 </template>
@@ -87,22 +88,8 @@
 		onLoad(options) {
 			console.log(options)
 			this.activityId = options.actId
-			this.$http.get({
-				url: '/v1/rest/home/signUpDetails',
-				data: {
-					activitiesId: options.actId,
-					userId: uni.getStorageSync('userInfo').userId
-				}
-			}).then(resp => {
-				console.log(resp)
-				if(resp.status == 200) {
-					this.actDetail = resp.data
-					this.clubId = resp.data.clubId
-				}
-			})
 		},
-		onPullDownRefresh() {
-			console.log('refresh');
+		onShow() {
 			this.$http.get({
 				url: '/v1/rest/home/signUpDetails',
 				data: {
@@ -111,7 +98,6 @@
 				}
 			}).then(resp => {
 				console.log(resp)
-				uni.stopPullDownRefresh();
 				if(resp.status == 200) {
 					this.actDetail = resp.data
 					this.clubId = resp.data.clubId
@@ -245,7 +231,7 @@
 														url: '/pages/userCenter/myActivities/myActivities'
 													})
 													clearTimeout(timer)
-												},1500)
+												},1000)
 											}
 										})
 									},
@@ -307,7 +293,7 @@
 		overflow: hidden;
 		box-sizing: border-box;
 		padding: 0 16rpx;
-		padding-bottom: 40rpx;
+		padding-bottom: 200rpx;
 		.box1{
 			height: 214rpx;
 			box-sizing: border-box;
@@ -488,23 +474,33 @@
 				line-height: 96rpx;
 			}
 		}
-		.countBox{
+		.bottomBox{
 			width: 100%;
-			height: 40rpx;
+			position: fixed;
+			bottom: 0;
+			left: 0;
 			box-sizing: border-box;
-			padding-left: 20rpx;
-			font-size: 28rpx;
-			color: #fff;
-			line-height: 40rpx;
-			margin-top: 42rpx;
-			text{
-				font-size: 36rpx;
-				color: #f0b102;
-				padding-right: 5rpx;
+			padding: 10rpx 20rpx;
+			padding-bottom: 35rpx;
+			background: #1E1E1E;
+			z-index: 99;
+			.countBox{
+				width: 100%;
+				height: 40rpx;
+				box-sizing: border-box;
+				padding-left: 20rpx;
+				font-size: 28rpx;
+				color: #fff;
+				line-height: 40rpx;
+				text{
+					font-size: 36rpx;
+					color: #f0b102;
+					padding-right: 5rpx;
+				}
 			}
-		}
-		.btnBox{
-			margin-top: 32rpx;
+			.btnBox{
+				margin-top: 32rpx;
+			}
 		}
 	}
 </style>

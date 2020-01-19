@@ -38,7 +38,7 @@
 				sex: null,
 				clubNum: '',
 				region: '',
-				activityLevel: '',
+				activityLevel: null,
 				headImg: ''
 			}
 		},

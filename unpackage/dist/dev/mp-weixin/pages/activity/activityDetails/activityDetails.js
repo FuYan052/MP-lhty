@@ -427,7 +427,7 @@ var _default =
                 } else {//未同意免责条款
                   uni.showToast({
                     title: '未同意《免责条款》！',
-                    duration: 2000,
+                    duration: 2500,
                     icon: 'none' });
 
                 }
@@ -437,9 +437,11 @@ var _default =
                   duration: 2000,
                   icon: 'none' });
 
-                uni.navigateTo({
-                  url: '/pages/club/homePage/homePage?clubId=' + _this3.clubId });
+                var timer = setTimeout(function () {
+                  uni.navigateTo({
+                    url: '/pages/club/homePage/homePage?clubId=' + _this3.clubId });
 
+                }, 1500);
               }
             }
           });

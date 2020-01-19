@@ -233,7 +233,6 @@ var _default =
         that.isShowDiatance = false;
       } });
 
-
   },
   onPullDownRefresh: function onPullDownRefresh() {var _this2 = this;
     wx.setBackgroundColor({
@@ -252,6 +251,18 @@ var _default =
       if (resp.status == 200) {
         uni.stopPullDownRefresh();
         _this2.actList = resp.data;
+      }
+    });
+    // 获取banner
+    this.$http.get({
+      url: '/v1/rest/home/homeNewsList',
+      data: {
+        region: '' } }).
+
+    then(function (resp) {
+      console.log(resp);
+      if (resp.status == 200) {
+        _this2.banners = resp.data;
       }
     });
   },

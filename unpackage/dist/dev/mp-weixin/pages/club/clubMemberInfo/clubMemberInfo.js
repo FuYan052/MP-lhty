@@ -162,7 +162,7 @@ var _default =
     null), _defineProperty(_ref, "clubNum",
     ''), _defineProperty(_ref, "region",
     ''), _defineProperty(_ref, "activityLevel",
-    ''), _defineProperty(_ref, "headImg",
+    null), _defineProperty(_ref, "headImg",
     ''), _ref;
 
   },

@@ -310,6 +310,13 @@
 					data: params
 				}).then(resp => {
 					console.log(resp)
+					if(resp.status == 200) {
+						uni.showToast({
+							title: '发布成功！',
+							duration: 2500,
+							icon: 'none'
+						})
+					}
 				})
 				uni.removeStorageSync('venue')
 			}
@@ -467,7 +474,7 @@
 		}
 		.wrap2{
 			width: 100%;
-			height: 160rpx;
+			height: 140rpx;
 			background: #1e1e1e;
 			box-sizing: border-box;
 			padding: 0 16rpx;

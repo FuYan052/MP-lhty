@@ -31,7 +31,7 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 0 16rpx;
-  padding-bottom: 40rpx;
+  padding-bottom: 200rpx;
 }
 .pay .box1.data-v-16c22e31 {
     height: 214rpx;
@@ -219,23 +219,34 @@
       float: right;
       line-height: 96rpx;
 }
-.pay .countBox.data-v-16c22e31 {
+.pay .bottomBox.data-v-16c22e31 {
     width: 100%;
-    height: 40rpx;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    padding-left: 20rpx;
-    font-size: 28rpx;
-    color: #fff;
-    line-height: 40rpx;
-    margin-top: 42rpx;
+    padding: 10rpx 20rpx;
+    padding-bottom: 35rpx;
+    background: #1E1E1E;
+    z-index: 99;
 }
-.pay .countBox text.data-v-16c22e31 {
-      font-size: 36rpx;
-      color: #f0b102;
-      padding-right: 5rpx;
+.pay .bottomBox .countBox.data-v-16c22e31 {
+      width: 100%;
+      height: 40rpx;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      padding-left: 20rpx;
+      font-size: 28rpx;
+      color: #fff;
+      line-height: 40rpx;
 }
-.pay .btnBox.data-v-16c22e31 {
-    margin-top: 32rpx;
+.pay .bottomBox .countBox text.data-v-16c22e31 {
+        font-size: 36rpx;
+        color: #f0b102;
+        padding-right: 5rpx;
+}
+.pay .bottomBox .btnBox.data-v-16c22e31 {
+      margin-top: 32rpx;
 }
 

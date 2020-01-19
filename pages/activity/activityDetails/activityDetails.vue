@@ -303,7 +303,7 @@
 									}else{  //未同意免责条款
 										uni.showToast({
 											title: '未同意《免责条款》！',
-											duration: 2000,
+											duration: 2500,
 											icon: 'none'
 										});
 									}
@@ -313,9 +313,11 @@
 										duration: 2000,
 										icon: 'none'
 									});
-									uni.navigateTo({
-										url: '/pages/club/homePage/homePage?clubId=' + this.clubId
-									})
+									let timer = setTimeout(() => {
+										uni.navigateTo({
+											url: '/pages/club/homePage/homePage?clubId=' + this.clubId
+										})
+									},1500)
 								}
 							}
 						})
@@ -346,7 +348,7 @@
 		min-height: 100vh;
 		box-sizing: border-box;
 		padding: 0 16rpx;
-		padding-bottom: 360rpx;
+		padding-bottom: 260rpx;
 		.topimg{
 			width: 100%;
 			height: 383rpx;
@@ -535,7 +537,7 @@
 		}
 		.signupWrap{
 			width: 100%;
-			height: 230rpx;
+			height: 250rpx;
 			box-sizing: border-box;
 			padding: 0 16rpx;
 			position: fixed;

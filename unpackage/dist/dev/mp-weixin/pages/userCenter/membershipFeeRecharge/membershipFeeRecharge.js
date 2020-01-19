@@ -281,6 +281,10 @@ __webpack_require__.r(__webpack_exports__);
                       duration: 2000,
                       icon: 'none' });
 
+                    var _userId = uni.getStorageSync('userInfo').userId;
+                    uni.redirectTo({
+                      url: '/pages/groupOwnerManage/membershipDetails/membershipDetails?clubId=' + that.clubId + '&userId=' + _userId });
+
                   }
                 });
               },

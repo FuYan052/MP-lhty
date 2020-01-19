@@ -199,7 +199,7 @@ var _default =
       this.$http.post({
         url: '/v1/rest/manage/adjustmentMembershipFee',
         data: {
-          clubId: 3,
+          clubId: uni.getStorageSync('clubId'),
           operatorId: uni.getStorageSync('userInfo').userId,
           userId: this.userId,
           algorithmType: this.isIncrease,

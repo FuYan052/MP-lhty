@@ -73,7 +73,7 @@
 				this.$http.get({
 					url: '/v1/rest/club/clubMembersInfo',
 					data: {
-						clubId: 3
+						clubId: uni.getStorageSync('clubId')
 					}
 				}).then(resp => {
 					console.log(resp)
@@ -90,7 +90,7 @@
 					this.$http.get({
 						url: '/v1/rest/club/clubMembersInfokeyWord',
 						data: {
-							clubId: 3,
+							clubId: uni.getStorageSync('clubId'),
 							keyWord: this.searchText
 						}
 					}).then(resp => {

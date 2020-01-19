@@ -425,8 +425,7 @@
 		{
 			"path": "pages/activity/pay/pay",
 			"style": {
-				"navigationBarTitleText": "活动报名",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "活动报名"
 			}
 		},
 		{

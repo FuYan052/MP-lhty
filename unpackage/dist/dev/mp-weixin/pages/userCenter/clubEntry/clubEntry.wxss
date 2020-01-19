@@ -158,7 +158,7 @@
 }
 .clubEntry .btnBox.data-v-cd28e86c {
     width: 100%;
-    height: 220rpx;
+    height: 150rpx;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     padding: 0 16rpx;
