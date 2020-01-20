@@ -74,7 +74,7 @@
 							phone: this.userPhone,
 						}
 					}).then(resp => {
-						console.log(resp)
+						// console.log(resp)
 					})
 					this.totalTime = 60
 					this.timer = setInterval(() => {
@@ -98,7 +98,7 @@
 			// 绑定
 			handleBind() {
 				const weixinUserInfo = uni.getStorageSync('weixinUserInfo')
-				console.log(weixinUserInfo)
+				// console.log(weixinUserInfo)
 				let ruleValue = this.$utils.checkPhone(this.userPhone)
 				if(!ruleValue){
 					uni.showToast({
@@ -125,7 +125,7 @@
 							openId: uni.getStorageSync('openId')
 						}
 					}).then(resp => {
-						console.log(resp)
+						// console.log(resp)
 						uni.removeStorageSync('openId')
 						uni.removeStorageSync('weixinUserInfo')
 						if(resp.status == 200) {

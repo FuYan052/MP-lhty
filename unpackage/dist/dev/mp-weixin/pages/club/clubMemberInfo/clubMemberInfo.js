@@ -174,7 +174,7 @@ var _default =
         userId: this.userId } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.name = resp.data.nickName,
         _this.sex = resp.data.sex,

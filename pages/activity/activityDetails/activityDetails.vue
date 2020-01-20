@@ -120,14 +120,14 @@
 					 region:''
 				 }
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.banners = resp.data
 				}
 			})
 		},
 		onLoad(options) {
-			console.log(options)
+			// console.log(options)
 			this.activityId = options.actId
 			this.$http.get({
 				url: '/v1/rest/home/homeActivitiesDetails',
@@ -135,7 +135,7 @@
 					activitiesId: options.actId
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.actDetail = resp.data
 					this.endTime = resp.data.endTime
@@ -174,7 +174,7 @@
 				});
 			},
 			clickBanner(item) {
-				console.log(item)
+				// console.log(item)
 				if (this.inWhiteList) { //如果在小程序的网址白名单中，会走内置webview打开，否则会复制网址提示在外部浏览器打开
 					uni.navigateTo({
 						url: '/pages/out/out?url=' + item.webUrl
@@ -199,10 +199,10 @@
 					address: that.address,
 					scale: 13,
 					success: function () {
-							console.log('success');
+							// console.log('success');
 					},
 					fail: function () {
-							console.log('fail');
+							// console.log('fail');
 					}
 				});
 			},
@@ -264,7 +264,7 @@
 			},
 			_callback(){
 				if(this.callback && this.callback instanceof Function){
-					console.log(...this)
+					// console.log(...this)
 					this.callback(...this);
 				}
 			},
@@ -293,7 +293,7 @@
 								clubId: this.clubId
 							}
 						}).then(resp => {
-							console.log(resp)
+							// console.log(resp)
 							if(resp.status == 200) {
 								if(resp.data.initClubMember) {  //已加入俱乐部
 									if(this.isChecked) {  //已同意免责条款
@@ -334,7 +334,7 @@
 				// 	console.log(res.target)
 				// }
 				return {
-					title: '贵州茅台邀你打球——波利羽毛球馆',
+					title: '邀你打球——波利羽毛球馆',
 					path: '/pages/activity/activityDetails/activityDetails?actId=' + this.activityId
 				}
 			}

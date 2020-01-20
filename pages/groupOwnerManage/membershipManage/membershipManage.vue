@@ -113,13 +113,15 @@
 		},
 		methods: {
 			getCateList() {
+				this.list1 = []
+				this.list2 = []
 				this.$http.get({
 					url: '/v1/rest/club/clubMembersInfo',
 					data: {
 						clubId: uni.getStorageSync('clubId')
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.list1 = resp.data.clubMembersA
 						this.list2 = this.list2.concat(resp.data.clubMembersE).concat(resp.data.clubMembersD).concat(resp.data.clubMembersC).concat(resp.data.clubMembersB)
@@ -137,7 +139,7 @@
 							keyWord: this.searchValue
 						}
 					}).then(resp => {
-						console.log(resp)
+						// console.log(resp)
 						if(resp.status == 200) {
 							this.list2 = []
 							this.isShowTitle = false

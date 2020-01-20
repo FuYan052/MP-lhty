@@ -68,7 +68,7 @@
 					userId: uni.getStorageSync('userInfo').userId
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.headImg = resp.data.headPortrait
 					this.userName = resp.data.account
@@ -112,7 +112,7 @@
 							type: 1  //与后端约定钱包type为0，会费充值type为1
 						}
 					}).then(resp => {
-						console.log(resp)
+						// console.log(resp)
 						if(resp.statusCode == 200) {
 							uni.login({
 							  provider: 'weixin',
@@ -124,7 +124,7 @@
 											userId: uni.getStorageSync('userInfo').userId
 							    	}
 							    }).then(resp => {
-										console.log(resp)
+										// console.log(resp)
 										that.submit()
 									})
 							  }
@@ -139,7 +139,7 @@
 								signType: resp.data.signType,
 								paySign: resp.data.paySign,
 								success: function (res) {
-									console.log(res)
+									// console.log(res)
 									// 支付成功回调
 									that.$http.get({
 										url: '/v1/rest/pay/memberWechatPayCallback',
@@ -150,7 +150,7 @@
 											clubId: that.clubId
 										}
 									}).then(resp => {
-										console.log(resp)
+										// console.log(resp)
 										if(resp.status == 200) {
 											uni.showToast({
 												title: resp.data.message,
@@ -165,7 +165,7 @@
 									})
 								},
 								fail: function (err) {
-									console.log(err)
+									// console.log(err)
 									// 支付取消回调
 									that.$http.get({
 										url: '/v1/rest/pay/memberWechatPayCallback',
@@ -176,7 +176,7 @@
 											clubId: that.clubId
 										}
 									}).then(resp => {
-										console.log(resp)
+										// console.log(resp)
 										if(resp.status == 200) {
 											uni.showToast({
 												title: resp.data.message,

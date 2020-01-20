@@ -20,8 +20,13 @@
 				</view>
 			</view>
 			<view class="btnBox">
-				<view class="btn" :class="'btn' + item.osStateId">{{item.osState}}</view>
-				<view class="btn btn6" v-show="currIndex == 1" @click="handleCancel(item)">点击取消</view>
+				<view class="payType">
+					支付方式：{{item.payType}}
+				</view>
+				<view>
+					<view class="btn" :class="'btn' + item.osStateId">{{item.osState}}</view>
+					<view class="btn btn6" v-show="currIndex == 1" @click="handleCancel(item)">点击取消</view>
+				</view>
 			</view>
 		</view>
 		<!-- 缺省页 -->
@@ -53,7 +58,7 @@
 						userId: uni.getStorageSync('userInfo').userId
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.actList = resp.data
 						if(this.actList.length == 0) {
@@ -85,7 +90,7 @@
 									orderNo: item.orderNo
 								}
 							}).then(resp => {
-								console.log(resp)
+								// console.log(resp)
 								if(resp.status == 200) {
 									that.getList()
 									uni.showToast({
@@ -206,8 +211,12 @@
 				width: 100%;
 				height: 102rpx;
 				display: flex;
-				justify-content: flex-end;
+				justify-content: space-between;
 				align-items: center;
+				.payType{
+					font-size: 22rpx;
+					color: #F1F1F1;
+				}
 				.btn{
 					width: 124rpx;
 					height: 50rpx;
@@ -217,6 +226,7 @@
 					border-radius: 10rpx;
 					border: 1rpx solid #ee4e5a;
 					color: #f1757d;
+					float: left;
 				}
 				.btn1{  //预约成功
 					color: #fff;

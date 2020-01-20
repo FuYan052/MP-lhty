@@ -23,14 +23,14 @@
 			}
 		},
 		onLoad(options) {
-			console.log(options)
+			// console.log(options)
 			this.$http.get({
 				url: '/v1/rest/club/clubList',
 				data: {
 					userId: options.userId
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.list = resp.data
 					if(this.list.length == 0) {
@@ -44,7 +44,7 @@
 		methods: {
 			// 活动详情
 			toDetail(item) {
-				console.log(item)
+				// console.log(item)
 				uni.navigateTo({
 					url: '/pages/club/homePage/homePage?clubId=' + item.clubId
 				})

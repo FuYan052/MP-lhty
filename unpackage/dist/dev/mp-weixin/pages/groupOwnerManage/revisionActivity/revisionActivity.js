@@ -292,7 +292,7 @@ __webpack_require__.r(__webpack_exports__);
       isshow1: false, //显示时间选择器
       isshow2: false, //其他选择器
       defaultValue: ['2小时'],
-      hour: null, //选择的时长
+      hour: '', //选择的时长
       pickList1: [],
       deadline: '', //报名截止
       timePickerType: 100, //100为选择活动时间，200为选择报名截止时间
@@ -326,7 +326,7 @@ __webpack_require__.r(__webpack_exports__);
         activitiesId: this.actId } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.actInfo = resp.data;
         _this.time = resp.data.timeStart;
@@ -358,7 +358,7 @@ __webpack_require__.r(__webpack_exports__);
         skey: 'level' } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.optionsList = resp.data;
       }
@@ -398,7 +398,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.picker1.show();
     },
     onConfirm: function onConfirm(v) {
-      console.log(v);
+      // console.log(v)
       this.hour = v.checkArr.value;
       this.isshow2 = false;
     },
@@ -494,23 +494,21 @@ __webpack_require__.r(__webpack_exports__);
       content: this.ruleValue,
       isLower: this.isUnderLine,
       isWeek: this.isWeek,
-      isCancel: this.isCancel };
+      isCancel: this.isCancel
 
-    console.log(params);
-    this.$http.post({
+      // console.log(params)
+    };this.$http.post({
       url: '/v1/rest/manage/releaseActivities',
       data: params }).
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
-        uni.showToast({
-          title: '修改成功！',
-          duration: 2000,
-          icon: 'none' });
-
-        uni.redirectTo({
-          url: '/pages/groupOwnerManage/editActivitie/editActivitie' });
-
+        // uni.showToast({
+        // 	title: '修改成功！',
+        // 	duration: 2000,
+        // 	icon: 'none'
+        // }); 
+        uni.navigateBack();
       }
     });
     uni.removeStorageSync('venue');

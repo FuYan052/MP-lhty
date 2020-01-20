@@ -33,14 +33,14 @@
 						clubId: uni.getStorageSync('clubId')
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.activityList = resp.data
 					}
 				})
 			},
 			handle(v) {
-				console.log(v)
+				// console.log(v)
 				uni.navigateTo({
 					url: '/pages/groupOwnerManage/spotChargeDetial/spotChargeDetial?id=' + v.activitiesId
 				})

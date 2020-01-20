@@ -214,7 +214,7 @@ var _default =
     } },
 
   onLoad: function onLoad(options) {var _this = this;
-    console.log(options);
+    // console.log(options)
     this.actId = options.actId;
     this.$http.get({
       url: '/v1/rest/manage/settlementIncome',
@@ -222,7 +222,7 @@ var _default =
         activitiesId: this.actId } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.money4 = resp.data.moneyMan + '/人';
         _this.money5 = resp.data.moneyWomen + '/人';
@@ -259,7 +259,7 @@ var _default =
           venueFee: this.money1 } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           uni.showModal({
             title: '提示',

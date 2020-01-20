@@ -1,5 +1,8 @@
 <template>
-	<view class="accountDetails">
+	<view class="noData" v-if="list.length == 0">
+		<view class="noDataImg" v-show="list.length == 0"></view>
+	</view>
+	<view class="accountDetails" v-else>
 		<!-- <view class="topBox">
 			<view class="date">2019年12月<van-icon name="arrow-down" size='25rpx'/></view>
 			<view class="search1" v-show="show1" @click="handleShow1"><van-icon name="search" size='28rpx'/></view>
@@ -48,14 +51,9 @@
 					userId: uni.getStorageSync('userInfo').userId
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.list = resp.data
-					if(this.list.length == 0) {
-						uni.redirectTo({
-							url: '/pages/noDataPage/noDataPage'
-						})
-					}
 				}
 			})
 		},
@@ -68,7 +66,7 @@
 			},
 			// 搜索
 			onClick(v) {
-				console.log(this.searchValue)
+				// console.log(this.searchValue)
 			},
 			toDetail(item) {
 				uni.navigateTo({
@@ -229,6 +227,20 @@
 			.box2{
 				border: none;
 			}
+		}
+	}
+	.noData{
+		width: 100%;
+		height: 100vh;
+		background: #f4f4f4;
+		overflow: hidden;
+		.noDataImg{
+			width: 500rpx;
+			height: 500rpx;
+			margin: 0 auto;
+			background: url(~@/static/imgs/noData.png) no-repeat center;
+			background-size: 500rpx auto;
+			margin-top: 300rpx;
 		}
 	}
 </style>

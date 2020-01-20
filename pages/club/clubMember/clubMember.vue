@@ -197,7 +197,7 @@
 						clubId: this.clubId
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.list1 = resp.data.clubMembersA
 						this.list2 = resp.data.clubMembersE
@@ -218,7 +218,7 @@
 							keyWord: this.searchValue
 						}
 					}).then(resp => {
-						console.log(resp)
+						// console.log(resp)
 						if(resp.status == 200) {
 							this.list6 = resp.data
 						}

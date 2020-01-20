@@ -55,7 +55,7 @@
 		},
 		onLoad(options) {
 			const item = JSON.parse(decodeURIComponent(options.item))
-			console.log(item)
+			// console.log(item)
 			this.money = item.totalMoney + '元'
 			this.userId = item.userId
 		},
@@ -64,7 +64,7 @@
 				this.inputMoneyValue = v.detail
 			},
 			select(v) {
-				console.log(v)
+				// console.log(v)
 				if(v == 1) {
 					this.isIncrease = true
 				}else{
@@ -82,7 +82,7 @@
 						totalMoney: Number(this.inputMoneyValue)
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						uni.showToast({
 							title: '调整成功！',

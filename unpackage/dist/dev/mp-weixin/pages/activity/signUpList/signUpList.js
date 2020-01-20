@@ -163,7 +163,7 @@ var _default =
         activitiesId: this.actId } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.peopleList = resp.data;
         if (_this.peopleList.length == 0) {

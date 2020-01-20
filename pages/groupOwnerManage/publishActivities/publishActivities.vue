@@ -134,7 +134,7 @@
 				isshow1: false,  //显示时间选择器
 				isshow2: false,  //其他选择器
 				defaultValue: ['2小时'],
-				hour: null,  //选择的时长
+				hour: '',  //选择的时长
 				pickList1: [],
 				deadline: '',  //报名截止
 				timePickerType: 100,  //100为选择活动时间，200为选择报名截止时间
@@ -167,7 +167,7 @@
 					skey: 'level'
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.optionsList = resp.data
 				}
@@ -177,6 +177,7 @@
 			if(uni.getStorageSync('venue')) {
 				this.venueName = uni.getStorageSync('venue').name
 				this.venueId = uni.getStorageSync('venue').id
+				this.titleValue = this.time + this.venueName + '约羽毛球'
 			}
 		},
 		methods: {
@@ -200,6 +201,7 @@
 			receiveTime(v1, v2){
 				this.time = v1
 				this.isshow1 = v2
+				this.titleValue = this.time + this.venueName + '约羽毛球'
 			},
 			// 选择活动时长
 			choiceDuration() {
@@ -284,41 +286,121 @@
 			},
 			// 提交
 			submit() {
-				const params = {
-					userId: uni.getStorageSync('userInfo').userId,
-					type: 'sportsKinds_01',
-					timeStart: this.time,
-					duration: this.hour,
-					endTime: this.deadline,
-					venueId: this.venueId,
-					people: this.inputNumValue,
-					walletPayMoney: this.inputPrice1,
-					moneyMan: this.inputPrice2,
-					moneyWomen: this.inputPrice3,
-					temporaryMoney: this.inputPrice4,
-					ballType: this.inputBallType,
-					occupationLevel: this.selectedIds.join(','),
-					title: this.titleValue,
-					content: this.ruleValue,
-					isLower:this.isUnderLine,
-					isWeek: this.isWeek,
-					isCancel: this.isCancel
-				}
-				console.log(params)
-				this.$http.post({
-					url: '/v1/rest/manage/releaseActivities',
-					data: params
-				}).then(resp => {
-					console.log(resp)
-					if(resp.status == 200) {
-						uni.showToast({
-							title: '发布成功！',
-							duration: 2500,
-							icon: 'none'
-						})
+				if(this.time == '') {
+					uni.showToast({
+						title: '请选择活动时间！',
+						duration: 2000,
+						icon: 'none'
+					}); 
+				}else if(this.hour == '') {
+					uni.showToast({
+						title: '请选择活动时长！',
+						duration: 2000,
+						icon: 'none'
+					}); 
+				}else if(this.hour == '') {
+					uni.showToast({
+						title: '请选择活动时长！',
+						duration: 2000,
+						icon: 'none'
+					}); 
+				}else if(this.deadline == '') {
+					uni.showToast({
+						title: '请选择报名截止时间！',
+						duration: 2000,
+						icon: 'none'
+					}); 
+				}else if(this.venueName == '') {
+					uni.showToast({
+						title: '请选择活动场馆！',
+						duration: 2000,
+						icon: 'none'
+					}); 
+				}else if(this.inputNumValue == '') {
+					uni.showToast({
+						title: '请填写活动人数！',
+						duration: 2000,
+						icon: 'none'
+					}); 
+				}else if(this.inputPrice1 == '') {
+					uni.showToast({
+						title: '请填写钱包支付费用！',
+						duration: 2000,
+						icon: 'none'
+					}); 
+				}else if(this.inputPrice2 == '') {
+					uni.showToast({
+						title: '请填写男性打球费用！',
+						duration: 2000,
+						icon: 'none'
+					}); 
+				}else if(this.inputPrice3 == '') {
+					uni.showToast({
+						title: '请填写女性打球费用！',
+						duration: 2000,
+						icon: 'none'
+					}); 
+				}else if(this.inputPrice4 == '') {
+					uni.showToast({
+						title: '请填写临打费用！',
+						duration: 2000,
+						icon: 'none'
+					}); 
+				}else if(this.inputBallType == '') {
+					uni.showToast({
+						title: '请填写活动用球！',
+						duration: 2000,
+						icon: 'none'
+					}); 
+				}else if(this.selectedIds.length == 0) {
+					uni.showToast({
+						title: '请选择等级要求！',
+						duration: 2000,
+						icon: 'none'
+					}); 
+				}else if(this.inputOrganizer == 0) {
+					uni.showToast({
+						title: '请填写组织者！',
+						duration: 2000,
+						icon: 'none'
+					}); 
+				}else{
+					const params = {
+						userId: uni.getStorageSync('userInfo').userId,
+						type: 'sportsKinds_01',
+						timeStart: this.time,
+						duration: this.hour,
+						endTime: this.deadline,
+						venueId: this.venueId,
+						people: this.inputNumValue,
+						walletPayMoney: this.inputPrice1,
+						moneyMan: this.inputPrice2,
+						moneyWomen: this.inputPrice3,
+						temporaryMoney: this.inputPrice4,
+						ballType: this.inputBallType,
+						occupationLevel: this.selectedIds.join(','),
+						title: this.titleValue,
+						content: this.ruleValue,
+						isLower:this.isUnderLine,
+						isWeek: this.isWeek,
+						isCancel: this.isCancel
 					}
-				})
-				uni.removeStorageSync('venue')
+					// console.log(params)
+					this.$http.post({
+						url: '/v1/rest/manage/releaseActivities',
+						data: params
+					}).then(resp => {
+						// console.log(resp)
+						if(resp.status == 200) {
+							uni.showToast({
+								title: '发布成功！',
+								duration: 2500,
+								icon: 'none'
+							})
+						}
+					})
+					uni.removeStorageSync('venue')
+				}
 			}
 		}
 	}

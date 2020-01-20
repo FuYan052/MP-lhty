@@ -177,7 +177,7 @@ var _default =
 
   },
   onLoad: function onLoad(options) {
-    console.log(options);
+    // console.log(options)
     if (options.sex == 1) {
       this.isMan = true;
     } else {
@@ -189,7 +189,7 @@ var _default =
       url: '/v1/rest/public/findSysLabel',
       data: {} }).
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.tagsList = resp.data;
       }
@@ -216,7 +216,7 @@ var _default =
           labelId: this.selectedList.join(',') } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           uni.navigateBack();
         }

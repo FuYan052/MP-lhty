@@ -179,7 +179,7 @@ var _default =
   },
   onLoad: function onLoad(options) {
     var item = JSON.parse(decodeURIComponent(options.item));
-    console.log(item);
+    // console.log(item)
     this.money = item.totalMoney + '元';
     this.userId = item.userId;
   },
@@ -188,7 +188,7 @@ var _default =
       this.inputMoneyValue = v.detail;
     },
     select: function select(v) {
-      console.log(v);
+      // console.log(v)
       if (v == 1) {
         this.isIncrease = true;
       } else {
@@ -206,7 +206,7 @@ var _default =
           totalMoney: Number(this.inputMoneyValue) } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           uni.showToast({
             title: '调整成功！',

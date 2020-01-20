@@ -60,7 +60,7 @@
 					userId: uni.getStorageSync('userInfo').userId
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.walletId = resp.data.userWalletId
 					this.headImg = resp.data.headPortrait
@@ -90,7 +90,7 @@
 							type: 0  //与后端约定钱包type为0，会费充值type为1
 						}
 					}).then(resp => {
-						console.log(resp)
+						// console.log(resp)
 						if(resp.statusCode == 200) {
 							uni.login({
 							  provider: 'weixin',
@@ -102,7 +102,7 @@
 											userId: uni.getStorageSync('userInfo').userId
 							    	}
 							    }).then(resp => {
-										console.log(resp)
+										// console.log(resp)
 										that.submit()
 									})
 							  }
@@ -117,7 +117,7 @@
 								signType: resp.data.signType,
 								paySign: resp.data.paySign,
 								success: function (res) {
-									console.log(res)
+									// console.log(res)
 									// 支付成功回调
 									that.$http.get({
 										url: '/v1/rest/pay/memberWechatPayCallback',
@@ -127,7 +127,7 @@
 											rechargeType: 0
 										}
 									}).then(resp => {
-										console.log(resp)
+										// console.log(resp)
 										if(resp.status == 200) {
 											uni.showToast({
 												title: resp.data.message,
@@ -139,7 +139,7 @@
 									})
 								},
 								fail: function (err) {
-									console.log(err)
+									// console.log(err)
 									uni.showToast({
 										title: '支付取消！',
 										duration: 2000,
@@ -154,7 +154,7 @@
 											rechargeType: 0
 										}
 									}).then(resp => {
-										console.log(resp)
+										// console.log(resp)
 										if(resp.status == 200) {
 											uni.showToast({
 												title: resp.data.message,

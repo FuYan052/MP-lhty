@@ -206,7 +206,7 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
             phone: this.userPhone } }).
 
         then(function (resp) {
-          console.log(resp);
+          // console.log(resp)
         });
         this.totalTime = 60;
         this.timer = setInterval(function () {
@@ -250,7 +250,7 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
             authCode: this.checkCode } }).
 
         then(function (resp) {
-          console.log(resp);
+          // console.log(resp)
           if (resp.status == 200) {
             var userInfo = {
               userPhone: resp.data.phone,
@@ -279,7 +279,7 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
       uni.login({
         provider: 'weixin',
         success: function success(loginRes) {
-          console.log(loginRes);
+          // console.log(loginRes)
           that.$http.get({
             url: '/v1/rest/login/getOpenId',
             data: {
@@ -287,7 +287,7 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
 
           then(function (res) {
             if (res.status == 200) {
-              console.log(res);
+              // console.log(res)
               if (res.data.initOpenId) {//第一次微信快捷登录需绑定手机号
                 uni.setStorage({
                   key: 'openId',
@@ -297,7 +297,7 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
                   provider: 'weixin',
                   lang: 'zh_CN',
                   success: function success(resp) {
-                    console.log(resp);
+                    // console.log(resp)
                     uni.setStorage({ //把用户信息保存到本地缓存
                       key: 'weixinUserInfo',
                       data: resp.userInfo });

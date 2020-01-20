@@ -181,11 +181,11 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   onLoad: function onLoad(options) {
-    console.log(options);
+    // console.log(options)
     var item = JSON.parse(decodeURIComponent(options.item));
-    console.log(item);
+    // console.log(item)
     this.userId = item.userId;
-    this.clubId = '3';
+    this.clubId = uni.getStorageSync('clubId');
     this.levelId = item.levelId;
     this.levelValue = item.level;
     this.stateId = item.stateId;
@@ -205,7 +205,7 @@ __webpack_require__.r(__webpack_exports__);
           skey: 'level' } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this.optionsList = resp.data;
           _this.columns = _this.optionsList;
@@ -223,7 +223,7 @@ __webpack_require__.r(__webpack_exports__);
           skey: 'clubState' } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           // this.optionsList = resp.data
           _this2.clubStateList = resp.data.filter(function (item) {
@@ -238,7 +238,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     onConfirm: function onConfirm(v) {
-      console.log(v);
+      // console.log(v)
       if (this.pickerType == 100) {
         this.levelValue = v.checkArr.label;
         this.levelId = v.checkArr.value;
@@ -259,7 +259,7 @@ __webpack_require__.r(__webpack_exports__);
           userId: this.userId } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           uni.showToast({
             title: '修改成功！',

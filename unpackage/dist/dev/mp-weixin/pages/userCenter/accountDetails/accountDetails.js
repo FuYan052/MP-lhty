@@ -156,6 +156,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -172,14 +175,9 @@ var _default =
         userId: uni.getStorageSync('userInfo').userId } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.list = resp.data;
-        if (_this.list.length == 0) {
-          uni.redirectTo({
-            url: '/pages/noDataPage/noDataPage' });
-
-        }
       }
     });
   },
@@ -192,7 +190,7 @@ var _default =
     },
     // 搜索
     onClick: function onClick(v) {
-      console.log(this.searchValue);
+      // console.log(this.searchValue)
     },
     toDetail: function toDetail(item) {
       uni.navigateTo({

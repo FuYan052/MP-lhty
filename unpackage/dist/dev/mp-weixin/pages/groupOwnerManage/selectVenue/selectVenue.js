@@ -157,7 +157,7 @@ var _default =
         name: '' } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.venueList = resp.data;
       }
@@ -171,7 +171,7 @@ var _default =
           name: v.detail } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this2.venueList = resp.data;
         }

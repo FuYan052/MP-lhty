@@ -249,7 +249,7 @@ __webpack_require__.r(__webpack_exports__);
         sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album'], //从相册选择
         success: function success(res) {
-          console.log(res);
+          // console.log(res)
           that.imgUrl = res.tempFilePaths[0];
           var filepath = res.tempFilePaths[0];
           uni.showLoading({
@@ -262,7 +262,7 @@ __webpack_require__.r(__webpack_exports__);
             success: function success(uploadFileRes) {
               uni.hideLoading();
               var resp = JSON.parse(uploadFileRes.data);
-              console.log(resp);
+              // console.log(resp);
               if (resp.status == 200) {
                 that.imgUrl = resp.data[0];
                 uni.showToast({
@@ -273,7 +273,7 @@ __webpack_require__.r(__webpack_exports__);
               }
             },
             fail: function fail(err) {
-              console.log(err);
+              // console.log(err)
             } });
 
         } });
@@ -292,37 +292,81 @@ __webpack_require__.r(__webpack_exports__);
       this.QQ = v.detail;
     },
     submit: function submit() {
-      var params = {
-        clubName: this.clubName,
-        qqGroup: this.QQgroup,
-        region: this.regionCode,
-        venueName: this.Venue,
-        name: this.UserName,
-        phone: this.phone,
-        qq: this.QQ,
-        weixin: this.Weixin,
-        logo: this.imgUrl,
-        content: this.introduce,
-        userId: uni.getStorageSync('userInfo').userId };
+      if (this.clubName == '') {
+        uni.showToast({
+          title: '请填写俱乐部名称！',
+          duration: 2000,
+          icon: 'none' });
 
-      console.log(params);
-      this.$http.post({
-        url: '/v1/rest/club/insertClub',
-        data: params }).
-      then(function (resp) {
-        console.log(resp);
-        if (resp.status == 200) {
-          uni.showModal({
-            title: '提示',
-            content: '申请成功，请等待审核！',
-            showCancel: false,
-            confirmText: '知道了',
-            success: function success(res) {
-              uni.navigateBack();
-            } });
+      } else if (this.regionCode == '') {
+        uni.showToast({
+          title: '请选择地区！',
+          duration: 2000,
+          icon: 'none' });
 
-        }
-      });
+      } else if (this.Venue == '') {
+        uni.showToast({
+          title: '请填写活动场馆！',
+          duration: 2000,
+          icon: 'none' });
+
+      } else if (this.introduce == '') {
+        uni.showToast({
+          title: '请填写俱乐部简介！',
+          duration: 2000,
+          icon: 'none' });
+
+      } else if (this.UserName == '') {
+        uni.showToast({
+          title: '请填写姓名！',
+          duration: 2000,
+          icon: 'none' });
+
+      } else if (this.UserName == '') {
+        uni.showToast({
+          title: '请填写姓名！',
+          duration: 2000,
+          icon: 'none' });
+
+      } else if (this.phone == '') {
+        uni.showToast({
+          title: '请填写手机号！',
+          duration: 2000,
+          icon: 'none' });
+
+      } else {
+        var params = {
+          clubName: this.clubName,
+          qqGroup: this.QQgroup,
+          region: this.regionCode,
+          venueName: this.Venue,
+          name: this.UserName,
+          phone: this.phone,
+          qq: this.QQ,
+          weixin: this.Weixin,
+          logo: this.imgUrl,
+          content: this.introduce,
+          userId: uni.getStorageSync('userInfo').userId };
+
+        console.log(params);
+        this.$http.post({
+          url: '/v1/rest/club/insertClub',
+          data: params }).
+        then(function (resp) {
+          // console.log(resp)
+          if (resp.status == 200) {
+            uni.showModal({
+              title: '提示',
+              content: '申请成功，请等待审核！',
+              showCancel: false,
+              confirmText: '知道了',
+              success: function success(res) {
+                uni.navigateBack();
+              } });
+
+          }
+        });
+      }
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

@@ -242,7 +242,7 @@ var _default =
     } },
 
   onLoad: function onLoad(options) {
-    console.log(options);
+    // console.log(options)
     this.actId = uni.getStorageSync('addActId');
   },
   onShow: function onShow() {
@@ -256,14 +256,14 @@ var _default =
           activitiesId: this.actId } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this.list = resp.data;
         }
       });
     },
     editMoney: function editMoney(item) {
-      console.log(item);
+      // console.log(item)
       if (item.status) {
         uni.showToast({
           title: '该会员已收费，无法修改！',
@@ -291,7 +291,7 @@ var _default =
           totalFee: this.editValue } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this2.getList();
           uni.showToast({

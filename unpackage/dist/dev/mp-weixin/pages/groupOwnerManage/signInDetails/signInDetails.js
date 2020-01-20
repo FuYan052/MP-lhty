@@ -203,7 +203,7 @@ var _default =
 
   },
   onLoad: function onLoad(options) {
-    console.log(options);
+    // console.log(options)
     this.actId = options.id;
   },
   onShow: function onShow() {
@@ -217,7 +217,7 @@ var _default =
           activitiesId: this.actId } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this.list = resp.data;
         }
@@ -254,14 +254,14 @@ var _default =
       }
     },
     submit: function submit() {var _this2 = this;
-      console.log(typeof this.selectedList);
+      // console.log(typeof(this.selectedList))
       this.$http.get({
         url: '/v1/rest/manage/signInOk',
         data: {
           orderId: this.selectedList.join(',') } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this2.getList();
           uni.showToast({

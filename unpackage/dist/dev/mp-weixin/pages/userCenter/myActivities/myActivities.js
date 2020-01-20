@@ -153,6 +153,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -177,7 +182,7 @@ var _default =
           userId: uni.getStorageSync('userInfo').userId } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this.actList = resp.data;
           if (_this.actList.length == 0) {
@@ -209,7 +214,7 @@ var _default =
                 orderNo: item.orderNo } }).
 
             then(function (resp) {
-              console.log(resp);
+              // console.log(resp)
               if (resp.status == 200) {
                 that.getList();
                 uni.showToast({

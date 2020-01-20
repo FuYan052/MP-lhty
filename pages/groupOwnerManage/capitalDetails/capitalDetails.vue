@@ -21,7 +21,7 @@
 			<view class="title">明细</view>
 			<view class="detailItem" v-for="(item,index) in list" :key='index'>
 				<view class="left">
-					<view class="type">{{item.payState}}</view>
+					<view class="type">{{item.payType}}</view>
 					<view class="date">日期：{{item.createTime}}</view>
 				</view>
 				<view class="right">
@@ -51,7 +51,7 @@
 					clubId: uni.getStorageSync('clubId')
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.list = resp.data.feeDetailedBackVoList
 					this.total = resp.data.totalMoney

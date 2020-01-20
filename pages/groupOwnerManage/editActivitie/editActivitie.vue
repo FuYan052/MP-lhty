@@ -15,7 +15,7 @@
 				actList: []
 			}
 		},
-		created() {
+		onShow() {
 			this.getActList()
 		},
 		methods: {
@@ -28,14 +28,14 @@
 						clubId: uni.getStorageSync('clubId')
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.actList = resp.data
 					}
 				})
 			},
 			handleEdit(v) {
-				console.log(v)
+				// console.log(v)
 				uni.navigateTo({
 					url: '/pages/groupOwnerManage/revisionActivity/revisionActivity?editId=' + v.activitiesId
 				})
@@ -53,9 +53,9 @@
 									activitiesId: v.activitiesId
 								}
 							}).then(resp => {
-								console.log(resp)
+								// console.log(resp)
 								if(resp.status == 200) {
-									console.log(resp)
+									// console.log(resp)
 									if(resp.status == 200) {
 										that.getActList()
 										uni.showToast({

@@ -192,7 +192,7 @@ __webpack_require__.r(__webpack_exports__);
         userId: uni.getStorageSync('userInfo').userId } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.headImg = resp.data.headPortrait;
         _this.userName = resp.data.account;
@@ -236,7 +236,7 @@ __webpack_require__.r(__webpack_exports__);
             type: 1 //与后端约定钱包type为0，会费充值type为1
           } }).
         then(function (resp) {
-          console.log(resp);
+          // console.log(resp)
           if (resp.statusCode == 200) {
             uni.login({
               provider: 'weixin',
@@ -248,7 +248,7 @@ __webpack_require__.r(__webpack_exports__);
                     userId: uni.getStorageSync('userInfo').userId } }).
 
                 then(function (resp) {
-                  console.log(resp);
+                  // console.log(resp)
                   that.submit();
                 });
               } });
@@ -263,7 +263,7 @@ __webpack_require__.r(__webpack_exports__);
               signType: resp.data.signType,
               paySign: resp.data.paySign,
               success: function success(res) {
-                console.log(res);
+                // console.log(res)
                 // 支付成功回调
                 that.$http.get({
                   url: '/v1/rest/pay/memberWechatPayCallback',
@@ -274,7 +274,7 @@ __webpack_require__.r(__webpack_exports__);
                     clubId: that.clubId } }).
 
                 then(function (resp) {
-                  console.log(resp);
+                  // console.log(resp)
                   if (resp.status == 200) {
                     uni.showToast({
                       title: resp.data.message,
@@ -289,7 +289,7 @@ __webpack_require__.r(__webpack_exports__);
                 });
               },
               fail: function fail(err) {
-                console.log(err);
+                // console.log(err)
                 // 支付取消回调
                 that.$http.get({
                   url: '/v1/rest/pay/memberWechatPayCallback',
@@ -300,7 +300,7 @@ __webpack_require__.r(__webpack_exports__);
                     clubId: that.clubId } }).
 
                 then(function (resp) {
-                  console.log(resp);
+                  // console.log(resp)
                   if (resp.status == 200) {
                     uni.showToast({
                       title: resp.data.message,

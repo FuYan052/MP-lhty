@@ -44,7 +44,7 @@
 			this.getAllList()
 		},
 		onLoad(options) {
-			console.log(options)
+			// console.log(options)
 			// 上一页传过来的id
 			this.selectedListIds = JSON.parse(decodeURIComponent(options.ids)) 
 		},
@@ -60,7 +60,7 @@
 						userId: uni.getStorageSync('userInfo').userId
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.labelList = resp.data
 						this.sliceArr1()
@@ -122,7 +122,7 @@
 						labelName: this.addLabel
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.getAllList()
 						this.addLabel = ''

@@ -222,7 +222,7 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
           userId: uni.getStorageSync('userInfo').userId } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this.userData = resp.data;
           if (resp.data.role == 102 || resp.data.role == 103) {
@@ -267,7 +267,7 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
               url: '/v1/rest/login/loginOut',
               data: {} }).
             then(function (resp) {
-              console.log(resp);
+              // console.log(resp)
               if (resp.status == 200) {
                 that.logout();
                 uni.removeStorage({ //根据key值移除缓存数据

@@ -37,7 +37,7 @@
 			}
 		},
 		onLoad(options) {
-			console.log(options)
+			// console.log(options)
 			if(options.sex == 1) {
 				this.isMan = true
 			}else{
@@ -49,7 +49,7 @@
 				url: '/v1/rest/public/findSysLabel',
 				data:{}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.tagsList = resp.data
 				}
@@ -76,7 +76,7 @@
 						labelId: this.selectedList.join(',')
 					},
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						uni.navigateBack()
 					}

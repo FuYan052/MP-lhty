@@ -137,7 +137,7 @@ __webpack_require__.r(__webpack_exports__);
       actList: [] };
 
   },
-  created: function created() {
+  onShow: function onShow() {
     this.getActList();
   },
   methods: {
@@ -150,14 +150,14 @@ __webpack_require__.r(__webpack_exports__);
           clubId: uni.getStorageSync('clubId') } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this.actList = resp.data;
         }
       });
     },
     handleEdit: function handleEdit(v) {
-      console.log(v);
+      // console.log(v)
       uni.navigateTo({
         url: '/pages/groupOwnerManage/revisionActivity/revisionActivity?editId=' + v.activitiesId });
 
@@ -175,9 +175,9 @@ __webpack_require__.r(__webpack_exports__);
                 activitiesId: v.activitiesId } }).
 
             then(function (resp) {
-              console.log(resp);
+              // console.log(resp)
               if (resp.status == 200) {
-                console.log(resp);
+                // console.log(resp)
                 if (resp.status == 200) {
                   that.getActList();
                   uni.showToast({

@@ -210,7 +210,7 @@ var _default =
 
   },
   onLoad: function onLoad(options) {
-    console.log(options);
+    // console.log(options)
     this.activityId = options.actId;
   },
   onShow: function onShow() {var _this = this;
@@ -221,7 +221,7 @@ var _default =
         userId: uni.getStorageSync('userInfo').userId } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.actDetail = resp.data;
         _this.clubId = resp.data.clubId;
@@ -297,16 +297,16 @@ var _default =
           mNumber: this.mNumber,
           productId: this.activityId,
           totalPrice: this.payMoney,
-          userId: uni.getStorageSync('userInfo').userId };
+          userId: uni.getStorageSync('userInfo').userId
 
-        console.log(params);
-        //微信支付
-        if (this.payType === 1) {
+          // console.log(params)
+          //微信支付
+        };if (this.payType === 1) {
           this.$http.post({
             url: '/v1/rest/pay/payUpper',
             data: params }).
           then(function (resp) {
-            console.log(resp);
+            // console.log(resp)
             if (resp.statusCode == 200) {
               uni.login({
                 provider: 'weixin',
@@ -318,7 +318,7 @@ var _default =
                       userId: uni.getStorageSync('userInfo').userId } }).
 
                   then(function (resp) {
-                    console.log(resp);
+                    // console.log(resp)
                     that.submit();
                   });
                 } });
@@ -333,7 +333,7 @@ var _default =
                 signType: resp.data.signType,
                 paySign: resp.data.paySign,
                 success: function success(res) {
-                  console.log(res);
+                  // console.log(res)
                   // 支付成功回调
                   that.$http.get({
                     url: '/v1/rest/pay/wechatPayCallback',
@@ -343,7 +343,7 @@ var _default =
                       clubId: that.clubId } }).
 
                   then(function (resp) {
-                    console.log(resp);
+                    // console.log(resp)
                     if (resp.status == 200) {
                       uni.showToast({
                         title: resp.data.message,
@@ -360,7 +360,7 @@ var _default =
                   });
                 },
                 fail: function fail(err) {
-                  console.log(err);
+                  // console.log(err)
                   // 支付取消回调
                   that.$http.get({
                     url: '/v1/rest/pay/wechatPayCallback',
@@ -370,7 +370,7 @@ var _default =
                       clubId: that.clubId } }).
 
                   then(function (resp) {
-                    console.log(resp);
+                    // console.log(resp)
                     if (resp.status == 200) {
                       uni.showToast({
                         title: resp.data.message,
@@ -388,19 +388,29 @@ var _default =
             url: '/v1/rest/pay/payLower',
             data: params }).
           then(function (resp) {
-            console.log(resp);
+            // console.log(resp)
             if (resp.status == 200) {
               uni.showToast({
                 title: resp.info,
                 duration: 2000,
                 icon: 'none' });
 
+              if (_this2.payType == 3) {//钱包支付时回调
+                _this2.$http.get({
+                  url: '/v1/rest/pay/walletPayCallback',
+                  data: {
+                    orderNo: resp.data } }).
+
+                then(function (res) {
+                  // console.log(res)
+                });
+              }
               var timer = setTimeout(function () {
                 uni.redirectTo({
                   url: '/pages/userCenter/myActivities/myActivities' });
 
                 clearTimeout(timer);
-              }, 1500);
+              }, 1000);
             }
           });
         }

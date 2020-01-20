@@ -160,7 +160,7 @@ var _default =
         userId: uni.getStorageSync('userInfo').userId } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.list = resp.data;
         if (_this.list.length == 0) {
@@ -174,7 +174,7 @@ var _default =
   methods: {
     // 活动详情
     toDetail: function toDetail(item) {
-      console.log(item);
+      // console.log(item)
       uni.navigateTo({
         url: '/pages/club/homePage/homePage?clubId=' + item.clubId });
 

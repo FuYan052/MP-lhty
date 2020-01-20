@@ -213,7 +213,7 @@ var _default =
         region: '' } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.banners = resp.data;
       }
@@ -222,7 +222,7 @@ var _default =
     uni.getLocation({
       type: 'wgs84',
       success: function success(res) {
-        console.log(res);
+        // console.log(res)
         that.lat = res.latitude;
         that.lon = res.longitude;
         that.isShowDiatance = true;
@@ -247,7 +247,7 @@ var _default =
         time: this.clickDate } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         uni.stopPullDownRefresh();
         _this2.actList = resp.data;
@@ -260,7 +260,7 @@ var _default =
         region: '' } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this2.banners = resp.data;
       }
@@ -278,7 +278,7 @@ var _default =
           time: this.clickDate } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this3.actList = resp.data;
           if (resp.data.length == 0) {
@@ -318,7 +318,7 @@ var _default =
     },
     // 点击轮播图
     clickBanner: function clickBanner(item) {
-      console.log(item);
+      // console.log(item)
       if (this.inWhiteList) {//如果在小程序的网址白名单中，会走内置webview打开，否则会复制网址提示在外部浏览器打开
         uni.navigateTo({
           url: '/pages/out/out?url=' + item.webUrl });

@@ -206,7 +206,7 @@ var _default =
         userId: uni.getStorageSync('userInfo').userId } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.isShow = resp.data.initTransfer;
         _this.accout = resp.data.account;
@@ -241,7 +241,7 @@ var _default =
           userName: this.realName } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           var that = _this2;
           if (resp.data.errCode == 'NAME_MISMATCH') {

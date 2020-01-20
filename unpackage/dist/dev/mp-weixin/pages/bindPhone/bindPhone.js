@@ -200,7 +200,7 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
             phone: this.userPhone } }).
 
         then(function (resp) {
-          console.log(resp);
+          // console.log(resp)
         });
         this.totalTime = 60;
         this.timer = setInterval(function () {
@@ -224,7 +224,7 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
     // 绑定
     handleBind: function handleBind() {var _this2 = this;
       var weixinUserInfo = uni.getStorageSync('weixinUserInfo');
-      console.log(weixinUserInfo);
+      // console.log(weixinUserInfo)
       var ruleValue = this.$utils.checkPhone(this.userPhone);
       if (!ruleValue) {
         uni.showToast({
@@ -251,7 +251,7 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
             openId: uni.getStorageSync('openId') } }).
 
         then(function (resp) {
-          console.log(resp);
+          // console.log(resp)
           uni.removeStorageSync('openId');
           uni.removeStorageSync('weixinUserInfo');
           if (resp.status == 200) {

@@ -98,7 +98,7 @@
 						userId: uni.getStorageSync('userInfo').userId,
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.userData = resp.data
 						if((resp.data.role == 102) || (resp.data.role == 103)) {
@@ -143,7 +143,7 @@
 								url: '/v1/rest/login/loginOut',
 								data: {}
 							}).then(resp => {
-								console.log(resp)
+								// console.log(resp)
 								if(resp.status == 200) {
 									that.logout()
 									uni.removeStorage({  //根据key值移除缓存数据

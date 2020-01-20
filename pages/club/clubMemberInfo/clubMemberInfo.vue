@@ -50,7 +50,7 @@
 					userId: this.userId
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.name = resp.data.nickName,
 					this.sex = resp.data.sex,

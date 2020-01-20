@@ -33,7 +33,7 @@
 					name: ''
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.venueList = resp.data
 				}
@@ -47,7 +47,7 @@
 						name: v.detail
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.venueList = resp.data
 					}

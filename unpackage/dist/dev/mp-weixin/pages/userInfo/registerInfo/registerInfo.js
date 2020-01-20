@@ -172,7 +172,7 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
         skey: 'occupation' } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.list3 = resp.data;
       }
@@ -219,14 +219,14 @@ var _vuex = __webpack_require__(/*! vuex */ 18);function _objectSpread(target) {
           userId: this.userInfo.userId,
           sex: this.sexValue,
           ageGroup: this.birthValue,
-          occupation: this.occupationValue };
+          occupation: this.occupationValue
 
-        console.log(params);
-        this.$http.post({
+          // console.log(params)
+        };this.$http.post({
           url: '/v1/rest/login/registerLabelSaveOne',
           data: params }).
         then(function (resp) {
-          console.log(resp);
+          // console.log(resp)
           if (resp.status == 200) {
             uni.redirectTo({
               url: '/pages/userInfo/selectionTags/selectionTags?sex=' + _this2.sexValue });

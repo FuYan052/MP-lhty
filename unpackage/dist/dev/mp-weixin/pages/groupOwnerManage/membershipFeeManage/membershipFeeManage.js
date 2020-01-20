@@ -200,7 +200,7 @@ var _default =
           clubId: uni.getStorageSync('clubId') } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           // this.list1 = resp.data.clubMembersA
           _this.list = _this.list.concat(resp.data.clubMembersA).concat(resp.data.clubMembersE).concat(resp.data.clubMembersD).concat(resp.data.clubMembersC).concat(resp.data.clubMembersB);
@@ -218,7 +218,7 @@ var _default =
             keyWord: this.searchText } }).
 
         then(function (resp) {
-          console.log(resp);
+          // console.log(resp)
           if (resp.status == 200) {
             _this2.list = resp.data;
           }

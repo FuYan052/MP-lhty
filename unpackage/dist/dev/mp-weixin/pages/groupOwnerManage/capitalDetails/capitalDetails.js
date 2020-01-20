@@ -175,7 +175,7 @@ var _default =
         clubId: uni.getStorageSync('clubId') } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.list = resp.data.feeDetailedBackVoList;
         _this.total = resp.data.totalMoney;

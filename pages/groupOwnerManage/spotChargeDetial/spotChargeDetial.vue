@@ -100,7 +100,7 @@
 			}
 		},
 		onLoad(options) {
-			console.log(options)
+			// console.log(options)
 			this.actId = uni.getStorageSync('addActId')
 		},
 		onShow() {
@@ -114,14 +114,14 @@
 						activitiesId: this.actId
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.list = resp.data
 					}
 				})
 			},
 			editMoney(item) {
-				console.log(item)
+				// console.log(item)
 				if(item.status) {
 					uni.showToast({
 						title: '该会员已收费，无法修改！',
@@ -149,7 +149,7 @@
 						totalFee: this.editValue
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.getList()
 						uni.showToast({

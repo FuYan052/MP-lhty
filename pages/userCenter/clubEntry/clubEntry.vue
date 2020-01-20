@@ -125,7 +125,7 @@
 					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
 					sourceType: ['album'], //从相册选择
 					success: function (res) {
-						console.log(res)
+						// console.log(res)
 						that.imgUrl = res.tempFilePaths[0]
 						const filepath = res.tempFilePaths[0]
 						uni.showLoading({
@@ -138,7 +138,7 @@
 							success: (uploadFileRes) => {
 								uni.hideLoading();
 								const resp = JSON.parse(uploadFileRes.data)
-								console.log(resp);
+								// console.log(resp);
 								if(resp.status == 200) {
 									that.imgUrl = resp.data[0]
 									uni.showToast({
@@ -149,7 +149,7 @@
 								}
 							},
 							fail: (err) => {
-								console.log(err)
+								// console.log(err)
 							}
 						});
 					}
@@ -168,37 +168,81 @@
 				this.QQ = v.detail
 			},
 			submit() {
-				const params = {
-					clubName: this.clubName,
-					qqGroup: this.QQgroup,
-					region: this.regionCode,
-					venueName: this.Venue,
-					name: this.UserName,
-					phone: this.phone,
-					qq: this.QQ,
-					weixin: this.Weixin,
-					logo: this.imgUrl,
-					content: this.introduce,
-					userId: uni.getStorageSync('userInfo').userId
-				}
-				console.log(params)
-				this.$http.post({
-					url: '/v1/rest/club/insertClub',
-					data: params
-				}).then(resp => {
-					console.log(resp)
-					if(resp.status == 200) {
-						uni.showModal({
-							title: '提示',
-							content: '申请成功，请等待审核！',
-							showCancel: false,
-							confirmText: '知道了',
-							success: function (res) {
-								uni.navigateBack()
-							}
-						});
+				if(this.clubName == '') {
+					uni.showToast({
+						title: '请填写俱乐部名称！',
+						duration: 2000,
+						icon: 'none'
+					});
+				}else if(this.regionCode == '') {
+					uni.showToast({
+						title: '请选择地区！',
+						duration: 2000,
+						icon: 'none'
+					});
+				}else if(this.Venue == '') {
+					uni.showToast({
+						title: '请填写活动场馆！',
+						duration: 2000,
+						icon: 'none'
+					});
+				}else if(this.introduce == '') {
+					uni.showToast({
+						title: '请填写俱乐部简介！',
+						duration: 2000,
+						icon: 'none'
+					});
+				}else if(this.UserName == '') {
+					uni.showToast({
+						title: '请填写姓名！',
+						duration: 2000,
+						icon: 'none'
+					});
+				}else if(this.UserName == '') {
+					uni.showToast({
+						title: '请填写姓名！',
+						duration: 2000,
+						icon: 'none'
+					});
+				}else if(this.phone == '') {
+					uni.showToast({
+						title: '请填写手机号！',
+						duration: 2000,
+						icon: 'none'
+					});
+				}else{
+					const params = {
+						clubName: this.clubName,
+						qqGroup: this.QQgroup,
+						region: this.regionCode,
+						venueName: this.Venue,
+						name: this.UserName,
+						phone: this.phone,
+						qq: this.QQ,
+						weixin: this.Weixin,
+						logo: this.imgUrl,
+						content: this.introduce,
+						userId: uni.getStorageSync('userInfo').userId
 					}
-				})
+					console.log(params)
+					this.$http.post({
+						url: '/v1/rest/club/insertClub',
+						data: params
+					}).then(resp => {
+						// console.log(resp)
+						if(resp.status == 200) {
+							uni.showModal({
+								title: '提示',
+								content: '申请成功，请等待审核！',
+								showCancel: false,
+								confirmText: '知道了',
+								success: function (res) {
+									uni.navigateBack()
+								}
+							});
+						}
+					})
+				}
 			}
 		}
 	}

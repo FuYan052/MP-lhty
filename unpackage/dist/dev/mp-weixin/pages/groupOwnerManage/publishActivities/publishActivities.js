@@ -290,7 +290,7 @@ __webpack_require__.r(__webpack_exports__);
       isshow1: false, //显示时间选择器
       isshow2: false, //其他选择器
       defaultValue: ['2小时'],
-      hour: null, //选择的时长
+      hour: '', //选择的时长
       pickList1: [],
       deadline: '', //报名截止
       timePickerType: 100, //100为选择活动时间，200为选择报名截止时间
@@ -323,7 +323,7 @@ __webpack_require__.r(__webpack_exports__);
         skey: 'level' } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.optionsList = resp.data;
       }
@@ -333,6 +333,7 @@ __webpack_require__.r(__webpack_exports__);
     if (uni.getStorageSync('venue')) {
       this.venueName = uni.getStorageSync('venue').name;
       this.venueId = uni.getStorageSync('venue').id;
+      this.titleValue = this.time + this.venueName + '约羽毛球';
     }
   },
   methods: (_methods = {
@@ -356,6 +357,7 @@ __webpack_require__.r(__webpack_exports__);
     receiveTime: function receiveTime(v1, v2) {
       this.time = v1;
       this.isshow1 = v2;
+      this.titleValue = this.time + this.venueName + '约羽毛球';
     },
     // 选择活动时长
     choiceDuration: function choiceDuration() {
@@ -440,41 +442,121 @@ __webpack_require__.r(__webpack_exports__);
   }), _defineProperty(_methods, "submit", function submit()
 
   {
-    var params = {
-      userId: uni.getStorageSync('userInfo').userId,
-      type: 'sportsKinds_01',
-      timeStart: this.time,
-      duration: this.hour,
-      endTime: this.deadline,
-      venueId: this.venueId,
-      people: this.inputNumValue,
-      walletPayMoney: this.inputPrice1,
-      moneyMan: this.inputPrice2,
-      moneyWomen: this.inputPrice3,
-      temporaryMoney: this.inputPrice4,
-      ballType: this.inputBallType,
-      occupationLevel: this.selectedIds.join(','),
-      title: this.titleValue,
-      content: this.ruleValue,
-      isLower: this.isUnderLine,
-      isWeek: this.isWeek,
-      isCancel: this.isCancel };
+    if (this.time == '') {
+      uni.showToast({
+        title: '请选择活动时间！',
+        duration: 2000,
+        icon: 'none' });
 
-    console.log(params);
-    this.$http.post({
-      url: '/v1/rest/manage/releaseActivities',
-      data: params }).
-    then(function (resp) {
-      console.log(resp);
-      if (resp.status == 200) {
-        uni.showToast({
-          title: '发布成功！',
-          duration: 2500,
-          icon: 'none' });
+    } else if (this.hour == '') {
+      uni.showToast({
+        title: '请选择活动时长！',
+        duration: 2000,
+        icon: 'none' });
 
-      }
-    });
-    uni.removeStorageSync('venue');
+    } else if (this.hour == '') {
+      uni.showToast({
+        title: '请选择活动时长！',
+        duration: 2000,
+        icon: 'none' });
+
+    } else if (this.deadline == '') {
+      uni.showToast({
+        title: '请选择报名截止时间！',
+        duration: 2000,
+        icon: 'none' });
+
+    } else if (this.venueName == '') {
+      uni.showToast({
+        title: '请选择活动场馆！',
+        duration: 2000,
+        icon: 'none' });
+
+    } else if (this.inputNumValue == '') {
+      uni.showToast({
+        title: '请填写活动人数！',
+        duration: 2000,
+        icon: 'none' });
+
+    } else if (this.inputPrice1 == '') {
+      uni.showToast({
+        title: '请填写钱包支付费用！',
+        duration: 2000,
+        icon: 'none' });
+
+    } else if (this.inputPrice2 == '') {
+      uni.showToast({
+        title: '请填写男性打球费用！',
+        duration: 2000,
+        icon: 'none' });
+
+    } else if (this.inputPrice3 == '') {
+      uni.showToast({
+        title: '请填写女性打球费用！',
+        duration: 2000,
+        icon: 'none' });
+
+    } else if (this.inputPrice4 == '') {
+      uni.showToast({
+        title: '请填写临打费用！',
+        duration: 2000,
+        icon: 'none' });
+
+    } else if (this.inputBallType == '') {
+      uni.showToast({
+        title: '请填写活动用球！',
+        duration: 2000,
+        icon: 'none' });
+
+    } else if (this.selectedIds.length == 0) {
+      uni.showToast({
+        title: '请选择等级要求！',
+        duration: 2000,
+        icon: 'none' });
+
+    } else if (this.inputOrganizer == 0) {
+      uni.showToast({
+        title: '请填写组织者！',
+        duration: 2000,
+        icon: 'none' });
+
+    } else {
+      var params = {
+        userId: uni.getStorageSync('userInfo').userId,
+        type: 'sportsKinds_01',
+        timeStart: this.time,
+        duration: this.hour,
+        endTime: this.deadline,
+        venueId: this.venueId,
+        people: this.inputNumValue,
+        walletPayMoney: this.inputPrice1,
+        moneyMan: this.inputPrice2,
+        moneyWomen: this.inputPrice3,
+        temporaryMoney: this.inputPrice4,
+        ballType: this.inputBallType,
+        occupationLevel: this.selectedIds.join(','),
+        title: this.titleValue,
+        content: this.ruleValue,
+        isLower: this.isUnderLine,
+        isWeek: this.isWeek,
+        isCancel: this.isCancel
+
+        // console.log(params)
+      };this.$http.post({
+        url: '/v1/rest/manage/releaseActivities',
+        data: params }).
+      then(function (resp) {
+        // console.log(resp)
+        if (resp.status == 200) {
+          uni.showToast({
+            title: '发布成功！',
+            duration: 2500,
+            icon: 'none' });
+
+        }
+      });
+      uni.removeStorageSync('venue');
+    }
   }), _methods) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

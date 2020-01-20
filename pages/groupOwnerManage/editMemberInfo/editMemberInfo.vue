@@ -57,11 +57,11 @@
 			
 		},
 		onLoad(options) {
-			console.log(options)
+			// console.log(options)
 			const item = JSON.parse(decodeURIComponent(options.item))
-			console.log(item)
+			// console.log(item)
 			this.userId = item.userId
-			this.clubId = '3'
+			this.clubId = uni.getStorageSync('clubId')
 			this.levelId = item.levelId
 			this.levelValue = item.level
 			this.stateId = item.stateId
@@ -81,7 +81,7 @@
 						skey: 'level'
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.optionsList = resp.data
 						this.columns = this.optionsList
@@ -99,7 +99,7 @@
 						skey: 'clubState'
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						// this.optionsList = resp.data
 						this.clubStateList = resp.data.filter(item => {
@@ -114,7 +114,7 @@
 				})
 			},
 			onConfirm(v) {
-				console.log(v)
+				// console.log(v)
 				if(this.pickerType == 100) {
 					this.levelValue = v.checkArr.label
 					this.levelId = v.checkArr.value
@@ -135,7 +135,7 @@
 						userId: this.userId
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						uni.showToast({
 							title: '修改成功！',

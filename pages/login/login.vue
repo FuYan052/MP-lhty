@@ -80,7 +80,7 @@
 							phone: this.userPhone,
 						}
 					}).then(resp => {
-						console.log(resp)
+						// console.log(resp)
 					})
 					this.totalTime = 60
 					this.timer = setInterval(() => {
@@ -124,7 +124,7 @@
 							authCode: this.checkCode
 						}
 					}).then(resp => {
-						console.log(resp)
+						// console.log(resp)
 						if(resp.status == 200) {
 							const userInfo = {
 								userPhone: resp.data.phone,
@@ -153,7 +153,7 @@
 				uni.login({
 				  provider: 'weixin',
 				  success: function (loginRes) {
-						console.log(loginRes)
+						// console.log(loginRes)
 				    that.$http.get({
 				    	url: '/v1/rest/login/getOpenId',
 				    	data:{
@@ -161,7 +161,7 @@
 				    	}
 				    }).then(res => {
 				    	if(res.status == 200) {
-								console.log(res)
+								// console.log(res)
 								if(res.data.initOpenId) {  //第一次微信快捷登录需绑定手机号
 									uni.setStorage({
 										key: 'openId',
@@ -171,7 +171,7 @@
 										provider: 'weixin',
 										lang: 'zh_CN',
 										success: function (resp) {
-											console.log(resp)
+											// console.log(resp)
 											uni.setStorage({            //把用户信息保存到本地缓存
 												key: 'weixinUserInfo',
 												data: resp.userInfo

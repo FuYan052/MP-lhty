@@ -82,7 +82,7 @@
 					userId: uni.getStorageSync('userInfo').userId
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.isShow = resp.data.initTransfer
 					this.accout = resp.data.account
@@ -117,7 +117,7 @@
 						userName: this.realName
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						const that = this
 						if(resp.data.errCode == 'NAME_MISMATCH') {

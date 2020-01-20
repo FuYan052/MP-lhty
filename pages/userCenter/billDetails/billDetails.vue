@@ -40,7 +40,7 @@
 			}
 		},
 		onLoad(options) {
-			console.log(options)
+			// console.log(options)
 			this.id = options.id
 			this.$http.get({
 				url: '/v1/rest/userwallet/userWalletBillDetails',
@@ -48,7 +48,7 @@
 					userWalletBillId: this.id
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.detail = resp.data
 				}

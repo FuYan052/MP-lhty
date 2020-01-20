@@ -164,7 +164,7 @@ var _default =
 
   },
   onLoad: function onLoad(options) {var _this = this;
-    console.log(options);
+    // console.log(options)
     this.id = options.id;
     this.$http.get({
       url: '/v1/rest/userwallet/userWalletBillDetails',
@@ -172,7 +172,7 @@ var _default =
         userWalletBillId: this.id } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.detail = resp.data;
       }

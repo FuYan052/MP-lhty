@@ -48,7 +48,7 @@
 					skey: 'occupation',
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.list3 = resp.data
 				}
@@ -97,12 +97,12 @@
 						ageGroup: this.birthValue,
 						occupation: this.occupationValue,
 					}
-					console.log(params)
+					// console.log(params)
 					this.$http.post({
 						url: '/v1/rest/login/registerLabelSaveOne',
 						data: params,
 					}).then(resp => {
-						console.log(resp)
+						// console.log(resp)
 						if(resp.status == 200) {
 							uni.redirectTo({
 								url: '/pages/userInfo/selectionTags/selectionTags?sex=' + this.sexValue

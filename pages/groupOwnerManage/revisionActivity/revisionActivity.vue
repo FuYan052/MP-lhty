@@ -136,7 +136,7 @@
 				isshow1: false,  //显示时间选择器
 				isshow2: false,  //其他选择器
 				defaultValue: ['2小时'],
-				hour: null,  //选择的时长
+				hour: '',  //选择的时长
 				pickList1: [],
 				deadline: '',  //报名截止
 				timePickerType: 100,  //100为选择活动时间，200为选择报名截止时间
@@ -170,7 +170,7 @@
 					activitiesId: this.actId
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.actInfo = resp.data
 					this.time = resp.data.timeStart
@@ -202,7 +202,7 @@
 					skey: 'level'
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.optionsList = resp.data
 				}
@@ -242,7 +242,7 @@
 				this.$refs.picker1.show()
 			},
 			onConfirm(v) {
-				console.log(v)
+				// console.log(v)
 				this.hour = v.checkArr.value
 				this.isshow2 = false
 			},
@@ -340,21 +340,19 @@
 					isWeek: this.isWeek,
 					isCancel: this.isCancel
 				}
-				console.log(params)
+				// console.log(params)
 				this.$http.post({
 					url: '/v1/rest/manage/releaseActivities',
 					data: params
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
-						uni.showToast({
-							title: '修改成功！',
-							duration: 2000,
-							icon: 'none'
-						}); 
-						uni.redirectTo({
-							url: '/pages/groupOwnerManage/editActivitie/editActivitie'
-						})
+						// uni.showToast({
+						// 	title: '修改成功！',
+						// 	duration: 2000,
+						// 	icon: 'none'
+						// }); 
+						uni.navigateBack()
 					}
 				})
 				uni.removeStorageSync('venue')

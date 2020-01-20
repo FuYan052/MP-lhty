@@ -158,7 +158,7 @@ var _default =
   },
   onLoad: function onLoad(options) {
     this.item = JSON.parse(decodeURIComponent(options.item));
-    console.log(this.item);
+    // console.log(this.item)
     if (this.item.sex == 1) {
       this.sex = '男';
       this.mNumber = 1;
@@ -186,7 +186,7 @@ var _default =
           userId: this.item.userId } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           uni.showToast({
             title: '添加成功！',

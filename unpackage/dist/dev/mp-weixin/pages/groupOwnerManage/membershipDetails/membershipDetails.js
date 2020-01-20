@@ -181,7 +181,7 @@ var _default =
         clubId: this.clubId } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.headImg = resp.data.headPortrait;
         _this.name = resp.data.nickName;

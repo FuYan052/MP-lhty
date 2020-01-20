@@ -132,7 +132,7 @@ var _default =
 
   },
   onLoad: function onLoad(v) {
-    console.log(v);
+    // console.log(v)
     this.outUrl = v.url;
   } };exports.default = _default;
 

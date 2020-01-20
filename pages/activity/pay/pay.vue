@@ -86,7 +86,7 @@
 			}
 		},
 		onLoad(options) {
-			console.log(options)
+			// console.log(options)
 			this.activityId = options.actId
 		},
 		onShow() {
@@ -97,7 +97,7 @@
 					userId: uni.getStorageSync('userInfo').userId
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.actDetail = resp.data
 					this.clubId = resp.data.clubId
@@ -175,14 +175,14 @@
 						totalPrice: this.payMoney,
 						userId: uni.getStorageSync('userInfo').userId,
 					}
-					console.log(params)
+					// console.log(params)
 					//微信支付
 					if(this.payType === 1) {  
 						this.$http.post({
 							url: '/v1/rest/pay/payUpper',
 							data: params
 						}).then(resp => {
-							console.log(resp)
+							// console.log(resp)
 							if(resp.statusCode == 200) {
 								uni.login({
 								  provider: 'weixin',
@@ -194,7 +194,7 @@
 												userId: uni.getStorageSync('userInfo').userId
 								    	}
 								    }).then(resp => {
-											console.log(resp)
+											// console.log(resp)
 											that.submit()
 										})
 								  }
@@ -209,7 +209,7 @@
 									signType: resp.data.signType,
 									paySign: resp.data.paySign,
 									success: function (res) {
-										console.log(res)
+										// console.log(res)
 										// 支付成功回调
 										that.$http.get({
 											url: '/v1/rest/pay/wechatPayCallback',
@@ -219,7 +219,7 @@
 												clubId: that.clubId
 											}
 										}).then(resp => {
-											console.log(resp)
+											// console.log(resp)
 											if(resp.status == 200) {
 												uni.showToast({
 													title: resp.data.message,
@@ -236,7 +236,7 @@
 										})
 									},
 									fail: function (err) {
-										console.log(err)
+										// console.log(err)
 										// 支付取消回调
 										that.$http.get({
 											url: '/v1/rest/pay/wechatPayCallback',
@@ -246,7 +246,7 @@
 												clubId: that.clubId
 											}
 										}).then(resp => {
-											console.log(resp)
+											// console.log(resp)
 											if(resp.status == 200) {
 												uni.showToast({
 													title: resp.data.message,
@@ -264,19 +264,29 @@
 							url: '/v1/rest/pay/payLower',
 							data: params
 						}).then(resp => {
-							console.log(resp)
+							// console.log(resp)
 							if(resp.status == 200) {
 								uni.showToast({
 									title: resp.info,
 									duration: 2000,
 									icon: 'none'
 								});
+								if(this.payType == 3) {  //钱包支付时回调
+									this.$http.get({
+										url: '/v1/rest/pay/walletPayCallback',
+										data: {
+											orderNo: resp.data
+										},
+									}).then(res => {
+										// console.log(res)
+									})
+								}
 								var timer = setTimeout(() => {
 									uni.redirectTo({
 										url: '/pages/userCenter/myActivities/myActivities'
 									})
 									clearTimeout(timer)
-								},1500)
+								},1000)
 							}
 						})
 					}

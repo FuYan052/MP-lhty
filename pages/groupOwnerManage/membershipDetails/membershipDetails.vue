@@ -57,7 +57,7 @@
 					clubId: this.clubId
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.headImg = resp.data.headPortrait
 					this.name = resp.data.nickName

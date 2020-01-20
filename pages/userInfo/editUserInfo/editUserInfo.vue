@@ -117,7 +117,7 @@
 					userId: uni.getStorageSync('userInfo').userId
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.infoId = resp.data.id
 					this.imgFile = resp.data.headPortrait
@@ -157,7 +157,7 @@
 					skey: 'occupation',
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.workList = resp.data
 				}
@@ -177,7 +177,7 @@
 					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
 					sourceType: ['album'], //从相册选择
 					success: function (res) {
-						console.log(res)
+						// console.log(res)
 						that.imgFile = res.tempFilePaths[0]
 						const filepath = res.tempFilePaths[0]
 						uni.showLoading({
@@ -190,7 +190,7 @@
 							success: (uploadFileRes) => {
 								uni.hideLoading();
 								const resp = JSON.parse(uploadFileRes.data)
-								console.log(resp);
+								// console.log(resp);
 								if(resp.status == 200) {
 									that.imgFile = resp.data[0]
 									uni.showToast({
@@ -201,7 +201,7 @@
 								}
 							},
 							fail: (err) => {
-								console.log(err)
+								// console.log(err)
 							}
 						});
 					}
@@ -246,7 +246,7 @@
 				this.$refs.picker4.show()
 			},
 			confirmWork(v) {
-				console.log(v)
+				// console.log(v)
 				this.workValue = v.checkArr.label
 				this.workId = v.checkArr.value
 			},
@@ -255,13 +255,13 @@
 				this.$refs.picker5.show()
 			},
 			confirmRegion(v) {
-				console.log(v)
+				// console.log(v)
 				this.regionValue = v.result
 				this.regionId = v.checkValue[1]
 			},
 			// 选择标签
 			selectLabel() {
-				console.log(this.selectedIds)
+				// console.log(this.selectedIds)
 				uni.navigateTo({
 					url: '/pages/userInfo/tagsPage/tagsPage?ids=' + encodeURIComponent(JSON.stringify(this.selectedIds)) 
 				})
@@ -285,7 +285,7 @@
 					url: '/v1/rest/mydata/saveUserInfo',
 					data: params
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						uni.removeStorageSync('selectedLabels')
 						uni.navigateBack()

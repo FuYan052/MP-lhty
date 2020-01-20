@@ -165,7 +165,7 @@ var _default =
         userId: uni.getStorageSync('userInfo').userId } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.feeData = resp.data;
       }

@@ -191,7 +191,7 @@ var _default =
     this.getAllList();
   },
   onLoad: function onLoad(options) {
-    console.log(options);
+    // console.log(options)
     // 上一页传过来的id
     this.selectedListIds = JSON.parse(decodeURIComponent(options.ids));
   },
@@ -207,7 +207,7 @@ var _default =
           userId: uni.getStorageSync('userInfo').userId } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this.labelList = resp.data;
           _this.sliceArr1();
@@ -269,7 +269,7 @@ var _default =
           labelName: this.addLabel } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this3.getAllList();
           _this3.addLabel = '';

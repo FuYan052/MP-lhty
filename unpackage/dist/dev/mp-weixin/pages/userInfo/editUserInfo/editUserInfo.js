@@ -241,7 +241,7 @@ __webpack_require__.r(__webpack_exports__);
         userId: uni.getStorageSync('userInfo').userId } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.infoId = resp.data.id;
         _this.imgFile = resp.data.headPortrait;
@@ -281,7 +281,7 @@ __webpack_require__.r(__webpack_exports__);
         skey: 'occupation' } }).
 
     then(function (resp) {
-      console.log(resp);
+      // console.log(resp)
       if (resp.status == 200) {
         _this.workList = resp.data;
       }
@@ -301,7 +301,7 @@ __webpack_require__.r(__webpack_exports__);
         sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album'], //从相册选择
         success: function success(res) {
-          console.log(res);
+          // console.log(res)
           that.imgFile = res.tempFilePaths[0];
           var filepath = res.tempFilePaths[0];
           uni.showLoading({
@@ -314,7 +314,7 @@ __webpack_require__.r(__webpack_exports__);
             success: function success(uploadFileRes) {
               uni.hideLoading();
               var resp = JSON.parse(uploadFileRes.data);
-              console.log(resp);
+              // console.log(resp);
               if (resp.status == 200) {
                 that.imgFile = resp.data[0];
                 uni.showToast({
@@ -325,7 +325,7 @@ __webpack_require__.r(__webpack_exports__);
               }
             },
             fail: function fail(err) {
-              console.log(err);
+              // console.log(err)
             } });
 
         } });
@@ -370,7 +370,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.picker4.show();
     },
     confirmWork: function confirmWork(v) {
-      console.log(v);
+      // console.log(v)
       this.workValue = v.checkArr.label;
       this.workId = v.checkArr.value;
     },
@@ -379,13 +379,13 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.picker5.show();
     },
     confirmRegion: function confirmRegion(v) {
-      console.log(v);
+      // console.log(v)
       this.regionValue = v.result;
       this.regionId = v.checkValue[1];
     },
     // 选择标签
     selectLabel: function selectLabel() {
-      console.log(this.selectedIds);
+      // console.log(this.selectedIds)
       uni.navigateTo({
         url: '/pages/userInfo/tagsPage/tagsPage?ids=' + encodeURIComponent(JSON.stringify(this.selectedIds)) });
 
@@ -409,7 +409,7 @@ __webpack_require__.r(__webpack_exports__);
         url: '/v1/rest/mydata/saveUserInfo',
         data: params }).
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           uni.removeStorageSync('selectedLabels');
           uni.navigateBack();

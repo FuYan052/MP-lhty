@@ -150,14 +150,18 @@
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
-      -webkit-box-pack: end;
-      -webkit-justify-content: flex-end;
-          -ms-flex-pack: end;
-              justify-content: flex-end;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
       -webkit-box-align: center;
       -webkit-align-items: center;
           -ms-flex-align: center;
               align-items: center;
+}
+.myActivities .orderItem .btnBox .payType.data-v-611c47f0 {
+        font-size: 22rpx;
+        color: #F1F1F1;
 }
 .myActivities .orderItem .btnBox .btn.data-v-611c47f0 {
         width: 124rpx;
@@ -168,6 +172,7 @@
         border-radius: 10rpx;
         border: 1rpx solid #ee4e5a;
         color: #f1757d;
+        float: left;
 }
 .myActivities .orderItem .btnBox .btn1.data-v-611c47f0 {
         color: #fff;

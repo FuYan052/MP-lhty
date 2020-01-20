@@ -237,13 +237,15 @@ var _default =
   },
   methods: {
     getCateList: function getCateList() {var _this = this;
+      this.list1 = [];
+      this.list2 = [];
       this.$http.get({
         url: '/v1/rest/club/clubMembersInfo',
         data: {
           clubId: uni.getStorageSync('clubId') } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this.list1 = resp.data.clubMembersA;
           _this.list2 = _this.list2.concat(resp.data.clubMembersE).concat(resp.data.clubMembersD).concat(resp.data.clubMembersC).concat(resp.data.clubMembersB);
@@ -261,7 +263,7 @@ var _default =
             keyWord: this.searchValue } }).
 
         then(function (resp) {
-          console.log(resp);
+          // console.log(resp)
           if (resp.status == 200) {
             _this2.list2 = [];
             _this2.isShowTitle = false;

@@ -1,8 +1,6 @@
 <template>
 	<view class="noDataPage">
-		<view class="naDataImg">
-			
-		</view>
+		<view class="naDataImg"></view>
 	</view>
 </template>
 

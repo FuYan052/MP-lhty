@@ -61,9 +61,9 @@
 			</view>
 		</view>
 		<!-- 合计 -->
-		<view class="countBox">
+		<!-- <view class="countBox">
 			总支出：<text>{{total}}</text>元
-		</view>
+		</view> -->
 		<view class="btnBox">
 			<view class="myButton" @click="handleSubmit">结算</view>
 		</view>
@@ -90,7 +90,7 @@
 			}
 		},
 		onLoad(options) {
-			console.log(options)
+			// console.log(options)
 			this.actId = options.actId
 			this.$http.get({
 				url: '/v1/rest/manage/settlementIncome',
@@ -98,7 +98,7 @@
 					activitiesId: this.actId
 				}
 			}).then(resp => {
-				console.log(resp)
+				// console.log(resp)
 				if(resp.status == 200) {
 					this.money4 = resp.data.moneyMan + '/人'
 					this.money5 = resp.data.moneyWomen + '/人'
@@ -135,7 +135,7 @@
 						venueFee: this.money1,
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						uni.showModal({
 							title: '提示',

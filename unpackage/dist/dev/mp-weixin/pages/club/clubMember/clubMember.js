@@ -321,7 +321,7 @@ var _default =
           clubId: this.clubId } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this.list1 = resp.data.clubMembersA;
           _this.list2 = resp.data.clubMembersE;
@@ -342,7 +342,7 @@ var _default =
             keyWord: this.searchValue } }).
 
         then(function (resp) {
-          console.log(resp);
+          // console.log(resp)
           if (resp.status == 200) {
             _this2.list6 = resp.data;
           }

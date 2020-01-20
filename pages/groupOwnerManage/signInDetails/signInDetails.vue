@@ -61,7 +61,7 @@
 			}
 		},
 		onLoad(options) {
-			console.log(options)
+			// console.log(options)
 			this.actId = options.id
 		},
 		onShow() {
@@ -75,7 +75,7 @@
 						activitiesId: this.actId
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.list = resp.data
 					}
@@ -112,14 +112,14 @@
 				}
 			},
 			submit() {
-				console.log(typeof(this.selectedList))
+				// console.log(typeof(this.selectedList))
 				this.$http.get({
 					url: '/v1/rest/manage/signInOk',
 					data: {
 						orderId: this.selectedList.join(',')
 					}
 				}).then(resp => {
-					console.log(resp)
+					// console.log(resp)
 					if(resp.status == 200) {
 						this.getList()
 						uni.showToast({

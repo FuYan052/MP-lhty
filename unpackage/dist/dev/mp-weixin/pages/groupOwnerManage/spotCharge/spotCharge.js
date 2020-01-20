@@ -155,14 +155,14 @@ __webpack_require__.r(__webpack_exports__);
           clubId: uni.getStorageSync('clubId') } }).
 
       then(function (resp) {
-        console.log(resp);
+        // console.log(resp)
         if (resp.status == 200) {
           _this.activityList = resp.data;
         }
       });
     },
     handle: function handle(v) {
-      console.log(v);
+      // console.log(v)
       uni.navigateTo({
         url: '/pages/groupOwnerManage/spotChargeDetial/spotChargeDetial?id=' + v.activitiesId });
 
